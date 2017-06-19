@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<link href="css/custom.css" rel="stylesheet" />
+		<link href="css/ionicons.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+		<style>
+			.mui-bar-tab {
+				bottom: 0;
+				display: table;
+				width: 100%;
+				height: 40px;
+				padding: 0;
+				table-layout: fixed;
+				border-top: 0;
+				border-bottom: 0;
+				-webkit-touch-callout: none;
+			}
+			
+			.mui-bar-tab~ .mui-content {
+				padding-bottom: 40px;
+			}
+			
+			.mui-bar-tab~ .mui-content.mui-scroll-wrapper .mui-scrollbar-vertical {
+				bottom: 40px;
+			}
+			
+			.mui-bar-tab~ .mui-content .mui-slider.mui-fullscreen .mui-segmented-control~ .mui-slider-group {
+				bottom: 40px;
+			}
+			
+			.btn-null {}
+		</style>
+	</head>
+
+	<body>
+		<div id="info" class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+			<div class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav">
+
+					<h1 id="aTitle" class="mui-title ft-white">
+					<span id="lTopName" class="font-size-16">微订气</span>
+				</h1>
+				</header>
+					<!--<a id="aCart" class="mui-action-menu mui-pull-right">
+						<span class="mui-icon ion-ios-cart-outline ft-white"></span>
+					</a>-->
+				
+				<!--<nav class="mui-bar mui-bar-tab line-split">
+					<div class="mui-input-group" style="background-color: #f3f3f3;">
+						<div class="mui-input-row">
+							<div class="mui-pull-left">
+								<div style="padding-top:10px;padding-left:8px;"><span id="sum" class="ft-red"></span><span class="ft-red"></span></div>
+							</div>
+							<div class="mui-pull-right" style="padding-top:4px;padding-right:3px;">								
+								<button id="btnConfirm" class="mui-pull-right font-size-14 yd-select-btn mui-btn-green" style="width:110px;">确认</button>
+								<button id="btnReset" class="mui-pull-right font-size-14 yd-select-btn mui-btn-grey" style="width:110px;">重置</button>
+							</div>
+						</div>
+					</div>
+				</nav>-->
+				<nav class="mui-bar mui-bar-tab line-split">
+					<a id="aHome" class="mui-tab-item mui-active">
+						<span class="mui-icon mui-icon-home"></span>
+						<span class="mui-tab-label">订气</span>
+					</a>
+					<a id="aAccount" class="mui-tab-item">
+						<span class="mui-icon mui-icon-contact"></span>
+						<span class="mui-tab-label">我的</span>
+					</a>
+				</nav>
+				<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+					<div id="div_list" class="mui-scroll">
+						<ul id="cartList" class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<div class="mt-5 mb-10" style="text-align: center;">
+									<img src="images/ding.jpg" style="width: 100%;" />
+								</div>
+								<div class="line-split"></div>
+								<div class="font-size-14 mt-10">
+									<div id="pdname" class="mui-ellipsis ft-blue">15KG 优质液化气</div>
+									<p class="font-size-14 ft-red">微信优惠价:￥
+										<span id="price">￥<span id="price"></span></span>
+									</p>
+									<p class="font-size-12 ft-grey mui-ellipsis-10">微信订气服务时间:8:00am - 6:00pm </p>
+									<div class="mui-numbox mt-5" data-numbox-min='1' data-numbox-max='9'>
+										<button id="btnDes" class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+										<input id="txtNumbers" readonly="readonly" class="mui-numbox-input ft-grey" type="number" value="1" />
+										<button id="btnPlus" class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+									</div>
+									<button id='paytype' type="button" class="mui-btn mui-btn-primary mui-btn-blue btn-block mt-10" >选择付款方式 ...</button>
+									<button id="btnCoupon" type="button" class="mui-btn mui-btn-primary mui-btn-blue btn-block mt-10" >使用优惠券</button>
+									<!--<button id='sendtime' type="button" class="mui-btn mui-btn-primary mui-btn-blue btn-block mt-10" data-options='{}'>选择送气时间 ...</button>-->
+								</div>
+							</li>
+						</ul>
+						<div class="mt-20 mb-5 font-size-14 mui-content-padded">
+							<span class="ft-grey">
+								联系人信息 
+							</span>
+						</div>
+						<div class="mui-input-group">
+							<div class="mui-input-row">
+								<input id="realname" type="text" class="mui-input-clear font-size-14" value="李先生" placeholder="联系人">
+							</div>
+							<div class="mui-input-row">
+								<input id="mobile" type="text" class="mui-input-clear font-size-14" value="13798965199" placeholder="联系电话">
+							</div>
+							<div class="mui-input-row">
+								<input id="address" type="text" class="mui-input-clear font-size-14" value="香洲区怡华路150号702" placeholder="地址">
+							</div>
+							<div>
+								<input id="remark" type="text" class="mui-input-clear font-size-14" value="" placeholder="留言">
+							</div>
+						</div>
+						<div class="mui-button-row mui-content-padded mt-10">
+							<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-green btn-block" >确认</button>
+						</div>
+						<div style="text-align: center;" class="mt-10">
+							<span class="ft-grey font-size-12">备案号:粤ICP备17010558号</span>
+						</div>
+					</div>
+
+				</div>
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+		<form id="dynamicForm" target="_blank"></form>
+	</body>
+
+</html>
+<script src="js/util.js"></script>
+<script src="js/mui.picker.js"></script>
+<script src="js/mui.dtpicker.js"></script>
+<script src="js/mui.poppicker.js"></script>
+<script src="js/index.js"></script>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/custom.css" rel="stylesheet" />
+		<link href="css/ionicons.min.css" rel="stylesheet" />
+		<style>
+			.mui-slider-indicator .mui-indicator {
+				display: inline-block;
+				width: 6px;
+				height: 6px;
+				margin: 1px 6px;
+				cursor: pointer;
+				border-radius: 50%;
+				background: #aaa;
+				filter: alpha(opacity=40);
+				-moz-opacity: 0.4;
+				-khtml-opacity: 0.4;
+				opacity: 0.4;
+				-webkit-box-shadow: 0 0 0px 0px rgba(130, 130, 130, .7);
+				box-shadow: 0 0 0px 0px rgba(130, 130, 130, .7);
+			}
+			
+			.mui-slider-indicator .mui-active.mui-indicator {
+				background: #fff;
+				filter: alpha(opacity=100);
+				-moz-opacity: 1;
+				-khtml-opacity: 1;
+				opacity: 1;
+			}
+			
+			.info_btn {
+				height: 40px;
+			}
+			
+			.setting_icon {
+				width: 25px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="info" class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+			<div class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav">					
+					<h1 class="mui-title ft-white">
+					老用户绑定
+				</h1>
+				</header>
+				<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+					<div id="div_list" class="mui-scroll">
+						<div class="mt-20 mb-5 font-size-14 mui-content-padded">
+							<span class="ft-grey">
+						请输入您登记的联系电话 &nbsp;
+							</span>
+						</div>
+						<div class="mui-input-group">
+							<div class="mui-input-row">
+								<input id="mobile" type="text" class="mui-input-clear font-size-14" value="" placeholder="联系电话">
+							</div>
+						</div>
+						<div class="mui-button-row mui-content-padded mt-10">
+							<button id="btnSave" type="button" class="mui-btn mui-btn-primary mui-btn-blue btn-block">确定</button>
+						</div>
+					</div>
+				</div>
+				<div id="upload_data"></div>
+				<script src="js/mui.min.js"></script>
+				<script src="js/jquery-1.10.2.min.js"></script>
+				<script src="js/ajaxfileupload.js"></script>
+				<script src="js/util.js"></script>
+				<script src="js/bindstepone.js"></script>
+			</div>
+		</div>
+	</body>
+
+</html>

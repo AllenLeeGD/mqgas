@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/custom.css" rel="stylesheet" />
+		<link href="css/ionicons.min.css" rel="stylesheet" />
+		<style>
+			.mui-slider-indicator .mui-indicator {
+				display: inline-block;
+				width: 6px;
+				height: 6px;
+				margin: 1px 6px;
+				cursor: pointer;
+				border-radius: 50%;
+				background: #aaa;
+				filter: alpha(opacity=40);
+				-moz-opacity: 0.4;
+				-khtml-opacity: 0.4;
+				opacity: 0.4;
+				-webkit-box-shadow: 0 0 0px 0px rgba(130, 130, 130, .7);
+				box-shadow: 0 0 0px 0px rgba(130, 130, 130, .7);
+			}
+			
+			.mui-slider-indicator .mui-active.mui-indicator {
+				background: #fff;
+				filter: alpha(opacity=100);
+				-moz-opacity: 1;
+				-khtml-opacity: 1;
+				opacity: 1;
+			}
+			
+			.info_btn {
+				height: 40px;
+			}
+			
+			.setting_icon {
+				width: 25px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="info" class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+			<div class="mui-inner-wrap">
+				<!--<header class="mui-bar mui-bar-nav">
+					<h1 id="lNickName" class="mui-title ft-white">
+					微订气
+				</h1>
+
+				</header>-->
+				<nav class="mui-bar mui-bar-tab line-split">
+					<a id="aHome" class="mui-tab-item">
+						<span class="mui-icon mui-icon-home"></span>
+						<span class="mui-tab-label">订气</span>
+					</a>
+					<a id="aAccount" class="mui-tab-item mui-active">
+						<span class="mui-icon mui-icon-contact"></span>
+						<span class="mui-tab-label">我的</span>
+					</a>
+				</nav>
+
+				<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+					<div id="div_list" class="mui-scroll">
+						<ul class="mui-table-view" style="background-image: url(../images/bg.jpg);background-repeat: repeat;background-position: top left;height:160px;">
+							<li class="mui-table-view-cell mui-media mui-text-center">
+								<img id="headicon" style="width:50px;height:50px;margin-top: 20px;" class="img-cycle" src="images/nohead.png" />
+								<div>
+									<span id="realname" class="font-size-12 ft-white"></span>									
+								</div>
+								<div>
+									<span id="levelname" class="mui-badge mui-badge-green mui-badge-primary"></span>
+								</div>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-grid-view">
+							<li class="mui-table-view-cell mui-col-xs-6 yd_itembg">
+								<a id="aGoing">
+									<span class="mui-icon ion-ios-timer-outline ft-grey"></span>
+									<div class="font-size-12">进行中</div>
+									<div class="font-size-12"><span id="ordercount" class="mui-badge mui-badge-primary"></span></div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6 yd_itembg">
+								<a id="aFinished">
+									<span class="mui-icon ion-ios-toggle-outline ft-grey"></span>
+									<div class="font-size-12">已完成</div>
+									<div class="font-size-12"><span style="border-bottom:2px solid #ff6600;width:40px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron mt-20">
+							<li id="aOrder" class="mui-table-view-cell">
+								<a class="mui-navigate-right font-size-14" id="a_success">
+									<span class="mui-icon ion-clipboard mui-pull-left setting_icon ft-grey font-size-18 mt-5"></span>
+									<div class="mui-media-body pd-4 ft-black">
+										我的订单
+									</div>
+								</a>
+							</li>
+							<li id="aCoupon" class="mui-table-view-cell">
+								<a class="mui-navigate-right font-size-14" id="a_success">
+									<span class="mui-icon ion-android-map mui-pull-left setting_icon ft-grey font-size-18 mt-5"></span>
+									<div class="mui-media-body pd-4 ft-black">
+										我的优惠券
+									</div>
+								</a>
+							</li>
+							<li id="aGetCoupon" class="mui-table-view-cell">
+								<a class="mui-navigate-right font-size-14" id="a_success">
+									<span class="mui-icon ion-android-happy mui-pull-left setting_icon ft-grey font-size-18 mt-5"></span>
+									<div class="mui-media-body pd-4 ft-black">
+										领取优惠券
+									</div>
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron mt-20">
+							<li id="aSetting" class="mui-table-view-cell">
+								<a class="mui-navigate-right font-size-14" id="a_success">
+									<span class="mui-icon ion-ios-gear-outline mui-pull-left setting_icon ft-grey font-size-18 mt-5"></span>
+									<div class="mui-media-body pd-4 ft-black">
+										设置
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<script src="js/util.js"></script>
+				<script src="js/account.js"></script>
+			</div>
+		</div>
+	</body>
+
+</html>

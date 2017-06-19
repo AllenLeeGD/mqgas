@@ -1,0 +1,108 @@
+<!-- START 加入进货车弹出页面 -->
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button class="close" aria-hidden="true" data-dismiss="modal" type="button"></button>
+			<h4 id="pdname"class="modal-title">订单详情</h4>
+		</div>
+		<div class="modal-body">
+			<div  style="padding:0px 20px 20px 20px;">
+				<div class="row">
+                                    <div class="col-md-12">
+                                        <div id="div_orderinfo" style="float:left;">
+						
+					</div>
+                                    </div>
+				</div>
+			
+				<div class="row"  style="background: #efefef;padding: 10px 0;margin-top:20px;border-bottom:1px dashed #c0c0c0">
+					<div class="col-xs-6">
+						<h4>收货人信息:</h4>
+						<ul class="list-unstyled">
+							<li id="l_aname">
+								 
+							</li>
+							
+							<li id="l_address">
+								 
+							</li>
+							<li id="l_tel">
+								 
+							</li>
+							<li id="l_remark">
+								 
+							</li>
+						</ul>
+					</div>
+					<div class="col-xs-6 invoice-payment">
+						<h4>支付信息:</h4>
+						<ul class="list-unstyled">
+							<li id="l_paytype">
+								 
+							</li>
+							<li id="l_paytime">
+								 
+							</li>
+							<li id="l_remark">
+								 <strong></strong>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<table class="table table-striped table-custom">
+						<thead>
+						<tr>
+							<th>
+								 商品
+							</th>
+							<th style="width:12%;">
+								 数量
+							</th>
+							<th style="width:12%;">
+								 单价
+							</th>
+							<th style="width:15%;">
+								 小计
+							</th>
+						</tr>
+						</thead>
+						<tbody id="tpl_itemlist">
+
+						</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 invoice-block" style="border-top:1px dashed #c0c0c0">
+						<ul class="list-unstyled amounts text-right margin-top-10">
+							<li class="font-size-14">
+                                优惠金额: <span id="coupon"></span>
+							</li>
+							<li class="font-size-16">
+                                <strong>总金额:</strong> <span id="totalmoney" class="font-highlight-custom"></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+                              
+			</div>
+                        
+                        <div class="row">
+				<div class="col-md-12">
+					<ul id="li_timeline" class="timeline">
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="cart_data"></div>
+		<div class="modal-footer">
+                        <button class="btn default" data-dismiss="modal" type="button">
+				关闭
+			</button>
+		</div>
+	</div>
+</div>
+<!-- END 加入进货车弹出页面 -->

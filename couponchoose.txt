@@ -1,0 +1,15 @@
+<li class="mui-table-view-cell mui-media  mui-media-large">
+	<a href="javascript:;">
+		<img class="mui-media-object mui-pull-left" style="width:65px;height:55px;" src="${imgpath}">
+		<div name="postlink" orderid="${orderid}" class="font-size-14">
+			<div class="mui-ellipsis">
+				<div class="mui-input-row mui-checkbox mui-right line-split-2 font-size-14 ft-grey">
+							<label class="ft-blue">
+							优惠券金额 : ￥${usevalue}
+							<div class="mui-ellipsis ft-coffee">有效期至 ${enddate}</div></label>
+							<input id="${pkid}" money="${money}" name="couponcheckbox" type="checkbox">
+				</div>
+			</div>
+		</div>
+	</a>
+</li>

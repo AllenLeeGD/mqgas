@@ -1,0 +1,47 @@
+	<!-- BEGIN SIDEBAR -->
+	<div id="tpl_menuhead" style="display:none;">
+		<li class="sidebar-toggler-wrapper">
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+			<div class="sidebar-toggler hidden-phone">
+			</div>
+			<div class="pdt10px"></div>
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+		</li>
+	</div>
+	<div id="tpl_menubody" style="display:none;">
+		<li id="${id}">
+			<a href="javascript:;">
+				<i class="fa ${icon}"></i>
+				<span class="title">
+					${model}
+				</span>
+				<span id="${id}_select">
+				</span>
+				<span id="${id}_open" class="arrow">
+				</span>
+			</a>
+			${items}
+		</li>
+	</div>
+	<div id="tpl_menufoot" style="display:none;">
+		<li class="last"></li>
+	</div>
+	<div id="tpl_menubodyitem" style="display:none;">
+		<li id="${id}_${index}">
+			<a href="${url}">
+				 ${title}
+			</a>
+		</li>
+	</div>
+	<div class="page-sidebar-wrapper">
+		<div class="page-sidebar navbar-collapse collapse">
+			<!-- BEGIN SIDEBAR MENU -->
+			<ul id="ul_menu" class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
+				
+				
+			</ul>
+			<!-- END SIDEBAR MENU -->
+		</div>
+	</div>
+	<!-- END SIDEBAR -->
+	<script src="assets/scripts/agent/agent_menu.js"></script>

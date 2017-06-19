@@ -1,0 +1,1 @@
+document.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxedb3808897dc8e14&redirect_uri=http%3A%2F%2Fapp.youbanghulian.com%2Fnative%2Fwxback.php&response_type=code&scope=snsapi_userinfo&state=1" + "#wechat_redirect";

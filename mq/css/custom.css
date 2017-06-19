@@ -1,0 +1,81 @@
+.font-size-12{font-size: 12px;}
+.font-size-13{font-size: 13px;}
+.font-size-14{font-size: 14px;}
+.font-size-15{font-size: 15px;}
+.font-size-16{font-size: 16px;}
+.font-size-18{font-size: 18px;}
+.mt-30{margin-top:30px;}
+.mt-20{margin-top:20px;}
+.mt-15{margin-top:15px;}
+.mt-10{margin-top:10px;}
+.mt-5{margin-top:5px;}
+.mb-5{margin-bottom:5px;}
+.mb-10{margin-bottom:10px;}
+.mb-10{margin-bottom:15px;}
+.mb-20{margin-bottom:20px;}
+.pd-4{padding:4px 4px 4px 4px;}
+.pd-6{padding:6px 6px 6px 6px;}
+.pd-8{padding:8px 8px 8px 8px;}
+.pd-t-6{padding-top:6px;}
+.pd-t-8{padding-top:8px;}
+.pd-t-12{padding-top:12px;}
+.pd-l-10{padding-left:10px;}
+.pd-l-20{padding-left:20px;}
+.pd-r-10{padding-right:10px;}
+.pd-r-20{padding-right:20px;}
+.pd-b-6{padding-bottom:6px;}
+.pd-b-12{padding-bottom:12px;}
+.ft-white{color:#ffffff;}
+.ft-red{color:#fd6a3c;}
+.ft-darkred{color:#ff3b30;}
+.ft-blue{color:#3492e9;}
+.ft-green{color:#0ac468;}
+.ft-yellow{color:#ffc636;}
+.ft-lightyellow{color:#ffff00;}
+.ft-black{color:#000000;}
+.ft-grey{color:#8f8f94;}
+.ft-darkgrey{color:#333333;}
+.ft-purple{color:#8700e5;}
+.ft-pink{color:#fa5e96;}
+.ft-orange{color:#f9891c;}
+.ft-coffee{color:#a3652d;}
+.ft-lightgreen{color:#5ecf1c;}
+.ft-lightblue{color:#25c1ed;}
+.ft-lightgrey{color:#aaaaaa;}
+.img-cycle{width:40px;height:40px;border-radius:50%; overflow:hidden;}
+.img-head{width:60px;height:60px;}
+.ico-width{width: 45px;}
+.line-split{border-top: 0.5px solid #ddd;}
+.line-split-1{border-top:1px dashed #cccccc;height: 1px;overflow:hidden;}
+.btn-block{font-size:16px;display:block;width:100%;margin-bottom:10px;}
+.img-defsize{width:100%;}
+.mui-table-view:after
+{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 0px;
+
+    content: '';
+    -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);
+
+    background-color: #c8c7cc;
+}
+.mui-table-view:before
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    height: 0px;
+
+    content: '';
+    -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);
+
+    background-color: #c8c7cc;
+}

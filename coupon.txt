@@ -1,0 +1,9 @@
+<li class="mui-table-view-cell mui-media  mui-media-large">
+	<a href="javascript:;">
+		<img class="mui-media-object mui-pull-left" style="width:65px;height:55px;" src="${imgpath}">
+		<div name="postlink" orderid="${orderid}" class="font-size-14">
+			<div class="mui-ellipsis ft-blue mt-5">优惠券金额 : ￥${usevalue} &nbsp;(一瓶15KG液化气可用一张)</div>
+			<div class="mui-ellipsis ft-coffee">有效期至 ${enddate}</div>
+		</div>
+	</a>
+</li>

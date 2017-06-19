@@ -1,0 +1,28 @@
+1.mui.min.css /*color*/表示我改过的颜色 007aff -> 2c9ce8
+
+2.header样式
+.mui-bar-nav{top:0;-webkit-box-shadow:0 1px 6px #ccc;box-shadow:0 1px 6px #ccc}
+.mui-bar-nav{top:0;-webkit-box-shadow:0 1px 0px #ccc;box-shadow:0 1px 0px #ccc}
+
+3.有/*border*/的改过border颜色，改成了#dddddd
+
+4.顶部标题加粗去掉了
+.mui-title{font-size:17px;font-weight:500;line-height:44px;position:absolute;display:block;width:100%;margin:0 -10px;padding:0;text-align:center;white-space:nowrap;color:#000}
+.mui-title{font-size:17px;font-weight:400;line-height:44px;position:absolute;display:block;width:100%;margin:0 -10px;padding:0;text-align:center;white-space:nowrap;color:#fff}
+
+5.<li>不让有变色效果
+.mui-table-view-cell.mui-active{background-color:#ffffff}
+.mui-table-view-cell.mui-active{background-color:#ffffff}
+
+6.全宽度按钮变矮
+.mui-btn-block{font-size:18px;display:block;width:100%;margin-bottom:10px;padding:15px 0;}
+.mui-btn-block{font-size:18px;display:block;width:100%;margin-bottom:5px;padding:10px 0;}
+
+7.顶部标题栏底色
+.mui-bar-nav{top:0;background-color: #f9891c;-webkit-box-shadow: 0 0 0 #ccc;box-shadow: 0 0 0 #ccc;}
+
+8.顶部标题栏右边文字颜色
+.mui-bar .mui-btn-link{font-size:16px;line-height:44px;top:0;padding:0;color:#f9891c/*color*/;border:0}
+.mui-bar .mui-btn-link{font-size:16px;line-height:44px;top:0;padding:0;color:#fff/*color*/;border:0}
+.mui-bar .mui-btn-link.mui-active,.mui-bar .mui-btn-link:active{color:#0062cc}
+.mui-bar .mui-btn-link.mui-active,.mui-bar .mui-btn-link:active{color:#fff}

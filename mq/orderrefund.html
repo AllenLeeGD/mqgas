@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="">
+		<meta http-equiv="content-security-policy">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/custom.css" rel="stylesheet" />
+		<link href="css/ionicons.min.css" rel="stylesheet" />
+		<style>
+			.flex-container {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row wrap;
+				justify-content: center;
+				text-align: center;
+			}
+			
+			.mui-content-padded .qq a {
+				margin-left: 60px;
+				width: 50px;
+				height: 50px;
+				display: inline-block;
+				text-align: center;
+				background-color: #0088D6;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				color: #fff;
+				background-clip: padding-box;
+			}
+			
+			.mui-content-padded .weixin a {
+				margin-right: 60px;
+				width: 50px;
+				height: 50px;
+				color: #fff;
+				display: inline-block;
+				text-align: center;
+				background-color: #009900;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+			}
+			
+			.mui-content-padded .weibo a {
+				width: 50px;
+				height: 50px;
+				color: #fff;
+				display: inline-block;
+				text-align: center;
+				background-color: #cc0000;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+			}
+			
+			.mui-content-padded a .mui-icon {
+				margin-top: 12px;
+			}
+			
+			.mui-spinner,
+			.mui-spinner-white {
+				margin-top: 12px
+			}
+			
+			.active .mui-spinner-indicator {
+				background: #007AFF;
+			}
+			
+			.mui-content a {
+				color: #8F8F94;
+			}
+			
+			.mui-content a.active {
+				color: #007aff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left ft-white"></a>
+			<h1 class="mui-title ft-white">申请退款</h1>
+		</header>
+		<div class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div class="mt-10 ft-grey" style="text-align:center;">
+					<span class="font-size-13">感谢您的支持，我们将努力为您服务</span><br />
+				</div>
+				<div>
+					<div class="mui-input-group mt-10">
+						<textarea id="remarks" rows="4" class="mui-input-clear font-size-13" placeholder="请输入申请退款的理由"></textarea>
+					</div>
+				</div>
+				<div class="mui-button-row mui-content-padded mt-10">
+					<button id="submit_info" type="button" class="mui-btn mui-btn-primary mui-btn-blue btn-block">申请退款</button>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="js/mui.min.js"></script>
+<script src="js/util.js"></script>
+<script src="js/orderrefund.js"></script>
