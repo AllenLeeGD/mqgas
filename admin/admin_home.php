@@ -24,7 +24,7 @@
 	<body class="page-header-fixed">
 		<!-- BEGIN HEADER -->
 		<div class="header navbar navbar-fixed-top">
-			<?php include("common/admin_header.html")
+			<?php include("common/admin_header.php")
 			?>
 		</div>
 		<!-- END HEADER -->
