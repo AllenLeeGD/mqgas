@@ -949,6 +949,14 @@ class AdminController extends Controller {
 				session("name", $username);
 				if ($data['isadmin'] == 1) {
 					$_SESSION['admin_type'] = "admin";
+				}else if($data['role'] == 1){
+					$_SESSION['admin_type'] = "huawu";
+				}else if($data['role'] == 2){
+					$_SESSION['admin_type'] = "biz";
+				}else if($data['role'] == 3){
+					$_SESSION['admin_type'] = "caiwu";
+				}else if($data['role'] == 4){
+					$_SESSION['admin_type'] = "piaofang";
 				}
 				echo "yes";
 			}

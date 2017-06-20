@@ -1,8 +1,8 @@
 <?php
-	$adminid = $_SESSION["adminid"];
+//	$adminid = $_SESSION["adminid"];
 	$name = $_SESSION["name"];
-	$admintype = $_SESSION["admin_type"];
-	if (empty($adminid) || empty($name) || empty($admintype)) {
+	$admintype = $_SESSION["admin_type"];	
+	if ( empty($name) || empty($admintype)) {
 		echo "<script>window.location.href='admin_login.html';</script>";
 	}else{
 		//判断权限
@@ -11,7 +11,7 @@
 		$menulist = array();
 		if($admintype!='admin'){
 			if($admintype=='huawu'){
-				$menulist = array('admin_home.php','public_main.php','nonepublic_main.php','public_add.php','information_list.php','informationreply_list.php','information_add.php','information_edit.php','vote_main.php','votereport_main.php','vote_add.php','voteitem_add.php','voteitem_main.php','voteitemreport_main.php','qa_main.php','qa_mainresult.php','qa_mainlucky.php','qa_aadd.php','qa_add.php','qa_aedit.php','qa_aitem.php','qa_edit.php','qa_ladd.php','qa_ledit.php','qa_litem.php','qa_mainluckydetail.php','qa_qadd.php','qa_qedit.php','qa_qitem.php');
+				$menulist = array('admin_home.php','sys_orderlist.php');
 				if(!in_array($filename,$menulist)){
 					echo "<script>window.location.href='admin_login.html';</script>";
 				}

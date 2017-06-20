@@ -26,10 +26,8 @@
 		<div class="clearfix"></div>
 		<!-- BEGIN CONTAINER -->
 		<div class="page-container">
-			<?php
-			if ($_SESSION['admin_type'] == "admin") {
-				include ("common/admin_menu.html");
-			}
+			<?php				
+				include ("common/menu_adpter.php");			
 			?>
 			<!-- BEGIN CONTENT -->
 			<div class="page-content-wrapper">
