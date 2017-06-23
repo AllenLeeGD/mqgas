@@ -947,6 +947,7 @@ class AdminController extends Controller {
 			$pwd = $data['password'];
 			if ($pwd == md5($password)) {
 				session("name", $username);
+				session("userid", $data['pid']);
 				if ($data['isadmin'] == 1) {
 					$_SESSION['admin_type'] = "admin";
 				}else if($data['role'] == 1){

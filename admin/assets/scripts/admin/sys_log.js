@@ -1,75 +1,3 @@
-function openDelConfirm(pkid, index,status) {
-	$("#view_data").data("pkid", pkid);
-	$("#view_data").data("index", index);
-	$("#view_data").data("status", status);
-	$("#do_delWorker").modal('show');
-}
-
-function openResetConfirm(pkid, index) {
-	$("#view_data").data("pkid", pkid);
-	$("#view_data").data("index", index);
-	$("#do_reset").modal('show');
-}
-
-function doDelWorker() {
-	var pkid = $("#view_data").data("pkid");
-	var index = $("#view_data").data("index");
-	var istatus = $("#view_data").data("status");
-	var obj = {};
-	obj.pkid = pkid;
-	var content = JSON.stringify(obj);
-	var objdata = {};
-	objdata.content = base64_encode(encodeURI(content));
-	var util = new Util();
-	util.showLoading();
-	util.postUrl('/Mq/Role/delworker/pkid/' + pkid, function(data, status) {
-			if(data == "yes") {
-				util.successMsg('删除成功');
-				$("#do_delWorker").modal('hide');
-			} else {
-				util.errorMsg('删除失败');
-			}
-			ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/"+istatus, index);
-			util.hideLoading();
-		},
-		objdata,
-		function(XMLHttpRequest, textStatus, errorThrown) {
-			util.errorMsg('内部服务器错误');
-			util.hideLoading();
-		});
-
-}
-
-function doReset() {
-	var pkid = $("#view_data").data("pkid");
-	var index = $("#view_data").data("index");
-	var obj = {};
-	obj.pkid = pkid;
-	var content = JSON.stringify(obj);
-	var objdata = {};
-	objdata.content = base64_encode(encodeURI(content));
-	var util = new Util();
-	util.showLoading();
-	util.postUrl('/Mq/Role/resetworker/pkid/' + pkid, function(data, status) {
-			if(data == "yes") {
-				util.successMsg('重置成功');
-				$("#do_reset").modal('hide');
-			} else {
-				util.errorMsg('重置失败');
-			}
-			util.hideLoading();
-		},
-		objdata,
-		function(XMLHttpRequest, textStatus, errorThrown) {
-			util.errorMsg('内部服务器错误');
-			util.hideLoading();
-		});
-
-}
-
-function openEdit(pid) {
-	document.location.href = "sys_roleset_edit.php?tag=sysadmin&item=4&pid="+pid;
-}
 
 var ProviderOrder = function() {
 
@@ -112,14 +40,11 @@ var ProviderOrder = function() {
 				], // set first column as a default sort by asc
 				"fnServerParams": function(aoData) {
 					aoData.push({
-						"name": "realname_search",
-						"value": $("#realname_search").val()
-					}, {
-						"name": "mobile_search",
-						"value": $("#mobile_search").val()
-					}, {
-						"name": "name_search",
-						"value": $("#name_search").val()
+						"name": "username_search",
+						"value": $("#username_search").val()
+					},{
+						"name": "remark_search",
+						"value": $("#remark_search").val()
 					});
 				}
 			}
@@ -209,67 +134,46 @@ var ProviderOrder = function() {
 	};
 
 }();
-var readed = false;
 
 $(document).ready(function() {
-	$('#datatable_orders').on('draw.dt', function() {
-		$('#datatable_orders').mergeCell({
-			cols: [0, 4, 5, 6]
-		});
-	});
+//	$('#datatable_orders').on('draw.dt', function() {
+//		$('#datatable_orders').mergeCell({
+//			cols: [0, 4, 5]
+//		});
+//	});
 	var util = new Util();
 	var start = util.getParam('start');
 	var params = util.getParam('params');
+	var status = util.getParam('status');
+	if(status==1){
+		$("#logname").html("订单日志");
+	}else if(status==2){
+		$("#logname").html("用户组日志");
+	}else if(status==3){
+		$("#logname").html("参数设定日志");
+	}else if(status==4){
+		$("#logname").html("内部员工操作日志");
+	}else if(status==5){
+		$("#logname").html("优惠券日志");
+	}else if(status==6){
+		$("#logname").html("积分设置日志");
+	}  
 	if(util.isNullStr(start)) {
 		start = 0;
 	}
 	if(util.isNullStr(params)) {
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/huawu", start);
+		ProviderOrder.init("../index.php/Mq/Log/findLogsByStatus/status/"+status, start);
 	} else {
 		params = base64_decode(params);
 		var arrparam = params.split(',');
 		var arrval0 = arrparam[0].split(':');
 		var arrval1 = arrparam[1].split(':');
-		var arrval2 = arrparam[2].split(':');
-		$('#realname_search').val(arrval0[1]);
-		$('#mobile_search').val(arrval1[1]);
-		$('#name_search').val(arrval1[2]);
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/huawu", start);
+		$('#username_search').val(arrval0[0]);
+		$('#remark_search').val(arrval1[1]);
+		ProviderOrder.init("../index.php/Mq/Log/findLogsByStatus/status/"+status, start);
 	}
 	
-	$("#huawu_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/huawu", 0);
-	});
-	
-	$("#biz_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/biz", 0);
-	});
-	
-	$("#caiwu_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/caiwu", 0);
-	});
-	
-	$("#piaofang_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/piaofang", 0);
-	});
-	
-	$("#siji_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/siji", 0);
-	});
-	
-	$("#songqi_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/songqi", 0);
-	});
+	$("#log_tab").bind('click', function() {			
+		ProviderOrder.init("../index.php/Mq/Log/findLogsByStatus/status/"+status, 0);
+	});	
 });

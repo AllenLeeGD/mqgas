@@ -112,6 +112,7 @@ class RoleController extends Controller {
 		$dao = M("Userinfo");
 		$pid = $obj['pid'];
 		$dao->where("pid='$pid'")->save($obj);
+		addLog(4,session("userid"),"修改员工".$obj['name']."信息");
 		echo "yes";
 	}
 	

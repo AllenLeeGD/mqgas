@@ -253,17 +253,18 @@ function strencode($string,$encryptkey) {
 }  
 
 /**
- * 根据传入的区ID，省份、城市、区的字符串
+ * 写入操作日志
  */
-function getCityInfo($district) {
-	$query = new \Think\Model();
-	$condition_sql = "select a.cityname as p,b.cityname as c,c.cityname as d from basecityinfo as a left join basecityinfo as b on a.pcityid = b.cityid
- left join basecityinfo as c on b.pcityid = c.cityid where a.cityid='$district'";
-	$result = $query -> query($condition_sql);
-	if (!empty($result) && !empty($result[0])) {
-		echo $result[0]['d'] . " " . $result[0]['c'] . ' ' . $result[0]['p'];
-	} else {
-		echo "";
-	}
+function addLog($typeval,$userid,$remark) {
+	$dao = M("Optlog");
+	$userdao = M("Userinfo");
+	$user_data = $userdao->where("pid='$userid'")->find();
+	$data['pkid'] = uniqid();
+	$data['opttime'] = time();
+	$data['typeval'] = $typeval;
+	$data['remark'] = $remark;
+	$data['userid'] = $userid;
+	$data['username'] = $user_data['realname']."(".$user_data['name'].")";
+	$dao->add($data);
 }
 ?>
