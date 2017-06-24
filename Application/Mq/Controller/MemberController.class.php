@@ -159,6 +159,7 @@ class MemberController extends Controller {
 		$data_10['levelname'] = $obj['l10name'];
 		$data_10['price'] = $obj['l10price'];
 		$level_dao->where("pkid='l10'")->save($data_10);
+		addLog(3,session("userid"),"更改了参数设置");
 		echo "yes";
 	}
 	
@@ -242,6 +243,7 @@ class MemberController extends Controller {
 		$dao = M("Memberinfo");
 		$pkid = $obj["pkid"];
 		$dao->where("pkid='$pkid'")->save($obj);
+		addLog(2, session("userid"), "更改了用户 ".$obj['realname']."(".$obj['mobile'].")的信息");
 		echo "yes";
 	}
 	

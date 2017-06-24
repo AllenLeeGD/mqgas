@@ -82,7 +82,9 @@ class RoleController extends Controller {
 	 * 删除员工信息.
 	 */
 	public function delworker($pkid) {
-		$dao = M("Userinfo");
+		$dao = M("Userinfo");		
+		$userdata = $dao->where("pid='$pkid'")->find();
+		addLog(4,session("userid"),"删除员工".$userdata['realname']."(".$userdata['name'].")");
 		$dao->where("pid='$pkid'")->delete();
 		echo "yes";
 	}
@@ -94,6 +96,8 @@ class RoleController extends Controller {
 		$dao = M("Userinfo");
 		$data['password'] = md5("123456");
 		$dao->where("pid='$pkid'")->save($data);
+		$userdata = $dao->where("pid='$pkid'")->find();
+		addLog(4,session("userid"),"重置员工".$userdata['realname']."(".$userdata['name'].")的密码");
 		echo "yes";
 	}
 
@@ -104,6 +108,7 @@ class RoleController extends Controller {
 		$obj['password'] = md5($obj['password']);
 		$dao = M("Userinfo");
 		$dao->add($obj);
+		addLog(4,session("userid"),"新增员工".$obj['realname']."(".$obj['name'].")信息");
 		echo "yes";
 	}
 	
@@ -112,7 +117,7 @@ class RoleController extends Controller {
 		$dao = M("Userinfo");
 		$pid = $obj['pid'];
 		$dao->where("pid='$pid'")->save($obj);
-		addLog(4,session("userid"),"修改员工".$obj['name']."信息");
+		addLog(4,session("userid"),"修改员工".$obj['realname']."(".$obj['name'].")信息");
 		echo "yes";
 	}
 	

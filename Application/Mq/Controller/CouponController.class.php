@@ -19,6 +19,7 @@ class CouponController extends Controller {
 		$dao = M("Sysparam");
 		$data['vvalue'] = $obj['costvalue'];
 		$dao->where("kkey='pointset'")->save($data);
+		addLog(6,session("userid"),"设置积分值为".$obj["costvalue"]);
 		echo "yes";
 	}
 	
@@ -35,6 +36,10 @@ class CouponController extends Controller {
 			$data['addtime'] = time();
 			$dao->add($data);
 		}
+		$groupdao = M("Level");
+		$levelid = $obj['usergroup'];
+		$groupdata = $groupdao->where("pkid='$levelid'")->find();
+		addLog(5, session("userid"),"给用户组(".$groupdata['levelname'].")发布(".$obj["costvalue"]."元)优惠券".$obj['countnumber']."张");
 		echo "yes";
 	}
 	

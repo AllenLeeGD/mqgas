@@ -212,6 +212,7 @@ class OrderController extends Controller {
 		$memberdata = $memberdao->where("pkid='$userid'")->find();
 		$memberdata['point'] = $memberdata['point']+$point;
 		$memberdao->where("pkid='$userid'")->save($memberdata);
+		addLog(1, session("userid"), "派送了订单".$bid);
 		echo "yes";
 	}
 	
@@ -230,6 +231,7 @@ class OrderController extends Controller {
 //		$memberdata = $memberdao->where("pkid='$userid'")->find();
 //		$memberdata['point'] = $memberdata['point']+$point;
 //		$memberdao->where("pkid='$userid'")->save($memberdata);
+		addLog(1, session("userid"), "完成派送订单".$bid);
 		echo "yes";
 	}
 	
