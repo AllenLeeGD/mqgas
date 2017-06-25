@@ -270,12 +270,17 @@ class OrderController extends Controller {
 		$check = $order_dao->where("pkid='$orderid'")->find();
 		if($check['status']==6){
 			$data['status'] = 7;
-			$order_dao->where("pkid='$orderid'")->save($data);
-			echo "yes";		
-		}else{
-			echo "no";
+			$order_dao->where("pkid='$orderid'")->save($data);					
 		}
-		
+		echo "yes";
 	}
 
+	public function paynotify($outtradeno){
+		$order_dao = M("Ordermain");
+		$check = $order_dao->where("pkid='$outtradeno'")->find();
+		if($check['status']==6){
+			$data['status'] = 7;
+			$order_dao->where("pkid='$outtradeno'")->save($data);					
+		}
+	}
 }

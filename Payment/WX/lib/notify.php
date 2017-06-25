@@ -2,9 +2,9 @@
 ini_set('date.timezone','Asia/Shanghai');
 error_reporting(E_ERROR);
 
-require_once "./lib/WxPay.Api.php";
-require_once './lib/WxPay.Notify.php';
-require_once './lib/log.php';
+require_once "./WxPay.Api.php";
+require_once './WxPay.Notify.php';
+require_once './log.php';
 
 //初始化日志
 $logHandler= new CLogFileHandler("./logs/".date('Y-m-d').'.log');
@@ -43,6 +43,20 @@ class PayNotifyCallBack extends WxPayNotify
 		if(!$this->Queryorder($data["transaction_id"])){
 			$msg = "订单查询失败";
 			return false;
+		}
+		if(!array_key_exists("out_trade_no", $data)){
+			$msg = "输入参数不正确";
+			return false;
+		}else{
+			$ch = curl_init();
+			 // 2. 设置选项，包括URL
+			 curl_setopt($ch,CURLOPT_URL,"http://newoceangas.cn/index.php/Mq/Order/paynotify/outtradeno/".$data["out_trade_no"]);
+			 curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+			 curl_setopt($ch,CURLOPT_HEADER,0);
+			 // 3. 执行并获取HTML文档内容
+			 $output = curl_exec($ch);
+			 // 4. 释放curl句柄
+			 curl_close($ch);
 		}
 		return true;
 	}

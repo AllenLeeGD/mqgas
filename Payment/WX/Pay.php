@@ -39,7 +39,7 @@ $input -> SetTotal_fee(intval($money * 100));
 $input -> SetTime_start(date("YmdHis"));
 $input -> SetTime_expire(date("YmdHis", time() + 600));
 $input -> SetGoods_tag("用户支付");
-$input -> SetNotify_url("./lib/notify.php");
+$input -> SetNotify_url("http://newoceangas.cn/Payment/WX/lib/notify.php");
 $input -> SetTrade_type("JSAPI");
 $input -> SetOpenid($openid);
 $order = WxPayApi::unifiedOrder($input);
