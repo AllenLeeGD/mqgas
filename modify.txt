@@ -25,3 +25,6 @@
 24.sys_log.js
 25.LogController.class.php
 26.function.php
+27.CouponController.class.php
+28.MemberController.class.php
+29.OrderController.class.php
