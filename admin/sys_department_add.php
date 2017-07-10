@@ -7,7 +7,7 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8"/>
-		<title>员工管理</title>
+		<title>门店片区管理</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 		<meta content="" name="description"/>
@@ -46,7 +46,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-							<h3 class="page-title"> 编辑<span id="b_title"></span>人员 <small>修改<span id="s_title"></span>人员</small></h3>
+							<h3 class="page-title"> 新增门店片区 <small>增加门店和片区信息</small></h3>
 							<ul class="page-breadcrumb breadcrumb">
 								<!--<li class="btn-group">
 								<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -70,8 +70,8 @@
 									<i class="fa fa-angle-right"></i>
 								</li>
 								<li>
-									<a href="sys_roleset.php?tag=sysadmin&item=4">
-										员工设置
+									<a href="sys_department.php?tag=sysadmin&item=5">
+										门店片区设置
 									</a>
 								</li>
 							</ul>
@@ -85,7 +85,7 @@
 							<ul class="nav nav-tabs">
 								<li class="active">
 									<a href="#tab_0" data-toggle="tab">
-										编辑用户
+										添加门店和片区
 									</a>
 								</li>
 								<!--<li>
@@ -105,47 +105,26 @@
 												<div id="form_app" class="form-body" style="padding:16px 26px 16px 26px;">
 													<div id="vipdiscountgroup" class="form-group">
 														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
-														<label class="control-label col-md-2">账户名称 <span class="required"> *</span> </label>
+														<label class="control-label col-md-2">门店名称 <span class="required"> *</span> </label>
 														<div class="col-md-8">
-															<input id="name" v-model="name" type="text" class="form-control input-large"/>
-															<span class="help-block"> 例如：zhangsan </span>
+															<select id="dname" name="dname" v-model="sendobj.did" class="form-control">																
+																<option v-for="option in options" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block"> 例如：吉大店 </span>
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">真实姓名 <span class="required"> *</span> </label>
-														<div class="col-md-3">
-															<input id="realname" v-model="realname" type="text" class="form-control input-large"/>
-															<span class="help-block"> 例如：张三 </span>
-														</div>
-													</div>
-													<div id="vipdiscountgroup" class="form-group">
-														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
-														<label class="control-label col-md-2">密码 <span class="required">* </span> </label>
+														<label class="control-label col-md-2">片区名称 <span class="required"> *</span> </label>
 														<div class="col-md-8">
-															<input id="password" readonly="readonly" v-model="password" type="password" class="form-control input-large"/>
-															<span class="help-block"> 例如：123456 </span>
+															<input id="pname" v-model="sendobj.pname" type="text" class="form-control input-large"/>
+															<span class="help-block"> 例如：水湾头片区 </span>
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">手机号码 <span class="required">* </span> </label>
-														<div class="col-md-3">
-															<input id="mobile" v-model="mobile" type="number" class="form-control input-large"/>
-															<span class="help-block"> 例如：13799998888 </span>
-														</div>
-													</div>
-													<div id="vipdiscountgroup" class="form-group">
-														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
-														<label class="control-label col-md-2">工号 <span class="required">* </span> </label>
+														<label class="control-label col-md-2">备注 <span class="required"> </span> </label>
 														<div class="col-md-8">
-															<input id="worknumber" v-model="worknumber" type="text" class="form-control input-large"/>
-															<span class="help-block"> 例如：1001 </span>
-														</div>
-													</div>
-													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">邮箱 <span class="required"> </span> </label>
-														<div class="col-md-8">
-															<input id="email" v-model="email" type="text" class="form-control input-large"/>
-															<span class="help-block"> 例如：123@qq.com </span>
+															<input id="remark" v-model="sendobj.remark" type="text" class="form-control input-large"/>
+															<span class="help-block">  </span>
 														</div>
 													</div>
 												</div>
@@ -191,7 +170,7 @@
 		<script src="assets/scripts/custom/ajaxfileupload.js"></script>
 		<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 		<script type="text/javascript" src="assets/scripts/custom/vue.min.js"></script>
-		<script src="assets/scripts/admin/sys_roleset_edit.js"></script>
+		<script src="assets/scripts/admin/sys_department_add.js"></script>
 		<!-- END PAGE LEVEL SCRIPTS -->
 		<script>jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {

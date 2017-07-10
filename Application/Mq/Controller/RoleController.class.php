@@ -128,4 +128,96 @@ class RoleController extends Controller {
 		header('Content-type: application/json');
 		echo json_encode($result, JSON_UNESCAPED_UNICODE);
 	}
+	
+	/**
+	 * 查询门店片区列表.
+	 */
+	public function findDepartment() {
+		$query = new \Think\Model();
+		$condition_sql = "";
+		$count_sql = "";
+		$query_sql = "";
+		$countquery_sql = "";
+		$dname = $_REQUEST['dname_search'];
+		$pname = $_REQUEST['pname_search'];
+		if (!empty($dname)) {
+			$query_sql = $query_sql . " and dname like '%$dname%'";
+			$countquery_sql = $countquery_sql . " and dname like '%$dname%'";
+		}
+		if ($pname!="") {
+			$query_sql = $query_sql . " and pname LIKE '%$pname%'";
+			$countquery_sql = $countquery_sql . " and pname LIKE '%$pname%'";
+		}
+		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
+		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
+		
+		$count_sql = "select count(*) as totalrecord from departmentdetail where 1=1 $countquery_sql";
+		$condition_sql = "select * from departmentdetail where 1=1 $query_sql limit $iDisplayStart,$iDisplayLength";
+		
+		$resultcount = $query -> query($count_sql);
+		$result = $query -> query($condition_sql);
+		$iTotalRecords = $resultcount[0]['totalrecord'];
+		$iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+		$sEcho = intval($_REQUEST['sEcho']);
+		$records = array();
+		$records["aaData"] = array();
+		$jsparams = "keyword:$orderid,buyername:$updowntag";
+		
+		for ($i = 0; $i < count($result); $i++) {
+			$btnEdit = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openEdit('".$result[$i]['pkid']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;编辑&nbsp;</a>";
+			$btnDel = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openDelConfirm('".$result[$i]['pkid']."','".$iDisplayStart."')\"><i class='fa fa-times'></i> &nbsp;删除&nbsp;</a>";
+			
+			$records["aaData"][] = array($result[$i]['dname'] ,  $result[$i]['pname'],$result[$i]['remark'],$btnEdit.$btnDel);
+		}
+		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
+			$records["sStatus"] = "OK";
+			// pass custom message(useful for getting status of group actions)
+			$records["sMessage"] = "Group action successfully has been completed. Well done!";
+			// pass custom message(useful for getting status of group actions)
+		}
+		$records["sEcho"] = $sEcho;
+		$records["iTotalRecords"] = $iTotalRecords;
+		$records["iTotalDisplayRecords"] = $iTotalRecords;
+		echo json_encode($records);
+	}
+	/**
+	 * 删除门店片区信息.
+	 */
+	public function deldepartmentdetail($pkid) {
+		$dao = M("Departmentdetail");				
+		$dao->where("pkid='$pkid'")->delete();
+		echo "yes";
+	}
+	
+	public function savedepartmentdetail(){
+		$obj = getObjFromPost(array("pname","dname","did","remark"));
+		$obj['pkid'] = uniqid();
+		$dao = M("Departmentdetail");
+		$dao->add($obj);		
+		echo "yes";
+	}
+	
+	public function editdepartmentdetail(){
+		$obj = getObjFromPost(array("pkid","pname","dname","did","remark"));
+		$pkid = $obj["pkid"];
+		$dao = M("Departmentdetail");
+		$dao->where("pkid='$pkid'")->save($obj);		
+		echo "yes";
+	}
+	
+	public function loaddepartment(){
+		$dao = M("Department");
+		$result = $dao->where("flag = 1")->select();		
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($result, JSON_UNESCAPED_UNICODE);
+	}
+	
+	public function loaddepartmentdetail($pkid){
+		$dao = M("Departmentdetail");
+		$result = $dao->where("pkid = '$pkid'")->find();		
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($result, JSON_UNESCAPED_UNICODE);
+	}
 }

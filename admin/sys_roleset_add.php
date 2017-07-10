@@ -29,7 +29,7 @@
 		<div class="page-container">
 			<?php
 			if ($_SESSION['admin_type'] == "admin") {
-				include ("common/admin_menu.html");
+				include ("common/menu_adpter.php");
 			}
 			?>
 			<!-- BEGIN CONTENT -->
