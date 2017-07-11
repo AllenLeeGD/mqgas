@@ -220,4 +220,86 @@ class RoleController extends Controller {
 		header('Content-type: application/json');
 		echo json_encode($result, JSON_UNESCAPED_UNICODE);
 	}
+	
+	
+	/**
+	 * 查询车辆列表.
+	 */
+	public function findCars() {
+		$query = new \Think\Model();
+		$condition_sql = "";
+		$count_sql = "";
+		$query_sql = "";
+		$countquery_sql = "";
+		$carnumber = $_REQUEST['carnumber_search'];
+		if (!empty($carnumber)) {
+			$query_sql = $query_sql . " and carnumber like '%$carnumber%'";
+			$countquery_sql = $countquery_sql . " and carnumber like '%$carnumber%'";
+		}
+		
+		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
+		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
+		
+		$count_sql = "select count(*) as totalrecord from cars where 1=1 $countquery_sql";
+		$condition_sql = "select * from cars where 1=1 $query_sql limit $iDisplayStart,$iDisplayLength";
+		
+		$resultcount = $query -> query($count_sql);
+		$result = $query -> query($condition_sql);
+		$iTotalRecords = $resultcount[0]['totalrecord'];
+		$iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+		$sEcho = intval($_REQUEST['sEcho']);
+		$records = array();
+		$records["aaData"] = array();
+		$jsparams = "keyword:$orderid,buyername:$updowntag";
+		
+		for ($i = 0; $i < count($result); $i++) {
+			$btnEdit = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openEdit('".$result[$i]['pkid']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;编辑&nbsp;</a>";
+			$btnDel = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openDelConfirm('".$result[$i]['pkid']."','".$iDisplayStart."')\"><i class='fa fa-times'></i> &nbsp;删除&nbsp;</a>";
+			
+			$records["aaData"][] = array($result[$i]['carnumber'] ,  $result[$i]['type'],$result[$i]['remark'],$btnEdit.$btnDel);
+		}
+		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
+			$records["sStatus"] = "OK";
+			// pass custom message(useful for getting status of group actions)
+			$records["sMessage"] = "Group action successfully has been completed. Well done!";
+			// pass custom message(useful for getting status of group actions)
+		}
+		$records["sEcho"] = $sEcho;
+		$records["iTotalRecords"] = $iTotalRecords;
+		$records["iTotalDisplayRecords"] = $iTotalRecords;
+		echo json_encode($records);
+	}
+	/**
+	 * 删除车辆信息.
+	 */
+	public function delcar($pkid) {
+		$dao = M("Cars");				
+		$dao->where("pkid='$pkid'")->delete();
+		echo "yes";
+	}
+	
+	public function savecar(){
+		$obj = getObjFromPost(array("carnumber","type","remark"));
+		$obj['pkid'] = uniqid();
+		$dao = M("Cars");
+		$dao->add($obj);		
+		echo "yes";
+	}
+	
+	public function editcar(){
+		$obj = getObjFromPost(array("pkid","carnumber","type","remark"));
+		$pkid = $obj["pkid"];
+		$dao = M("Cars");
+		$dao->where("pkid='$pkid'")->save($obj);		
+		echo "yes";
+	}
+	
+	
+	public function loadcar($pkid){
+		$dao = M("Cars");
+		$result = $dao->where("pkid = '$pkid'")->find();		
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($result, JSON_UNESCAPED_UNICODE);
+	}
 }
