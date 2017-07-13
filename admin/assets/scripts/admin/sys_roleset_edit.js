@@ -78,6 +78,9 @@ function load(init) {
 				} else if(data.role == 6) {
 					$("#b_title").html("送气工");
 					$("#s_title").html("送气工");
+				} else if(data.role == 7) {
+					$("#b_title").html("押运");
+					$("#s_title").html("押运");
 				}
 			} else {
 				util.errorMsg('加载失败');

@@ -73,6 +73,10 @@ function loadData() {
 		$("#b_title").html("送气工");
 		$("#s_title").html("送气工");
 		send_obj.role=6;
+	} else if(roletype == "yayun") {
+		$("#b_title").html("押运");
+		$("#s_title").html("押运");
+		send_obj.role=7;
 	}
 	send_obj.name="";
 	send_obj.realname="";

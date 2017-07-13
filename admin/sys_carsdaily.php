@@ -7,7 +7,7 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8"/>
-		<title>员工管理</title>
+		<title>日常车辆管理</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 		<meta content="" name="description"/>
@@ -45,7 +45,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-							<h3 class="page-title"> 员工管理 <small>增加、编辑、删除员工信息</small></h3>
+							<h3 class="page-title"> 日常车辆管理 <small>增加、编辑、删除日常车辆信息</small></h3>
 							<ul class="page-breadcrumb breadcrumb">
 								<li class="btn-group">
 									<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -56,38 +56,8 @@
 									</button>
 									<ul class="dropdown-menu pull-right" role="menu">
 										<li>
-											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=huawu">
-												新增话务
-											</a>
-										</li>
-										<li>
-											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=biz">
-												新增业务员
-											</a>
-										</li>
-										<li>
-											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=caiwu">
-												新增财务
-											</a>
-										</li>
-										<li>
-											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=piaofang">
-												新增港口票房
-											</a>
-										</li>
-										<li>
-											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=siji">
-												新增司机
-											</a>
-										</li>
-										<li>
-											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=songqi">
-												新增送气工
-											</a>
-										</li>
-										<li>
-											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=yayun">
-												新增押运
+											<a href="sys_carsdaily_add.php?tag=sysadmin&item=11">
+												新增日常车辆
 											</a>
 										</li>
 									</ul>
@@ -103,8 +73,8 @@
 									<i class="fa fa-angle-right"></i>
 								</li>
 								<li>
-									<a href="sys_roleset.php?tag=sysadmin&item=4">
-										员工管理
+									<a href="sys_carsdaily.php?tag=sysadmin&item=11">
+										日常车辆管理
 									</a>
 								</li>
 							</ul>
@@ -120,39 +90,9 @@
 
 								<div class="portlet-body">
 									<ul class="nav nav-tabs nav-tabs-lg">
-										<li id="huawu_tab" class="active">
+										<li id="mendian_tab" class="active">
 											<a href="#tab_2" data-toggle="tab">
-												话务
-											</a>
-										</li>
-										<li id="biz_tab">
-											<a href="#tab_6" data-toggle="tab">
-												业务员
-											</a>
-										</li>
-										<li id="caiwu_tab">
-											<a href="#tab_1" data-toggle="tab">
-												财务
-											</a>
-										</li>
-										<li id="piaofang_tab">
-											<a href="#tab_3" data-toggle="tab">
-												港口票房
-											</a>
-										</li>
-										<li id="siji_tab">
-											<a href="#tab_4" data-toggle="tab">
-												司机
-											</a>
-										</li>
-										<li id="songqi_tab">
-											<a href="#tab_5" data-toggle="tab">
-												送气工
-											</a>
-										</li>
-										<li id="yayun_tab">
-											<a href="#tab_6" data-toggle="tab">
-												押运
+												日常车辆信息
 											</a>
 										</li>
 									</ul>
@@ -163,20 +103,25 @@
 											<table class="table table-bordered" id="datatable_orders">
 												<thead>
 													<tr role="row" class="heading">
-														<th style="width:15%"> 姓名 </th>
-														<th style="width:10%"> 账户名称 </th>
-														<th style="width:7%"> 手机号码 </th>
-														<th style="width:10%"> 操作 </th>
+														<th style="width:150px"> 日期 </th>
+														<th style="width:150px"> 门店 </th>
+														<th> 片区 </th>
+														<th style="width:150px"> 车牌号 </th>
+														<th> 司机 </th>
+														<th> 押运 </th>
+														<th> 操作 </th>
 													</tr>
 													<tr role="row">
 														<td>
-															<input id="realname_search" type="text" class="form-control form-filter" name="realname_search" placeholder="请输入员工姓名">
+															<input id="dailydate_search" type="text" class="form-control form-filter" name="dailydate_search" placeholder="请输入日期">
 														</td>
-														<td><input id="name_search" type="text" class="form-control form-filter" name="name_search" placeholder="请输入账户"></td>
+														<td><input id="dname_search" type="text" class="form-control form-filter" name="dname_search" placeholder="请输入门店"></td>
+														<td></td>
 														<td>
-															<input id="mobile_search" type="text" class="form-control form-filter" name="mobile_search" placeholder="请输入手机号码">
+															<input id="carnumber_search" type="text" class="form-control form-filter" name="carnumber_search" placeholder="请输入车牌">
 														</td>
-
+														<td></td>
+														<td></td>
 														<td>
 															<div class="margin-bottom-5">
 																<button id="btnSearch" class="btn btn-sm yellow filter-submit margin-bottom">
@@ -202,78 +147,7 @@
 			<div id="view_data"></div>
 			<div id="ajax-modal" class="modal fade" tabindex="-1"></div>
 			<div id="ajax-send" class="modal fade" tabindex="-1"></div>
-			<div id="ajax-pddetail" class="modal fade" tabindex="-1"></div>
-			<div class="modal fade" id="do_confirm" tabindex="-1" role="dialog" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content" style="padding:10px 20px 10px 20px;">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-							<h4 class="modal-title green">派送液化气</h4>
-						</div>
-						<div class="modal-body">
-							是否派送此订单的液化气？
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn default" data-dismiss="modal">
-							取消
-							</button>
-							<button id="confirm_send_btn" type="button" class="btn green" onclick="doConfirm()">
-							确认
-							</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-
-			<div class="modal fade" id="do_complete" tabindex="-1" role="dialog" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content" style="padding:10px 20px 10px 20px;">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-							<h4 class="modal-title green">完成派送</h4>
-						</div>
-						<div class="modal-body">
-							此订单是否已经配送成功？<span id="complete_order_id"></span>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn default" data-dismiss="modal">
-							取消
-							</button>
-							<button id="complete_send_btn" type="button" class="btn green" onclick="doComplete()">
-							确认
-							</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-
-			<div class="modal fade" id="do_reset" tabindex="-1" role="dialog" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content" style="padding:10px 20px 10px 20px;">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-							<h4 class="modal-title green">重置密码</h4>
-						</div>
-						<div class="modal-body">
-							是否将此员工密码重置为123456？
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn default" data-dismiss="modal">
-							取消
-							</button>
-							<button id="confirm_send_btn" type="button" class="btn blue" onclick="doReset()">
-							确定
-							</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
+			<div id="ajax-pddetail" class="modal fade" tabindex="-1"></div>									
 			<div class="modal fade" id="do_delWorker" tabindex="-1" role="dialog" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content" style="padding:10px 20px 10px 20px;">
@@ -282,7 +156,7 @@
 							<h4 class="modal-title green">删除</h4>
 						</div>
 						<div class="modal-body">
-							是否删除此员工？注意：此操作不可恢复!
+							是否删除此记录？注意：此操作不可恢复!
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn default" data-dismiss="modal">
@@ -315,7 +189,7 @@
 			<script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 			<script src="assets/scripts/core/datatable.js"></script>
 			<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
-			<script src="assets/scripts/admin/sys_roleset.js"></script>
+			<script src="assets/scripts/admin/sys_carsdaily.js"></script>
 			<script>jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {
 		var href = $(this).attr('href');

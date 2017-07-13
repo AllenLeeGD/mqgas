@@ -272,4 +272,10 @@ $(document).ready(function() {
 		document.title="员工管理";
 		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/songqi", 0);
 	});
+	
+	$("#yayun_tab").bind('click', function() {
+		readed = true;
+		document.title="员工管理";
+		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/yayun", 0);
+	});
 });

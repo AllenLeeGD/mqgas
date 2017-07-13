@@ -14,14 +14,14 @@ function doDelWorker() {
 	objdata.content = base64_encode(encodeURI(content));
 	var util = new Util();
 	util.showLoading();
-	util.postUrl('/Mq/Role/delcar/pkid/' + pkid, function(data, status) {
+	util.postUrl('/Mq/Daily/delcarsdaily/pkid/' + pkid, function(data, status) {
 			if(data == "yes") {
 				util.successMsg('删除成功');
 				$("#do_delWorker").modal('hide');
 			} else {
 				util.errorMsg('删除失败');
 			}
-			ProviderOrder.init("../index.php/Mq/Role/findCars", index);
+			ProviderOrder.init("../index.php/Mq/Daily/findCarsdaily", index);
 			util.hideLoading();
 		},
 		objdata,
@@ -33,7 +33,7 @@ function doDelWorker() {
 }
 
 function openEdit(pid) {
-	document.location.href = "sys_cars_edit.php?tag=sysadmin&item=10&pkid="+pid;
+	document.location.href = "sys_carsdaily_edit.php?tag=sysadmin&item=11&pkid="+pid;
 }
 
 var ProviderOrder = function() {
@@ -79,6 +79,12 @@ var ProviderOrder = function() {
 					aoData.push({
 						"name": "carnumber_search",
 						"value": $("#carnumber_search").val()
+					},{
+						"name": "dailydate_search",
+						"value": $("#dailydate_search").val()
+					},{
+						"name": "dname_search",
+						"value": $("#dname_search").val()
 					});
 				}
 			}
@@ -183,17 +189,21 @@ $(document).ready(function() {
 		start = 0;
 	}
 	if(util.isNullStr(params)) {
-		ProviderOrder.init("../index.php/Mq/Role/findCars", start);
+		ProviderOrder.init("../index.php/Mq/Daily/findCarsdaily", start);
 	} else {
 		params = base64_decode(params);
 		var arrparam = params.split(',');
 		var arrval0 = arrparam[0].split(':');
-		$('#carnumber_search').val(arrval0[1]);
-		ProviderOrder.init("../index.php/Mq/Role/findCars", start);
+		var arrval1 = arrparam[1].split(':');
+		var arrval2 = arrparam[2].split(':');
+		$('#dailydate_search').val(arrval0[1]);
+		$('#dname_search').val(arrval1[1]);
+		$('#carnumber_search').val(arrval2[1]);
+		ProviderOrder.init("../index.php/Mq/Daily/findCarsdaily", start);
 	}
 	
 	$("#songqi_tab").bind('click', function() {
 		readed = true;
-		ProviderOrder.init("../index.php/Mq/Role/findCars", start);
+		ProviderOrder.init("../index.php/Mq/Daily/findCarsdaily", start);
 	});
 });
