@@ -172,9 +172,9 @@ var readed = false;
 
 $(document).ready(function() {
 	$('#datatable_orders').on('draw.dt', function() {
-		$('#datatable_orders').mergeCell({
-			cols: [0, 4, 5, 6]
-		});
+//		$('#datatable_orders').mergeCell({
+//			cols: [0, 4, 5, 6]
+//		});
 	});
 	var util = new Util();
 	var start = util.getParam('start');

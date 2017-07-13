@@ -14,14 +14,14 @@ function doDelWorker() {
 	objdata.content = base64_encode(encodeURI(content));
 	var util = new Util();
 	util.showLoading();
-	util.postUrl('/Mq/Daily/delcarsdaily/pkid/' + pkid, function(data, status) {
+	util.postUrl('/Mq/Daily/delsongqidaily/pkid/' + pkid, function(data, status) {
 			if(data == "yes") {
 				util.successMsg('删除成功');
 				$("#do_delWorker").modal('hide');
 			} else {
 				util.errorMsg('删除失败');
 			}
-			ProviderOrder.init("../index.php/Mq/Daily/findCarsdaily", index);
+			ProviderOrder.init("../index.php/Mq/Daily/findSongqisDaily", index);
 			util.hideLoading();
 		},
 		objdata,
@@ -33,7 +33,7 @@ function doDelWorker() {
 }
 
 function openEdit(pid) {
-	document.location.href = "sys_carsdaily_edit.php?tag=sysadmin&item=11&pkid="+pid;
+	document.location.href = "sys_songqidaily_edit.php?tag=sysadmin&item=12&pkid="+pid;
 }
 
 var ProviderOrder = function() {
@@ -77,14 +77,14 @@ var ProviderOrder = function() {
 				], // set first column as a default sort by asc
 				"fnServerParams": function(aoData) {
 					aoData.push({
-						"name": "carnumber_search",
-						"value": $("#carnumber_search").val()
-					},{
 						"name": "dailydate_search",
 						"value": $("#dailydate_search").val()
 					},{
 						"name": "dname_search",
 						"value": $("#dname_search").val()
+					},{
+						"name": "sname_search",
+						"value": $("#sname_search").val()
 					});
 				}
 			}
@@ -178,7 +178,7 @@ var readed = false;
 
 $(document).ready(function() {
 	$('#datatable_orders').on('draw.dt', function() {
-		
+	
 	});
 	var util = new Util();
 	var start = util.getParam('start');
@@ -187,7 +187,7 @@ $(document).ready(function() {
 		start = 0;
 	}
 	if(util.isNullStr(params)) {
-		ProviderOrder.init("../index.php/Mq/Daily/findCarsdaily", start);
+		ProviderOrder.init("../index.php/Mq/Daily/findSongqisDaily", start);
 	} else {
 		params = base64_decode(params);
 		var arrparam = params.split(',');
@@ -196,12 +196,12 @@ $(document).ready(function() {
 		var arrval2 = arrparam[2].split(':');
 		$('#dailydate_search').val(arrval0[1]);
 		$('#dname_search').val(arrval1[1]);
-		$('#carnumber_search').val(arrval2[1]);
-		ProviderOrder.init("../index.php/Mq/Daily/findCarsdaily", start);
+		$('#sname_search').val(arrval2[1]);
+		ProviderOrder.init("../index.php/Mq/Daily/findSongqisDaily", start);
 	}
 	
 	$("#songqi_tab").bind('click', function() {
 		readed = true;
-		ProviderOrder.init("../index.php/Mq/Daily/findCarsdaily", start);
+		ProviderOrder.init("../index.php/Mq/Daily/findSongqisDaily", start);
 	});
 });

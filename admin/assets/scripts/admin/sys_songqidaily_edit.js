@@ -1,7 +1,6 @@
-
 function bulidData() {
 	var util = new Util();
-	if(util.isNullStr($("#dailydate").val()) || util.isNullStr(send_obj.did) || util.isNullStr(send_obj.pid) || util.isNullStr(send_obj.carid) || util.isNullStr(send_obj.sid) || util.isNullStr(send_obj.yid)){
+	if(util.isNullStr($("#dailydate").val()) || util.isNullStr(send_obj.did) || util.isNullStr(send_obj.pid) || util.isNullStr(send_obj.sid) ){
 		return false;
 	}
 	return true;
@@ -19,13 +18,11 @@ function saveData() {
 
 	if(obj != false) {
 		util.showLoading();
-		var url = "/Mq/Daily/savecarsdaily";	
+		var url = "/Mq/Daily/editsongqidaily";	
 		send_obj.dailydate = $("#dailydate").val();
 		send_obj.dname=$("#did").find("option:selected").text();
 		send_obj.pname=$("#pid").find("option:selected").text();
-		send_obj.carnumber=$("#carid").find("option:selected").text();
 		send_obj.sname=$("#sid").find("option:selected").text();
-		send_obj.yname=$("#yid").find("option:selected").text();
 		util.postUrl(
 			url,
 			function(data, status) { //如果调用php成功  
@@ -33,9 +30,6 @@ function saveData() {
 					$("#btnSave").button("reset");
 					util.hideLoading();
 					util.successMsg('保存成功');
-					setTimeout(function(){
-						document.location.reload();
-					},1000);
 				} else {
 					$("#btnSave").button("reset");
 					util.hideLoading();
@@ -53,13 +47,13 @@ function saveData() {
 }
 var send_obj = {};
 var send_vue;
-function loadcars() {
+function loadsongqis() {
 	var util = new Util();	
-	var url = "/Mq/Daily/loadcars";
+	var url = "/Mq/Daily/loadsongqi";
 	util.postUrl(
 		url,
 		function(data, status) { //如果调用php成功  
-			send_vue.$data.cars = data;
+			send_vue.$data.songqis = data;
 		},
 		function(XMLHttpRequest, textStatus, errorThrown) {
 			
@@ -67,48 +61,45 @@ function loadcars() {
 	);
 	
 }
-function loadsijis() {
+function loaddepartment() {
 	var util = new Util();	
-	var url = "/Mq/Daily/loadsiji";
-	util.postUrl(
-		url,
-		function(data, status) { //如果调用php成功  
-			send_vue.$data.sijis = data;
-		},
-		function(XMLHttpRequest, textStatus, errorThrown) {
-			
-		}
-	);
-	
-}
-function loadyayuns() {
-	var util = new Util();	
-	var url = "/Mq/Daily/loadyayun";
-	util.postUrl(
-		url,
-		function(data, status) { //如果调用php成功  
-			send_vue.$data.yayuns = data;
-		},
-		function(XMLHttpRequest, textStatus, errorThrown) {
-			
-		}
-	);
-	
-}
-function loadData() {
-	var util = new Util();	
-	send_obj.carcourse="";
-	send_obj.oilprice="";
-	send_obj.cost="";
-	send_obj.dailydate="";
-	send_obj.remark="";
 	var url = "/Mq/Daily/loaddepartment";
 	util.postUrl(
 		url,
 		function(data, status) { //如果调用php成功  
+			send_vue.$data.departments = data;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			
+		}
+	);
+	
+}
+function loadpianqus(did){
+	var util = new Util();
+	util.postUrl(
+		"/Mq/Daily/loadpianqu/did/"+did,
+		function(pianqus, status) { //如果调用php成功  
+			send_vue.$data.pianqus = pianqus;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			
+		}
+	);
+}
+function loadData() {
+	var util = new Util();	
+	send_obj.dailydate="";
+	send_obj.remark="";
+	var pkid = util.getParam("pkid");
+	util.postUrl(
+		"/Mq/Daily/loadsongqidaily/pkid/"+pkid,
+		function(data, status) { //如果调用php成功  
+			$("#dailydate").val(data.dailydate);
+			send_obj = data;
 			send_vue = new Vue({
 				el:"#form_app",
-				data:{sendobj:send_obj,departments:data,pianqus:[],cars:[],sijis:[],yayuns:[]},
+				data:{sendobj:data,departments:[],pianqus:[],songqis:[]},
 				methods:{
 					getpianqu:function(){
 						var did = $("#did").val();
@@ -126,9 +117,9 @@ function loadData() {
 					}
 				}
 			});
-			loadcars();
-			loadsijis();
-			loadyayuns();
+			loadpianqus(data.did);
+			loaddepartment();			
+			loadsongqis();			
 		},
 		function(XMLHttpRequest, textStatus, errorThrown) {
 			
@@ -149,4 +140,5 @@ $(document).ready(function() {
 	$("#btnSave").bind('click', function() {
 		saveData();
 	});
+	
 });

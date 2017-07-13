@@ -27,8 +27,10 @@ function saveData() {
 				if(data == "yes") {
 					$("#btnSave").button("reset");
 					util.hideLoading();
-					loadData();
 					util.successMsg('保存成功');
+					setTimeout(function(){
+						document.location.reload();
+					},1000);
 				} else {
 					$("#btnSave").button("reset");
 					util.hideLoading();

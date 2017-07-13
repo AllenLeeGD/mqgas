@@ -7,7 +7,7 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8"/>
-		<title>日常车辆管理</title>
+		<title>日常送气工管理</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 		<meta content="" name="description"/>
@@ -45,7 +45,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-							<h3 class="page-title"> 日常车辆管理 <small>增加、编辑、删除日常车辆信息</small></h3>
+							<h3 class="page-title"> 日常送气工管理 <small>增加、编辑、删除日常送气工信息</small></h3>
 							<ul class="page-breadcrumb breadcrumb">
 								<li class="btn-group">
 									<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -56,8 +56,8 @@
 									</button>
 									<ul class="dropdown-menu pull-right" role="menu">
 										<li>
-											<a href="sys_carsdaily_add.php?tag=sysadmin&item=11">
-												新增日常车辆
+											<a href="sys_songqidaily_add.php?tag=sysadmin&item=12">
+												新增日常送气工
 											</a>
 										</li>
 									</ul>
@@ -73,8 +73,8 @@
 									<i class="fa fa-angle-right"></i>
 								</li>
 								<li>
-									<a href="sys_carsdaily.php?tag=sysadmin&item=11">
-										日常车辆管理
+									<a href="sys_songqidaily.php?tag=sysadmin&item=12">
+										日常送气工管理
 									</a>
 								</li>
 							</ul>
@@ -92,7 +92,7 @@
 									<ul class="nav nav-tabs nav-tabs-lg">
 										<li id="mendian_tab" class="active">
 											<a href="#tab_2" data-toggle="tab">
-												日常车辆信息
+												日常送气工信息
 											</a>
 										</li>
 									</ul>
@@ -105,10 +105,8 @@
 													<tr role="row" class="heading">
 														<th style="width:150px"> 日期 </th>
 														<th style="width:150px"> 门店 </th>
-														<th> 片区 </th>
-														<th style="width:150px"> 车牌号 </th>
-														<th> 司机 </th>
-														<th> 押运 </th>
+														<th style="width:150px"> 片区 </th>
+														<th> 送气工 </th>
 														<th> 操作 </th>
 													</tr>
 													<tr role="row">
@@ -118,10 +116,8 @@
 														<td><input id="dname_search" type="text" class="form-control form-filter" name="dname_search" placeholder="请输入门店"></td>
 														<td></td>
 														<td>
-															<input id="carnumber_search" type="text" class="form-control form-filter" name="carnumber_search" placeholder="请输入车牌">
+															<input id="sname_search" type="text" class="form-control form-filter" name="carnumber_search" placeholder="请输入送气工">
 														</td>
-														<td></td>
-														<td></td>
 														<td>
 															<div class="margin-bottom-5">
 																<button id="btnSearch" class="btn btn-sm yellow filter-submit margin-bottom">
@@ -189,7 +185,7 @@
 			<script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 			<script src="assets/scripts/core/datatable.js"></script>
 			<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
-			<script src="assets/scripts/admin/sys_carsdaily.js"></script>
+			<script src="assets/scripts/admin/sys_songqidaily.js"></script>
 			<script>jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {
 		var href = $(this).attr('href');
