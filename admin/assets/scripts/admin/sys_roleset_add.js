@@ -79,6 +79,10 @@ function loadData() {
 		$("#b_title").html("押运");
 		$("#s_title").html("押运");
 		send_obj.role=7;
+	} else if(roletype == "yingye") {
+		$("#b_title").html("营业");
+		$("#s_title").html("营业");
+		send_obj.role=8;
 	}
 	send_obj.name="";
 	send_obj.realname="";

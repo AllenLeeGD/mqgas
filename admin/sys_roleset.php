@@ -66,6 +66,11 @@
 											</a>
 										</li>
 										<li>
+											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=yingye">
+												新增营业员
+											</a>
+										</li>
+										<li>
 											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=caiwu">
 												新增财务
 											</a>
@@ -128,6 +133,11 @@
 										<li id="biz_tab">
 											<a href="#tab_6" data-toggle="tab">
 												业务员
+											</a>
+										</li>
+										<li id="yingye_tab">
+											<a href="#tab_6" data-toggle="tab">
+												营业员
 											</a>
 										</li>
 										<li id="caiwu_tab">

@@ -1,74 +1,9 @@
-function openDelConfirm(pkid, index,status) {
-	$("#view_data").data("pkid", pkid);
-	$("#view_data").data("index", index);
-	$("#view_data").data("status", status);
-	$("#do_delWorker").modal('show');
+function openOpt(pid) {
+	document.location.href = "sys_recall_addopt.php?tag=sysadmin&item=14&pkid=" + pid;
 }
 
-function openResetConfirm(pkid, index) {
-	$("#view_data").data("pkid", pkid);
-	$("#view_data").data("index", index);
-	$("#do_reset").modal('show');
-}
-
-function doDelWorker() {
-	var pkid = $("#view_data").data("pkid");
-	var index = $("#view_data").data("index");
-	var istatus = $("#view_data").data("status");
-	var obj = {};
-	obj.pkid = pkid;
-	var content = JSON.stringify(obj);
-	var objdata = {};
-	objdata.content = base64_encode(encodeURI(content));
-	var util = new Util();
-	util.showLoading();
-	util.postUrl('/Mq/Role/delworker/pkid/' + pkid, function(data, status) {
-			if(data == "yes") {
-				util.successMsg('删除成功');
-				$("#do_delWorker").modal('hide');
-			} else {
-				util.errorMsg('删除失败');
-			}
-			ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/"+istatus, index);
-			util.hideLoading();
-		},
-		objdata,
-		function(XMLHttpRequest, textStatus, errorThrown) {
-			util.errorMsg('内部服务器错误');
-			util.hideLoading();
-		});
-
-}
-
-function doReset() {
-	var pkid = $("#view_data").data("pkid");
-	var index = $("#view_data").data("index");
-	var obj = {};
-	obj.pkid = pkid;
-	var content = JSON.stringify(obj);
-	var objdata = {};
-	objdata.content = base64_encode(encodeURI(content));
-	var util = new Util();
-	util.showLoading();
-	util.postUrl('/Mq/Role/resetworker/pkid/' + pkid, function(data, status) {
-			if(data == "yes") {
-				util.successMsg('重置成功');
-				$("#do_reset").modal('hide');
-			} else {
-				util.errorMsg('重置失败');
-			}
-			util.hideLoading();
-		},
-		objdata,
-		function(XMLHttpRequest, textStatus, errorThrown) {
-			util.errorMsg('内部服务器错误');
-			util.hideLoading();
-		});
-
-}
-
-function openEdit(pid) {
-	document.location.href = "sys_roleset_edit.php?tag=sysadmin&item=4&pid="+pid;
+function openView(pid) {
+	document.location.href = "sys_recall_viewopt.php?tag=sysadmin&item=14&pkid=" + pid;
 }
 
 var ProviderOrder = function() {
@@ -112,16 +47,27 @@ var ProviderOrder = function() {
 				], // set first column as a default sort by asc
 				"fnServerParams": function(aoData) {
 					aoData.push({
-						"name": "realname_search",
-						"value": $("#realname_search").val()
+						"name": "optdate_search",
+						"value": $("#optdate_search").val()
 					}, {
-						"name": "mobile_search",
-						"value": $("#mobile_search").val()
+						"name": "dname_search",
+						"value": $("#dname_search").val()
 					}, {
-						"name": "name_search",
-						"value": $("#name_search").val()
+						"name": "status_search",
+						"value": $("#status_search").val()
 					});
-				}
+				},
+				"aoColumnDefs": [{
+					"aTargets": [2],
+					"mRender": function(data, type, full) {
+						if(data.length>20){
+							return  data.substring(0,20)+"......";
+						}else{
+							return data;
+						}
+					}
+				}]
+
 			}
 		});
 
@@ -213,75 +159,31 @@ var readed = false;
 
 $(document).ready(function() {
 	$('#datatable_orders').on('draw.dt', function() {
-		$('#datatable_orders').mergeCell({
-			cols: [0, 4, 5, 6]
-		});
+
 	});
 	var util = new Util();
 	var start = util.getParam('start');
 	var params = util.getParam('params');
+
 	if(util.isNullStr(start)) {
 		start = 0;
 	}
 	if(util.isNullStr(params)) {
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/huawu", start);
+		ProviderOrder.init("../index.php/Mq/Check/findRecallopt", start);
 	} else {
 		params = base64_decode(params);
 		var arrparam = params.split(',');
 		var arrval0 = arrparam[0].split(':');
 		var arrval1 = arrparam[1].split(':');
 		var arrval2 = arrparam[2].split(':');
-		$('#realname_search').val(arrval0[1]);
-		$('#mobile_search').val(arrval1[1]);
-		$('#name_search').val(arrval1[2]);
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/huawu", start);
+		$('#dailydate_search').val(arrval0[1]);
+		$('#dname_search').val(arrval1[1]);
+		$('#carnumber_search').val(arrval2[1]);
+		ProviderOrder.init("../index.php/Mq/Check/findRecallopt", start);
 	}
-	
-	$("#huawu_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/huawu", 0);
-	});
-	
-	$("#biz_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/biz", 0);
-	});
-	
-	$("#caiwu_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/caiwu", 0);
-	});
-	
-	$("#piaofang_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/piaofang", 0);
-	});
-	
-	$("#siji_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/siji", 0);
-	});
-	
+
 	$("#songqi_tab").bind('click', function() {
 		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/songqi", 0);
-	});
-	
-	$("#yayun_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/yayun", 0);
-	});
-	
-	$("#yingye_tab").bind('click', function() {
-		readed = true;
-		document.title="员工管理";
-		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/yingye", 0);
+		ProviderOrder.init("../index.php/Mq/Check/findRecallopt", start);
 	});
 });

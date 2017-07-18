@@ -1,7 +1,7 @@
 
 function bulidData() {
 	var util = new Util();
-	if(util.isNullStr($("#optdate").val()) || util.isNullStr(send_obj.remark)){
+	if(util.isNullStr(send_obj.optremark)){
 		return false;
 	}
 	return true;
@@ -18,10 +18,7 @@ function saveData() {
 
 	if(obj != false) {
 		util.showLoading();
-		var url = "/Mq/Check/editrecall";	
-		send_obj.optdate = $("#optdate").val();
-		send_obj.memberid = util.getParam("memberid");
-		send_obj.dname=$("#dname").find("option:selected").text();
+		var url = "/Mq/Check/optrecall";	
 		util.postUrl(
 			url,
 			function(data, status) { //如果调用php成功  
@@ -46,35 +43,18 @@ function saveData() {
 }
 var send_obj = {};
 var send_vue;
-function loaddepartments() {
-	var util = new Util();	
-	var url = "/Mq/Role/loaddepartment";
-	util.postUrl(
-		url,
-		function(data, status) { //如果调用php成功  
-			send_vue.$data.options = data;
-		},
-		function(XMLHttpRequest, textStatus, errorThrown) {
-			
-		}
-	);
-	
-}
-
 function loadData() {
 	var util = new Util();	
 	send_obj.remark="";
 	var pkid = util.getParam("pkid");
 	util.postUrl(
 		"/Mq/Check/loadrecall/pkid/"+pkid,
-		function(data, status) { //如果调用php成功  
-			$("#optdate").val(data.optdate);
+		function(data, status) { //如果调用php成功 
 			send_obj = data;
 			send_vue = new Vue({
 				el:"#form_app",
-				data:{sendobj:data,options:[]}
+				data:{sendobj:data}
 			});		
-			loaddepartments();
 		},
 		function(XMLHttpRequest, textStatus, errorThrown) {
 			

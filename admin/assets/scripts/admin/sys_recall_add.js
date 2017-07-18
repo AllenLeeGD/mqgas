@@ -21,6 +21,7 @@ function saveData() {
 		var url = "/Mq/Check/saverecall";
 		send_obj.optdate = $("#optdate").val();
 		send_obj.memberid = util.getParam("memberid");
+		send_obj.dname=$("#dname").find("option:selected").text();
 		util.postUrl(
 			url,
 			function(data, status) { //如果调用php成功  
@@ -50,14 +51,22 @@ var send_obj = {};
 var send_vue;
 
 function loadData() {
-	var util = new Util();
-	send_obj.remark = "";
-	send_vue = new Vue({
-		el: "#form_app",
-		data: {
-			sendobj: send_obj
+	var util = new Util();	
+	send_obj.remark="";
+	var url = "/Mq/Role/loaddepartment";
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue = new Vue({
+				el:"#form_app",
+				data:{sendobj:send_obj,options:data}
+			});
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			
 		}
-	});
+	);
+	
 }
 
 $(document).ready(function() {

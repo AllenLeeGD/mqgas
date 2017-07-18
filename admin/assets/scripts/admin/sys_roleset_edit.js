@@ -81,6 +81,9 @@ function load(init) {
 				} else if(data.role == 7) {
 					$("#b_title").html("押运");
 					$("#s_title").html("押运");
+				} else if(data.role == 8) {
+					$("#b_title").html("营业");
+					$("#s_title").html("营业");
 				}
 			} else {
 				util.errorMsg('加载失败');

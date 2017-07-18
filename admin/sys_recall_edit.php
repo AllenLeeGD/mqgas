@@ -117,11 +117,20 @@
 														</div>
 													</div>
 													<div id="form_app" >
-													
 													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">备注 <span class="required"> </span> </label>
+														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+														<label class="control-label col-md-2">门店名称 <span class="required"> </span> </label>
 														<div class="col-md-8">
-															<input id="remark" v-model="sendobj.remark" type="text" class="form-control input-large"/>
+															<select id="dname" name="dname" v-model="sendobj.departmentid" class="form-control">																
+																<option v-for="option in options" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block"> 例如：吉大店 </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">回访情况 <span class="required"> *</span> </label>
+														<div class="col-md-8">															
+															<textarea id="remark" v-model="sendobj.remark" rows="10" cols="50"></textarea>
 															<span class="help-block">  </span>
 														</div>
 													</div>
