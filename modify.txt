@@ -67,4 +67,12 @@
 66.sys_recall.js
 67.sys_recall_add.js
 68.sys_recall_edit.js
-
+69.sys_recallopt.php
+70.sys_recall_addopt.php
+71.sys_recall_viewopt.php
+72.sys_recallopt.js
+73.sys_recall_addopt.js
+74.sys_recall_viewopt.js
+75.sys_pricemain.php
+76.sys_pricemain.js
+77.PriceController.class.php
