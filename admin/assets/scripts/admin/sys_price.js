@@ -32,8 +32,8 @@ function doDelWorker() {
 
 }
 
-function openEdit(pid) {
-	document.location.href = "sys_price_edit.php?tag=sysadmin&item=15&pkid="+pid;
+function openEdit(pid,memberid,membername,mobile) {
+	document.location.href = "sys_price_edit.php?tag=sysadmin&item=15&pkid="+pid+"&memberid="+memberid+"&membername="+base64_encode(membername)+"&mobile="+mobile;
 }
 
 var ProviderOrder = function() {
@@ -179,8 +179,9 @@ $(document).ready(function() {
 	var params = util.getParam('params');
 	var memberid = util.getParam("memberid");
 	var membername = util.getParam("membername");
+	var mobile = util.getParam("mobile");
 	$("#membername").html(base64_decode(membername));
-	$("#addBtn").attr("href","sys_price_add.php?tag=sysadmin&item=15&memberid="+memberid);
+	$("#addBtn").attr("href","sys_price_add.php?tag=sysadmin&item=15&memberid="+memberid+"&membername="+membername+"&mobile="+mobile);
 	if(util.isNullStr(start)) {
 		start = 0;
 	}

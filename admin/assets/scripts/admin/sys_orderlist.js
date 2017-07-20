@@ -29,14 +29,13 @@ function openOrderCancelRefund(pkid, index) {
 function doConfirm() {
 	var pkid = $("#view_data").data("pkid");
 	var index = $("#view_data").data("index");
-	var obj = {};
-	obj.pkid = pkid;
-	var content = JSON.stringify(obj);
+	var msg = $("#returnMsg").val();
 	var objdata = {};
-	objdata.content = base64_encode(encodeURI(content));
+	objdata.content = msg;
 	var util = new Util();
 	util.showLoading();
 	util.postUrl('/Mq/Order/send/bid/' + pkid, function(data, status) {
+			$("#returnMsg").val("");
 			if(data == "yes") {
 				util.successMsg('确认成功');
 				$("#do_confirm").modal('hide');

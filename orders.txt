@@ -4,9 +4,10 @@
 		<div name="postlink" orderid="${orderid}" class="font-size-14">
 			<div class="mui-ellipsis">订单号 : ${pid}</div>
 			<div class="mui-ellipsis font-size-12">单价 : ${price}元&nbsp;&nbsp;优惠金额 : ${coupon}元&nbsp;&nbsp;${paytype} </div>
-			<div class="mui-ellipsis ft-blue">总金额 : ${totalmoney} 元</div>
+			<div class="mui-ellipsis ft-blue">总金额 : ${totalmoney} 元</div>			
 			<p class="mui-ellipsis font-size-12">共 ${buycount} 件 | <span class="ft-red">${statusstr}</span></p>
 			<p class="font-size-12"><span class="mui-icon ion-clock ft-blue font-size-12"></span>&nbsp;订单时间: ${buytime}</p>
+			${returnmsg}
 		</div>
 		<div class="mui-pull-right mt-5"><p class="font-size-12 ft-red">${btns}</p></div>
 	</a>

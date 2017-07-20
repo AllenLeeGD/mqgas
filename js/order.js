@@ -79,6 +79,11 @@ function pulldownRefresh() {
 									this_temp = this_temp.replace("\$\{statusstr\}", getStatusstr(item.status));
 									this_temp = this_temp.replace("\$\{buytime\}", new Date(item.buytime * 1000).Format("yyyy-MM-dd hh:mm:ss"));
 									this_temp = this_temp.replace("\$\{imgpath\}", edu_host + "/images/yun.png");
+									if(!util.isNullStr(item.returnmsg)){
+										this_temp = this_temp.replace("\$\{returnmsg\}", "<div class=\"mui-ellipsis font-size-12\">客服留言 : "+item.returnmsg+" </div>");
+									}else{
+										this_temp = this_temp.replace("\$\{returnmsg\}", "");
+									}
 									this_temp = this_temp.replace("\$\{paytype\}", (item.paytype==0?"微信支付":"现金支付"));
 									if(item.status == 5 && item.paytype=="0") {
 										btnRefund = btnRefund.replace("\$\{orderid\}", item.pkid);
@@ -180,6 +185,11 @@ function pullupRefresh() {
 									this_temp = this_temp.replace("\$\{statusstr\}", getStatusstr(item.status));
 									this_temp = this_temp.replace("\$\{buytime\}", new Date(item.buytime * 1000).Format("yyyy-MM-dd hh:mm:ss"));
 									this_temp = this_temp.replace("\$\{imgpath\}", edu_host + "/images/yun.png");
+									if(!util.isNullStr(item.returnmsg)){
+										this_temp = this_temp.replace("\$\{returnmsg\}", "<div class=\"mui-ellipsis font-size-12\">客服留言 : "+item.returnmsg+" </div>");
+									}else{
+										this_temp = this_temp.replace("\$\{returnmsg\}", "");
+									}
 									if(item.status == 5 && item.paytype==0) {
 										btnRefund = btnRefund.replace("\$\{orderid\}", item.pkid);
 										this_temp = this_temp.replace("\$\{btns\}", btnRefund);

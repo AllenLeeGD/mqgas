@@ -103,23 +103,78 @@
 											<!-- BEGIN FORM-->
 											<form action="javascript:;" class="form-horizontal">
 												<div class="form-body" style="padding:16px 26px 16px 26px;">
+													<div id="form_app" >
 													<div id="vipdiscountgroup" class="form-group">
 														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
-														<label class="control-label col-md-2">日期 <span class="required"> *</span> </label>
+														<label class="control-label col-md-2">客户名称 <span class="required"> </span> </label>
 														<div class="col-md-8">
-															<div class="input-group input-large date date-picker" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
-																<input id="checkdate" name="checkdate" type="text" class="form-control" readonly>
-																<span class="input-group-btn">
-																<button class="btn default" type="button">
-																<i class="fa fa-calendar"></i>
-																</button> </span>
-															</div>
+															<label class="control-label">
+																<span id="membername" name="membername" v-text="sendobj.membername" class="control-label"></span>
+															</label>
 														</div>
 													</div>
-													<div id="form_app" >
-													
+													<input type="hidden" id="membername" name="membername" v-model="sendobj.membername">
 													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">安检情况 <span class="required"> *</span> </label>
+														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+														<label class="control-label col-md-2">客户电话 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<label class="control-label">
+																<span id="mobile" name="mobile" v-text="sendobj.mobile" ></span>
+															</label>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">价格名称 <span class="required"> *</span> </label>
+														<div class="col-md-8">
+															<input id="name" v-model="sendobj.name" type="text" class="form-control input-large"/>
+															<span class="help-block">例如:15kg 直阀  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">价格 <span class="required"> *</span> </label>
+														<div class="col-md-8">
+															<input id="price" v-model="sendobj.price" type="number" class="form-control input-large"/>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">瓶规格 <span class="required"> *</span> </label>
+														<div class="col-md-8">
+															<select id="pid" name="pid" v-model="sendobj.pid" class="form-control  input-large">																
+																<option v-for="option in pings" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">接口规格 <span class="required"></span> </label>
+														<div class="col-md-8">
+															<select id="jid" name="jid" v-model="sendobj.jid" class="form-control  input-large" >																
+																<option v-for="option in jies" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">气体规格 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<select id="qid" name="qid" v-model="sendobj.qid" class="form-control  input-large">																
+																<option v-for="option in qis" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">燃气类型 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<select id="rid" name="rid" v-model="sendobj.rid" class="form-control  input-large">																
+																<option v-for="option in rans" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">备注 <span class="required"> </span> </label>
 														<div class="col-md-8">
 															<input id="remark" v-model="sendobj.remark" type="text" class="form-control input-large"/>
 															<span class="help-block">  </span>

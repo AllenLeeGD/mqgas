@@ -1,7 +1,7 @@
 
 
-function openSet(pid,pname) {
-	document.location.href = "sys_price.php?tag=sysadmin&item=15&memberid="+pid+"&membername="+base64_encode(pname);
+function openSet(pid,pname,mobile) {
+	document.location.href = "sys_price.php?tag=sysadmin&item=15&memberid="+pid+"&membername="+base64_encode(pname)+"&mobile="+mobile;
 }
 
 var ProviderOrder = function() {

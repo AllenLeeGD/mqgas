@@ -162,6 +162,20 @@
 						<div class="modal-body">
 							是否派送此订单的液化气？
 						</div>
+						<form action="javascript:;" class="form-horizontal">
+							<div class="form-body" style="padding:16px 26px 16px 26px;">
+								<div id="realnamegroup" class="form-group">
+									<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+									<label class="control-label col-md-3">给客户留言 <span class="required"> </span> </label>
+									<div class="col-md-5">
+										<div class="input-icon right">
+											<!--<input id="refundMessage" type="text" class="form-control"/>-->
+											<textarea id="returnMsg" rows="6" style="width: 300px;" maxlength="120" class="form-control"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
 						<div class="modal-footer">
 							<button type="button" class="btn default" data-dismiss="modal">
 							取消

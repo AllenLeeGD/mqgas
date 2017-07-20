@@ -189,6 +189,7 @@ class OrderController extends Controller {
     }
 
 	public function send($bid){
+		$obj = getObjFromPost(["content"]);
 		//获取用户积分
 		$pointdao = M("Sysparam");
 		$pdata = $pointdao->where("kkey='pointset'")->find();
@@ -207,6 +208,7 @@ class OrderController extends Controller {
 			$data['status']=5;
 		}
 		$data['sendtime'] = time();
+		$data['returnmsg'] = $obj["content"];
 		$dao->where("pkid='$bid'")->save($data);
 		$userid = $check['buyer'];
 		$memberdata = $memberdao->where("pkid='$userid'")->find();

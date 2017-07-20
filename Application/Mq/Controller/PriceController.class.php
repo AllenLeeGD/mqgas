@@ -48,7 +48,7 @@ class PriceController extends Controller {
 		$jsparams = "keyword:$orderid,buyername:$updowntag";
 		
 		for ($i = 0; $i < count($result); $i++) {
-			$btnPriceset = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openSet('".$result[$i]['pkid']."','".$result[$i]['realname']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;设置价格&nbsp;</a>";					
+			$btnPriceset = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openSet('".$result[$i]['pkid']."','".$result[$i]['realname']."','".$result[$i]['mobile']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;设置价格&nbsp;</a>";					
 			if($result[$i]['membertype'] == 1){
 				$membertype = "居民用户";
 			}else if($result[$i]['membertype'] == 2){
@@ -103,7 +103,7 @@ class PriceController extends Controller {
 		$jsparams = "keyword:$orderid,buyername:$updowntag";
 		
 		for ($i = 0; $i < count($result); $i++) {
-			$btnEdit = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openEdit('".$result[$i]['pkid']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;编辑&nbsp;</a>";
+			$btnEdit = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openEdit('".$result[$i]['pkid']."','".$result[$i]['memberid']."','".$result[$i]['membername']."','".$result[$i]['mobile']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;编辑&nbsp;</a>";
 			$btnDel = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openDelConfirm('".$result[$i]['pkid']."','".$iDisplayStart."')\"><i class='fa fa-times'></i> &nbsp;删除&nbsp;</a>";			
 					
 			$records["aaData"][] = array($result[$i]['name'],$result[$i]['remark'],$btnEdit.$btnDel);
@@ -121,36 +121,137 @@ class PriceController extends Controller {
 	}
 	
 	/**
-	 * 删除门店片区信息.
+	 * 删除价格信息.
 	 */
-	public function delcheck($pkid) {
-		$dao = M("Safecheck");
+	public function delprice($pkid) {
+		$dao = M("Price");
 		$dao->where("pkid='$pkid'")->delete();
+		$subdao = M("Price2type");
+		$subdao->where("priceid ='$pkid'")->delete();		
 		echo "yes";
 	}
 	
-	public function savecheck(){
-		$obj = getObjFromPost(array("checkdate","memberid","remark"));
-		$obj['checkdate'] = strtotime($obj['checkdate']);
-		$obj['pkid'] = uniqid();
-		$dao = M("Safecheck");
-		$dao->add($obj);		
+	public function saveprice(){
+		$obj = getObjFromPost(array("memberid","membername","mobile","name","price","remark","pid","pname","jid","jname","qid","qname","rid","rname"));				
+		$dao = M("Price");
+		$pricedata = $obj;
+		$pricedata['pkid'] = uniqid();
+		$dao->add($pricedata);	
+		$price2type_dao = M("Price2type");
+		
+		if(!empty($obj["pid"])){
+			$pdata["pkid"] = uniqid();
+			$pdata["priceid"] = $pricedata['pkid'];
+			$pdata["typeid"] = $obj["pid"];
+			$pdata["typename"] = $obj["pname"];
+			$price2type_dao->add($pdata);
+		}
+		
+		if(!empty($obj["jid"])){
+			$pdata["pkid"] = uniqid();
+			$pdata["priceid"] = $pricedata['pkid'];
+			$pdata["typeid"] = $obj["jid"];
+			$pdata["typename"] = $obj["jname"];
+			$price2type_dao->add($pdata);
+		}
+		
+		if(!empty($obj["qid"])){
+			$pdata["pkid"] = uniqid();
+			$pdata["priceid"] = $pricedata['pkid'];
+			$pdata["typeid"] = $obj["qid"];
+			$pdata["typename"] = $obj["qname"];
+			$price2type_dao->add($pdata);
+		}
+		
+		if(!empty($obj["rid"])){
+			$pdata["pkid"] = uniqid();
+			$pdata["priceid"] = $pricedata['pkid'];
+			$pdata["typeid"] = $obj["rid"];
+			$pdata["typename"] = $obj["rname"];
+			$price2type_dao->add($pdata);
+		}
 		echo "yes";
 	}
 	
-	public function editcheck(){
-		$obj = getObjFromPost(array("pkid","checkdate","remark"));
-		$obj['checkdate'] = strtotime($obj['checkdate']);
-		$pkid = $obj["pkid"];
-		$dao = M("Safecheck");
-		$dao->where("pkid='$pkid'")->save($obj);		
+	public function editprice($pkid){
+		$obj = getObjFromPost(array("memberid","membername","mobile","name","price","remark","pid","pname","jid","jname","qid","qname","rid","rname"));				
+		$dao = M("Price");
+		$pricedata = $obj;
+		$dao->where("pkid='$pkid'")->save($pricedata);	
+		$price2type_dao = M("Price2type");
+		$price2type_dao->where("priceid ='$pkid'")->delete();		
+		if(!empty($obj["pid"])){
+			$pdata["pkid"] = uniqid();
+			$pdata["priceid"] = $pkid;
+			$pdata["typeid"] = $obj["pid"];
+			$pdata["typename"] = $obj["pname"];
+			$price2type_dao->add($pdata);
+		}
+		
+		if(!empty($obj["jid"])){
+			$pdata["pkid"] = uniqid();
+			$pdata["priceid"] = $pkid;
+			$pdata["typeid"] = $obj["jid"];
+			$pdata["typename"] = $obj["jname"];
+			$price2type_dao->add($pdata);
+		}
+		
+		if(!empty($obj["qid"])){
+			$pdata["pkid"] = uniqid();
+			$pdata["priceid"] = $pkid;
+			$pdata["typeid"] = $obj["qid"];
+			$pdata["typename"] = $obj["qname"];
+			$price2type_dao->add($pdata);
+		}
+		
+		if(!empty($obj["rid"])){
+			$pdata["pkid"] = uniqid();
+			$pdata["priceid"] = $pkid;
+			$pdata["typeid"] = $obj["rid"];
+			$pdata["typename"] = $obj["rname"];
+			$price2type_dao->add($pdata);
+		}
 		echo "yes";
 	}
 	
-	public function loadcheck($pkid){
-		$dao = M("Safecheck");
+	public function loadprice($pkid){
+		$dao = M("Price");
 		$result = $dao->where("pkid = '$pkid'")->find();
-		$result['checkdate'] = date('Y-m-d',$result['checkdate']);
+		$price2type_dao = M("Price2type");
+		$types = $price2type_dao->where("priceid = '$pkid'")->select();
+		$type_dao = M("Gastype");
+		for($i=0;$i<count($types);$i++){
+			$item = $types[$i];
+			$typeid = $item["typeid"];
+			$typedata = $type_dao->where("pkid = '$typeid'")->find();			
+			if($typedata['type']==1 && $typedata['classify']==1){
+				$result['pid'] = $item['typeid'];
+				$result['pname'] = $item['typename'];
+			}
+			if($typedata['type']==2 && $typedata['classify']==1){
+				$result['jid'] = $item['typeid'];
+				$result['jname'] = $item['typename'];
+			}
+			if($typedata['type']==3 && $typedata['classify']==1){
+				$result['qid'] = $item['typeid'];
+				$result['qname'] = $item['typename'];
+			}
+			if($typedata['type']==4 && $typedata['classify']==1){
+				$result['rid'] = $item['typeid'];
+				$result['rname'] = $item['typename'];
+			}
+		}
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($result, JSON_UNESCAPED_UNICODE);
+	}
+	
+	/**
+	 * 查询燃气类型
+	 */
+	public function loadgastype($classify,$type){
+		$dao = M("Gastype");
+		$result = $dao->where("classify = '$classify' and type = '$type'")->select();		
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($result, JSON_UNESCAPED_UNICODE);
