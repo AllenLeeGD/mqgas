@@ -1,3 +1,34 @@
+function openMemberOut(pkid, index) {
+	$("#view_data").data("pkid", pkid);
+	$("#view_data").data("index", index);
+	$("#do_out").modal('show');
+}
+function doConfirm() {
+	var pkid = $("#view_data").data("pkid");
+	var index = $("#view_data").data("index");
+	var msg = $("#outreason").val();
+	var objdata = {};
+	objdata.content = msg;
+	var util = new Util();
+	util.showLoading();
+	util.postUrl('/Mq/Member/out/bid/' + pkid, function(data, status) {
+			$("#outreason").val("");
+			if(data == "yes") {
+				util.successMsg('退户成功');
+				$("#do_out").modal('hide');
+			} else {
+				util.errorMsg('退户失败');
+			}
+			ProductAdd.init("../index.php/Mq/Member/findMember",index);
+			util.hideLoading();
+		},
+		objdata,
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			util.errorMsg('内部服务器错误');
+			util.hideLoading();
+		});
+
+}
 var ProductAdd = function() {
 	
 	var handleOrder = function(url,startindex){
@@ -31,7 +62,8 @@ var ProductAdd = function() {
 					aoData.push(
 						{ "name": "realname_search", "value": $("#realname_search").val() },
 						{ "name": "mobile_search", "value": $("#mobile_search").val() },
-						{ "name": "idno_search", "value": $("#idno_search").val() }
+						{ "name": "yewuname_search", "value": $("#yewuname_search").val() },
+						{ "name": "membertype_search", "value": $("#membertype_search").val() },						
 						);
 					}
                 }

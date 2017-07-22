@@ -165,45 +165,37 @@ class MemberController extends Controller {
 	
 	
 	public function findMember() {
-		$query_sql = "where";
-		$countquery_sql = "where";
+		$query_sql = "";
+		$countquery_sql = "";
 		$realname = $_REQUEST['realname_search'];
 		$mobile = $_REQUEST['mobile_search'];
-		$idno = $_REQUEST['idno_search'];
+		$yewuname = $_REQUEST['yewuname_search'];
+		$membertype = $_REQUEST['membertype_search'];
 		if (!empty($realname)) {
-			if($query_sql=="where"){
-				$query_sql = $query_sql . " m.realname LIKE '%$realname%'";
-				$countquery_sql = $countquery_sql . " realname LIKE '%$realname%'";
-			}
-			else{
-				$query_sql = $query_sql . " and m.realname LIKE '%$realname%'";
-				$countquery_sql = $countquery_sql . " and realname LIKE '%$realname%'";
-			}
+			$query_sql = $query_sql . " and m.realname LIKE '%$realname%'";
+			$countquery_sql = $countquery_sql . " and realname LIKE '%$realname%'";			
 		}
 		if (!empty($mobile)) {
-			if($query_sql=="where"){
-				$query_sql = $query_sql . " m.mobile like '%$mobile%'";
-				$countquery_sql = $countquery_sql . " mobile like '%$mobile%'";
-			}
-			else{
-				$query_sql = $query_sql . " and m.mobile like '%$mobile%'";
-				$countquery_sql = $countquery_sql . " and mobile like '%$mobile%'";
-			}
+			$query_sql = $query_sql . " and m.mobile like '%$mobile%'";
+			$countquery_sql = $countquery_sql . " and mobile like '%$mobile%'";			
 		}
-		
-		if($query_sql=="where"){
-			$query_sql = "";
-			$countquery_sql = "";
+		if (!empty($yewuname)) {
+			$query_sql = $query_sql . " and m.yewuname like '%$yewuname%'";
+			$countquery_sql = $countquery_sql . " and yewuname like '%$yewuname%'";
+		}
+		if (!empty($membertype)) {
+			$query_sql = $query_sql . " and m.membertype = '$membertype'";
+			$countquery_sql = $countquery_sql . " and membertype = '$membertype'";
 		}
 		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
 		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
 		$query = new \Think\Model();
 		$count_sql = "select count(*) as totalrecord ".
-		"from memberinfo $countquery_sql";
+		"from memberinfo where 1=1 $countquery_sql";
 		$resultcount = $query -> query($count_sql);
 		$iTotalRecords = $resultcount[0]['totalrecord'];
 		$iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
-		$condition_sql = "select m.*,l.levelname from memberinfo as m left join level as l on m.level=l.pkid $query_sql order by regtime desc limit $iDisplayStart,$iDisplayLength";
+		$condition_sql = "select m.*,l.levelname from memberinfo as m left join level as l on m.level=l.pkid where 1=1 $query_sql order by regtime desc limit $iDisplayStart,$iDisplayLength";
 		$result = $query -> query($condition_sql);
 		$sEcho = intval($_REQUEST['sEcho']);
 		$records = array();
@@ -217,7 +209,22 @@ class MemberController extends Controller {
 				$getcoupon="未领用";
 			}
 			$btnEdit = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openMemberEdit('".$result[$i]['pkid']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;编辑&nbsp;</a>";
-			$records["aaData"][] = array("<div class=\"product-label\"><span><a style=\"cursor:pointer;\" data-toggle='modal' onclick=\"openMemberDetail('" . $result[$i]['pkid'] . "')\">".$result[$i]['realname']."</a></span></div>","<div class=\"product-label\" style=\"text-align:center;\"><span>".$result[$i]['mobile']."</span></div>","<div class=\"product-label\" style=\"text-align:center;\">".$result[$i]['levelname']."</div>","<div class=\"product-label\" style=\"text-align:center;\">".$result[$i]['point']."</div>","<div class=\"product-label\" style=\"text-align:center;\">".$getcoupon."</div>",$btnEdit);
+			$btnOut = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openMemberOut('".$result[$i]['pkid']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa  fa-eraser'></i> &nbsp;退户&nbsp;</a>";
+			if($result[$i]['membertype']==1){
+				$membertype = "居民";
+			}else if($result[$i]['pkid']==2){
+				$membertype = "小工商";
+			}else if($result[$i]['pkid']==3){
+				$membertype = "大工商";
+			}
+			$realname = $result[$i]['realname'];
+			$btns = $btnEdit;
+			if($result[$i]['status']==-1){
+				$realname = $realname."(已退户)";
+			}else{
+				$btns = $btnEdit.$btnOut;
+			}
+			$records["aaData"][] = array("<div class=\"product-label\"><span><a style=\"cursor:pointer;\" data-toggle='modal' onclick=\"openMemberDetail('" . $result[$i]['pkid'] . "')\">".$realname."</a></span></div>","<div class=\"product-label\" style=\"text-align:center;\"><span>".$result[$i]['mobile']."</span></div>","<div class=\"product-label\" style=\"text-align:center;\">".$result[$i]['levelname']."</div>","<div class=\"product-label\" style=\"text-align:center;\">".$result[$i]['yewuname']."</div>",$membertype,$btns);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";
@@ -244,6 +251,16 @@ class MemberController extends Controller {
 		$pkid = $obj["pkid"];
 		$dao->where("pkid='$pkid'")->save($obj);
 		addLog(2, session("userid"), "更改了用户 ".$obj['realname']."(".$obj['mobile'].")的信息");
+		echo "yes";
+	}
+	
+	public function out($bid){
+		$dao = M("Memberinfo");
+		$obj = getObjFromPost(array("content"));
+		$data['status'] = -1;
+		$data['outreason'] = $obj['content'];
+		$data['outdate'] = time();
+		$dao->where("pkid = '$bid'")->save($data);
 		echo "yes";
 	}
 	

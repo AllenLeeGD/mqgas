@@ -76,3 +76,11 @@
 75.sys_pricemain.php
 76.sys_pricemain.js
 77.PriceController.class.php
+78.sys_price.php
+79.sys_price_add.php
+80.sys_price_edit.php
+81.sys_price.js
+82.sys_price_add.js
+83.sys_price_edit.js
+84.sys_memberlist.js
+85.

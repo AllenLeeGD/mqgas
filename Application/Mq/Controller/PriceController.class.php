@@ -125,9 +125,11 @@ class PriceController extends Controller {
 	 */
 	public function delprice($pkid) {
 		$dao = M("Price");
+		$old = $dao->where("pkid='$pkid'")->find();
+		addLog(7,session("userid"),"删除了客户".$old["membername"]."(".$old["mobile"].")的价格:".$old["name"]."(".$old["price"].")");
 		$dao->where("pkid='$pkid'")->delete();
 		$subdao = M("Price2type");
-		$subdao->where("priceid ='$pkid'")->delete();		
+		$subdao->where("priceid ='$pkid'")->delete();	
 		echo "yes";
 	}
 	
@@ -170,6 +172,7 @@ class PriceController extends Controller {
 			$pdata["typename"] = $obj["rname"];
 			$price2type_dao->add($pdata);
 		}
+		addLog(7,session("userid"),"新增了客户".$obj["membername"]."(".$obj["mobile"].")的价格:".$obj["name"]."(".$obj["price"].")");
 		echo "yes";
 	}
 	
@@ -211,6 +214,7 @@ class PriceController extends Controller {
 			$pdata["typename"] = $obj["rname"];
 			$price2type_dao->add($pdata);
 		}
+		addLog(7,session("userid"),"修改了客户".$obj["membername"]."(".$obj["mobile"].")的价格:".$obj["name"]."(".$obj["price"].")");
 		echo "yes";
 	}
 	

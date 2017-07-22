@@ -85,26 +85,31 @@
 												<tr role="row" class="heading">
 													<th> 姓名 </th>
 													<th style="width:150px;text-align: center;"> 联系电话 </th>
-													<th style="width:150px;text-align: center;"> 会员等级 </th>
-													<th style="width:100px;text-align: center;"> 积分 </th>
-													<th style="width:100px;text-align: center;"> 优惠券 </th>
-													<th style="width:140px;text-align: center;"> 操作 </th>
+													<th style="width:150px;text-align: center;"> 用户组 </th>
+													<th style="width:150px;text-align: center;"> 业务员 </th>
+													<th style="width:100px;text-align: center;"> 分类 </th>
+													<th style="width:160px;text-align: center;"> 操作 </th>
 												</tr>
 												<tr role="row">
 													<td>
-														<input id="realname_search" type="text" class="form-control form-filter" name="realname_search" placeholder="请输入姓名关键字"> 
+														<input id="realname_search" type="text" class="form-control form-filter" name="realname_search" placeholder="请输入"> 
 													</td>
 													<td>
-														<input id="mobile_search" type="text" class="form-control form-filter" name="mobile_search" placeholder="请输入联系电话"> 
-													</td>
-													<td>
-														 
+														<input id="mobile_search" type="text" class="form-control form-filter" name="mobile_search" placeholder="请输入"> 
 													</td>
 													<td>
 														 
 													</td>
 													<td>
-														 
+														<input id="yewuname_search" type="text" class="form-control form-filter" name="yewuname_search" placeholder="请输入"> 
+													</td>
+													<td>
+														 <select class="form-control form-filter font-size-12" id="membertype_search" name="membertype_search">
+																<option value="">全部</option>
+																<option value="1">居民</option>
+																<option value="2">小工商</option> 
+																<option value="3">大工商</option>																
+															</select>
 													</td>
 													<td>
 														<div class="margin-bottom-5">
@@ -132,6 +137,45 @@
 		</div>
 		<div id="view_data"></div>
 		<div id="ajax-view" class="modal fade" tabindex="-1"></div>
+		<div id="ajax-send" class="modal fade" tabindex="-1"></div>
+			<div id="ajax-pddetail" class="modal fade" tabindex="-1"></div>
+			<div class="modal fade" id="do_out" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="padding:10px 20px 10px 20px;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title green">退户处理</h4>
+						</div>
+						<div class="modal-body">
+							当前用户是否确定退户？
+						</div>
+						<form action="javascript:;" class="form-horizontal">
+							<div class="form-body" style="padding:16px 26px 16px 26px;">
+								<div id="realnamegroup" class="form-group">
+									<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+									<label class="control-label col-md-3">退户原因 <span class="required"> </span> </label>
+									<div class="col-md-5">
+										<div class="input-icon right">
+											<!--<input id="refundMessage" type="text" class="form-control"/>-->
+											<textarea id="outreason" rows="6" style="width: 300px;" maxlength="120" class="form-control"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="btn default" data-dismiss="modal">
+							取消
+							</button>
+							<button id="confirm_send_btn" type="button" class="btn green" onclick="doConfirm()">
+							确认
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
 		<?php include("common/admin_dialog.html") ?>
 		<!-- END CONTAINER -->
 		<!-- BEGIN FOOTER -->
