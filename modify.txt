@@ -83,4 +83,8 @@
 82.sys_price_add.js
 83.sys_price_edit.js
 84.sys_memberlist.js
-85.
+85.sys_memberadd.php
+86.sys_memberadd.js
+87.sys_memberedit.php
+88.sys_memberedit.js
+89.sys_memberdetail.html

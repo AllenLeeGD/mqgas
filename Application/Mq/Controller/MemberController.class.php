@@ -245,12 +245,24 @@ class MemberController extends Controller {
 		echo json_encode($data, JSON_UNESCAPED_UNICODE);
 	}
 	
+	public function addMember(){
+		$obj = getObjFromPost(array("realname","code","storename","membertype","detailtype","yewuid","yewuname","mobile","address","level"));
+		$dao = M("Memberinfo");
+		$obj["pkid"] = uniqid();
+		$obj["regtime"] = time();
+		$obj["nickname"] = $obj["realname"];
+		$obj["headicon"] = "../images/nohead.png";
+		$dao->where("pkid='$pkid'")->add($obj);
+		addLog(2, session("userid"), "新增了客户 ".$obj['realname']."(".$obj['mobile'].")的信息");
+		echo "yes";
+	}
+	
 	public function saveMember(){
-		$obj = getObjFromPost(array("pkid","realname","mobile","address","level"));
+		$obj = getObjFromPost(array("pkid","realname","code","storename","membertype","detailtype","yewuid","yewuname","mobile","address","level"));
 		$dao = M("Memberinfo");
 		$pkid = $obj["pkid"];
 		$dao->where("pkid='$pkid'")->save($obj);
-		addLog(2, session("userid"), "更改了用户 ".$obj['realname']."(".$obj['mobile'].")的信息");
+		addLog(2, session("userid"), "更改了客户 ".$obj['realname']."(".$obj['mobile'].")的信息");
 		echo "yes";
 	}
 	

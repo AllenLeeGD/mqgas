@@ -133,6 +133,14 @@ class DailyController extends Controller {
 		echo json_encode($result, JSON_UNESCAPED_UNICODE);
 	}
 	
+	public function loadyewu(){
+		$dao = M("Userinfo");
+		$result = $dao->where("role=2")->select();		
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($result, JSON_UNESCAPED_UNICODE);
+	}
+	
 	public function loadcarsdaily($pkid){
 		$dao = M("Carsdaily");
 		$result = $dao->where("pkid = '$pkid'")->find();

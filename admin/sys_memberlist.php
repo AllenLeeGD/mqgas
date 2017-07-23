@@ -49,6 +49,21 @@
 							会员资料管理 <small>修改会员资料</small>
 							</h3>
 							<ul class="page-breadcrumb breadcrumb">
+								<li class="btn-group">
+									<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+									<span>
+										功能菜单
+									</span>
+									<i class="fa fa-angle-down"></i>
+									</button>
+									<ul class="dropdown-menu pull-right" role="menu">
+										<li>
+											<a id="addBtn" href="sys_memberadd.php?tag=memberadmin&item=1">
+												新增客户信息
+											</a>
+										</li>
+									</ul>
+								</li>
 								<li>
 									<a href="admin_home.php?item=0"> 管理首页 </a>
 									<i class="fa fa-angle-right"></i>

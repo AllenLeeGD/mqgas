@@ -41,7 +41,7 @@ function saveData() {
 	$("#btnSave").button('loading');
 	var obj = bulidData();
 	var util = new Util();
-	if(obj==false){
+	if(obj == false) {
 		util.errorMsg("请填写完整资料");
 		$("#btnSave").button("reset");
 		return;
@@ -49,7 +49,7 @@ function saveData() {
 	util.showLoading();
 	var pkid = util.getParam('pkid');
 	obj.pkid = pkid
-	var url = "/Mq/Member/saveMember";
+	var url = "/Mq/Member/addMember";
 	util.postUrl(
 		url,
 		function(data, status) { //如果调用php成功  
@@ -75,67 +75,25 @@ function saveData() {
 
 function loadData(pkid) {
 	var util = new Util();
-	util.showLoading();
-	var typeid = "";
-	util.getUrl("/Mq/Member/findMemberByPkid/pkid/" + pkid, function(data, status) {
-		try {
-			var objdata = JSON.parse(data);
-			var realname = objdata[0].realname;
-			var mobile = objdata[0].mobile;
-			var address = objdata[0].address;
-			var membertype = objdata[0].membertype;
-			var level = objdata[0].level;
-			var code = objdata[0].code;
-			var storename = objdata[0].storename;
-			var detailtype = objdata[0].detailtype;
-			var yewuid = objdata[0].yewuid;
-			$('#realname').val(realname);
-			$('#mobile').val(mobile);
-			$('#address').val(address);
-			$('#code').val(code);
-			$('#storename').val(storename);
-			$('#membertype').val(membertype);
-			$('#detailtype').val(detailtype);
-			util.getUrl("/Mq/Member/findSetting", function(s_data, s_status) {
-				var result = "";
-				for(var j = 0;j<s_data.length;j++){
-					if(s_data[j].pkid==level){
-						result += "<option selected value=\""+s_data[j].pkid+"\">"+s_data[j].levelname+"</option>";	
-					}else{
-						result += "<option value=\""+s_data[j].pkid+"\">"+s_data[j].levelname+"</option>";	
-					}					
-				}
-				document.getElementById("type").innerHTML=result;
-			});
-			util.getUrl("/Mq/Daily/loadyewu", function(s_data, s_status) {
-				var result = "<option value=\"\">无</option>";
-				for(var j = 0;j<s_data.length;j++){
-					if(s_data[j].pid==yewuid){
-						result += "<option selected value=\""+s_data[j].pid+"\">"+s_data[j].name+"</option>";	
-					}else{
-						result += "<option value=\""+s_data[j].pid+"\">"+s_data[j].name+"</option>";	
-					}					
-				}
-				document.getElementById("yewuid").innerHTML=result;
-			});
-		} catch(err) {
-			util.errorMsg('找不到该记录');
-		} finally {
-			util.hideLoading();
+	util.getUrl("/Mq/Member/findSetting", function(s_data, s_status) {
+		var result = "";
+		for(var j = 0; j < s_data.length; j++) {
+			result += "<option value=\"" + s_data[j].pkid + "\">" + s_data[j].levelname + "</option>";			
 		}
-	}, function() {
-		util.hideLoading();
-		util.errorMsg('内部服务器错误');
+		document.getElementById("type").innerHTML = result;
+	});
+	util.getUrl("/Mq/Daily/loadyewu", function(s_data, s_status) {
+		var result = "<option value=\"\">无</option>";
+		for(var j = 0; j < s_data.length; j++) {
+			result += "<option value=\"" + s_data[j].pid + "\">" + s_data[j].name + "</option>";			
+		}
+		document.getElementById("yewuid").innerHTML = result;
 	});
 }
 $(document).ready(function() {
 	var util = new Util();
-	var pkid = util.getParam('pkid');
-	if(util.isNullStr(pkid)) {
-		util.errorMsg('缺少必要参数:pkid');
-		return;
-	}
-	loadData(pkid);
+
+	loadData();
 	$("#btnSave").bind('click', function() {
 		saveData();
 	});

@@ -7,7 +7,7 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8"/>
-		<title>编辑客户信息</title>
+		<title>新增客户信息</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 		<meta content="" name="description"/>
@@ -61,12 +61,12 @@
 								</li>
 								<li>
 									<a href="sys_memberlist.php?tag=memberadmin&item=1">
-										客户资料管理
+										资料管理
 									</a>
 									<i class="fa fa-angle-right"></i>
 								</li>
 								<li>
-									编辑客户信息
+									新增客户信息
 								</li>
 							</ul>
 							<!-- END PAGE TITLE & BREADCRUMB-->
@@ -83,7 +83,7 @@
 									<!-- BEGIN FORM-->
 									<form action="javascript:;" class="form-horizontal">
 										<div class="form-body" style="padding:16px 26px 16px 26px;">
-											<h3 class="form-section">编辑客户信息</h3>
+											<h3 class="form-section">新增客户信息</h3>
 											<div id="realnamegroup" class="form-group">
 												<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
 												<label class="control-label col-md-2">客户姓名 <span class="required">* </span> </label>
@@ -149,7 +149,7 @@
 											</div>
 											<div id="mobilegroup" class="form-group">
 												<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
-												<label class="control-label col-md-2">联系电话 <span class="required">* </span> </label>
+												<label class="control-label col-md-2">联系电话 <span class="required"> *</span> </label>
 												<div class="col-md-5">
 													<div class="input-icon right">
 														<i id="mobileerr" class="fa fa-exclamation" style="display:none;"></i>
@@ -176,7 +176,7 @@
 												<label class="control-label col-md-2">会员等级 <span class="required"> </span> </label>
 												<div class="col-md-5">
 													<div class="input-icon right">
-														<select id="type" name="channelid" class="form-control">
+														<select id="type" name="type" class="form-control">
 														
 														</select>
 													</div>
@@ -238,7 +238,7 @@
 		<script src="assets/scripts/core/datatable.js"></script>
 		<script src="assets/scripts/custom/ajaxfileupload.js"></script>
 		<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
-		<script src="assets/scripts/admin/sys_memberedit.js"></script>
+		<script src="assets/scripts/admin/sys_memberadd.js"></script>
 		<!-- END PAGE LEVEL SCRIPTS -->
 		<script>jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {

@@ -155,6 +155,8 @@ function openMemberDetail(pkid) {
 				var levelname = objinfo[0].levelname;
 				var address = objinfo[0].address;
 				var imgpath = objinfo[0].headicon;
+				var membertype = objinfo[0].membertype;
+				var detailtype = objinfo[0].detailtype;
 				if(!util.isNullStr(imgpath)){
 					if(imgpath.indexOf("http") != -1){
 						imgpath = "<img src=\"" + imgpath +"\" style=\"height:100px;\">";
@@ -169,6 +171,34 @@ function openMemberDetail(pkid) {
 				$('#levelname_detail').html(levelname);
 				$('#address').html(address);
 				$('#pdpic_detail').html(imgpath);
+				
+				$('#code_detail').html(objinfo[0].code);
+				$('#storename_detail').html(objinfo[0].storename);
+				$('#yewuname_detail').html(objinfo[0].yewuname);
+				if(!util.isNullStr(membertype)){
+					if(membertype==1){
+						$('#membertype_detail').html("居民用户");
+					}else if(membertype==2){
+						$('#membertype_detail').html("小工商");
+					}else if(membertype==3){
+						$('#membertype_detail').html("大工商");
+					}
+				}
+				if(!util.isNullStr(detailtype)){
+					if(detailtype==1){
+						$('#detailtype_detail').html("代理商");
+					}else if(detailtype==2){
+						$('#detailtype_detail').html("来料加工");
+					}else if(detailtype==3){
+						$('#detailtype_detail').html("门店");
+					}else if(detailtype==4){
+						$('#detailtype_detail').html("门店气");
+					}else if(detailtype==5){
+						$('#detailtype_detail').html("民用气");
+					}else if(detailtype==6){
+						$('#detailtype_detail').html("直营代理");
+					}
+				}
 			} catch (err) {
 				util.errorMsg('找不到该记录');
 			} finally {
