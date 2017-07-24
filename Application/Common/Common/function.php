@@ -4,42 +4,66 @@
 function getsessionkeyval($key) {
 	return session($key);
 }
-function getStatus($status){
-	if($status==0){
-		return "待送货";
-	}else if($status==1){
-		return "待送货";
-	}else if($status==2){
-		return "申请退款";
-	}else if($status==3){
-		return "拒绝退款";
-	}else if($status==4){
-		return "完成退款";
-	}else if($status==5){
-		return "已派送";
-	}else if($status==6){
-		return "微信待付款";
-	}else if($status==7){
-		return "微信已付款，待送货";
-	}else if($status==8){
-		return "已完成";
-	}		
+
+/**
+ * 获得类型.
+ */
+function getTypeStr($type) {
+	if ($type == 1) {
+		return "退户瓶";
+	} else if ($type == 2) {
+		return "还瓶";
+	} else if ($type == 3) {
+		return "回收杂瓶";
+	} else if ($type == 4) {
+		return "回流瓶";
+	} else if ($type == 5) {
+		return "入重瓶";
+	} else if ($type == 6) {
+		return "借出瓶";
+	} else if ($type == 7) {
+		return "押金瓶";
+	} else if ($type == 8) {
+		return "回收杂瓶";
+	} else if ($type == 9) {
+		return "回流瓶";
+	} else if ($type == 10) {
+		return "售重瓶";
+	}
 }
-function strCut($str,$length)//$str为要进行截取的字符串，$length为截取长度（汉字算一个字，字母算半个字）
+
+function getStatus($status) {
+	if ($status == 0) {
+		return "待送货";
+	} else if ($status == 1) {
+		return "待送货";
+	} else if ($status == 2) {
+		return "申请退款";
+	} else if ($status == 3) {
+		return "拒绝退款";
+	} else if ($status == 4) {
+		return "完成退款";
+	} else if ($status == 5) {
+		return "已派送";
+	} else if ($status == 6) {
+		return "微信待付款";
+	} else if ($status == 7) {
+		return "微信已付款，待送货";
+	} else if ($status == 8) {
+		return "已完成";
+	}
+}
+
+function strCut($str, $length)//$str为要进行截取的字符串，$length为截取长度（汉字算一个字，字母算半个字）
 {
 	$str = trim($str);
 	$string = "";
-	if(strlen($str) > $length)
-	{
-		for($i = 0 ; $i<$length ; $i++)
-		{
-			if(ord($str) > 127)
-			{
-				$string .= $str[$i] . $str[$i+1] . $str[$i+2];
+	if (strlen($str) > $length) {
+		for ($i = 0; $i < $length; $i++) {
+			if (ord($str) > 127) {
+				$string .= $str[$i] . $str[$i + 1] . $str[$i + 2];
 				$i = $i + 2;
-			}
-			else
-			{
+			} else {
 				$string .= $str[$i];
 			}
 		}
@@ -48,6 +72,7 @@ function strCut($str,$length)//$str为要进行截取的字符串，$length为�
 	}
 	return $str;
 }
+
 //检查字符串是否为空
 function checkstrrequire($str) {
 	if (empty($str) || $str == "" || strlen($str) == 0) {
@@ -221,7 +246,7 @@ function putHeader() {
 
 function checkSession() {
 	$sessionid = I("post.sessionid");
-	$check = getFromSession($sessionid. ".userid");
+	$check = getFromSession($sessionid . ".userid");
 	if (empty($check)) {
 		echo "notlogin";
 	}
@@ -240,31 +265,31 @@ function getObjFromPost($Array) {
 	}
 }
 
-function strencode($string,$encryptkey) {   
-    $string = base64_encode ( $string );   
-    $key = md5 ($encryptkey);   
-    $len = strlen ( $key );  
-    $code = '';   
-    for($i = 0; $i < strlen ( $string ); $i ++) {       
-                $k = $i % $len;       
-                $code .= $string [$i] ^ $key [$k];   
-    }   
-    return base64_encode ( $code );   
-}  
+function strencode($string, $encryptkey) {
+	$string = base64_encode($string);
+	$key = md5($encryptkey);
+	$len = strlen($key);
+	$code = '';
+	for ($i = 0; $i < strlen($string); $i++) {
+		$k = $i % $len;
+		$code .= $string[$i] ^ $key[$k];
+	}
+	return base64_encode($code);
+}
 
 /**
  * 写入操作日志
  */
-function addLog($typeval,$userid,$remark) {
+function addLog($typeval, $userid, $remark) {
 	$dao = M("Optlog");
 	$userdao = M("Userinfo");
-	$user_data = $userdao->where("pid='$userid'")->find();
+	$user_data = $userdao -> where("pid='$userid'") -> find();
 	$data['pkid'] = uniqid();
 	$data['opttime'] = time();
 	$data['typeval'] = $typeval;
 	$data['remark'] = $remark;
 	$data['userid'] = $userid;
-	$data['username'] = $user_data['realname']."(".$user_data['name'].")";
-	$dao->add($data);
+	$data['username'] = $user_data['realname'] . "(" . $user_data['name'] . ")";
+	$dao -> add($data);
 }
 ?>

@@ -88,3 +88,12 @@
 87.sys_memberedit.php
 88.sys_memberedit.js
 89.sys_memberdetail.html
+90.sys_bottle_main.php
+91.sys_bottle_main.js
+92.sys_bottle_add.php
+93.sys_bottle_edit.php
+94.sys_bottle_main.php
+95.sys_bottle_add.js
+96.sys_bottle_edit.js
+97.sys_bottle_main.js
+98.BottleController.class.php
