@@ -1,11 +1,11 @@
-
 function bulidData() {
 	var util = new Util();
-	if(util.isNullStr($("#checkdate").val()) || util.isNullStr(send_obj.remark)){
+	if(util.isNullStr($("#departmentid").val()) || util.isNullStr($("#changetype").val()) || util.isNullStr($("#type").val())) {
 		return false;
 	}
 	return true;
 }
+
 function saveData() {
 	var util = new Util();
 	$("#btnSave").button('loading');
@@ -18,9 +18,13 @@ function saveData() {
 
 	if(obj != false) {
 		util.showLoading();
-		var url = "/Mq/Check/editcheck";	
-		send_obj.checkdate = $("#checkdate").val();
-		send_obj.memberid = util.getParam("memberid");
+		var url = "/Mq/Bottle/editbottle";
+		send_obj.pkid = util.getParam("pkid");
+		send_obj.pname = $("#pid").find("option:selected").text();
+		send_obj.jname = $("#jid").find("option:selected").text();
+		send_obj.fname = $("#fid").find("option:selected").text();
+		send_obj.rname = $("#rid").find("option:selected").text();
+		send_obj.deparmentname = $("#departmentid").find("option:selected").text();
 		util.postUrl(
 			url,
 			function(data, status) { //如果调用php成功  
@@ -28,6 +32,9 @@ function saveData() {
 					$("#btnSave").button("reset");
 					util.hideLoading();
 					util.successMsg('保存成功');
+					setTimeout(function() {
+						document.location.reload();
+					}, 1000);
 				} else {
 					$("#btnSave").button("reset");
 					util.hideLoading();
@@ -45,40 +52,113 @@ function saveData() {
 }
 var send_obj = {};
 var send_vue;
-function loadcars() {
-	var util = new Util();	
-	var url = "/Mq/Check/loadcheck";
+
+function loadjiekou() {
+	var util = new Util();
+	var url = "/Mq/Price/loadgastype/classify/1/type/2";
 	util.postUrl(
 		url,
 		function(data, status) { //如果调用php成功  
-			send_vue.$data.cars = data;
+			send_vue.$data.jies = data;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+
+		}
+	);
+}
+
+function loadqiti() {
+	var util = new Util();
+	var url = "/Mq/Price/loadgastype/classify/1/type/3";
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue.$data.qis = data;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+
+		}
+	);
+}
+
+function loadranqi() {
+	var util = new Util();
+	var url = "/Mq/Price/loadgastype/classify/1/type/4";
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue.$data.rans = data;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+
+		}
+	);
+}
+function loadoption(){
+	var url = "/Mq/Role/loaddepartment";
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue.$data.options=data;
 		},
 		function(XMLHttpRequest, textStatus, errorThrown) {
 			
 		}
 	);
-	
+}
+function loadpeijian() {
+	var util = new Util();
+	var url = "/Mq/Price/loadgastype/classify/2/type/6";
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue.$data.fs = data;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+
+		}
+	);
+}
+function loadping() {
+	var util = new Util();
+	var url = "/Mq/Price/loadgastype/classify/1/type/1";
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue.$data.pings = data;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+
+		}
+	);
 }
 
 function loadData() {
-	var util = new Util();	
-	send_obj.remark="";
+	var util = new Util();
 	var pkid = util.getParam("pkid");
+	var url = "/Mq/Bottle/loadbottle/pkid/"+pkid;
 	util.postUrl(
-		"/Mq/Check/loadcheck/pkid/"+pkid,
+		url,
 		function(data, status) { //如果调用php成功  
-			$("#checkdate").val(data.checkdate);
 			send_obj = data;
 			send_vue = new Vue({
-				el:"#form_app",
-				data:{sendobj:data}
-			});		
+				el: "#form_app",
+				data: {
+					sendobj: send_obj,pings:[],jies:[],rans:[],options:[],fs:[]
+				}
+			});
+			loadping();
+			loadjiekou();
+			loadranqi();
+			loadqiti();
+			loadpeijian();
+			loadoption();
 		},
 		function(XMLHttpRequest, textStatus, errorThrown) {
-			
+
 		}
 	);
-	
+
 }
 
 $(document).ready(function() {
@@ -93,5 +173,4 @@ $(document).ready(function() {
 	$("#btnSave").bind('click', function() {
 		saveData();
 	});
-	
 });

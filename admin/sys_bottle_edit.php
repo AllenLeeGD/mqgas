@@ -7,7 +7,7 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8"/>
-		<title>安检管理</title>
+		<title>客户钢瓶明细</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 		<meta content="" name="description"/>
@@ -46,7 +46,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-							<h3 class="page-title"> 编辑安检信息 <small>编辑安检信息</small></h3>
+							<h3 class="page-title"> 新增客户钢瓶明细 <small>增加客户钢瓶明细信息</small></h3>
 							<ul class="page-breadcrumb breadcrumb">
 								<!--<li class="btn-group">
 								<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -70,8 +70,8 @@
 									<i class="fa fa-angle-right"></i>
 								</li>
 								<li>
-									<a href="sys_checkrecall.php?tag=sysadmin&item=13">
-										客户安检及回访
+									<a href="sys_bottle_main.php?tag=sysadmin&item=16">
+										客户钢瓶管理
 									</a>
 								</li>
 							</ul>
@@ -85,7 +85,7 @@
 							<ul class="nav nav-tabs">
 								<li class="active">
 									<a href="#tab_0" data-toggle="tab">
-										编辑安检信息
+										添加钢瓶明细信息
 									</a>
 								</li>
 								<!--<li>
@@ -103,21 +103,143 @@
 											<!-- BEGIN FORM-->
 											<form action="javascript:;" class="form-horizontal">
 												<div class="form-body" style="padding:16px 26px 16px 26px;">
-												<div id="vipdiscountgroup" class="form-group">
+													<div id="form_app" >
+													<div id="vipdiscountgroup" class="form-group">
 														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
-														<label class="control-label col-md-2">日期 <span class="required"> *</span> </label>
+														<label class="control-label col-md-2">客户名称 <span class="required"> </span> </label>
 														<div class="col-md-8">
-															<div class="input-group input-large date date-picker" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
-																<input id="checkdate" name="checkdate" type="text" class="form-control" readonly>
-																<span class="input-group-btn">
-																<button class="btn default" type="button">
-																<i class="fa fa-calendar"></i>
-																</button> </span>
-															</div>
+															<label class="control-label">
+																<span id="membername" name="membername" v-text="sendobj.membername" class="control-label"></span>
+															</label>
 														</div>
 													</div>
-													<div id="form_app" >
+													<input type="hidden" id="membername" name="membername" v-model="sendobj.membername">
+													<input type="hidden" id="memberid" name="memberid" v-model="sendobj.memberid">
+													<div id="vipdiscountgroup" class="form-group">
+														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+														<label class="control-label col-md-2">客户电话 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<label class="control-label">
+																<span id="mobile" name="mobile" v-text="sendobj.mobile" ></span>
+															</label>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+														<label class="control-label col-md-2">门店名称 <span class="required"> *</span> </label>
+														<div class="col-md-8">
+															<select id="departmentid" name="departmentid" v-model="sendobj.departmentid" class="form-control">																
+																<option v-for="option in options" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block"> 例如：吉大店 </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">变动形式 <span class="required"> *</span> </label>
+														<div class="col-md-8">
+															<select id="changetype" name="changetype" v-model="sendobj.changetype" class="form-control  input-large">																
+																<option value="1" >出-瓶换瓶</option>
+																<option value="2" >出-门店退瓶到气库</option>
+																<option value="3" >出-借瓶阀</option>
+																<option value="4" >入-气库发瓶到门店</option>
+																<option value="5" >入-收押金</option>
+																<option value="6" >入-客户退瓶</option>
+																<option value="7" >入-瓶换瓶</option>
+																<option value="8" >出-退押金</option>					
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">类型 <span class="required"> *</span> </label>
+														<div class="col-md-8">
+															<select id="type" name="type" v-model="sendobj.type" class="form-control  input-large">																
+																<option value="1" >退户瓶</option>
+																<option value="2" >还瓶</option>
+																<option value="3" >回收杂瓶</option>
+																<option value="4" >回流瓶</option>
+																<option value="5" >入重瓶</option>
+																<option value="6" >借出瓶</option>
+																<option value="7" >押金瓶</option>
+																<option value="8" >回收杂瓶</option>
+																<option value="9" >回流瓶</option>
+																<option value="10" >售重瓶</option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">收据号码 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<input id="receipt" v-model="sendobj.receipt" type="text" class="form-control input-large"/>
+															<span class="help-block">  </span>
+														</div>
+													</div>
 													
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">瓶规格 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<select id="pid" name="pid" v-model="sendobj.pid" class="form-control  input-large">																
+																<option v-for="option in pings" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">接口规格 <span class="required"></span> </label>
+														<div class="col-md-8">
+															<select id="jid" name="jid" v-model="sendobj.jid" class="form-control  input-large" >																
+																<option v-for="option in jies" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">配件规格 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<select id="fid" name="fid" v-model="sendobj.fid" class="form-control  input-large">																
+																<option v-for="option in fs" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">燃气类型 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<select id="rid" name="rid" v-model="sendobj.rid" class="form-control  input-large">																
+																<option v-for="option in rans" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">数量 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<input id="optnumber" v-model="sendobj.optnumber" type="number" class="form-control input-large"/>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">单价 <span class="required"> *</span> </label>
+														<div class="col-md-8">
+															<input id="price" v-model="sendobj.price" type="number" class="form-control input-large"/>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">收押金 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<input id="incash" v-model="sendobj.incash" type="number" class="form-control input-large"/>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">退押金 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<input id="outcash" v-model="sendobj.outcash" type="number" class="form-control input-large"/>
+															<span class="help-block">  </span>
+														</div>
+													</div>
 													<div id="vipdiscountgroup" class="form-group">
 														<label class="control-label col-md-2">备注 <span class="required"> </span> </label>
 														<div class="col-md-8">
@@ -169,7 +291,7 @@
 		<script src="assets/scripts/custom/ajaxfileupload.js"></script>
 		<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 		<script type="text/javascript" src="assets/scripts/custom/vue.min.js"></script>
-		<script src="assets/scripts/admin/sys_check_edit.js"></script>
+		<script src="assets/scripts/admin/sys_bottle_edit.js"></script>
 		<!-- END PAGE LEVEL SCRIPTS -->
 		<script>jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {

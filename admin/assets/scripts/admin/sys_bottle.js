@@ -188,8 +188,9 @@ $(document).ready(function() {
 	var params = util.getParam('params');
 	var memberid = util.getParam("memberid");
 	var membername = util.getParam("membername");
+	var mobile = util.getParam("mobile");
 	$("#membername").html(base64_decode(membername));
-	$("#addBtn").attr("href","sys_bottle_add.php?tag=sysadmin&item=16&memberid="+memberid);
+	$("#addBtn").attr("href","sys_bottle_add.php?tag=sysadmin&item=16&memberid="+memberid+"&membername="+membername+"&mobile="+mobile);
 	if(util.isNullStr(start)) {
 		start = 0;
 	}

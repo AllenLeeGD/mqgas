@@ -1,7 +1,7 @@
 
 
-function openBottle(pid,pname) {
-	document.location.href = "sys_bottle.php?tag=sysadmin&item=16&memberid="+pid+"&membername="+base64_encode(pname);
+function openBottle(pid,pname,mobile) {
+	document.location.href = "sys_bottle.php?tag=sysadmin&item=16&memberid="+pid+"&membername="+base64_encode(pname)+"&mobile="+mobile;
 }
 
 var ProviderOrder = function() {
