@@ -149,7 +149,7 @@ class BottleController extends Controller {
 	}
 	
 	public function savebottle(){
-		$obj = getObjFromPost(array("receipt","pid","pname","jid","jname","rid","rname","optdate","optnumber","price","incash","outcash","changetype","type","fid","fname","departmentid","deparmentname","remark","memberid","membername"));		
+		$obj = getObjFromPost(array("receipt","pid","pname","jid","gpid","gpname","jname","rid","rname","optdate","optnumber","price","incash","outcash","changetype","type","fid","fname","departmentid","deparmentname","remark","memberid","membername"));		
 		$obj['pkid'] = uniqid();
 		$obj['userid'] = session("userid");
 		$obj['username'] = session("name");
@@ -160,7 +160,7 @@ class BottleController extends Controller {
 	}
 	
 	public function editbottle(){
-		$obj = getObjFromPost(array("pkid","receipt","pid","pname","jid","jname","rid","rname","optdate","optnumber","price","incash","outcash","changetype","type","fid","fname","departmentid","deparmentname","remark","memberid","membername"));
+		$obj = getObjFromPost(array("pkid","receipt","pid","pname","jid","gpid","gpname","jname","rid","rname","optdate","optnumber","price","incash","outcash","changetype","type","fid","fname","departmentid","deparmentname","remark","memberid","membername"));
 		$pkid = $obj['pkid'];
 		$obj['userid'] = session("userid");
 		$obj['username'] = session("name");
@@ -176,5 +176,162 @@ class BottleController extends Controller {
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($result, JSON_UNESCAPED_UNICODE);
+	}
+	
+	public function analyse($departmentid,$startdate,$enddate){
+		$query = new \Think\Model();
+		$sdate = strtotime($startdate);
+		$edate = strtotime($enddate);
+		$condition_sql = "select d.`code` as dcode,m.code,m.status,m.realname,b.optdate,b.pname,b.jname,b.fname,b.rname,b.gpid,b.gpname,b.receipt,b.deparmentname,b.membername,b.changetype,b.optnumber,b.price,b.optnumber*b.price as sumprice,b.username,b.remark from bottle as b left join department as d on b.departmentid = d.pkid left join memberinfo as m ON
+ m.pkid = b.memberid where b.optdate>=$sdate and b.optdate<=$edate and departmentid='$departmentid'";
+		$result = $query -> query($condition_sql);		
+		Vendor('PHPExcel.PHPExcel');
+		$objPHPExcel = new \PHPExcel();  
+		// Set properties    
+   	    $objPHPExcel->getProperties()->setCreator("ctos")  
+            ->setLastModifiedBy("ctos")  
+            ->setTitle("Office 2007 XLSX Test Document")  
+            ->setSubject("Office 2007 XLSX Test Document")  
+            ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")  
+            ->setKeywords("office 2007 openxml php")  
+            ->setCategory("Test result file");  
+		
+		$typename="";
+		$sheetcount=0;
+		$rowcount=2;
+		$objPHPExcel->setActiveSheetIndex($sheetcount)
+					->setCellValue('A1','部门编码' )  
+           			->setCellValue('B1', '客户编码')
+           			->setCellValue('C1', '钢瓶编码') 
+            			->setCellValue('D1', '类型')  
+            			->setCellValue('E1', '实际日期')  
+            			->setCellValue('F1', '单据编号')
+					->setCellValue('G1', '发货地点')
+					->setCellValue('H1', '客户名称')
+					->setCellValue('I1', '变动形式')
+					->setCellValue('J1', '钢瓶类型')
+					->setCellValue('K1', '数量')
+					->setCellValue('L1', '单价')
+					->setCellValue('M1', '销售金额(含税)')
+					->setCellValue('N1', '经办人')
+					->setCellValue('O1', '备注');
+				$objPHPExcel->getActiveSheet()->setTitle("瓶阀明细");
+		for($i=0;$i<count($result);$i++){
+			$_item = $result[$i];
+			$objPHPExcel->getActiveSheet()->setCellValue('A'.$rowcount,$_item['dcode'])
+						->setCellValue('B'.$rowcount,$_item['code'])
+						->setCellValue('C'.$rowcount,gpcode($_item['pname'],$_item['gpname'],$_item['jname'],$_item['rname'],$_item['fname']))
+						->setCellValue('D'.$rowcount,memberType($_item['status']))
+						->setCellValue('E'.$rowcount,date('Y-m-d',$_item['optdate']))
+						->setCellValue('F'.$rowcount,$_item['receipt'])
+						->setCellValue('G'.$rowcount,$_item['deparmentname'])
+						->setCellValue('H'.$rowcount,$_item['realname'])
+						->setCellValue('I'.$rowcount,changetype($_item['changetype']))
+						->setCellValue('J'.$rowcount,gpcodename($_item['pname'],$_item['gpname'],$_item['jname'],$_item['rname'],$_item['fname']))
+						->setCellValue('K'.$rowcount,$_item['optnumber'])
+						->setCellValue('M'.$rowcount,$_item['sumprice'])
+						->setCellValue('L'.$rowcount,$_item['price'])
+						->setCellValue('N'.$rowcount,$_item['username'])
+						->setCellValue('O'.$rowcount,$_item['remark']);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(20);
+				$objPHPExcel->getActiveSheet()->getColumnDimension('O')->setWidth(20);
+			$rowcount++;
+		}
+		
+		header('Content-Type: application/vnd.ms-excel');  
+	    header('Content-Disposition: attachment;filename="pfmx.xls"');  
+	    header('Cache-Control: max-age=0');  
+	  
+	    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
+	    $objWriter->save('php://output');
+	}
+
+
+	public function analysejpmx($departmentid,$startdate,$enddate){
+		$query = new \Think\Model();
+		$sdate = strtotime($startdate);
+		$edate = strtotime($enddate);
+		$condition_sql = "select a.optdate ,a.receipt,a.membername,
+		(case when a.type=6 then a.optnumber when a.type=2 then a.optnumber*-1 when a.changetype=3 then a.optnumber when a.changetype=9 then a.optnumber*-1 else 0 end) as optnumber,
+		 a.pname,a.jname,a.rname,a.fname,a.type,a.changetype ,a.gpid,a.gpname,
+(select sum(case when b.type=6 then b.optnumber when b.type=2 then b.optnumber*-1 when b.changetype=3 then optnumber when b.changetype=9 then optnumber*-1 else 0 end) 
+from bottle as b where b.memberid = a.memberid and b.pname = a.pname and b.jname = a.jname 
+ and b.fname = a.fname and b.rname = a.rname and b.optdate<=a.optdate) as total
+from bottle as a  where a.optdate>=$sdate and a.optdate<=$edate and a.departmentid='$departmentid' order by a.membername,a.pname,a.jname,a.rname,a.fname";
+		$result = $query -> query($condition_sql);		
+		Vendor('PHPExcel.PHPExcel');
+		$objPHPExcel = new \PHPExcel();  
+		// Set properties    
+   	    $objPHPExcel->getProperties()->setCreator("ctos")  
+            ->setLastModifiedBy("ctos")  
+            ->setTitle("Office 2007 XLSX Test Document")  
+            ->setSubject("Office 2007 XLSX Test Document")  
+            ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")  
+            ->setKeywords("office 2007 openxml php")  
+            ->setCategory("Test result file");  
+		
+		$typename="";
+		$sheetcount=0;
+		$rowcount=2;
+		$classifyname = "";
+		for($i=0;$i<count($result);$i++){
+			$_item = $result[$i];
+			$classifynamenew = gpcodename($_item['pname'],$_item['gpname'],$_item['jname'],$_item['rname'],$_item['fname']);
+			if($i==0){
+				$classifyname = $classifynamenew;
+				$objPHPExcel->setActiveSheetIndex($sheetcount)
+				->setCellValue('A1','日期' )  
+				->setCellValue('B1', '单据号')
+				->setCellValue('C1', '客户名称') 
+				->setCellValue('D1', '数量')  
+				->setCellValue('E1', '累计');
+				$objPHPExcel->getActiveSheet()->setTitle($classifyname);
+				$sheetcount++;
+			}
+			if($classifyname!=$classifynamenew){
+				$classifyname = $classifynamenew;
+				$msgWorkSheet = new \PHPExcel_Worksheet($objPHPExcel, $classifyname); //创建一个工作表
+       			$objPHPExcel->addSheet($msgWorkSheet); //插入工作表
+       			$objPHPExcel->setActiveSheetIndex($sheetcount)
+       				->setCellValue('A1','日期' )  
+					->setCellValue('B1', '单据号')
+					->setCellValue('C1', '客户名称') 
+					->setCellValue('D1', '数量')  
+					->setCellValue('E1', '累计');
+				$sheetcount++;
+				$rowcount=2;
+			}
+			
+			$objPHPExcel->getActiveSheet()->setCellValue('A'.$rowcount,date("Y-m-d",$_item['optdate']))
+						->setCellValue('B'.$rowcount,$_item['receipt'])
+						->setCellValue('C'.$rowcount,$_item['membername'])
+						->setCellValue('D'.$rowcount,$_item['optnumber'])
+						->setCellValue('E'.$rowcount,$_item['total']);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+			$rowcount++;
+		}
+		
+		header('Content-Type: application/vnd.ms-excel');  
+	    header('Content-Disposition: attachment;filename="jpmx.xls"');  
+	    header('Cache-Control: max-age=0');  
+	  
+	    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
+	    $objWriter->save('php://output');
 	}
 }

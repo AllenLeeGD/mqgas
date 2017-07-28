@@ -24,6 +24,7 @@ function saveData() {
 		send_obj.jname = $("#jid").find("option:selected").text();
 		send_obj.fname = $("#fid").find("option:selected").text();
 		send_obj.rname = $("#rid").find("option:selected").text();
+		send_obj.gpname = $("#gpid").find("option:selected").text();
 		send_obj.deparmentname = $("#departmentid").find("option:selected").text();
 		util.postUrl(
 			url,
@@ -67,6 +68,19 @@ function loadjiekou() {
 	);
 }
 
+function loadgangping() {
+	var util = new Util();
+	var url = "/Mq/Price/loadgastype/classify/3/type/5";
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue.$data.gps = data;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+
+		}
+	);
+}
 function loadqiti() {
 	var util = new Util();
 	var url = "/Mq/Price/loadgastype/classify/1/type/3";
@@ -144,7 +158,7 @@ function loadData() {
 			send_vue = new Vue({
 				el: "#form_app",
 				data: {
-					sendobj: send_obj,pings:[],jies:[],rans:[],options:[],fs:[]
+					sendobj: send_obj,pings:[],jies:[],rans:[],options:[],fs:[],gps:[]
 				}
 			});
 			loadping();
@@ -153,6 +167,7 @@ function loadData() {
 			loadqiti();
 			loadpeijian();
 			loadoption();
+			loadgangping();
 		},
 		function(XMLHttpRequest, textStatus, errorThrown) {
 

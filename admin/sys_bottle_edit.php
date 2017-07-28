@@ -145,7 +145,8 @@
 																<option value="5" >入-收押金</option>
 																<option value="6" >入-客户退瓶</option>
 																<option value="7" >入-瓶换瓶</option>
-																<option value="8" >出-退押金</option>					
+																<option value="8" >出-退押金</option>		
+																<option value="0" >其它</option>			
 															</select>
 															<span class="help-block">  </span>
 														</div>
@@ -164,6 +165,7 @@
 																<option value="8" >回收杂瓶</option>
 																<option value="9" >回流瓶</option>
 																<option value="10" >售重瓶</option>
+																<option value="0" >其它</option>
 															</select>
 															<span class="help-block">  </span>
 														</div>
@@ -208,6 +210,15 @@
 														<div class="col-md-8">
 															<select id="rid" name="rid" v-model="sendobj.rid" class="form-control  input-large">																
 																<option v-for="option in rans" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">钢瓶类型 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<select id="gpid" name="gpid" v-model="sendobj.gpid" class="form-control  input-large">																
+																<option v-for="option in gps" :value="option.pkid" v-text="option.name" >  																																    	   </option>
 															</select>
 															<span class="help-block">  </span>
 														</div>

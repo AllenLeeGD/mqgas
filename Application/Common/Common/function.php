@@ -5,6 +5,134 @@ function getsessionkeyval($key) {
 	return session($key);
 }
 
+function changetype($changetype) {
+	if($changetype==1){
+		return "出-瓶换瓶";
+	}else if($changetype==2){
+		return "出-门店退瓶到气库";
+	}else if($changetype==3){
+		return "出-借瓶阀";
+	}else if($changetype==4){
+		return "入-气库发瓶到门店";
+	}else if($changetype==5){
+		return "入-收押金";
+	}else if($changetype==6){
+		return "入-客户退瓶";
+	}else if($changetype==7){
+		return "入-瓶换瓶";
+	}else if($changetype==8){
+		return "出-退押金";
+	}else if($changetype==0){
+		return "其它";
+	}
+}
+
+/**
+ * 获得钢瓶编码.
+ */
+function gpcode($pname,$gpname,$jname,$rname,$fname) {
+	if ($fname=="高压阀") {
+		return "17";
+	} else if ($fname=="中压阀") {
+		return "18";
+	} else if ($fname=="低压阀") {
+		return "19";
+	} else if ($fname=="低压阀") {
+		return "19";
+	} else if ($pname=="15KG" && $jname=="直阀") {
+		return "1";
+	} else if ($pname=="15KG" && $jname=="角阀" && $gpname=="专用瓶") {
+		return "2";
+	} else if ($pname=="15KG" && $jname=="角阀" && $gpname=="翻新瓶") {
+		return "3";
+	} else if ($pname=="2KG" && $gpname=="专用瓶") {
+		return "4";
+	} else if ($pname=="2KG" && $gpname=="翻新瓶") {
+		return "5";
+	} else if ($pname=="5KG" && $gpname=="专用瓶") {
+		return "6";
+	} else if ($pname=="5KG" && $gpname=="翻新瓶") {
+		return "7";
+	} else if ($pname=="50KG" && $rname=="液相" && $gpname=="专用瓶") {
+		return "8";
+	} else if ($pname=="50KG" && $rname=="气相" && $gpname=="专用瓶") {
+		return "9";
+	} else if ($pname=="50KG" && $rname=="无臭" && $gpname=="专用瓶") {
+		return "10";
+	} else if ($pname=="50KG" && $rname=="液相" && $gpname=="翻新瓶") {
+		return "11";
+	} else if ($pname=="50KG" && $rname=="气相" && $gpname=="翻新瓶") {
+		return "12";
+	} else if ($pname=="15KG" && $gpname=="旧杂瓶") {
+		return "13";
+	} else if ($pname=="5KG" && $gpname=="旧杂瓶") {
+		return "14";
+	} else if ($pname=="50KG" && $rname=="气相" && $gpname=="旧杂瓶") {
+		return "15";
+	}else if ($pname=="50KG" && $rname=="液相" && $gpname=="旧杂瓶") {
+		return "16";
+	}
+}
+
+/**
+ * 获得钢瓶类型名称.
+ */
+function gpcodename($pname,$gpname,$jname,$rname,$fname) {
+	if ($fname=="高压阀") {
+		return "高压阀";
+	} else if ($fname=="中压阀") {
+		return "中压阀";
+	} else if ($fname=="低压阀") {
+		return "低压阀";
+	} else if ($fname=="低压阀") {
+		return "低压阀";
+	} else if ($pname=="15KG" && $jname=="直阀") {
+		return "15KG直阀";
+	} else if ($pname=="15KG" && $jname=="角阀" && $gpname=="专用瓶") {
+		return "15KG角阀专用瓶";
+	} else if ($pname=="15KG" && $jname=="角阀" && $gpname=="翻新瓶") {
+		return "15KG角阀翻新瓶";
+	} else if ($pname=="2KG" && $gpname=="专用瓶") {
+		return "2KG专用瓶";
+	} else if ($pname=="2KG" && $gpname=="翻新瓶") {
+		return "2KG翻新瓶";
+	} else if ($pname=="5KG" && $gpname=="专用瓶") {
+		return "5KG专用瓶";
+	} else if ($pname=="5KG" && $gpname=="翻新瓶") {
+		return "5KG翻新瓶";
+	} else if ($pname=="50KG" && $rname=="液相" && $gpname=="专用瓶") {
+		return "50KG专用瓶液相";
+	} else if ($pname=="50KG" && $rname=="气相" && $gpname=="专用瓶") {
+		return "50KG专用瓶气相";
+	} else if ($pname=="50KG" && $rname=="无臭" && $gpname=="专用瓶") {
+		return "50KG专用瓶无臭";
+	} else if ($pname=="50KG" && $rname=="液相" && $gpname=="翻新瓶") {
+		return "50KG翻新瓶液相";
+	} else if ($pname=="50KG" && $rname=="气相" && $gpname=="翻新瓶") {
+		return "50KG翻新瓶气相";
+	} else if ($pname=="15KG" && $gpname=="旧杂瓶") {
+		return "15KG旧杂瓶";
+	} else if ($pname=="5KG" && $gpname=="旧杂瓶") {
+		return "5KG旧杂瓶";
+	} else if ($pname=="50KG" && $rname=="气相" && $gpname=="旧杂瓶") {
+		return "50KG旧杂瓶气相";
+	}else if ($pname=="50KG" && $rname=="液相" && $gpname=="旧杂瓶") {
+		return "50KG旧杂瓶液相";
+	}
+}
+/**
+ * 获得类型.
+ */
+function memberType($status) {
+	if ($status == 0) {
+		return "居民用户";
+	} else if ($status == 1) {
+		return "小工商";
+	} else if ($status == 2) {
+		return "大工商";
+	}
+}
+
 /**
  * 获得类型.
  */
@@ -29,6 +157,8 @@ function getTypeStr($type) {
 		return "回流瓶";
 	} else if ($type == 10) {
 		return "售重瓶";
+	} else if ($type == 0) {
+		return "其它";
 	}
 }
 
