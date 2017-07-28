@@ -97,3 +97,5 @@
 96.sys_bottle_edit.js
 97.sys_bottle_main.js
 98.BottleController.class.php
+99.sys_bottle_analyse.php
+100.sys_bottle_analyse.js

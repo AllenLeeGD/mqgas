@@ -334,4 +334,153 @@ from bottle as a  where a.optdate>=$sdate and a.optdate<=$edate and a.department
 	    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
 	    $objWriter->save('php://output');
 	}
+
+	public function analysekcmx($departmentid,$startdate,$enddate){
+		$query = new \Think\Model();
+		$sdate = strtotime($startdate);
+		$edate = strtotime($enddate);
+		$condition_sql = "select sum(case when type=1 then optnumber else '' end)  as t1,
+sum(case when type=2 then optnumber else '' end)  as t2,
+sum(case when type=3 then optnumber else '' end)  as t3,
+sum(case when type=4 then optnumber else '' end)  as t4,
+sum(case when type=5 then optnumber else '' end)  as t5,
+sum(case when type=6 then optnumber else '' end)  as t6,
+sum(case when type=7 then optnumber else '' end)  as t7,
+sum(case when type=8 then optnumber else '' end)  as t8,
+sum(case when type=9 then optnumber else '' end)  as t9,
+sum(case when type=10 then optnumber else '' end)  as t10,
+ FROM_UNIXTIME(optdate,'%Y-%m-%d') as optdate,pname,jname,rname from bottle 
+   where optdate>=$sdate and optdate<=$edate and departmentid='$departmentid' group by FROM_UNIXTIME(optdate,'%Y-%m-%d'),pname,rname,jname order by optdate";
+		$result = $query -> query($condition_sql);		
+		Vendor('PHPExcel.PHPExcel');
+		$objPHPExcel = new \PHPExcel();  
+		// Set properties    
+   	    $objPHPExcel->getProperties()->setCreator("ctos")  
+            ->setLastModifiedBy("ctos")  
+            ->setTitle("Office 2007 XLSX Test Document")  
+            ->setSubject("Office 2007 XLSX Test Document")  
+            ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")  
+            ->setKeywords("office 2007 openxml php")  
+            ->setCategory("Test result file");  
+		
+		$typename="";
+		$sheetcount=0;
+		$rowcount=2;
+		$optdate = "";		
+		for($i=0;$i<count($result);$i++){
+			$_item = $result[$i];
+			$optdatenew = $_item['optdate'];
+			if($i==0){
+				$optdate = $optdatenew;
+				$objPHPExcel->setActiveSheetIndex($sheetcount)
+				->setCellValue('A1',$optdate )  
+				->setCellValue('C1', '今日收瓶')
+				->setCellValue('H1', '今日调出')
+				->setCellValue('C'.$rowcount,"退户瓶")
+				->setCellValue('D'.$rowcount,"还瓶")
+				->setCellValue('E'.$rowcount,"回收杂瓶")
+				->setCellValue('F'.$rowcount,"回流瓶")
+				->setCellValue('G'.$rowcount,"入重瓶")
+				->setCellValue('H'.$rowcount,"借出瓶")
+				->setCellValue('I'.$rowcount,"押金瓶")
+				->setCellValue('J'.$rowcount,"回收杂瓶")
+				->setCellValue('K'.$rowcount,"回流瓶")
+				->setCellValue('L'.$rowcount,"售重瓶")
+				->setCellValue('A'.($rowcount+1),"50KG")
+				->setCellValue('A'.($rowcount+3),"15KG")
+				->setCellValue('A'.($rowcount+5),"5KG")
+				->setCellValue('A'.($rowcount+6),"2KG")
+				->setCellValue('B'.($rowcount+1),"气相")
+				->setCellValue('B'.($rowcount+2),"液相")
+				->setCellValue('B'.($rowcount+3),"直阀")
+				->setCellValue('B'.($rowcount+4),"角阀");
+				//合并单元格
+				$objPHPExcel->getActiveSheet()->mergeCells('A1:B2');
+				$objPHPExcel->getActiveSheet()->mergeCells('C1:G1');
+				$objPHPExcel->getActiveSheet()->mergeCells('H1:L1');
+				$objPHPExcel->getActiveSheet()->mergeCells('A'.($rowcount+1).':A'.($rowcount+2));
+				$objPHPExcel->getActiveSheet()->mergeCells('A'.($rowcount+3).':A'.($rowcount+4));
+				$objPHPExcel->getActiveSheet()->mergeCells('A'.($rowcount+7).':L'.($rowcount+7));
+				$objPHPExcel->getActiveSheet()->setTitle("库存明细");
+			}
+			if($optdate!=$optdatenew){
+				$rowcount = $rowcount+8;				
+				$optdate = $optdatenew;
+       			$objPHPExcel->setActiveSheetIndex($sheetcount)
+				->setCellValue('A'.$rowcount,$optdate )  
+				->setCellValue('C'.$rowcount, '今日收瓶')
+				->setCellValue('H'.$rowcount, '今日调出')
+				->setCellValue('C'.($rowcount+1),"退户瓶")
+				->setCellValue('D'.($rowcount+1),"还瓶")
+				->setCellValue('E'.($rowcount+1),"回收杂瓶")
+				->setCellValue('F'.($rowcount+1),"回流瓶")
+				->setCellValue('G'.($rowcount+1),"入重瓶")
+				->setCellValue('H'.($rowcount+1),"借出瓶")
+				->setCellValue('I'.($rowcount+1),"押金瓶")
+				->setCellValue('J'.($rowcount+1),"回收杂瓶")
+				->setCellValue('K'.($rowcount+1),"回流瓶")
+				->setCellValue('L'.($rowcount+1),"售重瓶")
+				->setCellValue('A'.($rowcount+2),"50KG")
+				->setCellValue('A'.($rowcount+4),"15KG")
+				->setCellValue('A'.($rowcount+6),"5KG")
+				->setCellValue('A'.($rowcount+7),"2KG")
+				->setCellValue('B'.($rowcount+2),"气相")
+				->setCellValue('B'.($rowcount+3),"液相")
+				->setCellValue('B'.($rowcount+4),"直阀")
+				->setCellValue('B'.($rowcount+5),"角阀");
+				//合并单元格
+				$objPHPExcel->getActiveSheet()->mergeCells('A'.$rowcount.':B'.($rowcount+1));
+				$objPHPExcel->getActiveSheet()->mergeCells('C'.$rowcount.':G'.$rowcount);
+				$objPHPExcel->getActiveSheet()->mergeCells('H'.$rowcount.':L'.$rowcount);
+				$objPHPExcel->getActiveSheet()->mergeCells('A'.($rowcount+2).':A'.($rowcount+3));
+				$objPHPExcel->getActiveSheet()->mergeCells('A'.($rowcount+4).':A'.($rowcount+5));
+				$objPHPExcel->getActiveSheet()->mergeCells('A'.($rowcount+8).':L'.($rowcount+8));			
+			}
+			
+			if($_item['pname']=="50KG" && $_item['rname']=="气相" ){
+				$temp_rowcount = $rowcount+1;
+			}else if($_item['pname']=="50KG" && $_item['rname']=="液相" ){
+				$temp_rowcount = $rowcount+2;
+			}else if($_item['pname']=="15KG" && $_item['jname']=="直阀" ){
+				$temp_rowcount = $rowcount+3;
+			}else if($_item['pname']=="15KG" && $_item['jname']=="角阀" ){
+				$temp_rowcount = $rowcount+4;
+			}else if($_item['pname']=="5KG" ){
+				$temp_rowcount = $rowcount+5;
+			}else if($_item['pname']=="2KG" ){
+				$temp_rowcount = $rowcount+6;
+			}
+			if($rowcount!=2){
+				$temp_rowcount++;
+			}
+			$objPHPExcel->getActiveSheet()
+						->setCellValue('C'.$temp_rowcount,emptyZero($_item['t1']))
+						->setCellValue('D'.$temp_rowcount,emptyZero($_item['t2']))
+						->setCellValue('E'.$temp_rowcount,emptyZero($_item['t3']))
+						->setCellValue('F'.$temp_rowcount,emptyZero($_item['t4']))
+						->setCellValue('G'.$temp_rowcount,emptyZero($_item['t5']))
+						->setCellValue('H'.$temp_rowcount,emptyZero($_item['t6']))
+						->setCellValue('I'.$temp_rowcount,emptyZero($_item['t7']))
+						->setCellValue('J'.$temp_rowcount,emptyZero($_item['t8']))
+						->setCellValue('K'.$temp_rowcount,emptyZero($_item['t9']))
+						->setCellValue('L'.$temp_rowcount,emptyZero($_item['t10']));
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(10);
+		}
+		
+		header('Content-Type: application/vnd.ms-excel');  
+	    header('Content-Disposition: attachment;filename="jpmx.xls"');  
+	    header('Cache-Control: max-age=0');  
+	  
+	    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
+	    $objWriter->save('php://output');
+	}
 }

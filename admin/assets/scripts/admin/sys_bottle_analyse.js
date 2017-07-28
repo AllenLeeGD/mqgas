@@ -67,6 +67,34 @@ function jpmxData(){
 	}
 }
 
+function kcmxData(){
+	var util = new Util();
+//	$("#btnJpmx").button('loading');
+	var obj = bulidData();
+	if(obj==false){
+//		$("#btnJpmx").button("reset");
+		util.errorMsg('请填写完整信息');
+		return;
+	}
+	
+	if(obj != false){
+		util.showLoading();
+		var form = $("<form>"); //定义一个form表单
+		form.attr("style", "display:none");
+		form.attr("target", "");
+		form.attr("method", "post");
+		form.attr("action", "/index.php/Mq/Bottle/analysekcmx/departmentid/"+send_obj.departmentid+"/startdate/"+send_obj.startdate+"/enddate/"+send_obj.enddate);
+		var input1 = $("<input>");
+		input1.attr("type", "hidden");
+		input1.attr("name", "exportData");
+		input1.attr("value", (new Date()).getMilliseconds());
+		$("body").append(form); //将表单放置在web中
+		form.append(input1);
+		util.hideLoading();
+		form.submit(); //表单提交 
+	}
+}
+
 $(document).ready(function() {	
 	var util = new Util();
 	var url = "/Mq/Daily/loaddepartment";
@@ -88,5 +116,8 @@ $(document).ready(function() {
 	});
 	$("#btnJpmx").bind('click', function() {
 		jpmxData();
+	});
+	$("#btnKcmx").bind('click', function() {
+		kcmxData();
 	});
 });

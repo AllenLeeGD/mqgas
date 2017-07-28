@@ -4,6 +4,13 @@
 function getsessionkeyval($key) {
 	return session($key);
 }
+function emptyZero($input){
+	if($input == "0"){
+		return "";
+	}else{
+		return $input;
+	}
+}
 
 function changetype($changetype) {
 	if($changetype==1){
