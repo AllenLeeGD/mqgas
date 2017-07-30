@@ -231,26 +231,13 @@
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">单价 <span class="required"> *</span> </label>
+														<label class="control-label col-md-2">单价 <span class="required"> </span> </label>
 														<div class="col-md-8">
 															<input id="price" v-model="sendobj.price" type="number" class="form-control input-large"/>
 															<span class="help-block">  </span>
 														</div>
 													</div>
-													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">收押金 <span class="required"> </span> </label>
-														<div class="col-md-8">
-															<input id="incash" v-model="sendobj.incash" type="number" class="form-control input-large"/>
-															<span class="help-block">  </span>
-														</div>
-													</div>
-													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">退押金 <span class="required"> </span> </label>
-														<div class="col-md-8">
-															<input id="outcash" v-model="sendobj.outcash" type="number" class="form-control input-large"/>
-															<span class="help-block">  </span>
-														</div>
-													</div>
+													
 													<div id="vipdiscountgroup" class="form-group">
 														<label class="control-label col-md-2">备注 <span class="required"> </span> </label>
 														<div class="col-md-8">

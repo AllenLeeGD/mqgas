@@ -125,6 +125,10 @@ function gpcodename($pname,$gpname,$jname,$rname,$fname) {
 		return "50KG旧杂瓶气相";
 	}else if ($pname=="50KG" && $rname=="液相" && $gpname=="旧杂瓶") {
 		return "50KG旧杂瓶液相";
+	}else if(!empty($pname)){
+		return $pname.$gpname;
+	}else if(!empty($fname)){
+		return $fname;
 	}
 }
 /**

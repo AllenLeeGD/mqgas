@@ -73,7 +73,7 @@
 									<i class="fa fa-angle-right"></i>
 								</li>
 								<li>
-									<a href="sys_checkrecall.php?tag=sysadmin&item=13">
+									<a href="sys_bottle_main.php?tag=sysadmin&item=16">
 										客户钢瓶管理
 									</a>
 									<i class="fa fa-angle-right"></i>

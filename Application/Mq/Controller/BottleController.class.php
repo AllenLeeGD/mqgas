@@ -125,7 +125,7 @@ class BottleController extends Controller {
 			}else{
 				$optdate = date('Y-m-d',$result[$i]['optdate']);
 			}			
-			$records["aaData"][] = array($optdate,$result[$i]['pname'],$result[$i]['fname'],getTypeStr($result[$i]['type']),$result[$i]['optnumber'],$btnEdit.$btnDel);
+			$records["aaData"][] = array($optdate,$result[$i]['pname'].$result[$i]['jname'].$result[$i]['rname'],$result[$i]['fname'],getTypeStr($result[$i]['type']),$result[$i]['optnumber'],$btnEdit.$btnDel);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";
@@ -149,7 +149,7 @@ class BottleController extends Controller {
 	}
 	
 	public function savebottle(){
-		$obj = getObjFromPost(array("receipt","pid","pname","jid","gpid","gpname","jname","rid","rname","optdate","optnumber","price","incash","outcash","changetype","type","fid","fname","departmentid","deparmentname","remark","memberid","membername"));		
+		$obj = getObjFromPost(array("receipt","pid","pname","jid","gpid","gpname","jname","rid","rname","optdate","optnumber","price","changetype","type","fid","fname","departmentid","deparmentname","remark","memberid","membername"));		
 		$obj['pkid'] = uniqid();
 		$obj['userid'] = session("userid");
 		$obj['username'] = session("name");
@@ -160,7 +160,7 @@ class BottleController extends Controller {
 	}
 	
 	public function editbottle(){
-		$obj = getObjFromPost(array("pkid","receipt","pid","pname","jid","gpid","gpname","jname","rid","rname","optdate","optnumber","price","incash","outcash","changetype","type","fid","fname","departmentid","deparmentname","remark","memberid","membername"));
+		$obj = getObjFromPost(array("pkid","receipt","pid","pname","jid","gpid","gpname","jname","rid","rname","optdate","optnumber","price","changetype","type","fid","fname","departmentid","deparmentname","remark","memberid","membername"));
 		$pkid = $obj['pkid'];
 		$obj['userid'] = session("userid");
 		$obj['username'] = session("name");
@@ -263,13 +263,19 @@ class BottleController extends Controller {
 		$query = new \Think\Model();
 		$sdate = strtotime($startdate);
 		$edate = strtotime($enddate);
-		$condition_sql = "select a.optdate ,a.receipt,a.membername,
-		(case when a.type=6 then a.optnumber when a.type=2 then a.optnumber*-1 when a.changetype=3 then a.optnumber when a.changetype=9 then a.optnumber*-1 else 0 end) as optnumber,
-		 a.pname,a.jname,a.rname,a.fname,a.type,a.changetype ,a.gpid,a.gpname,
-(select sum(case when b.type=6 then b.optnumber when b.type=2 then b.optnumber*-1 when b.changetype=3 then optnumber when b.changetype=9 then optnumber*-1 else 0 end) 
+//		$condition_sql = "select a.optdate ,a.receipt,a.membername,
+//		(case when a.type=6 then a.optnumber when a.type=2 then a.optnumber*-1 when a.changetype=3 then a.optnumber when a.changetype=9 then a.optnumber*-1 else 0 end) as optnumber,
+//		 a.pname,a.jname,a.rname,a.fname,a.type,a.changetype ,a.gpid,a.gpname,
+//(select sum(case when b.type=6 then b.optnumber when b.type=2 then b.optnumber*-1 when b.changetype=3 then optnumber when b.changetype=9 then optnumber*-1 else 0 end) 
+//from bottle as b where b.memberid = a.memberid and b.pname = a.pname and b.jname = a.jname 
+// and b.fname = a.fname and b.rname = a.rname and b.optdate<=a.optdate) as total
+//from bottle as a  where a.optdate>=$sdate and a.optdate<=$edate and a.departmentid='$departmentid' order by a.membername,a.pname,a.jname,a.rname,a.fname";
+		$condition_sql = "select a.optdate ,a.receipt,a.membername,a.optnumber,
+		 a.pname,a.jname,a.rname,a.fname,a.type,a.changetype ,a.gpid,a.gpname,(select sum(b.optnumber)  
 from bottle as b where b.memberid = a.memberid and b.pname = a.pname and b.jname = a.jname 
  and b.fname = a.fname and b.rname = a.rname and b.optdate<=a.optdate) as total
-from bottle as a  where a.optdate>=$sdate and a.optdate<=$edate and a.departmentid='$departmentid' order by a.membername,a.pname,a.jname,a.rname,a.fname";
+from bottle as a  where a.optdate>=$sdate and a.optdate<=$edate and a.departmentid='$departmentid'
+ and (a.type = 2 or a.type=6 or a.changetype=3 or a.changetype=9) order by a.membername,a.pname,a.jname,a.rname,a.fname";
 		$result = $query -> query($condition_sql);		
 		Vendor('PHPExcel.PHPExcel');
 		$objPHPExcel = new \PHPExcel();  
@@ -339,16 +345,16 @@ from bottle as a  where a.optdate>=$sdate and a.optdate<=$edate and a.department
 		$query = new \Think\Model();
 		$sdate = strtotime($startdate);
 		$edate = strtotime($enddate);
-		$condition_sql = "select sum(case when type=1 then optnumber else '' end)  as t1,
-sum(case when type=2 then optnumber else '' end)  as t2,
-sum(case when type=3 then optnumber else '' end)  as t3,
-sum(case when type=4 then optnumber else '' end)  as t4,
-sum(case when type=5 then optnumber else '' end)  as t5,
-sum(case when type=6 then optnumber else '' end)  as t6,
-sum(case when type=7 then optnumber else '' end)  as t7,
-sum(case when type=8 then optnumber else '' end)  as t8,
-sum(case when type=9 then optnumber else '' end)  as t9,
-sum(case when type=10 then optnumber else '' end)  as t10,
+		$condition_sql = "select sum(case when type=1 and optnumber>0 then optnumber when type=1 and optnumber<0 then optnumber*-1 else '' end)  as t1,
+sum(case when type=2 and optnumber>0 then optnumber when type=2 and optnumber<0 then optnumber*-1 else '' end)  as t2,
+sum(case when type=3 and optnumber>0 then optnumber when type=3 and optnumber<0 then optnumber*-1 else '' end)  as t3,
+sum(case when type=4 and optnumber>0 then optnumber when type=4 and optnumber<0 then optnumber*-1 else '' end)  as t4,
+sum(case when type=5 and optnumber>0 then optnumber when type=5 and optnumber<0 then optnumber*-1 else '' end)  as t5,
+sum(case when type=6 and optnumber>0 then optnumber when type=6 and optnumber<0 then optnumber*-1 else '' end)  as t6,
+sum(case when type=7 and optnumber>0 then optnumber when type=7 and optnumber<0 then optnumber*-1 else '' end)  as t7,
+sum(case when type=8 and optnumber>0 then optnumber when type=8 and optnumber<0 then optnumber*-1 else '' end)  as t8,
+sum(case when type=9 and optnumber>0 then optnumber when type=9 and optnumber<0 then optnumber*-1 else '' end)  as t9,
+sum(case when type=10 and optnumber>0 then optnumber when type=10 and optnumber<0 then optnumber*-1 else '' end)  as t10,
  FROM_UNIXTIME(optdate,'%Y-%m-%d') as optdate,pname,jname,rname from bottle 
    where optdate>=$sdate and optdate<=$edate and departmentid='$departmentid' group by FROM_UNIXTIME(optdate,'%Y-%m-%d'),pname,rname,jname order by optdate";
 		$result = $query -> query($condition_sql);		
@@ -402,9 +408,10 @@ sum(case when type=10 then optnumber else '' end)  as t10,
 				$objPHPExcel->getActiveSheet()->mergeCells('A'.($rowcount+3).':A'.($rowcount+4));
 				$objPHPExcel->getActiveSheet()->mergeCells('A'.($rowcount+7).':L'.($rowcount+7));
 				$objPHPExcel->getActiveSheet()->setTitle("库存明细");
+				$rowcount = $rowcount-1;//调整格式
 			}
 			if($optdate!=$optdatenew){
-				$rowcount = $rowcount+8;				
+				$rowcount = $rowcount+9;				
 				$optdate = $optdatenew;
        			$objPHPExcel->setActiveSheetIndex($sheetcount)
 				->setCellValue('A'.$rowcount,$optdate )  
