@@ -134,7 +134,7 @@ class PriceController extends Controller {
 	}
 	
 	public function saveprice(){
-		$obj = getObjFromPost(array("memberid","membername","mobile","name","price","remark","pid","pname","jid","jname","qid","qname","rid","rname"));				
+		$obj = getObjFromPost(array("memberid","membername","mobile","name","price","remark","pid","pname","jid","jname","qid","qname","rid","rname","ordershow","type"));				
 		$dao = M("Price");
 		$pricedata = $obj;
 		$pricedata['pkid'] = uniqid();
@@ -177,7 +177,7 @@ class PriceController extends Controller {
 	}
 	
 	public function editprice($pkid){
-		$obj = getObjFromPost(array("memberid","membername","mobile","name","price","remark","pid","pname","jid","jname","qid","qname","rid","rname"));				
+		$obj = getObjFromPost(array("memberid","membername","mobile","name","price","remark","pid","pname","jid","jname","qid","qname","rid","rname","ordershow","type"));				
 		$dao = M("Price");
 		$pricedata = $obj;
 		$dao->where("pkid='$pkid'")->save($pricedata);	

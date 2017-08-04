@@ -174,6 +174,26 @@
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">订单中是否可见 <span class="required">* </span> </label>
+														<div class="col-md-8">
+															<select id="ordershow" name="ordershow" v-model="sendobj.ordershow" class="form-control  input-large">																
+																<option value="0" >不可见</option>
+																<option value="1" >可见</option>  																																    	  
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">价格类型 <span class="required">* </span> </label>
+														<div class="col-md-8">
+															<select id="type" name="type" v-model="sendobj.type" class="form-control  input-large">																
+																<option value="0" >每瓶价格</option>
+																<option value="1" >每吨价格</option>  																																    	  
+															</select>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
 														<label class="control-label col-md-2">备注 <span class="required"> </span> </label>
 														<div class="col-md-8">
 															<input id="remark" v-model="sendobj.remark" type="text" class="form-control input-large"/>

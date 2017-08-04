@@ -1,6 +1,6 @@
 function bulidData() {
 	var util = new Util();
-	if(util.isNullStr($("#name").val()) || util.isNullStr(send_obj.price) || util.isNullStr(send_obj.pid)) {
+	if(util.isNullStr($("#name").val()) || util.isNullStr(send_obj.price) || util.isNullStr(send_obj.pid) || util.isNullStr(send_obj.ordershow) || util.isNullStr(send_obj.type)) {
 		return false;
 	}
 	return true;
