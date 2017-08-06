@@ -146,6 +146,7 @@ class PriceController extends Controller {
 			$pdata["priceid"] = $pricedata['pkid'];
 			$pdata["typeid"] = $obj["pid"];
 			$pdata["typename"] = $obj["pname"];
+			$pdata["gastype"] = "pid";
 			$price2type_dao->add($pdata);
 		}
 		
@@ -154,6 +155,7 @@ class PriceController extends Controller {
 			$pdata["priceid"] = $pricedata['pkid'];
 			$pdata["typeid"] = $obj["jid"];
 			$pdata["typename"] = $obj["jname"];
+			$pdata["gastype"] = "jid";
 			$price2type_dao->add($pdata);
 		}
 		
@@ -162,6 +164,7 @@ class PriceController extends Controller {
 			$pdata["priceid"] = $pricedata['pkid'];
 			$pdata["typeid"] = $obj["qid"];
 			$pdata["typename"] = $obj["qname"];
+			$pdata["gastype"] = "qid";
 			$price2type_dao->add($pdata);
 		}
 		
@@ -170,6 +173,7 @@ class PriceController extends Controller {
 			$pdata["priceid"] = $pricedata['pkid'];
 			$pdata["typeid"] = $obj["rid"];
 			$pdata["typename"] = $obj["rname"];
+			$pdata["gastype"] = "rid";
 			$price2type_dao->add($pdata);
 		}
 		addLog(7,session("userid"),"新增了客户".$obj["membername"]."(".$obj["mobile"].")的价格:".$obj["name"]."(".$obj["price"].")");
@@ -188,6 +192,7 @@ class PriceController extends Controller {
 			$pdata["priceid"] = $pkid;
 			$pdata["typeid"] = $obj["pid"];
 			$pdata["typename"] = $obj["pname"];
+			$pdata["gastype"] = "pid";
 			$price2type_dao->add($pdata);
 		}
 		
@@ -196,6 +201,7 @@ class PriceController extends Controller {
 			$pdata["priceid"] = $pkid;
 			$pdata["typeid"] = $obj["jid"];
 			$pdata["typename"] = $obj["jname"];
+			$pdata["gastype"] = "jid";
 			$price2type_dao->add($pdata);
 		}
 		
@@ -204,6 +210,7 @@ class PriceController extends Controller {
 			$pdata["priceid"] = $pkid;
 			$pdata["typeid"] = $obj["qid"];
 			$pdata["typename"] = $obj["qname"];
+			$pdata["gastype"] = "qid";
 			$price2type_dao->add($pdata);
 		}
 		
@@ -212,6 +219,7 @@ class PriceController extends Controller {
 			$pdata["priceid"] = $pkid;
 			$pdata["typeid"] = $obj["rid"];
 			$pdata["typename"] = $obj["rname"];
+			$pdata["gastype"] = "rid";
 			$price2type_dao->add($pdata);
 		}
 		addLog(7,session("userid"),"修改了客户".$obj["membername"]."(".$obj["mobile"].")的价格:".$obj["name"]."(".$obj["price"].")");
