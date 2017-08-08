@@ -140,6 +140,7 @@ class MobileorderController extends Controller {
 		$data_dgs['recardate'] = strtotime(base64_decode($obj['recardate']));
 		$data_dgs['recaroptid'] =$obj['recaroptid'];
 		$data_dgs['recaroptname'] = base64_decode($obj['recaroptname']);
+		$data_dgs['recaroptdate'] =time();
 		$dao_dgs->where("orderid = '".$pkid."'")->save($data_dgs);
 		$data_main['dgsstatus'] = 1;
 		$dao_main->where("pkid = '".$pkid."'")->save($data_main);
