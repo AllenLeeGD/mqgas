@@ -95,6 +95,11 @@
 												新增押运
 											</a>
 										</li>
+										<li>
+											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=chedui">
+												新增车队负责人
+											</a>
+										</li>
 									</ul>
 								</li>
 								<li>
@@ -163,6 +168,11 @@
 										<li id="yayun_tab">
 											<a href="#tab_6" data-toggle="tab">
 												押运
+											</a>
+										</li>
+										<li id="chedui_tab">
+											<a href="#tab_6" data-toggle="tab">
+												车队负责人
 											</a>
 										</li>
 									</ul>

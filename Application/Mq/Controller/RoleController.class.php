@@ -51,6 +51,8 @@ class RoleController extends Controller {
 			$roleval=7;
 		}else if ($status == 'yingye') {
 			$roleval=8;
+		}else if ($status == 'chedui') {
+			$roleval=9;
 		}
 		$count_sql = "select count(*) as totalrecord from userinfo where role=$roleval $countquery_sql";
 		$condition_sql = "select * from userinfo where role=$roleval $query_sql limit $iDisplayStart,$iDisplayLength";

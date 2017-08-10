@@ -83,6 +83,10 @@ function loadData() {
 		$("#b_title").html("营业");
 		$("#s_title").html("营业");
 		send_obj.role=8;
+	} else if(roletype == "chedui") {
+		$("#b_title").html("车队负责人");
+		$("#s_title").html("车队负责人");
+		send_obj.role=9;
 	}
 	send_obj.name="";
 	send_obj.realname="";
