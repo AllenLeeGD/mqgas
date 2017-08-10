@@ -100,3 +100,11 @@
 99.sys_bottle_analyse.php
 100.sys_bottle_analyse.js
 101.MobileorderController.class.php
+102.sys_orderlist_pf.php
+103.sys_orderdetail_dgs.html
+104.sys_orderlist_pf.js
+105.DgsorderController.class.php
+106.sys_orderlist_hsp.php
+107.sys_orderlist_hsp.js
+108.HsporderController.class.php
+109.sys_orderdetail_hsp.html

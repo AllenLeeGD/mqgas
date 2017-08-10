@@ -206,11 +206,11 @@ class MobileorderController extends Controller {
 	function findyewuorder($userid,$status){
 		$dao_main = M("Ordermain");
 		if($status=="my"){
-			$query = " and dgsstatus=3";
+			$query = " and (dgsstatus=3 or hspstatus=2)";
 		}else{
-			$query = " and dgsstatus<>3";
+			$query = " and (dgsstatus=0 or dgsstatus=1 or dgsstatus=2 or dgsstatus=4 or hspstatus=0 or hspstatus=1 or hspstatus=3)";
 		}
-		$datalist = $dao_main->where("status=-9 ".$query." and userid='".$userid."'")->select();
+		$datalist = $dao_main->where("(status=-9 or status=-8)".$query." and userid='".$userid."'")->select();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
@@ -224,10 +224,23 @@ class MobileorderController extends Controller {
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
 	}
 	
+	function findyewuorderdetailhsp($pkid){
+		$dao_main = M("Ordermain");
+		$datalist = $dao_main->join("orderhsp as d on d.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid = '$pkid'")->find();
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
+	}
+	
 	function setFinalPrice($orderid){
 		$dao_main = M("Ordermain");
 		$dao_detail = M("Orderdetail");
-		$data['dgsstatus'] = 4;
+		$check =  $dao_main->where("pkid='".$orderid."'")->find();
+		if($check["type"]==1){//大工商
+			$data['dgsstatus'] = 4;	
+		}else if($check["type"]==2){//回收空瓶
+			$data['hspstatus'] = 3;
+		}
 		$datalist = $dao_main->where("pkid='".$orderid."'")->save($data);
 		$obj = getObjFromPost(["contents"]);
 		$items = json_decode(base64_decode($obj["contents"]));
