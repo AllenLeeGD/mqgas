@@ -192,6 +192,76 @@ function getStatus($status) {
 		return "微信已付款，待送货";
 	} else if ($status == 8) {
 		return "已完成";
+	} else if ($status == -1) {
+		return "已取消";
+	}
+}
+
+function getNewStatus($status,$jmstatus,$dgsstatus,$hspstatus) {
+	if ($status == 0) {
+		return "待送货";
+	} else if ($status == 1) {
+		return "待送货";
+	} else if ($status == 2) {
+		return "申请退款";
+	} else if ($status == 3) {
+		return "拒绝退款";
+	} else if ($status == 4) {
+		return "完成退款";
+	} else if ($status == 5) {
+		return "已派送";
+	} else if ($status == 6) {
+		return "微信待付款";
+	} else if ($status == 7) {
+		return "微信已付款，待送货";
+	} else if ($status == 8) {
+		return "已完成";
+	} else if ($status == -1) {
+		return "已取消";
+	} else if($status == -7){//居民
+		if ($jmstatus == -1) {
+			return "已取消";
+		} else if ($jmstatus == 0) {
+			return "暂存";
+		} else if ($jmstatus == 1) {
+			return "已下单";
+		} else if ($jmstatus == 2) {
+			return "已分派片区";
+		} else if ($jmstatus == 3) {
+			return "已分配配送";
+		} else if ($jmstatus == 4) {
+			return "门店已收款";
+		} else if ($jmstatus == 5) {
+			return "门店已存款";
+		} else if ($jmstatus == 6) {
+			return "财务已核款";
+		}
+	} else if($status == -8){
+		if ($hspstatus == -1) {
+			return "已取消";
+		} else if ($hspstatus == 0) {
+			return "已下单";
+		} else if ($hspstatus == 1) {
+			return "已预派车辆";
+		} else if ($hspstatus == 2) {
+			return "已入库";
+		} else if ($hspstatus == 3) {
+			return "已核价";
+		}
+	} else if($status == -9){
+		if ($dgsstatus == -1) {
+			return "已取消";
+		} else if ($dgsstatus == 0) {
+			return "已下单";
+		} else if ($dgsstatus == 1) {
+			return "已预派车辆";
+		} else if ($dgsstatus == 2) {
+			return "已出库";
+		} else if ($dgsstatus == 3) {
+			return "已入库";
+		} else if ($dgsstatus == 4) {
+			return "已核价";
+		}
 	}
 }
 

@@ -114,6 +114,7 @@ class MobileorderController extends Controller {
 	}
 
 	function getPrice($memberid,$pid,$rid,$qid,$jid){
+		
 		$query = new \Think\Model();
 		$condition_sql = "select p.*,GROUP_CONCAT(t.typeid SEPARATOR ',') newtypeid,
 		GROUP_CONCAT(t.gastype SEPARATOR ',') newgastype from price as p left join price2type as t on p.pkid = t.priceid 

@@ -175,7 +175,7 @@ class OrderController extends Controller {
             if(isset($datamain['prerefundtime'])&& $datamain['prerefundtime']>0){
                 $datamain['prerefundtime'] = date("Y-m-d H:i", $datamain['prerefundtime']);
             }
-            $datamain['status'] = getStatus($datamain['status']);
+            $datamain['status'] = getNewStatus($datamain['status'],$datamain['jmstatus'],$datamain['dgsstatus'],$datamain['hspstatus']);
             $datamain['buytime'] = date("Y-m-d H:i", $datamain['buytime']);
 			$datamain['ivtime'] = date("Y-m-d H:i", $datamain['ivtime']);
 //			$datamain['sendtime'] = date("Y-m-d H:i", $datamain['sendtime']);
@@ -284,5 +284,205 @@ class OrderController extends Controller {
 			$data['status'] = 7;
 			$order_dao->where("pkid='$outtradeno'")->save($data);					
 		}
+	}
+	
+	
+	/**
+	 * 查询客户列表.给话务添加订单使用.
+	 */
+	public function findhwmain() {
+		$query = new \Think\Model();
+		$condition_sql = "";
+		$count_sql = "";
+		$query_sql = "";
+		$countquery_sql = "";
+		$name = $_REQUEST['name_search'];
+		$mobile = $_REQUEST['mobile_search'];
+		$membertype = $_REQUEST['membertype_search'];
+		if (!empty($name)) {
+			$query_sql = $query_sql . " and m.realname like '%$name%'";
+			$countquery_sql = $countquery_sql . " and m.realname like '%$name%'";
+		}
+		if (!empty($mobile)) {
+			$query_sql = $query_sql . " and m.mobile LIKE '%$mobile%'";
+			$countquery_sql = $countquery_sql . " and m.mobile LIKE '%$mobile%'";
+		}
+		if (!empty($membertype)) {		
+			$query_sql = $query_sql . " and m.membertype = $membertype";
+			$countquery_sql = $countquery_sql . " and m.membertype = $membertype";
+		}
+		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
+		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
+		
+		$count_sql = "select count(*) as totalrecord from memberinfo as m where 1=1 $countquery_sql order by m.regtime desc";
+		$condition_sql = "select m.pkid,m.realname,m.mobile,m.membertype from memberinfo as m where 1=1 $query_sql order by regtime desc limit $iDisplayStart,$iDisplayLength ";
+		
+		$resultcount = $query -> query($count_sql);
+		$result = $query -> query($condition_sql);
+		$iTotalRecords = $resultcount[0]['totalrecord'];
+		$iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+		$sEcho = intval($_REQUEST['sEcho']);
+		$records = array();
+		$records["aaData"] = array();
+		$jsparams = "keyword:$orderid,buyername:$updowntag";
+		
+		for ($i = 0; $i < count($result); $i++) {
+			$btnPriceset = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openSet('".$result[$i]['pkid']."','".$result[$i]['realname']."','".$result[$i]['mobile']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;添加订单&nbsp;</a>";					
+			if($result[$i]['membertype'] == 1){
+				$membertype = "居民用户";
+			}else if($result[$i]['membertype'] == 2){
+				$membertype = "小工商";
+			}else if($result[$i]['membertype'] == 3){
+				$membertype = "大工商";
+			}
+			
+			$records["aaData"][] = array($result[$i]['realname'],$result[$i]['mobile'],$membertype,$btnPriceset);
+		}
+		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
+			$records["sStatus"] = "OK";
+			// pass custom message(useful for getting status of group actions)
+			$records["sMessage"] = "Group action successfully has been completed. Well done!";
+			// pass custom message(useful for getting status of group actions)
+		}
+		$records["sEcho"] = $sEcho;
+		$records["iTotalRecords"] = $iTotalRecords;
+		$records["iTotalDisplayRecords"] = $iTotalRecords;
+		echo json_encode($records);
+	}
+
+	public function findMemberByMobile($mobile,$memberid){
+		$dao = M("Memberinfo");
+		if($memberid == "emptymemberid"){
+			$result = $dao->where("mobile like '%".$mobile."%'")->select();
+			if(count($result)>1){
+				echo "multi";
+			}else{
+				header('Content-type: text/json');
+				header('Content-type: application/json');
+				echo json_encode($result[0], JSON_UNESCAPED_UNICODE);
+			}
+		}else{
+			$result = $dao->where("pkid = '".$memberid."'")->find();
+			header('Content-type: text/json');
+			header('Content-type: application/json');
+			echo json_encode($result, JSON_UNESCAPED_UNICODE);			
+		}		
+	}
+	
+	public function findOrdersByMemberid($memberid) {
+		$query = new \Think\Model();
+		$condition_sql = "";
+		$count_sql = "";
+		$query_sql = "";
+		$countquery_sql = "";
+		$mobile = $_REQUEST['mobile_search'];
+		$address = $_REQUEST['address_search'];
+		$querystatus = $_REQUEST['status_search'];
+		if (!empty($mobile)) {
+			$query_sql = $query_sql . " and buyermobile like '%$mobile%'";
+			$countquery_sql = $countquery_sql . " and buyermobile like '%$mobile%'";
+		}
+		if ($address!="") {
+			$query_sql = $query_sql . " and buyeraddress LIKE '%$address%'";
+			$countquery_sql = $countquery_sql . " and buyeraddress LIKE '%$address%'";
+		}
+		if ($querystatus!="") {
+			$query_sql = $query_sql . " and status = $querystatus";
+			$countquery_sql = $countquery_sql . " and status = $querystatus";
+		}
+		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
+		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
+		$count_sql = "select count(*) as totalrecord from ordermain where type=0 and buyer='$memberid' $countquery_sql";
+		$condition_sql = "select * from ordermain where type=0 and buyer='$memberid' $query_sql order by buytime desc,pkid limit 0,10";
+		
+		$resultcount = $query -> query($count_sql);
+		$result = $query -> query($condition_sql);
+		$iTotalRecords = $resultcount[0]['totalrecord'];
+		$iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+		$iTotalRecords = $iTotalRecords>=10?10:$iTotalRecords;
+		$sEcho = intval($_REQUEST['sEcho']);
+		$records = array();
+		$records["aaData"] = array();
+		$jsparams = "keyword:$orderid,buyername:$updowntag";
+		//操作按钮
+		for ($i = 0; $i < count($result); $i++) {
+			$date_format = date("Y-m-d H:i:s", $result[$i]['buytime']);
+			$pattypestr = $result[$i]['paytype']==0?"微信支付":"现金支付";
+			if($result[$i]['status']==-7|| $result[$i]['status']==-8 || $result[$i]['status']==-9){
+				$pattypestr = "";
+			}
+			$records["aaData"][] = array("单号: " . $result[$i]['pkid'] . "<br/> " . $result[$i]['buyername'] ,  "<span class='font-highlight-custom'>￥" . $result[$i]['price'] . "</span><br/>$pattypestr",  $date_format, $result[$i]['buyermobile'], $result[$i]['buyeraddress'], getNewStatus($result[$i]['status'],$result[$i]['jmstatus'],$result[$i]['dgsstatus'],$result[$i]['hspstatus']), "<div><a class='btn btn-xs default btn-editable' data-toggle='modal' onclick=\"openOrderDetail('" . $result[$i]['pkid'] . "')\">
+			<i class='fa fa-search-plus'></i> 详情</a></div>" );
+		}
+		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
+			$records["sStatus"] = "OK";
+			// pass custom message(useful for getting status of group actions)
+			$records["sMessage"] = "Group action successfully has been completed. Well done!";
+			// pass custom message(useful for getting status of group actions)
+		}
+		$records["sEcho"] = $sEcho;
+		$records["iTotalRecords"] = $iTotalRecords;
+		$records["iTotalDisplayRecords"] = $iTotalRecords;
+		echo json_encode($records);
+	}
+	/**
+	 * 暂存居民用户流程.
+	 */
+	function saveOrder($memberid,$status){
+		$dao_main = M("Ordermain");
+		$dao_jm = M("Orderjm");
+		$dao_detail = M("Orderdetail");
+		$obj = getObjFromPost(["content"]);
+		$items = json_decode(base64_decode($obj["content"]));
+		$data_main['pkid']=uniqid();
+		$data_main['buyer']=$memberid;
+		$data_main['buytime']=time();
+		$data_main['ivtime']=time();
+		$data_main['status']=-7;
+		
+		$data_main['buyername']=$items->membername;
+		$data_main['buyermobile']=$items->mobile;
+		$data_main['buyeraddress']=$items->address;
+		$data_main['remark']=$items->remark;
+		$data_main['type']=0;
+		$data_main['userid']=session("userid");
+		$data_main['username']=session("name");
+		$data_main['jmstatus']=$status;
+		
+		$data_jm['pkid'] = uniqid();
+		$data_jm['orderid'] = $data_main['pkid'];
+		$data_jm['optorderid'] = session("userid");
+		$data_jm['optordername'] = session("name");
+		$details = $items->itemlist;
+		$totalcount=0;
+		$totalmoney=0;
+		for($i=0;$i<count($details);$i++){
+			$detail = $details[$i];
+			$data_detail = array();
+			$data_detail['pkid'] = uniqid();
+			$data_detail['orderid'] = $data_main['pkid'];
+			$data_detail['productcount'] = $detail->productcount;
+			$data_detail['bottleprice'] = $detail->bottleprice;
+			$data_detail['productname'] = $detail->productname;
+			if($detail->productname=="50KG气相" || $detail->productname=="50KG液相"){
+				$data_detail['pid'] = $detail->pid;
+				$data_detail['pname'] = $detail->pname;
+				$data_detail['rid'] = $detail->rid;
+				$data_detail['rname'] = $detail->rname;
+			}else if($detail->productname=="15KG直阀" || $detail->productname=="15KG角阀"){
+				$data_detail['pid'] = $detail->pid;
+				$data_detail['pname'] = $detail->pname;
+				$data_detail['jid'] = $detail->jid;
+				$data_detail['jname'] = $detail->jname;
+			}
+			$totalcount = $totalcount+intval($detail->productcount);
+			$totalmoney= $totalmoney + (intval($detail->productcount)*strval($detail->bottleprice));
+			$dao_detail->add($data_detail);
+		}
+		$data_main['price']=$totalmoney;
+		$data_main['buycount']=$totalcount;
+		$dao_main->add($data_main);
+		$dao_jm->add($data_jm);
+		echo "yes";
 	}
 }
