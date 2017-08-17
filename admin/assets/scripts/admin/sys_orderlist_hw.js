@@ -98,8 +98,8 @@ function openOrderDetail(pkid) {
 	var util = new Util();
 	var openmodal = $("#ajax-modal");
 	util.showLoading();
-	openmodal.load('sys_orderdetail.html', '', function() {
-		util.postUrl('/Mq/Order/findProductOrderByPkid/pkid/' + pkid, function(data, status) {
+	openmodal.load('sys_orderdetail_jm.html', '', function() {
+		util.postUrl('/Mq/JMOrder/findProductOrderByPkid/pkid/' + pkid, function(data, status) {
 			if(data != "no") {
 				try {
 					var objdata = JSON.parse(data);
@@ -125,6 +125,21 @@ function openOrderDetail(pkid) {
 						$('#l_remark').html("<strong>留言:</strong>&nbsp;&nbsp;" + objdata.remark);
 						$('#l_paytime').html("<strong>申请时间:</strong>&nbsp;&nbsp;" + objdata.prerefundtime);
 					}
+					$('#l_mname').html("<strong>门店:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.mname)?"":objdata.mname));
+					$('#l_pname').html("<strong>片区:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.pname)?"":objdata.pname));
+					$('#l_songqiname').html("<strong>送气工:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.songqiname)?"":objdata.songqiname));
+					$('#l_carnumber').html("<strong>送气车辆:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.carnumber)?"":objdata.carnumber));
+					$('#l_shouoptname').html("<strong>收款操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.shouoptname)?"":objdata.shouoptname));
+					$('#l_cuntime').html("<strong>存款时间:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.cuntime)?"":(new Date(objdata.cuntime*1000).Format("yyyy-MM-dd hh:mm:ss"))));
+					$('#l_shoutime').html("<strong>收款时间:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.shoutime)?"":(new Date(objdata.shoutime*1000).Format("yyyy-MM-dd hh:mm:ss"))));
+					$('#l_cunoptname').html("<strong>存款操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.cunoptname)?"":objdata.cunoptname));
+					$('#l_cunmsg').html("<strong>存款信息:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.cunmsg)?"":objdata.cunmsg));
+					$('#l_hetime').html("<strong>核款时间:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.hetime)?"":(new Date(objdata.hetime*1000).Format("yyyy-MM-dd hh:mm:ss"))));
+					$('#l_heoptname').html("<strong>核款操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.heoptname)?"":objdata.heoptname));
+					$('#l_hemsg').html("<strong>核款信息:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.hemsg)?"":objdata.hemsg));
+					
+					
+					
 					var itemlist = objdata.itemlist;
 					if(util.isNullStr(itemlist) || itemlist.length==0){//微信订单,没有orderdetail
 						if(paytype == 0) {

@@ -251,4 +251,33 @@ class JMOrderController extends Controller {
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
 		echo "yes";
 	}
+	
+	public function findProductOrderByPkid($pkid){
+        $querymain = M('Ordermain');
+        $datamain = $querymain->join("orderjm as d on d.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid='$pkid'")->find();
+        if(empty($datamain)!=1){
+            if(isset($datamain['refundtime']) && $datamain['refundtime']>0){
+                $datamain['refundtime'] = date("Y-m-d H:i", $datamain['refundtime']);
+            }
+			if(isset($datamain['cancletime']) && $datamain['cancletime']>0){
+                $datamain['cancletime'] = date("Y-m-d H:i", $datamain['cancletime']);
+            }
+            if(isset($datamain['paytime']) && $datamain['paytime']>0){
+                $datamain['paytime'] = date("Y-m-d H:i", $datamain['paytime']);
+            }
+            if(isset($datamain['prerefundtime'])&& $datamain['prerefundtime']>0){
+                $datamain['prerefundtime'] = date("Y-m-d H:i", $datamain['prerefundtime']);
+            }
+            $datamain['status'] = getNewStatus($datamain['status'],$datamain['jmstatus'],$datamain['dgsstatus'],$datamain['hspstatus']);
+            $datamain['buytime'] = date("Y-m-d H:i", $datamain['buytime']);
+			$datamain['ivtime'] = date("Y-m-d H:i", $datamain['ivtime']);
+//			$datamain['sendtime'] = date("Y-m-d H:i", $datamain['sendtime']);
+            $query = new \Think\Model();
+			$sql = "select * from orderdetail where orderid='$pkid'";
+			$datamain['itemlist'] = $query -> query($sql);
+            echo json_encode($datamain,JSON_UNESCAPED_UNICODE);
+        }else {
+            echo "no";
+        }
+    }
 }
