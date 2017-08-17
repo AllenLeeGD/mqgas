@@ -8,6 +8,10 @@ function openSend(pkid) {
 	$("#do_send").modal('show');
 }
 
+function openEdit(pkid){
+	document.location.href = "sys_orderlist_hwedit.php?tag=productadmin&item=5&pkid="+pkid;
+}
+
 function openFen(pkid,address) {
 	$("#view_data").data("pkid", pkid);
 	$("#view_data").data("address", address);

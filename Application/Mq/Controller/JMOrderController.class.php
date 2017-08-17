@@ -68,7 +68,7 @@ class JMOrderController extends Controller {
 		$jsparams = "keyword:$orderid,buyername:$updowntag";
 		//操作按钮
 		for ($i = 0; $i < count($result); $i++) {
-			$btnEdit = "<div class=\"margin-top-10\"><a class='btn btn-xs green default'  data-toggle='modal' onclick=\"openOut('".$result[$i]['pkid']."')\"><i class='fa fa-pencil'></i> &nbsp;编辑</a></div>";
+			$btnEdit = "<div class=\"margin-top-10\"><a class='btn btn-xs green default'  data-toggle='modal' onclick=\"openEdit('".$result[$i]['pkid']."')\"><i class='fa fa-pencil'></i> &nbsp;编辑</a></div>";
 			$btnSend = "<div class=\"margin-top-10\"><a class='btn btn-xs blue default'  data-toggle='modal' onclick=\"openSend('".$result[$i]['pkid']."')\"><i class='fa fa-bookmark-o'></i> &nbsp;发送</a></div>";
 			$btnCancle = "<div class=\"margin-top-10\"><a class='btn btn-xs red default'  data-toggle='modal' onclick=\"openCancle('".$result[$i]['pkid']."')\"><i class='fa fa-ban'></i> &nbsp;取消</a></div>";			
 			$btnFen = "<div class=\"margin-top-10\"><a class='btn btn-xs blue default'  data-toggle='modal' onclick=\"openFen('".$result[$i]['pkid']."','".$result[$i]['buyeraddress']."')\"><i class='fa fa-puzzle-piece'></i> &nbsp;分派</a></div>";
@@ -108,6 +108,17 @@ class JMOrderController extends Controller {
 		$records["iTotalRecords"] = $iTotalRecords;
 		$records["iTotalDisplayRecords"] = $iTotalRecords;
 		echo json_encode($records);
+	}
+
+	public function findOrderbyPkid($pkid){
+		$dao = M("Ordermain");
+		$dao_detail = M("Orderdetail");
+		$result = $dao->where("pkid='$pkid'")->find();
+		$list = $dao_detail->where("orderid = '$pkid'")->select();
+		$result['details'] = $list;
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($result, JSON_UNESCAPED_UNICODE);
 	}
 
 	/**
@@ -280,4 +291,59 @@ class JMOrderController extends Controller {
             echo "no";
         }
     }
+/**
+	 * 暂存居民用户流程.
+	 */
+	function saveOrder($pkid,$status){
+		$dao_main = M("Ordermain");
+		$dao_jm = M("Orderjm");
+		$dao_detail = M("Orderdetail");
+		$obj = getObjFromPost(["content"]);
+		$items = json_decode(base64_decode($obj["content"]));
+		$data_main['buytime']=time();
+		$data_main['ivtime']=time();
+		$data_main['status']=-7;
+		
+		$data_main['buyername']=$items->membername;
+		$data_main['buyermobile']=$items->mobile;
+		$data_main['buyeraddress']=$items->address;
+		$data_main['remark']=$items->remark;
+		$data_main['type']=0;
+		$data_main['userid']=session("userid");
+		$data_main['username']=session("name");
+		$data_main['jmstatus']=$status;
+		
+		$details = $items->itemlist;
+		$totalcount=0;
+		$totalmoney=0;
+		$dao_detail->where("orderid='$pkid'")->delete();
+		for($i=0;$i<count($details);$i++){
+			$detail = $details[$i];
+			$data_detail = array();
+			$data_detail['pkid'] = uniqid();
+			$data_detail['orderid'] = $pkid;
+			$data_detail['productcount'] = $detail->productcount;
+			$data_detail['bottleprice'] = $detail->bottleprice;
+			$data_detail['productname'] = $detail->productname;
+			if($detail->productname=="50KG气相" || $detail->productname=="50KG液相"){
+				$data_detail['pid'] = $detail->pid;
+				$data_detail['pname'] = $detail->pname;
+				$data_detail['rid'] = $detail->rid;
+				$data_detail['rname'] = $detail->rname;
+			}else if($detail->productname=="15KG直阀" || $detail->productname=="15KG角阀"){
+				$data_detail['pid'] = $detail->pid;
+				$data_detail['pname'] = $detail->pname;
+				$data_detail['jid'] = $detail->jid;
+				$data_detail['jname'] = $detail->jname;
+			}
+			$totalcount = $totalcount+intval($detail->productcount);
+			$totalmoney= $totalmoney + (intval($detail->productcount)*strval($detail->bottleprice));
+			$dao_detail->add($data_detail);
+		}
+		$data_main['price']=$totalmoney;
+		$data_main['buycount']=$totalcount;
+		$dao_main->where("pkid='$pkid'")->save($data_main);
+		
+		echo "yes";
+	}
 }
