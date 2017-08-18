@@ -3,6 +3,10 @@ function openCun(pkid) {
 	$("#cunmsg").val('');
 	$("#do_cun").modal('show');
 }
+function openShou(pkid) {
+	$("#view_data").data("pkid", pkid);
+	$("#do_shou").modal('show');
+}
 function loadCars(did){
 	var util = new Util();	
 	var url = "/Mq/JMOrder/loadCars/did/"+did;
