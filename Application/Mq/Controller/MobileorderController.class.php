@@ -257,5 +257,31 @@ class MobileorderController extends Controller {
 		}
 		echo "yes";
 	}
+	
+	
+	function findpeisong($userid,$status){
+		$dao_main = M("Ordermain");
+		if($status=="my"){
+			$query = " and jmstatus=3";
+		}else{
+			$query = " and (jmstatus=4 or jmstatus=5 or jmstatus=6)"; 
+		}
+		$datalist = $dao_main->alias("o")->join("orderjm as j on j.orderid = o.pkid","LEFT")
+		->join("carsdaily as c on j.carid = c.carid",'LEFT')
+		->field("o.*,j.setpeopleopttime")->where("(o.status=-7)".$query." and (j.songqiid='".$userid."' or ((c.sid='".$userid.
+		"' or c.yid='".$userid."') and from_unixtime(c.dailydate,'%Y-%m-%d') = date_format(now(), '%Y-%m-%d')) )")
+		->order("o.buytime desc")->select();
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
+	}
+	
+	function findjmorderdetail($pkid){
+		$dao_main = M("Ordermain");
+		$datalist = $dao_main->join("orderjm as j on j.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid = '$pkid'")->find();
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
+	}
 
 }
