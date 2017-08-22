@@ -283,5 +283,20 @@ class MobileorderController extends Controller {
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
 	}
+	//客户扫描二维码支付回调
+	public function qrpay($orderid){
+		$dao = M("Ordermain");
+		$data['jmstatus'] = 5;//流程直接到"门店已存款"
+		$dao->where("pkid='$orderid'")->save($data);
+		
+		$dao_jm=M("Orderjm");
+		$data_jm['shoutime'] = time();
+		$data_jm['shouoptname'] = "微信扫码支付";
+		$data_jm['cuntime'] = time();
+		$data_jm['cunoptname'] = "微信扫码支付";
+		$data_jm['cunmsg'] = "微信扫码支付";
+		$dao_jm->where("orderid='$orderid'")->save($data_jm);
+		
+	}
 
 }
