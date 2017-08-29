@@ -1,5 +1,5 @@
 <?php
-//$param = "appid=wxc49b96e815af547c&mch_id=1350417201&nonce_str=".uniqid()."&product_id=1&time_stamp=".time();
+//$param = "appid=wxc49b96e815af547c&mch_id=1350417201&nonce_str=".uniqid()."&product_id=123456&time_stamp=".time();
 //$sign=strtoupper(md5($param."&key=4413e0fa4d155ebd0b7a724b52427634"));
 //$result = "weixin://wxpay/bizpayurl?".$param."&sign=".$sign;
 //echo $result;

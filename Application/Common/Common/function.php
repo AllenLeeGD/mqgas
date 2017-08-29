@@ -12,6 +12,10 @@ function emptyZero($input){
 	}
 }
 
+function computeWeight($qx,$yx,$zf,$jf,$two,$five){
+	return (floatval($qx)+floatval($yx))*50/1000+(floatval($zf)+floatval($jf))*14.5/1000+floatval($two)*2/1000+floatval($five)*5/1000;
+}
+
 function changetype($changetype) {
 	if($changetype==1){
 		return "出-瓶换瓶";

@@ -212,9 +212,9 @@ class MemberController extends Controller {
 			$btnOut = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openMemberOut('".$result[$i]['pkid']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa  fa-eraser'></i> &nbsp;退户&nbsp;</a>";
 			if($result[$i]['membertype']==1){
 				$membertype = "居民";
-			}else if($result[$i]['pkid']==2){
+			}else if($result[$i]['membertype']==2){
 				$membertype = "小工商";
-			}else if($result[$i]['pkid']==3){
+			}else if($result[$i]['membertype']==3){
 				$membertype = "大工商";
 			}
 			$realname = $result[$i]['realname'];

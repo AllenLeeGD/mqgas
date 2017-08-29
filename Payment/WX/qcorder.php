@@ -30,11 +30,11 @@ if ($nativeCall -> checkSign() == FALSE) {
 	//noncestr已填,商户无需重复填写
 	//spbill_create_ip已填,商户无需重复填写
 	//sign已填,商户无需重复填写
-	$unifiedOrder -> setParameter("body", "新海燃气");
+	$unifiedOrder -> setParameter("body", "new");
 	//商品描述
 	//自定义订单号，此处仅作举例
 	$timeStamp = time();
-	$unifiedOrder -> setParameter("out_trade_no", "123");
+	$unifiedOrder -> setParameter("out_trade_no", "123456");
 	//商户订单号             $unifiedOrder->setParameter("product_id","$product_id");//商品ID
 	$unifiedOrder -> setParameter("total_fee", "1");
 	//总金额
@@ -42,7 +42,8 @@ if ($nativeCall -> checkSign() == FALSE) {
 	//通知地址
 	$unifiedOrder -> setParameter("trade_type", "NATIVE");
 	//交易类型
-	$unifiedOrder -> setParameter("product_id", $product_id);
+//	$unifiedOrder -> setParameter("product_id", $product_id);
+$unifiedOrder -> setParameter("product_id", "123456");
 	//用户标识
 	//非必填参数，商户可根据实际情况选填
 	//$unifiedOrder->setParameter("sub_mch_id","XXXX");//子商户号

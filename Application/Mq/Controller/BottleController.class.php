@@ -490,4 +490,387 @@ sum(case when type=10 and optnumber>0 then optnumber when type=10 and optnumber<
 	    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
 	    $objWriter->save('php://output');
 	}
+
+	/**
+	 * 进销存(气)报表，不计算空瓶回收,以下单时间为准计算日期
+	 */
+	public function jxcq($departmentid,$startdate,$enddate){
+		$obj = getObjFromPost(array("qx","yx","zf","jf","twokg","fivekg"));
+		$kc_qx = intval($obj["qx"]);
+		$kc_yx = intval($obj["yx"]);
+		$kc_zf = intval($obj["zf"]);
+		$kc_jf = intval($obj["jf"]);
+		$kc_twokg = intval($obj["twokg"]);
+		$kc_fivekg = intval($obj["fivekg"]);
+		$query = new \Think\Model();
+		$sdate = strtotime($startdate);
+		$edate = strtotime($enddate);
+		$condition_sql = "select m.buytime,d.productname,d.productcount,d.productweight,m.buyer,j.mid from orderdetail as d 
+ left join ordermain as m on d.orderid = m.pkid left join orderjm as j on j.orderid = d.orderid  where m.buytime>=$sdate and m.buytime<=$edate and (m.buyer='$departmentid' or j.mid='$departmentid' ) order by m.buytime";
+		$result = $query -> query($condition_sql);
+		Vendor('PHPExcel.PHPExcel');
+		$objPHPExcel = new \PHPExcel();  
+		// Set properties    
+   	    $objPHPExcel->getProperties()->setCreator("ctos")  
+            ->setLastModifiedBy("ctos")  
+            ->setTitle("Office 2007 XLSX Test Document")  
+            ->setSubject("Office 2007 XLSX Test Document")  
+            ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")  
+            ->setKeywords("office 2007 openxml php")  
+            ->setCategory("Test result file");  
+		
+		$typename="";
+		$sheetcount=0;
+		$rowcount=7;
+		$objPHPExcel->setActiveSheetIndex($sheetcount)
+					->setCellValue('A1','进销存(气)' )  ;
+		$objPHPExcel->getActiveSheet()->setTitle("进销存(气)");
+		$objPHPExcel->getActiveSheet()->mergeCells('A1:Y1');
+		
+		$objPHPExcel->getActiveSheet()
+					->setCellValue('A2','日期' )  
+           			->setCellValue('B2', '入库')
+           			->setCellValue('J2', '销售') 
+            			->setCellValue('R2', '库存');
+		$objPHPExcel->getActiveSheet()->mergeCells('B2:I2');
+		$objPHPExcel->getActiveSheet()->mergeCells('J2:Q2');
+		$objPHPExcel->getActiveSheet()->mergeCells('R2:Y2');
+		
+		$objPHPExcel->getActiveSheet()
+					->setCellValue('A3','规格' )  
+           			->setCellValue('B3', '瓶数')
+					->setCellValue('I3', '总重量(吨)')
+           			->setCellValue('J3', '瓶数') 
+					->setCellValue('Q3', '总重量(吨)')
+            			->setCellValue('R3', '瓶数')
+					->setCellValue('Y3', '总重量(吨)');
+		$objPHPExcel->getActiveSheet()->mergeCells('B3:H3');
+		$objPHPExcel->getActiveSheet()->mergeCells('J3:P3');
+		$objPHPExcel->getActiveSheet()->mergeCells('R3:X3');
+		
+		$objPHPExcel->getActiveSheet()
+					->setCellValue('B4','50KG' )  
+           			->setCellValue('D4', '14.5KG')
+					->setCellValue('J4', '50KG')
+           			->setCellValue('L4', '14.5KG') 
+					->setCellValue('R4', '50KG')
+            			->setCellValue('T4', '14.5KG');
+		$objPHPExcel->getActiveSheet()->mergeCells('B4:C4');
+		$objPHPExcel->getActiveSheet()->mergeCells('D4:E4');
+		$objPHPExcel->getActiveSheet()->mergeCells('J4:K4');
+		$objPHPExcel->getActiveSheet()->mergeCells('L4:M4');
+		$objPHPExcel->getActiveSheet()->mergeCells('R4:S4');
+		$objPHPExcel->getActiveSheet()->mergeCells('T4:U4');
+		
+		$objPHPExcel->getActiveSheet()
+					->setCellValue('B5','气相' )  
+           			->setCellValue('C5', '液相')
+					->setCellValue('D5', '直阀')
+           			->setCellValue('E5', '角阀') 
+					->setCellValue('F4', '5KG')
+            			->setCellValue('G4', '15KG叉车瓶')
+					->setCellValue('H4', '2KG')
+					->setCellValue('J5', '气相')
+					->setCellValue('K5', '液相')
+					->setCellValue('L5', '直阀')
+					->setCellValue('M5', '角阀')
+					->setCellValue('N4', '5KG')
+					->setCellValue('O4', '15KG叉车瓶')
+					->setCellValue('P4', '2KG')
+					->setCellValue('R5', '气相')
+					->setCellValue('S5', '液相')
+					->setCellValue('T5', '直阀')
+					->setCellValue('U5', '角阀')
+					->setCellValue('V4', '5KG')
+					->setCellValue('W4', '15KG叉车瓶')
+					->setCellValue('X4', '2KG');
+		$objPHPExcel->getActiveSheet()->mergeCells('A3:A5');
+		$objPHPExcel->getActiveSheet()->mergeCells('I3:I5');
+		$objPHPExcel->getActiveSheet()->mergeCells('Q3:Q5');
+		$objPHPExcel->getActiveSheet()->mergeCells('Y3:Y5');
+		$objPHPExcel->getActiveSheet()->mergeCells('F4:F5');
+		$objPHPExcel->getActiveSheet()->mergeCells('G4:G5');
+		$objPHPExcel->getActiveSheet()->mergeCells('H4:H5');
+		$objPHPExcel->getActiveSheet()->mergeCells('N4:N5');
+		$objPHPExcel->getActiveSheet()->mergeCells('O4:O5');
+		$objPHPExcel->getActiveSheet()->mergeCells('P4:P5');
+		$objPHPExcel->getActiveSheet()->mergeCells('V4:V5');
+		$objPHPExcel->getActiveSheet()->mergeCells('W4:W5');
+		$objPHPExcel->getActiveSheet()->mergeCells('X4:X5');
+		
+		$objPHPExcel->getDefaultStyle()->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		$objPHPExcel->getDefaultStyle()->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+		
+		$objPHPExcel->getActiveSheet()
+					->setCellValue('A6','上月结余' )  
+					->setCellValue('B6','0' )  
+           			->setCellValue('C6','0')
+					->setCellValue('D6', '0')
+           			->setCellValue('E6', '0') 
+					->setCellValue('F6', '0')
+            			->setCellValue('G6', '0')
+					->setCellValue('H6', '0')
+					->setCellValue('I6', '-')
+					->setCellValue('J6', '0')
+					->setCellValue('K6', '0')
+					->setCellValue('L6', '0')
+					->setCellValue('M6', '0')
+					->setCellValue('N6', '0')
+					->setCellValue('O6', '0')
+					->setCellValue('P6', '0')
+					->setCellValue('Q6', '-')
+					->setCellValue('R6', $kc_qx)
+					->setCellValue('S6', $kc_yx)
+					->setCellValue('U6', $kc_jf)
+					->setCellValue('T6', $kc_zf)
+					->setCellValue('V6', $kc_fivekg)
+					->setCellValue('W6', '0')
+					->setCellValue('X6', $kc_twokg)
+					->setCellValue('Y6', computeWeight($kc_qx,$kc_yx,$kc_jf,$kc_zf,$kc_twokg,$kc_fivekg));
+		$date_str;$r_qx;$r_yx;$r_zf;$r_jf;$r_five;$r_two;$r_z;$x_qx;$x_yx;$x_zf;$x_jf;$x_five;$x_two;$x_z;
+		for($i=0;$i<count($result);$i++){
+			$_item = $result[$i];
+			$itemDate = date('Y-m-d',$_item['buytime']);
+			if(empty($date_str)){//第一条记录,直接填入				
+				$date_str = $itemDate;
+				$objPHPExcel->getActiveSheet()->setCellValue('A'.$rowcount,$date_str);
+				if($_item["buyer"]==$departmentid){//入库
+					if(strrpos($_item["productname"],"50KG气相")!==false){
+						$r_qx = $_item["productcount"];
+						$kc_qx = intval($r_qx)+$kc_qx;
+						$objPHPExcel->getActiveSheet()->setCellValue('B'.$rowcount,intval($r_qx));
+						
+					}else if(strrpos($_item["productname"],"50KG液相")!==false){
+						$r_yx = $_item["productcount"];
+						$kc_yx = intval($r_yx)+$kc_yx;
+						$objPHPExcel->getActiveSheet()->setCellValue('C'.$rowcount,intval($r_yx));
+						
+					}else if(strrpos($_item["productname"],"15KG角阀")!==false){
+						$r_jf = $_item["productcount"];
+						$kc_jf = intval($r_jf)+$kc_jf;
+						$objPHPExcel->getActiveSheet()->setCellValue('E'.$rowcount,intval($r_jf));
+						
+					}else if(strrpos($_item["productname"],"15KG直阀")!==false){
+						$r_zf = $_item["productcount"];
+						$kc_zf = intval($r_zf)+$kc_zf;
+						$objPHPExcel->getActiveSheet()->setCellValue('D'.$rowcount,intval($r_zf));
+						
+					}else if(strrpos($_item["productname"],"5KG")!==false){
+						$r_five = $_item["productcount"];
+						$kc_fivekg = intval($r_five)+$kc_fivekg;
+						$objPHPExcel->getActiveSheet()->setCellValue('F'.$rowcount,intval($r_five));
+						
+					}else if(strrpos($_item["productname"],"2KG")!==false){
+						$r_two = $_item["productcount"];
+						$kc_twokg = intval($r_two)+$kc_twokg;
+						$objPHPExcel->getActiveSheet()->setCellValue('H'.$rowcount,intval($r_two));
+						
+					}
+					
+					$objPHPExcel->getActiveSheet()->setCellValue('R'.$rowcount,intval($kc_qx));
+					$objPHPExcel->getActiveSheet()->setCellValue('S'.$rowcount,intval($kc_yx));
+					$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowcount,intval($kc_jf));
+					$objPHPExcel->getActiveSheet()->setCellValue('T'.$rowcount,intval($kc_zf));
+					$objPHPExcel->getActiveSheet()->setCellValue('V'.$rowcount,intval($kc_fivekg));
+					$objPHPExcel->getActiveSheet()->setCellValue('X'.$rowcount,intval($kc_twokg));
+					$r_z = computeWeight($r_qx,$r_yx,$r_zf,$r_jf,$r_two,$r_five);
+					$objPHPExcel->getActiveSheet()->setCellValue('I'.$rowcount,$r_z);
+					$objPHPExcel->getActiveSheet()->setCellValue('Y'.$rowcount,computeWeight($kc_qx,$kc_yx,$kc_jf,$kc_zf,$kc_twokg,$kc_fivekg));
+				}else if($_item["mid"]==$departmentid){//销售
+					if(strrpos($_item["productname"],"50KG气相")!==false){
+						$x_qx = $_item["productcount"];
+						$kc_qx = $kc_qx-intval($x_qx);
+						$objPHPExcel->getActiveSheet()->setCellValue('J'.$rowcount,intval($x_qx));
+					}else if(strrpos($_item["productname"],"50KG液相")!==false){
+						$x_yx = $_item["productcount"];
+						$kc_yx = $kc_yx-intval($x_yx);
+						$objPHPExcel->getActiveSheet()->setCellValue('K'.$rowcount,intval($x_yx));
+					}else if(strrpos($_item["productname"],"15KG角阀")!==false){
+						$x_jf = $_item["productcount"];
+						$kc_jf = $kc_jf-intval($x_jf);
+						$objPHPExcel->getActiveSheet()->setCellValue('M'.$rowcount,intval($x_jf));
+					}else if(strrpos($_item["productname"],"15KG直阀")!==false){
+						$x_zf = $_item["productcount"];
+						$kc_zf = $kc_zf-intval($r_zf);
+						$objPHPExcel->getActiveSheet()->setCellValue('L'.$rowcount,intval($x_zf));
+					}else if(strrpos($_item["productname"],"5KG")!==false){
+						$x_five = $_item["productcount"];
+						$kc_fivekg = $kc_fivekg-intval($x_five);
+						$objPHPExcel->getActiveSheet()->setCellValue('N'.$rowcount,intval($x_five));
+					}else if(strrpos($_item["productname"],"2KG")!==false){
+						$x_two = $_item["productcount"];
+						$kc_twokg = $kc_twokg - intval($x_two);
+						$objPHPExcel->getActiveSheet()->setCellValue('P'.$rowcount,intval($x_two));
+					}
+					$objPHPExcel->getActiveSheet()->setCellValue('R'.$rowcount,intval($kc_qx));
+					$objPHPExcel->getActiveSheet()->setCellValue('S'.$rowcount,intval($kc_yx));
+					$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowcount,intval($kc_jf));
+					$objPHPExcel->getActiveSheet()->setCellValue('T'.$rowcount,intval($kc_zf));
+					$objPHPExcel->getActiveSheet()->setCellValue('V'.$rowcount,intval($kc_fivekg));
+					$objPHPExcel->getActiveSheet()->setCellValue('X'.$rowcount,intval($kc_twokg));
+					$x_z = computeWeight($x_qx,$x_yx,$x_zf,$x_jf,$x_two,$x_five);
+					$objPHPExcel->getActiveSheet()->setCellValue('Q'.$rowcount,$x_z);
+					$objPHPExcel->getActiveSheet()->setCellValue('Y'.$rowcount,computeWeight($kc_qx,$kc_yx,$kc_jf,$kc_zf,$kc_twokg,$kc_fivekg));
+				}
+			}else if($date_str==$itemDate){//同一天的其他交易记录，进行累加计算
+				if($_item["buyer"]==$departmentid){//入库
+					if(strrpos($_item["productname"],"50KG气相")!==false){
+						$r_qx = intval($_item["productcount"])+intval($r_qx);
+						$kc_qx = intval($r_qx)+$kc_qx;
+						$objPHPExcel->getActiveSheet()->setCellValue('B'.$rowcount,intval($r_qx));
+					}else if(strrpos($_item["productname"],"50KG液相")!==false){
+						$r_yx = intval($_item["productcount"])+intval($r_yx);
+						$kc_yx = intval($r_yx)+$kc_yx;
+						$objPHPExcel->getActiveSheet()->setCellValue('C'.$rowcount,intval($r_yx));
+					}else if(strrpos($_item["productname"],"15KG角阀")!==false){
+						$r_jf = intval($_item["productcount"])+intval($r_jf);
+						$kc_jf = intval($r_jf)+$kc_jf;
+						$objPHPExcel->getActiveSheet()->setCellValue('E'.$rowcount,intval($r_jf));
+					}else if(strrpos($_item["productname"],"15KG直阀")!==false){
+						$r_zf = intval($_item["productcount"])+intval($r_zf);
+						$kc_zf = intval($r_zf)+$kc_zf;
+						$objPHPExcel->getActiveSheet()->setCellValue('D'.$rowcount,intval($r_zf));
+					}else if(strrpos($_item["productname"],"5KG")!==false){
+						$r_five = intval($_item["productcount"])+intval($r_five);
+						$kc_fivekg = intval($r_five)+$kc_fivekg;
+						$objPHPExcel->getActiveSheet()->setCellValue('F'.$rowcount,intval($r_five));
+					}else if(strrpos($_item["productname"],"2KG")!==false){
+						$r_two = intval($_item["productcount"])+intval($r_two);
+						$kc_twokg = intval($r_two)+$kc_twokg;
+						$objPHPExcel->getActiveSheet()->setCellValue('H'.$rowcount,intval($r_two));
+					}
+					$objPHPExcel->getActiveSheet()->setCellValue('R'.$rowcount,intval($kc_qx));
+					$objPHPExcel->getActiveSheet()->setCellValue('S'.$rowcount,intval($kc_yx));
+					$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowcount,intval($kc_jf));
+					$objPHPExcel->getActiveSheet()->setCellValue('T'.$rowcount,intval($kc_zf));
+					$objPHPExcel->getActiveSheet()->setCellValue('V'.$rowcount,intval($kc_fivekg));
+					$objPHPExcel->getActiveSheet()->setCellValue('X'.$rowcount,intval($kc_twokg));
+					$r_z = computeWeight($r_qx,$r_yx,$r_zf,$r_jf,$r_two,$r_five);
+					$objPHPExcel->getActiveSheet()->setCellValue('I'.$rowcount,$r_z);
+					$objPHPExcel->getActiveSheet()->setCellValue('Y'.$rowcount,computeWeight($kc_qx,$kc_yx,$kc_jf,$kc_zf,$kc_twokg,$kc_fivekg));
+				}else if($_item["mid"]==$departmentid){//销售
+					if(strrpos($_item["productname"],"50KG气相")!==false){
+						$kc_qx = $kc_qx-intval($_item["productcount"]);
+						$x_qx = intval($_item["productcount"])+intval($x_qx);
+						$objPHPExcel->getActiveSheet()->setCellValue('J'.$rowcount,$x_qx);
+					}else if(strrpos($_item["productname"],"50KG液相")!==false){
+						$kc_yx = $kc_yx-intval($_item["productcount"]);
+						$x_yx = intval($_item["productcount"])+intval($x_yx);
+						$objPHPExcel->getActiveSheet()->setCellValue('K'.$rowcount,$x_yx);
+					}else if(strrpos($_item["productname"],"15KG角阀")!==false){
+						$kc_jf = $kc_jf-intval($_item["productcount"]);
+						$x_jf = intval($_item["productcount"])+intval($x_jf);
+						$objPHPExcel->getActiveSheet()->setCellValue('M'.$rowcount,$x_jf);
+					}else if(strrpos($_item["productname"],"15KG直阀")!==false){
+						$kc_zf = $kc_zf-intval($_item["productcount"]);
+						$x_zf = intval($_item["productcount"])+intval($x_zf);
+						$objPHPExcel->getActiveSheet()->setCellValue('L'.$rowcount,$x_zf);
+					}else if(strrpos($_item["productname"],"5KG")!==false){
+						$kc_fivekg = $kc_fivekg-intval($_item["productcount"]);
+						$x_five = intval($_item["productcount"])+intval($x_five);
+						$objPHPExcel->getActiveSheet()->setCellValue('N'.$rowcount,$x_five);
+					}else if(strrpos($_item["productname"],"2KG")!==false){
+						$kc_twokg = $kc_twokg-intval($_item["productcount"]);
+						$x_two = intval($_item["productcount"])+intval($x_two);
+						$objPHPExcel->getActiveSheet()->setCellValue('P'.$rowcount,$x_two);
+					}
+					$objPHPExcel->getActiveSheet()->setCellValue('R'.$rowcount,intval($kc_qx));
+					$objPHPExcel->getActiveSheet()->setCellValue('S'.$rowcount,intval($kc_yx));
+					$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowcount,intval($kc_jf));
+					$objPHPExcel->getActiveSheet()->setCellValue('T'.$rowcount,intval($kc_zf));
+					$objPHPExcel->getActiveSheet()->setCellValue('V'.$rowcount,intval($kc_fivekg));
+					$objPHPExcel->getActiveSheet()->setCellValue('X'.$rowcount,intval($kc_twokg));
+					$x_z = computeWeight($x_qx,$x_yx,$x_zf,$x_jf,$x_two,$x_five);
+					$objPHPExcel->getActiveSheet()->setCellValue('Q'.$rowcount,$x_z);
+					$objPHPExcel->getActiveSheet()->setCellValue('Y'.$rowcount,computeWeight($kc_qx,$kc_yx,$kc_jf,$kc_zf,$kc_twokg,$kc_fivekg));
+				}
+			}else if($date_str!=$itemDate){//下一天的交易记录,直接填入
+				$rowcount++;
+				//初始化所有变量
+				$r_qx=0;$r_yx=0;$r_jf=0;$r_zf=0;$r_five=0;$r_two=0;$r_z=0;
+				$x_qx=0;$x_yx=0;$x_jf=0;$x_zf=0;$x_five=0;$x_two=0;$x_z=0;
+				$date_str = $itemDate;
+				$objPHPExcel->getActiveSheet()->setCellValue('A'.$rowcount,$itemDate);
+				if($_item["buyer"]==$departmentid){//入库
+					if(strrpos($_item["productname"],"50KG气相")!==false){
+						$r_qx = $_item["productcount"];
+						$kc_qx = intval($r_qx)+$kc_qx;
+						$objPHPExcel->getActiveSheet()->setCellValue('B'.$rowcount,intval($r_qx));
+					}else if(strrpos($_item["productname"],"50KG液相")!==false){
+						$r_yx = $_item["productcount"];
+						$kc_yx = intval($r_yx)+$kc_yx;
+						$objPHPExcel->getActiveSheet()->setCellValue('C'.$rowcount,intval($r_yx));
+					}else if(strrpos($_item["productname"],"15KG角阀")!==false){
+						$r_jf = $_item["productcount"];
+						$kc_jf = intval($r_jf)+$kc_jf;
+						$objPHPExcel->getActiveSheet()->setCellValue('E'.$rowcount,intval($r_jf));
+					}else if(strrpos($_item["productname"],"15KG直阀")!==false){
+						$r_zf = $_item["productcount"];
+						$kc_zf = intval($r_zf)+$kc_zf;
+						$objPHPExcel->getActiveSheet()->setCellValue('D'.$rowcount,intval($r_zf));
+					}else if(strrpos($_item["productname"],"5KG")!==false){
+						$r_five = $_item["productcount"];
+						$kc_fivekg = intval($r_five)+$kc_fivekg;
+						$objPHPExcel->getActiveSheet()->setCellValue('F'.$rowcount,intval($r_five));
+					}else if(strrpos($_item["productname"],"2KG")!==false){
+						$r_two = $_item["productcount"];
+						$kc_twokg = intval($r_two)+$kc_twokg;
+						$objPHPExcel->getActiveSheet()->setCellValue('H'.$rowcount,intval($r_two));
+					}
+					$objPHPExcel->getActiveSheet()->setCellValue('R'.$rowcount,intval($kc_qx));
+					$objPHPExcel->getActiveSheet()->setCellValue('S'.$rowcount,intval($kc_yx));
+					$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowcount,intval($kc_jf));
+					$objPHPExcel->getActiveSheet()->setCellValue('T'.$rowcount,intval($kc_zf));
+					$objPHPExcel->getActiveSheet()->setCellValue('V'.$rowcount,intval($kc_fivekg));
+					$objPHPExcel->getActiveSheet()->setCellValue('X'.$rowcount,intval($kc_twokg));
+					$r_z = computeWeight($r_qx,$r_yx,$r_zf,$r_jf,$r_two,$r_five);
+					$objPHPExcel->getActiveSheet()->setCellValue('I'.$rowcount,$r_z);
+					$objPHPExcel->getActiveSheet()->setCellValue('Y'.$rowcount,computeWeight($kc_qx,$kc_yx,$kc_jf,$kc_zf,$kc_twokg,$kc_fivekg));
+				}else if($_item["mid"]==$departmentid){//销售
+					if(strrpos($_item["productname"],"50KG气相")!==false){
+						$x_qx = $_item["productcount"];
+						$kc_qx = $kc_qx-intval($x_qx);
+						$objPHPExcel->getActiveSheet()->setCellValue('J'.$rowcount,intval($x_qx));
+					}else if(strrpos($_item["productname"],"50KG液相")!==false){
+						$x_yx = $_item["productcount"];
+						$kc_yx = $kc_yx - intval($x_yx);
+						$objPHPExcel->getActiveSheet()->setCellValue('K'.$rowcount,intval($x_yx));
+					}else if(strrpos($_item["productname"],"15KG角阀")!==false){
+						$x_jf = $_item["productcount"];
+						$kc_jf = $kc_jf - intval($x_jf);
+						$objPHPExcel->getActiveSheet()->setCellValue('M'.$rowcount,intval($x_jf));
+					}else if(strrpos($_item["productname"],"15KG直阀")!==false){
+						$x_zf = $_item["productcount"];
+						$kc_zf = $kc_zf - intval($x_zf);
+						$objPHPExcel->getActiveSheet()->setCellValue('L'.$rowcount,intval($x_zf));
+					}else if(strrpos($_item["productname"],"5KG")!==false){
+						$x_five = $_item["productcount"];
+						$kc_fivekg = $kc_fivekg - intval($x_five);
+						$objPHPExcel->getActiveSheet()->setCellValue('N'.$rowcount,intval($x_five));
+					}else if(strrpos($_item["productname"],"2KG")!==false){
+						$x_two = $_item["productcount"];
+						$kc_twokg = $kc_twokg - intval($x_two);
+						$objPHPExcel->getActiveSheet()->setCellValue('P'.$rowcount,intval($x_two));
+					}
+					$objPHPExcel->getActiveSheet()->setCellValue('R'.$rowcount,intval($kc_qx));
+					$objPHPExcel->getActiveSheet()->setCellValue('S'.$rowcount,intval($kc_yx));
+					$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowcount,intval($kc_jf));
+					$objPHPExcel->getActiveSheet()->setCellValue('T'.$rowcount,intval($kc_zf));
+					$objPHPExcel->getActiveSheet()->setCellValue('V'.$rowcount,intval($kc_fivekg));
+					$objPHPExcel->getActiveSheet()->setCellValue('X'.$rowcount,intval($kc_twokg));
+					$x_z = computeWeight($x_qx,$x_yx,$x_zf,$x_jf,$x_two,$x_five);
+					$objPHPExcel->getActiveSheet()->setCellValue('Q'.$rowcount,$x_z);
+					$objPHPExcel->getActiveSheet()->setCellValue('Y'.$rowcount,computeWeight($kc_qx,$kc_yx,$kc_jf,$kc_zf,$kc_twokg,$kc_fivekg));
+				}
+			}
+		}
+		
+		header('Content-Type: application/vnd.ms-excel');  
+	    header('Content-Disposition: attachment;filename="pfmx.xls"');  
+	    header('Cache-Control: max-age=0');  
+	  
+	    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
+	    $objWriter->save('php://output');
+	}
+
 }
