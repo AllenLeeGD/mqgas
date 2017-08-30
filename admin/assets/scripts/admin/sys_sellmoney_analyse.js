@@ -28,56 +28,15 @@ function saveData(){
 		form.attr("style", "display:none");
 		form.attr("target", "");
 		form.attr("method", "post");
-		form.attr("action", "/index.php/Mq/Bottle/jxcq/departmentid/"+send_obj.departmentid+"/startdate/"+send_obj.startdate+"/enddate/"+send_obj.enddate);
+		form.attr("action", "/index.php/Mq/Bottle/mdsk/departmentid/"+send_obj.departmentid+"/startdate/"+send_obj.startdate+"/enddate/"+send_obj.enddate);
 		var input1 = $("<input>");
 		input1.attr("type", "hidden");
 		input1.attr("name", "exportData");
 		input1.attr("value", (new Date()).getMilliseconds());
 		
-		var input2 = $("<input>");
-		input2.attr("type", "hidden");
-		input2.attr("name", "qx");
-		input2.attr("name", "qx");
-		input2.attr("value", $("#qx").val());
-		
-		var input3 = $("<input>");
-		input3.attr("type", "hidden");
-		input3.attr("name", "yx");
-		input3.attr("name", "yx");
-		input3.attr("value", $("#yx").val());
-		
-		var input4 = $("<input>");
-		input4.attr("type", "hidden");
-		input4.attr("name", "jf");
-		input4.attr("name", "jf");
-		input4.attr("value", $("#jf").val());
-		
-		var input5 = $("<input>");
-		input5.attr("type", "hidden");
-		input5.attr("name", "zf");
-		input5.attr("name", "zf");
-		input5.attr("value", $("#zf").val());
-		
-		var input6 = $("<input>");
-		input6.attr("type", "hidden");
-		input6.attr("name", "twokg");
-		input6.attr("name", "twokg");
-		input6.attr("value", $("#twokg").val());
-		
-		var input7 = $("<input>");
-		input7.attr("type", "hidden");
-		input7.attr("name", "fivekg");
-		input7.attr("name", "fivekg");
-		input7.attr("value", $("#fivekg").val());
 		
 		$("body").append(form); //将表单放置在web中
 		form.append(input1);
-		form.append(input2);
-		form.append(input3);
-		form.append(input4);
-		form.append(input5);
-		form.append(input6);
-		form.append(input7);
 		util.hideLoading();
 		form.submit(); //表单提交 
 		$("#btnSave").button("reset");

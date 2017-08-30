@@ -7,7 +7,7 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8"/>
-		<title>门店进销存(气)统计报表</title>
+		<title>门店收款表</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 		<meta content="" name="description"/>
@@ -46,7 +46,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-							<h3 class="page-title"> 门店进销存(气)统计报表 <small>生成门店进销存(气)的统计报表</small></h3>
+							<h3 class="page-title"> 门店收款表 <small>生成门店收款的统计报表</small></h3>
 							<ul class="page-breadcrumb breadcrumb">
 								<!--<li class="btn-group">
 								<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -71,7 +71,7 @@
 								</li>
 								<li>
 									<a href="#">
-										门店进销存(气)统计报表
+										门店收款表
 									</a>
 								</li>
 							</ul>
@@ -85,7 +85,7 @@
 							<ul class="nav nav-tabs">
 								<li class="active">
 									<a href="#tab_0" data-toggle="tab">
-										门店进销存(气)统计报表
+										门店收款表
 									</a>
 								</li>
 								<!--<li>
@@ -138,49 +138,6 @@
 																</div>
 															</div>
 														</div>
-														<div id="vipdiscountgroup" class="form-group">
-															<label class="control-label col-md-3">50KG气相库存结余 <span class="required"> </span> </label>
-															<div class="col-md-3" >
-																<div class="input-group input-middle">
-																	<input id="qx" name="qx" type="number" class="form-control" >
-																</div>
-															</div>
-															<label class="control-label col-md-3">50KG液相库存结余 <span class="required"> </span> </label>
-															<div class="col-md-3" >
-																<div class="input-group input-middle">
-																	<input id="yx" name="yx" type="number" class="form-control" >
-																</div>
-															</div>
-														</div>
-														<div id="vipdiscountgroup" class="form-group">
-															<label class="control-label col-md-3">14.5KG角阀库存结余 <span class="required"> </span> </label>
-															<div class="col-md-3" >
-																<div class="input-group input-middle">
-																	<input id="jf" name="jf" type="number" class="form-control" >
-																</div>
-															</div>
-															<label class="control-label col-md-3">14.5KG直阀库存结余 <span class="required"> </span> </label>
-															<div class="col-md-3" >
-																<div class="input-group input-middle">
-																	<input id="zf" name="zf" type="number" class="form-control" >
-																</div>
-															</div>
-														</div>
-														<div id="vipdiscountgroup" class="form-group">
-															<label class="control-label col-md-3">2KG库存结余 <span class="required"> </span> </label>
-															<div class="col-md-3" >
-																<div class="input-group input-middle">
-																	<input id="twokg" name="twokg" type="number" class="form-control" >
-																</div>
-															</div>
-															<label class="control-label col-md-3">5KG库存结余 <span class="required"> </span> </label>
-															<div class="col-md-3" >
-																<div class="input-group input-middle">
-																	<input id="fivekg" name="fivekg" type="number" class="form-control" >
-																</div>
-															</div>
-														</div>
-														
 												</div>
 											</form>
 											<!-- END FORM-->
@@ -223,7 +180,7 @@
 		<script src="assets/scripts/custom/ajaxfileupload.js"></script>
 		<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 		<script type="text/javascript" src="assets/scripts/custom/vue.min.js"></script>
-		<script src="assets/scripts/admin/sys_sell_analyse.js"></script>
+		<script src="assets/scripts/admin/sys_sellmoney_analyse.js"></script>
 		<!-- END PAGE LEVEL SCRIPTS -->
 		<script>jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {

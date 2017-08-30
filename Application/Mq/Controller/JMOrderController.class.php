@@ -216,12 +216,14 @@ class JMOrderController extends Controller {
 	 * @bid 订单ID
 	 */
 	public function shou($bid){
+		$obj = getObjFromPost(array("shounumber"));
 		$dao = M("Ordermain");
 		$dao_jm = M("Orderjm");
 		$data['jmstatus'] = 4;
 		$data_jm['shoutime'] = time();
 		$data_jm['shouoptid'] = session("userid");
 		$data_jm['shouoptname'] = session("name");
+		$data_jm['shounumber'] = $obj["shounumber"];
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
 		echo "yes";
@@ -232,11 +234,13 @@ class JMOrderController extends Controller {
 	 * @bid 订单ID
 	 */
 	public function cun($bid){
-		$obj = getObjFromPost(array("cunmsg"));
+		$obj = getObjFromPost(array("cunmsg","shoutype","shoutypestr"));
 		$dao = M("Ordermain");
 		$dao_jm = M("Orderjm");
 		$data['jmstatus'] = 5;
 		$data_jm['cunmsg'] = $obj['cunmsg'];
+		$data_jm['shoutype'] = $obj['shoutype'];
+		$data_jm['shoutypestr'] = $obj['shoutypestr'];
 		$data_jm['cuntime'] = time();
 		$data_jm['cunoptid'] = session("userid");
 		$data_jm['cunoptname'] = session("name");

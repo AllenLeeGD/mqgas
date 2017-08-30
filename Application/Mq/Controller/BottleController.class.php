@@ -873,4 +873,92 @@ sum(case when type=10 and optnumber>0 then optnumber when type=10 and optnumber<
 	    $objWriter->save('php://output');
 	}
 
+	public function mdsk($departmentid,$startdate,$enddate){
+		$query = new \Think\Model();
+		$sdate = strtotime($startdate);
+		$edate = strtotime($enddate);
+		$condition_sql = "select m.*,mem.`code` as membercode,j.shounumber,d.`code` as mcode,j.mname,j.shoutime,j.cuntime,j.shoutype,j.shoutypestr,j.cunmsg 
+ 				from ordermain as m 
+				left join orderjm as j on j.orderid = m.pkid left join department as d on d.pkid = j.mid
+				left join memberinfo as mem on mem.pkid = m.buyer 
+   				where m.buytime>=$sdate and m.buytime<=$edate and mid='$departmentid' and (m.jmstatus=5 or m.jmstatus=6 or m.jmstatus=4) order by m.buytime";
+		$result = $query -> query($condition_sql);		
+		Vendor('PHPExcel.PHPExcel');
+		$objPHPExcel = new \PHPExcel();  
+		// Set properties    
+   	    $objPHPExcel->getProperties()->setCreator("ctos")  
+            ->setLastModifiedBy("ctos")  
+            ->setTitle("Office 2007 XLSX Test Document")  
+            ->setSubject("Office 2007 XLSX Test Document")  
+            ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")  
+            ->setKeywords("office 2007 openxml php")  
+            ->setCategory("Test result file");  
+		$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue('A1',"收款日期" )  
+				->setCellValue('B1', '存款日期')
+				->setCellValue('C1', '部门编码')
+				->setCellValue('D1',"收款部门")
+				->setCellValue('E1',"客户编号")
+				->setCellValue('F1',"客户名称")
+				->setCellValue('G1',"收款方式编码")
+				->setCellValue('H1',"收款方式")
+				->setCellValue('I1',"账期内收款金额")
+				->setCellValue('J1',"收据号")
+				->setCellValue('K1',"逾期天数")
+				->setCellValue('L1',"手续费(POS机)")
+				->setCellValue('M1',"备注")
+				->setCellValue('N1',"收现金")
+				->setCellValue('O1',"存现金")
+				->setCellValue('P1',"存款日期")
+				->setCellValue('Q1',"存款银行")
+				->setCellValue('R1',"库存现金");
+				$objPHPExcel->getActiveSheet()->setTitle("收款表");
+		$sheetcount=0;
+		$rowcount=2;
+		$totalmoney = 0;
+		for($i=0;$i<count($result);$i++){
+			$_item = $result[$i];
+			$objPHPExcel->getActiveSheet()
+						->setCellValue('A'.$rowcount,date('Y-m-d',$result[$i]['shoutime']))
+						->setCellValue('C'.$rowcount,$_item['mcode'])
+						->setCellValue('D'.$rowcount,$_item['mname'])
+						->setCellValue('E'.$rowcount,$_item['membercode'])
+						->setCellValue('F'.$rowcount,$_item['buyername'])
+						->setCellValue('G'.$rowcount,$_item['shoutype'])
+						->setCellValue('H'.$rowcount,$_item['shoutypestr'])
+						->setCellValue('I'.$rowcount,$_item['price'])
+						->setCellValue('J'.$rowcount,$_item['shounumber'])
+						->setCellValue('M'.$rowcount,$_item['cunmsg']);
+			if(!empty($result[$i]['cuntime'])){
+				$objPHPExcel->getActiveSheet()->setCellValue('B'.$rowcount,date('Y-m-d',$result[$i]['cuntime']));
+			}
+			
+			if($_item['paytype']==0){//微信付款,不经过门店
+				$objPHPExcel->getActiveSheet()
+						->setCellValue('R'.$rowcount,$totalmoney);
+			}else if($_item['paytype']==1){//现金
+				if($_item['jmstatus']==5 || $_item['jmstatus']==6){//已经存入银行
+					$objPHPExcel->getActiveSheet()
+						->setCellValue('N'.$rowcount,$_item['price'])
+						->setCellValue('O'.$rowcount,$_item['price'])
+						->setCellValue('P'.$rowcount,date('Y-m-d',$result[$i]['cuntime']))
+						->setCellValue('R'.$rowcount,$totalmoney);
+				}else if($_item['jmstatus']==4){//还没有存入银行
+					$totalmoney=$totalmoney+floatval($_item['price']);
+					$objPHPExcel->getActiveSheet()
+						->setCellValue('N'.$rowcount,$_item['price'])
+						->setCellValue('R'.$rowcount,$totalmoney);
+				}
+			}						
+						
+			$rowcount++;
+		}
+		
+		header('Content-Type: application/vnd.ms-excel');  
+	    header('Content-Disposition: attachment;filename="jpmx.xls"');  
+	    header('Cache-Control: max-age=0');  
+	  
+	    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
+	    $objWriter->save('php://output');
+	}
 }

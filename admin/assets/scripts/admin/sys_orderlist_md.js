@@ -49,6 +49,7 @@ function openPei(pkid,did) {
 function doShou() {
 	var pkid = $("#view_data").data("pkid");
 	var objdata = {};
+	objdata.shounumber = $("#shounumber").val();
 	var util = new Util();
 	util.showLoading();
 	util.postUrl('/Mq/JMOrder/shou/bid/' + pkid, function(data, status) {
@@ -73,8 +74,10 @@ function doCun() {
 	var pkid = $("#view_data").data("pkid");
 	var objdata = {};
 	objdata.cunmsg = $("#cunmsg").val();
+	objdata.shoutype = $("#shoutype").val();
+	objdata.shoutypestr = $("#shoutype").find("option:selected").html();
 	var util = new Util();
-	if(util.isNullStr(objdata.cunmsg)){
+	if(util.isNullStr(objdata.cunmsg) || util.isNullStr(objdata.shoutype)){
 		util.errorMsg('请填写存款信息');
 		return;
 	}
