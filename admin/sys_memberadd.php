@@ -193,6 +193,32 @@
 													</div>
 												</div>
 											</div>
+											<div id="wechatgroup" class="form-group">
+												<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+												<label class="control-label col-md-2">是否月结客户 <span class="required"> </span> </label>
+												<div class="col-md-5">
+													<div class="input-icon right">
+														<select id="yue" name="yue" class="form-control">
+															<option value="0">非月结</option>
+															<option value="1">月结</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div id="realnamegroup" class="form-group">
+												<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+												<label class="control-label col-md-2">核定账期 <span class="required"> </span> </label>
+												<div class="col-md-5">
+													<div class="input-icon right">
+														<select id="zhangqi" name="zhangqi" class="form-control">
+															<option value="">无</option>
+															<option value="45">小于等于45</option>
+															<option value="46">小于等于46</option>
+															<option value="47">小于等于47</option>
+														</select>
+													</div>
+												</div>
+											</div>
 										</div>
 										<div class="form-actions fluid">
 											<div class="col-md-offset-2 col-md-9">

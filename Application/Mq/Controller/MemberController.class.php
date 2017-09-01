@@ -246,7 +246,7 @@ class MemberController extends Controller {
 	}
 	
 	public function addMember(){
-		$obj = getObjFromPost(array("realname","code","storename","membertype","detailtype","yewuid","yewuname","mobile","address","level"));
+		$obj = getObjFromPost(array("realname","code","storename","membertype","detailtype","yewuid","yewuname","mobile","address","level","yue","zhangqi"));
 		$dao = M("Memberinfo");
 		$obj["pkid"] = uniqid();
 		$obj["regtime"] = time();
@@ -258,7 +258,7 @@ class MemberController extends Controller {
 	}
 	
 	public function saveMember(){
-		$obj = getObjFromPost(array("pkid","realname","code","storename","membertype","detailtype","yewuid","yewuname","mobile","address","level"));
+		$obj = getObjFromPost(array("pkid","realname","code","storename","membertype","detailtype","yewuid","yewuname","mobile","address","level","yue","zhangqi"));
 		$dao = M("Memberinfo");
 		$pkid = $obj["pkid"];
 		$dao->where("pkid='$pkid'")->save($obj);

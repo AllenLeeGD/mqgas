@@ -20,6 +20,8 @@ function bulidData() {
 	var level = $("#type").find("option:selected").val();
 	var yewuid = $("#yewuid").find("option:selected").val();
 	var yewuname = $("#yewuid").find("option:selected").html();
+	var yue = $("#yue").val();
+	var zhangqi = $("#zhangqi").val();
 	if(util.isNullStr(realname) || util.isNullStr(mobile) || util.isNullStr(address) || util.isNullStr(level)) {
 		return false;
 	}
@@ -34,6 +36,8 @@ function bulidData() {
 	obj.level = level;
 	obj.yewuid = yewuid;
 	obj.yewuname = yewuname;
+	obj.yue = yue;
+	obj.zhangqi = zhangqi;
 	return obj;
 }
 

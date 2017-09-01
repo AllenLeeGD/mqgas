@@ -20,6 +20,8 @@ function bulidData() {
 	var level = $("#type").find("option:selected").val();
 	var yewuid = $("#yewuid").find("option:selected").val();
 	var yewuname = $("#yewuid").find("option:selected").html();
+	var yue = $("#yue").val();
+	var zhangqi = $("#zhangqi").val();
 	if(util.isNullStr(realname) || util.isNullStr(mobile) || util.isNullStr(address) || util.isNullStr(level)) {
 		return false;
 	}
@@ -34,6 +36,8 @@ function bulidData() {
 	obj.level = level;
 	obj.yewuid = yewuid;
 	obj.yewuname = yewuname;
+	obj.yue = yue;
+	obj.zhangqi = zhangqi;
 	return obj;
 }
 
@@ -89,6 +93,8 @@ function loadData(pkid) {
 			var storename = objdata[0].storename;
 			var detailtype = objdata[0].detailtype;
 			var yewuid = objdata[0].yewuid;
+			var yue = objdata[0].yue;
+			var zhangqi = objdata[0].zhangqi;
 			$('#realname').val(realname);
 			$('#mobile').val(mobile);
 			$('#address').val(address);
@@ -96,6 +102,8 @@ function loadData(pkid) {
 			$('#storename').val(storename);
 			$('#membertype').val(membertype);
 			$('#detailtype').val(detailtype);
+			$('#yue').val(yue);
+			$('#zhangqi').val(zhangqi);
 			util.getUrl("/Mq/Member/findSetting", function(s_data, s_status) {
 				var result = "";
 				for(var j = 0;j<s_data.length;j++){

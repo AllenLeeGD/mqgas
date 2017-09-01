@@ -955,7 +955,144 @@ sum(case when type=10 and optnumber>0 then optnumber when type=10 and optnumber<
 		}
 		
 		header('Content-Type: application/vnd.ms-excel');  
-	    header('Content-Disposition: attachment;filename="jpmx.xls"');  
+	    header('Content-Disposition: attachment;filename="mdsk.xls"');  
+	    header('Cache-Control: max-age=0');  
+	  
+	    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
+	    $objWriter->save('php://output');
+	}
+
+	public function mdxs($departmentid,$startdate,$enddate){
+		$query = new \Think\Model();
+		$sdate = strtotime($startdate);
+		$edate = strtotime($enddate);
+		$condition_sql = "select d.productname,m.paytype,dep.code,j.mname,d.orderid,j.setpeopleopttime,j.setpeopleopttime,member.membertype,member.`code` as membercode
+,m.buyername,member.yewuname,us.worknumber,d.bottleprice,d.productcount,d.pname,member.yue,member.zhangqi,m.remark
+,j.carid,j.carnumber,cd.sname,cd.yname,
+(select worknumber from userinfo as sus where sus.pid=cd.sid ) as scode,
+(select worknumber from userinfo as yus where yus.pid=cd.yid ) as ycode
+ from orderdetail as d left join ordermain as m on m.pkid = d.orderid left join orderjm as j on
+j.orderid = d.orderid left join department as dep on dep.pkid = j.mid left join memberinfo as member on member.pkid = m.buyer  
+ left join userinfo as us on us.pid = member.yewuid left join carsdaily as cd on j.carid = cd.carid 
+ and FROM_UNIXTIME(j.setpeopleopttime,'%Y-%m-%d') = FROM_UNIXTIME(cd.dailydate,'%Y-%m-%d')
+   				where m.buytime>=$sdate and m.buytime<=$edate and j.mid='$departmentid' order by m.buytime";
+		$result = $query -> query($condition_sql);		
+		Vendor('PHPExcel.PHPExcel');
+		$objPHPExcel = new \PHPExcel();  
+		// Set properties    
+   	    $objPHPExcel->getProperties()->setCreator("ctos")  
+            ->setLastModifiedBy("ctos")  
+            ->setTitle("Office 2007 XLSX Test Document")  
+            ->setSubject("Office 2007 XLSX Test Document")  
+            ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")  
+            ->setKeywords("office 2007 openxml php")  
+            ->setCategory("Test result file");  
+		$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue('A1',"部门编码" )  
+				->setCellValue('B1', '发货地点')
+				->setCellValue('C1', '发货单号')
+				->setCellValue('D1',"发货时间")
+				->setCellValue('E1',"实际时间")
+				->setCellValue('F1',"类型")
+				->setCellValue('G1',"地区编码")
+				->setCellValue('H1',"销售地区")
+				->setCellValue('I1',"业务员编码")
+				->setCellValue('J1',"业务员")
+				->setCellValue('K1',"客户编码")
+				->setCellValue('L1',"客户名称")
+				->setCellValue('M1',"存货编码")
+				->setCellValue('N1',"存货类型")
+				->setCellValue('O1',"规格(公斤)")
+				->setCellValue('P1',"销售数量(瓶)")
+				->setCellValue('Q1',"销售数量(吨)")
+				->setCellValue('R1',"销售单价(含税)")
+				->setCellValue('S1',"销售金额(含税)")
+				->setCellValue('U1',"月结")
+				->setCellValue('V1',"发票类型")
+				->setCellValue('W1',"核定账期")
+				->setCellValue('X1',"司机编码")
+				->setCellValue('Y1',"司机")
+				->setCellValue('Z1',"押运员编码")
+				->setCellValue('AA1',"押运员")
+				->setCellValue('AB1',"备注(散户名称)")
+				->setCellValue('AC1',"销售类型编码")
+				->setCellValue('AD1',"销售类型");
+				$objPHPExcel->getActiveSheet()->setTitle("销售表");
+		$sheetcount=0;
+		$rowcount=2;
+		$totalmoney = 0;
+		for($i=0;$i<count($result);$i++){
+			$_item = $result[$i];
+			$objPHPExcel->getActiveSheet()
+						->setCellValue('A'.$rowcount,$_item['code'])
+						->setCellValue('B'.$rowcount,$_item['mname'])
+						->setCellValue('C'.$rowcount,$_item['orderid'])
+						->setCellValue('D'.$rowcount,date('Y-m-d',$result[$i]['setpeopleopttime']))
+						->setCellValue('E'.$rowcount,date('Y-m-d',$result[$i]['setpeopleopttime']))
+						
+						->setCellValue('G'.$rowcount,"01")
+						->setCellValue('H'.$rowcount,"珠海")
+						->setCellValue('I'.$rowcount,$_item['worknumber'])
+						->setCellValue('J'.$rowcount,$_item['yewuname'])
+						->setCellValue('K'.$rowcount,$_item['membercode'])
+						->setCellValue('L'.$rowcount,$_item['buyername'])
+												
+						->setCellValue('P'.$rowcount,$_item['productcount'])
+						->setCellValue('R'.$rowcount,$_item['bottleprice'])
+						->setCellValue('S'.$rowcount,floatval($_item['bottleprice'])*intval($_item['productcount']))
+						->setCellValue('T'.$rowcount,round(((floatval($_item['bottleprice'])*intval($_item['productcount']))/1.13),2))
+						
+						->setCellValue('V'.$rowcount,"")
+						->setCellValue('W'.$rowcount,$_item['zhangqi'])
+						->setCellValue('X'.$rowcount,$_item['scode'])
+						->setCellValue('Y'.$rowcount,$_item['sname'])
+						->setCellValue('Z'.$rowcount,$_item['ycode'])
+						->setCellValue('AA'.$rowcount,$_item['yname'])
+						->setCellValue('AB'.$rowcount,$_item['remark'])
+						->setCellValue('AC'.$rowcount,"1")
+						->setCellValue('AD'.$rowcount,"普通销售");
+						
+						
+			if(strrpos($_item["productname"],"无臭")!==false){
+				$objPHPExcel->getActiveSheet()->setCellValue('M'.$rowcount,"2");
+				$objPHPExcel->getActiveSheet()->setCellValue('N'.$rowcount,"液化气油气(无臭)");
+			}else{
+				$objPHPExcel->getActiveSheet()->setCellValue('M'.$rowcount,"1");
+				$objPHPExcel->getActiveSheet()->setCellValue('N'.$rowcount,"液化气油气(有臭)");
+			}			
+			$_pname;
+			if($result[$i]['pname']=="15KG"){
+				$_pname = 14.5;
+			}else{
+				$_pname = floatval(str_replace("KG","",$result[$i]['pname']));
+			}
+			$objPHPExcel->getActiveSheet()->setCellValue('O'.$rowcount,$_pname);
+			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$rowcount,($_pname*intval($_item['productcount']))/1000 );
+			
+			if($result[$i]['yue']=="1"){
+				$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowcount,"月结");	
+				if(!empty($_item['zhangqi'])){
+					$objPHPExcel->getActiveSheet()->setCellValue('W'.$rowcount,"≤".$_item['zhangqi']);	
+				}									
+			}else if($result[$i]['paytype']=="1"){
+				$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowcount,"现金");				
+			}else if($result[$i]['paytype']=="0"){
+				$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowcount,"微付");				
+			}
+			
+			if($result[$i]['membertype']=="1"){
+				$objPHPExcel->getActiveSheet()->setCellValue('F'.$rowcount,"民用气");				
+			}else if($result[$i]['membertype']=="2"){
+				$objPHPExcel->getActiveSheet()->setCellValue('F'.$rowcount,"小工商");				
+			}else if($result[$i]['membertype']=="3"){
+				$objPHPExcel->getActiveSheet()->setCellValue('F'.$rowcount,"大工商");				
+			}
+			
+			$rowcount++;
+		}
+		
+		header('Content-Type: application/vnd.ms-excel');  
+	    header('Content-Disposition: attachment;filename="mdxs.xls"');  
 	    header('Cache-Control: max-age=0');  
 	  
 	    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
