@@ -107,14 +107,14 @@
 														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
 														<label class="control-label col-md-2">账户名称 <span class="required"> *</span> </label>
 														<div class="col-md-8">
-															<input id="name" v-model="name" type="text" class="form-control input-large"/>
+															<input id="name" v-model="sendobj.name" type="text" class="form-control input-large"/>
 															<span class="help-block"> 例如：zhangsan </span>
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
 														<label class="control-label col-md-2">真实姓名 <span class="required"> *</span> </label>
 														<div class="col-md-8">
-															<input id="realname" v-model="realname" type="text" class="form-control input-large"/>
+															<input id="realname" v-model="sendobj.realname" type="text" class="form-control input-large"/>
 															<span class="help-block"> 例如：张三 </span>
 														</div>
 													</div>
@@ -122,14 +122,14 @@
 														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
 														<label class="control-label col-md-2">密码 <span class="required">* </span> </label>
 														<div class="col-md-8">
-															<input id="password" v-model="password" type="text" class="form-control input-large"/>
+															<input id="password" v-model="sendobj.password" type="text" class="form-control input-large"/>
 															<span class="help-block"> 例如：123456 </span>
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
 														<label class="control-label col-md-2">手机号码 <span class="required">* </span> </label>
 														<div class="col-md-8">
-															<input id="mobile" v-model="mobile" type="number" class="form-control input-large"/>
+															<input id="mobile" v-model="sendobj.mobile" type="number" class="form-control input-large"/>
 															<span class="help-block"> 例如：13799998888 </span>
 														</div>
 													</div>
@@ -137,14 +137,23 @@
 														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
 														<label class="control-label col-md-2">工号 <span class="required">* </span> </label>
 														<div class="col-md-8">
-															<input id="worknumber" v-model="worknumber" type="text" class="form-control input-large"/>
+															<input id="worknumber" v-model="sendobj.worknumber" type="text" class="form-control input-large"/>
 															<span class="help-block"> 例如：1001 </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">门店 <span class="required"> </span> </label>
+														<div class="col-md-8">
+															<select id="did" name="did" v-model="sendobj.did" class="form-control  input-large">																
+																<option v-for="option in departments" :value="option.pkid" v-text="option.name" >  																																    	   </option>
+															</select>
+															<span class="help-block"> 可选填 </span>
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
 														<label class="control-label col-md-2">邮箱 <span class="required"> </span> </label>
 														<div class="col-md-8">
-															<input id="email" v-model="email" type="text" class="form-control input-large"/>
+															<input id="email" v-model="sendobj.email" type="text" class="form-control input-large"/>
 															<span class="help-block"> 例如：123@qq.com </span>
 														</div>
 													</div>

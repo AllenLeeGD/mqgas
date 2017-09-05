@@ -425,6 +425,37 @@ class OrderController extends Controller {
 		$records["iTotalDisplayRecords"] = $iTotalRecords;
 		echo json_encode($records);
 	}
+
+	public function checkUserOrder($memberid){
+		$obj = getObjFromPost(["content"]);
+		$items = json_decode(base64_decode($obj["content"]));
+		$details = $items->itemlist;
+		
+		$dao_detail = M("Orderdetail");
+		$check = $dao_detail->alias("d")->join("ordermain as m on m.pkid = d.orderid")->where("m.buyer='$memberid'")->order("buytime")->limit(10)->select();
+		if(count($check)==0){
+			echo "yes";//如果没有交易记录，直接忽略
+		}else{
+			for($i=0;$i<count($details);$i++){
+				$detail = $details[$i];
+				$productname = $detail->productname;
+				$flag = false;
+				for($j=0;$j<count($check);$j++){
+					$_item = $check[$j];
+					if($productname==$_item['productname']){
+						$flag = true;
+						break;
+					}
+				}
+				if($flag===false){
+					echo $productname;
+					exit;
+				}
+			}
+			echo "yes";
+		}
+	} 
+	
 	/**
 	 * 暂存居民用户流程.
 	 */

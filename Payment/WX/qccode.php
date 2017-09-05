@@ -8,14 +8,14 @@ include_once("WxPayPubHelper.php");
 $nativeLink = new NativeLink_pub();
 
 //$product_id = $_GET["orderid"]."_".$_GET["totalfee"];
-$product_id = $_GET["orderid"];
+//$product_id = $_GET["orderid"];
 //自定义商品id
 $nativeLink -> setParameter("product_id", "123456");
 ////商品id
 ////获取链接
 $product_url = $nativeLink -> getUrl();
 ////使用短链接转换接口
-//$shortUrl = new ShortUrl_pub();
+$shortUrl = new ShortUrl_pub();
 ////设置必填参数
 //$shortUrl -> setParameter("long_url", $product_url);
 ////URL链接

@@ -229,6 +229,30 @@
 				<!-- /.modal-dialog -->
 			</div>
 			
+			<div class="modal fade" id="do_jie" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="padding:10px 20px 10px 20px;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title green">月结客户</h4>
+						</div>
+						<div class="modal-body">
+							确认此客户为月结客户吗?如果是月结客户，流程将会直接结束。
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn default" data-dismiss="modal">
+							取消
+							</button>
+							<button type="button" class="btn blue" onclick="doJie()">
+							确定
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			
 			<div class="modal fade" id="do_cun" tabindex="-1" role="dialog" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content" style="padding:10px 20px 10px 20px;">

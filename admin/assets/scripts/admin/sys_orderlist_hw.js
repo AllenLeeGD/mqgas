@@ -20,6 +20,73 @@ function openFen(pkid,address) {
 	$("#pid").val("");
 	$("#do_fen").modal('show');
 }
+function loadCars(did){
+	var util = new Util();	
+	var url = "/Mq/JMOrder/loadCars/did/"+did;
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue .$data.carids = data;
+			$("#carid").val("");
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			
+		}
+	);
+}
+var send_vue ;
+function openPei(pkid,did) {
+	$("#view_data").data("pkid", pkid);
+	$("#view_data").data("did", did);
+	var util = new Util();	
+	var url = "/Mq/JMOrder/loadSongqis/did/"+did;
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue = new Vue({
+				el:"#form_app_pei",
+				data:{sendobj:{},songqiids:data,carids:[]}
+			});
+			$("#songqiid").val("");
+			loadCars(did);
+			$("#do_pei").modal('show');
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			
+		}
+	);
+	
+}
+
+function doPei() {
+	var util = new Util();
+	var pkid = $("#view_data").data("pkid");
+	var objdata = {};
+	objdata.songqiid = $("#songqiid").val();
+	objdata.carid = $("#carid").val();
+	objdata.songqiname = $("#songqiid").find("option:selected").text();
+	objdata.carnumber = $("#carid").find("option:selected").text();
+	if(util.isNullStr(objdata.songqiid) && util.isNullStr(objdata.carid)){
+		util.errorMsg('请选择送气工或车辆');
+		return;
+	}
+	util.showLoading();
+	util.postUrl('/Mq/JMOrder/dopei/bid/' + pkid, function(data, status) {
+			if(data == "yes") {
+				util.successMsg('分配成功');
+				$("#do_pei").modal('hide');
+			} else {
+				util.errorMsg('分派失败');
+			}
+			ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/3", 0);
+			util.hideLoading();
+		},
+		objdata,
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			util.errorMsg('内部服务器错误');
+			util.hideLoading();
+		});
+}
 
 
 function doCancle() {
@@ -411,6 +478,11 @@ $(document).ready(function() {
 	$("#fen_tab").bind('click', function() {
 		document.title="居民小工商订单";
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/1", 0);
+	});
+	
+	$("#pei_tab").bind('click', function() {
+		document.title="居民小工商订单";
+		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/3", 0);
 	});
 	//待备货的订单
 	$("#complete_tab").bind('click', function() {

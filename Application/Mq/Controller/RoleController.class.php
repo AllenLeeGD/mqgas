@@ -108,7 +108,7 @@ class RoleController extends Controller {
 	}
 
 	public function saveUserSetting(){
-		$obj = getObjFromPost(array("name","realname","mobile","email","password","worknumber","role"));
+		$obj = getObjFromPost(array("name","realname","mobile","email","password","worknumber","role","did"));
 		$obj['pid'] = uniqid();
 		$obj['isadmin'] = 0;
 		$obj['password'] = md5($obj['password']);
@@ -119,7 +119,7 @@ class RoleController extends Controller {
 	}
 	
 	public function editUserSetting(){
-		$obj = getObjFromPost(array("pid","name","realname","mobile","email","worknumber"));
+		$obj = getObjFromPost(array("pid","name","realname","mobile","email","worknumber","did"));
 		$dao = M("Userinfo");
 		$pid = $obj['pid'];
 		$dao->where("pid='$pid'")->save($obj);

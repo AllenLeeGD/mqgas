@@ -49,8 +49,9 @@ class PayNotifyCallBack extends WxPayNotify
 			return false;
 		}else{
 			$ch = curl_init();
+			$orderid=explode("_",$data["out_trade_no"])[0];
 			 // 2. 设置选项，包括URL
-			 curl_setopt($ch,CURLOPT_URL,"http://newoceangas.cn/index.php/Mq/Mobileorder/qrpay/orderid/".$data["out_trade_no"]);
+			 curl_setopt($ch,CURLOPT_URL,"http://newoceangas.cn/index.php/Mq/Mobileorder/qrpay/orderid/".$orderid);
 			 curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
 			 curl_setopt($ch,CURLOPT_HEADER,0);
 			 // 3. 执行并获取HTML文档内容

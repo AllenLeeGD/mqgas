@@ -75,17 +75,22 @@
 								<div class="portlet-body">
 									<ul class="nav nav-tabs nav-tabs-lg">
 										<li id="zan_tab" class="active">
-											<a href="#tab_2" data-toggle="tab">
+											<a href="#zan_tab" data-toggle="tab">
 												暂存
 											</a>
 										</li>
 										<li id="fen_tab">
-											<a href="#tab_2" data-toggle="tab">
+											<a href="#fen_tab" data-toggle="tab">
 												待分派片区
 											</a>
 										</li>
+										<li id="pei_tab">
+											<a href="#pei_tab" data-toggle="tab">
+												待分配配送
+											</a>
+										</li>
 										<li id="complete_tab">
-											<a href="#tab_7" data-toggle="tab">
+											<a href="#complete_tab" data-toggle="tab">
 												其他状态
 											</a>
 										</li>
@@ -191,7 +196,54 @@
 				<!-- /.modal-dialog -->
 			</div>
 			
-			
+			<div class="modal fade" id="do_pei" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="padding:10px 20px 10px 20px;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title green">分配</h4>
+						</div>
+						<div class="modal-body">
+							请选择配送人员或车辆
+							<br />
+							<span id="buyeraddress"></span>
+						</div>
+						<form id="form_app_pei" action="javascript:;" class="form-horizontal">
+							<div class="form-body" style="padding:16px 26px 16px 26px;">
+								<div class="form-group">
+									<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+									<label class="control-label col-md-4">送气工 <span class="required"> </span> </label>
+									<div class="col-md-8">
+										<select id="songqiid" name="songqiid" v-model="sendobj.songqiid" class="form-control" >																
+											<option v-for="option in songqiids" :value="option.sid" v-text="option.sname" >  																																    	   </option>
+										</select>
+										<span class="help-block">  </span>
+									</div>
+								</div>
+								<div class="form-group">
+									<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+									<label class="control-label col-md-4">车辆 <span class="required"> </span> </label>
+									<div class="col-md-8">
+										<select id="carid" name="carid" v-model="sendobj.carid" class="form-control input-large">																
+											<option v-for="option in carids" :value="option.carid" v-text="option.carnumber" >  																																    	   </option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="btn default" data-dismiss="modal">
+							取消
+							</button>
+							<button id="confirm_send_btn" type="button" class="btn green" onclick="doPei()">
+							确认
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
 			
 			<div class="modal fade" id="do_cancle" tabindex="-1" role="dialog" aria-hidden="true">
 				<div class="modal-dialog">

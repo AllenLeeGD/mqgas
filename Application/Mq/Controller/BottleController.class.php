@@ -1051,8 +1051,6 @@ j.orderid = d.orderid left join department as dep on dep.pkid = j.mid left join 
 						->setCellValue('AB'.$rowcount,$_item['remark'])
 						->setCellValue('AC'.$rowcount,"1")
 						->setCellValue('AD'.$rowcount,"普通销售");
-						
-						
 			if(strrpos($_item["productname"],"无臭")!==false){
 				$objPHPExcel->getActiveSheet()->setCellValue('M'.$rowcount,"2");
 				$objPHPExcel->getActiveSheet()->setCellValue('N'.$rowcount,"液化气油气(无臭)");

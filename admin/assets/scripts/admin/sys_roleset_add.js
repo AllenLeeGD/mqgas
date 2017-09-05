@@ -47,7 +47,20 @@ function saveData() {
 }
 var send_obj = {};
 var send_vue;
-
+function loaddepartment() {
+	var util = new Util();	
+	var url = "/Mq/Daily/loaddepartment";
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue.$data.departments = data;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			
+		}
+	);
+	
+}
 function loadData() {
 	var util = new Util();
 	var roletype = util.getParam("roletype");
@@ -94,6 +107,11 @@ function loadData() {
 	send_obj.worknumber="";
 	send_obj.email="";
 	send_obj.password="";
+	send_vue = new Vue({
+		el:"#form_app",
+		data:{sendobj:send_obj,departments:[]}
+	});
+	loaddepartment();
 }
 
 $(document).ready(function() {
@@ -101,8 +119,5 @@ $(document).ready(function() {
 	$("#btnSave").bind('click', function() {
 		saveData();
 	});
-	send_vue = new Vue({
-		el:"#form_app",
-		data:send_obj
-	});
+	
 });

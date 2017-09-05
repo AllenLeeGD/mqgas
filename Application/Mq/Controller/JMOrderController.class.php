@@ -29,6 +29,16 @@ class JMOrderController extends Controller {
 			$query_sql = $query_sql . " and o.buyermobile LIKE '%$mobile_search%'";
 			$countquery_sql = $countquery_sql . " and o.buyermobile LIKE '%$mobile_search%'";
 		}
+		//如果登录用户角色是门店营业员，则只显示本门店的订单
+		$loginuserid = session("userid");
+		$user_dao = M("Userinfo");
+		$checkuser = $user_dao->where("pid='$loginuserid'")->find();
+		if($checkuser['role']==8){
+			$mid = $checkuser['did'];
+			$query_sql = $query_sql . " and d.mid = '$mid'";
+			$countquery_sql = $countquery_sql . " and d.mid = '$mid'";
+		}
+		
 		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
 		$iDisplayStart = intval($_REQUEST['iDisplayStart']);		
 		if ($status == 0) {//暂存
@@ -76,6 +86,7 @@ class JMOrderController extends Controller {
 			$btnShou = "<div class=\"margin-top-10\"><a class='btn btn-xs yellow default'  data-toggle='modal' onclick=\"openShou('".$result[$i]['pkid']."')\"><i class='fa fa-ticket'></i> &nbsp;收款</a></div>";
 			$btnCun = "<div class=\"margin-top-10\"><a class='btn btn-xs green default'  data-toggle='modal' onclick=\"openCun('".$result[$i]['pkid']."')\"><i class='fa fa-suitcase'></i> &nbsp;存款</a></div>";
 			$btnHe = "<div class=\"margin-top-10\"><a class='btn btn-xs green default'  data-toggle='modal' onclick=\"openHe('".$result[$i]['pkid']."')\"><i class='fa fa-suitcase'></i> &nbsp;核款</a></div>";
+			$btnJie = "<div class=\"margin-top-10\"><a class='btn btn-xs blue default'  data-toggle='modal' onclick=\"openJie('".$result[$i]['pkid']."')\"><i class='fa fa-suitcase'></i> &nbsp;月结</a></div>";
 			$showBtn = "";
 			if($status==0){
 				$showBtn = $btnEdit.$btnSend.$btnCancle;
@@ -86,7 +97,7 @@ class JMOrderController extends Controller {
 			}else if($status==3){
 				$showBtn = $btnPei;
 			}else if($status==4){
-				$showBtn = $btnShou;
+				$showBtn = $btnShou.$btnJie;
 			}else if($status==5){
 				$showBtn = $btnCun;
 			}else if($status==6){
@@ -224,6 +235,22 @@ class JMOrderController extends Controller {
 		$data_jm['shouoptid'] = session("userid");
 		$data_jm['shouoptname'] = session("name");
 		$data_jm['shounumber'] = $obj["shounumber"];
+		$dao->where("pkid='$bid'")->save($data);
+		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		echo "yes";
+	}
+	
+	/**
+	 * 订单月结.
+	 * @bid 订单ID
+	 */
+	public function jie($bid){
+		$dao = M("Ordermain");
+		$dao_jm = M("Orderjm");
+		$data['jmstatus'] = 7;
+		$data_jm['shoutime'] = time();
+		$data_jm['shouoptid'] = session("userid");
+		$data_jm['shouoptname'] = session("name");
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
 		echo "yes";

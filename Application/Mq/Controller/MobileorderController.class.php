@@ -287,6 +287,7 @@ class MobileorderController extends Controller {
 	public function qrpay($orderid){
 		$dao = M("Ordermain");
 		$data['jmstatus'] = 5;//流程直接到"门店已存款"
+		$data['paytype'] = 0;//订单改为微信支付
 		$dao->where("pkid='$orderid'")->save($data);
 		
 		$dao_jm=M("Orderjm");

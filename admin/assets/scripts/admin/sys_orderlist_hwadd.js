@@ -384,6 +384,20 @@ function saveData(istatus) {
 	var memberid = $("#modelparam").data("pkid");
 	if(obj != false) {
 		util.showLoading();
+		
+		util.postUrl(
+			"/Mq/Order/checkUserOrder/memberid/"+memberid,
+			function(data, status) { //如果调用php成功  
+				if(data != "yes") {
+					util.errorMsg('警告:客户从未订购过'+data);
+				}
+			},
+			param,
+			function(XMLHttpRequest, textStatus, errorThrown) {
+				util.errorMsg('内部服务器错误');
+			}
+		);
+		
 		var url = "/Mq/Order/saveOrder/memberid/"+memberid+"/status/"+istatus;
 		util.postUrl(
 			url,
@@ -394,7 +408,7 @@ function saveData(istatus) {
 					util.successMsg('操作成功');
 					setTimeout(function() {
 						document.location.href="";
-					}, 1000);
+					}, 3000);
 				} else {
 					$("#"+btn).button("reset");
 					util.hideLoading();

@@ -7,6 +7,10 @@ function openShou(pkid) {
 	$("#view_data").data("pkid", pkid);
 	$("#do_shou").modal('show');
 }
+function openJie(pkid) {
+	$("#view_data").data("pkid", pkid);
+	$("#do_jie").modal('show');
+}
 function loadCars(did){
 	var util = new Util();	
 	var url = "/Mq/JMOrder/loadCars/did/"+did;
@@ -63,6 +67,27 @@ function doShou() {
 			util.hideLoading();
 		},
 		objdata,
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			util.errorMsg('内部服务器错误');
+			util.hideLoading();
+		});
+
+}
+
+function doJie() {
+	var pkid = $("#view_data").data("pkid");
+	var util = new Util();
+	util.showLoading();
+	util.postUrl('/Mq/JMOrder/jie/bid/' + pkid, function(data, status) {
+			if(data == "yes") {
+				util.successMsg('操作成功');
+				$("#do_jie").modal('hide');
+			} else {
+				util.errorMsg('操作失败');
+			}
+			ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/4", 0);
+			util.hideLoading();
+		},
 		function(XMLHttpRequest, textStatus, errorThrown) {
 			util.errorMsg('内部服务器错误');
 			util.hideLoading();

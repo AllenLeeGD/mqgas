@@ -5,7 +5,20 @@ function bulidData() {
 	}
 	return true;
 }
-
+function loaddepartment() {
+	var util = new Util();	
+	var url = "/Mq/Daily/loaddepartment";
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue.$data.departments = data;
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			
+		}
+	);
+	
+}
 function saveData() {
 	var util = new Util();
 	$("#btnSave").button('loading');
@@ -57,7 +70,7 @@ function load(init) {
 				if(init) {
 					send_vue = new Vue({
 						el: "#form_app",
-						data: send_obj
+						data: {sendobj:send_obj,departments:[]}
 					});
 				}
 				if(data.role == 2) {
@@ -88,6 +101,7 @@ function load(init) {
 					$("#b_title").html("车队负责人");
 					$("#s_title").html("车队负责人");
 				}
+				loaddepartment();
 			} else {
 				util.errorMsg('加载失败');
 			}

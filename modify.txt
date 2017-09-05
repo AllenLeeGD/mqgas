@@ -151,3 +151,5 @@
 150.sys_sell_analyse.js
 151.sys_sellmoney_analyse.php
 152.sys_sellmoney_analyse.js
+153.sys_mdxs_analyse.php
+154.sys_mdxs_analyse.js
