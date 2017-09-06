@@ -32,6 +32,16 @@ class PriceController extends Controller {
 			$query_sql = $query_sql . " and m.membertype = $membertype";
 			$countquery_sql = $countquery_sql . " and m.membertype = $membertype";
 		}
+		
+		//业务员登录，只显示自己的客户
+		$loginuserid = session("userid");
+		$userdao = M("Userinfo");
+		$checkuser = $userdao->where("pid='$loginuserid'")->find();
+		if($checkuser['role']==2){
+			$query_sql = $query_sql . " and m.yewuid = '$loginuserid'";
+			$countquery_sql = $countquery_sql . " and m.yewuid = '$loginuserid'";
+		}
+		
 		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
 		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
 		
