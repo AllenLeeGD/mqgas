@@ -15,6 +15,26 @@
 				if(!in_array($filename,$menulist)){
 					echo "<script>window.location.href='admin_login.html';</script>";
 				}
+			}else if($admintype=='biz'){
+				$menulist = array('admin_home.php','sys_pricemain.php','cw_sk.php','sys_price.php','sys_price_add.php','sys_price_edit.php');
+				if(!in_array($filename,$menulist)){
+					echo "<script>window.location.href='admin_login.html';</script>";
+				}
+			}else if($admintype=='caiwu'){
+				$menulist = array('admin_home.php','sys_sell_analyse.php','sys_sellmoney_analyse.php','sys_mdxs_analyse.php','cw_sk.php','cw_php.php','cw_mtsj.php','cw_sk_add.php','cw_sk_edit.php','cw_php_add.php','cw_php_edit.php','cw_mtsj_add.php','cw_mtsj_edit.php');
+				if(!in_array($filename,$menulist)){
+					echo "<script>window.location.href='admin_login.html';</script>";
+				}
+			}else if($admintype=='piaofang'){
+				$menulist = array('admin_home.php','sys_orderlist_pf.php','sys_orderlist_hsp.php');
+				if(!in_array($filename,$menulist)){
+					echo "<script>window.location.href='admin_login.html';</script>";
+				}
+			}else if($admintype=='yingye'){
+				$menulist = array('admin_home.php','sys_orderlist_md.php','sys_carsdaily.php','sys_songqidaily.php','sys_checkrecall.php','sys_bottle_main.php','sys_bottle_analyse.php','sys_sell_analyse.php','sys_sellmoney_analyse.php','sys_mdxs_analyse.php','sys_carsdaily_add.php','sys_carsdaily_edit.php','sys_songqidaily_edit.php','sys_songqidaily_add.php','sys_bottle.php','sys_bottle_add.php','sys_bottle_edit.php','sys_check.php','sys_check_add.php','sys_check_edit.php','sys_recall.php','sys_recall_add.php','sys_recall_edit.php');
+				if(!in_array($filename,$menulist)){
+					echo "<script>window.location.href='admin_login.html';</script>";
+				}
 			}
 		}
 	}

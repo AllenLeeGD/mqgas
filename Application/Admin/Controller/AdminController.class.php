@@ -958,6 +958,8 @@ class AdminController extends Controller {
 					$_SESSION['admin_type'] = "caiwu";
 				}else if($data['role'] == 4){
 					$_SESSION['admin_type'] = "piaofang";
+				}else if($data['role'] == 8){
+					$_SESSION['admin_type'] = "yingye";
 				}
 				echo "yes";
 			}

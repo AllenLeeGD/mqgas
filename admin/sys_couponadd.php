@@ -28,9 +28,9 @@
 		<!-- BEGIN CONTAINER -->
 		<div class="page-container">
 			<?php
-			if ($_SESSION['admin_type'] == "admin") {
+//			if ($_SESSION['admin_type'] == "admin") {
 				include ("common/admin_menu.html");
-			}
+//			}
 			?>
 			<!-- BEGIN CONTENT -->
 			<div class="page-content-wrapper">

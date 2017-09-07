@@ -9,7 +9,7 @@ class MobileorderController extends Controller {
 	}
 
 	public function send(){
-		$obj = getObjFromPost(["clientid","clientname","userid","username","address","mobile","remark","ordercontent"]);
+		$obj = getObjFromPost(["clientid","clientname","userid","username","address","mobile","remark","startpoint","ordercontent"]);
 		$dao_main = M("Ordermain");
 		$dao_dgs = M("Orderdgs");
 		$dao_detail = M("Orderdetail");
@@ -27,11 +27,13 @@ class MobileorderController extends Controller {
 		$data_main['buyername'] = $obj['clientname'];
 		$data_main['buyermobile'] = $obj['mobile'];
 		$data_main['buyeraddress'] = $obj['address'];
-		$data_main['remark'] = $obj['remark'];		
+		$data_main['remark'] = $obj['remark'];
+				
 		$dao_main->add($data_main);
 		
 		$data_dgs['pkid'] = uniqid();
 		$data_dgs['orderid'] = $data_main['pkid'];
+		$data_dgs['startpoint'] = $obj['startpoint'];		
 		$dao_dgs->add($data_dgs);
 		
 		$ordercontent = json_decode(base64_decode($obj['ordercontent']));
@@ -158,9 +160,8 @@ class MobileorderController extends Controller {
 	
 	function findcheduiorder(){
 		$dao_main = M("Ordermain");
-		$dao_dgs = M("Orderdgs");
-		$dao_dgs = M("Orderdetail");
-		$datalist = $dao_main->where("(dgsstatus=0 or hspstatus=0) and (status=-9 or status=-8)")->select();
+		$datalist = $dao_main->alias("m")->join("orderdgs as d on d.orderid = m.pkid","LEFT")
+		->where("(dgsstatus=0 or hspstatus=0) and (status=-9 or status=-8)")->field("m.*,d.startpoint")->select();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
@@ -169,6 +170,11 @@ class MobileorderController extends Controller {
 	function findcheduiorderdetail($pkid){
 		$dao_main = M("Ordermain");
 		$datalist = $dao_main->where("pkid = '$pkid'")->find();
+		if($datalist['status']==-9){
+			$daodgs = M("Orderdgs");
+			$dgs = $daodgs->where("orderid='$pkid'")->find();
+			$datalist['startpoint']=$dgs["startpoint"];
+		}
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
