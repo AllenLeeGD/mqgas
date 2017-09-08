@@ -161,7 +161,7 @@ class MobileorderController extends Controller {
 	function findcheduiorder(){
 		$dao_main = M("Ordermain");
 		$datalist = $dao_main->alias("m")->join("orderdgs as d on d.orderid = m.pkid","LEFT")
-		->where("(dgsstatus=0 or hspstatus=0) and (status=-9 or status=-8)")->field("m.*,d.startpoint")->select();
+		->where("(dgsstatus=0 or hspstatus=0) and (status=-9 or status=-8)")->field("m.*,d.startpoint")->order("buytime desc")->select();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
@@ -217,7 +217,7 @@ class MobileorderController extends Controller {
 		}else{
 			$query = " and (dgsstatus=0 or dgsstatus=1 or dgsstatus=2 or dgsstatus=4 or hspstatus=0 or hspstatus=1 or hspstatus=3)";
 		}
-		$datalist = $dao_main->where("(status=-9 or status=-8)".$query." and userid='".$userid."'")->select();
+		$datalist = $dao_main->where("(status=-9 or status=-8)".$query." and userid='".$userid."'")->order("buytime desc")->select();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
