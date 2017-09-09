@@ -284,7 +284,7 @@ class MobileorderController extends Controller {
 	
 	function findjmorderdetail($pkid){
 		$dao_main = M("Ordermain");
-		$datalist = $dao_main->join("orderjm as j on j.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid = '$pkid'")->find();
+		$datalist = $dao_main->join("orderjm as j on j.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid = '$pkid'")->field("ordermain.*,j.mname,j.pname,j.fenpaitime,j.songqiname,j.carnumber,j.setpeopleopttime")->find();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
@@ -303,6 +303,21 @@ class MobileorderController extends Controller {
 		$data_jm['cunoptname'] = "微信扫码支付";
 		$data_jm['cunmsg'] = "微信扫码支付";
 		$dao_jm->where("orderid='$orderid'")->save($data_jm);
+		
+	}
+
+	//客户扫描二维码支付回调
+	public function checkwxorder($orderid){
+		$dao = M("Ordermain");
+		$data['jmstatus'] = 5;//流程直接到"门店已存款"
+		$data['paytype'] = 0;//订单改为微信支付
+		$check = $dao->where("pkid='$orderid'")->find();
+		
+		if($check['jmstatus'] == 5){
+			echo "yes";
+		}else{
+			echo "no";
+		}
 		
 	}
 
