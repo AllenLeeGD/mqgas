@@ -151,8 +151,13 @@
 			<script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 			<script src="assets/scripts/core/datatable.js"></script> 
 			<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+			<script src="assets/scripts/common/qnviccub.js"></script>
+			<script src="assets/scripts/common/qnvfunc.js"></script>
+			<script src="assets/scripts/common/json2.js"></script>
+			<script src="assets/scripts/common/deviceapi.js"></script>
 			<script src="assets/scripts/admin/sys_orderlist_hwmain.js"></script>
-			<script>jQuery(document).ready(function() {
+			<script>
+				jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {
 		var href = $(this).attr('href');
 		$.fancybox({

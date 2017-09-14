@@ -446,7 +446,7 @@ function loadData() {
 		"/Mq/Order/findMemberByMobile/mobile/"+mobile+"/memberid/"+memberid,
 		function(data, status) {
 			if(data=="multi"){//电话对应多个用户，需要选择
-				
+				util.errorMsg('此电话有多个用户账号');
 			}else{
 				Vue.set(send_vue.sendobj,"memberid",data.pkid);
 				Vue.set(send_vue.sendobj,"membername",data.realname);
@@ -454,6 +454,13 @@ function loadData() {
 				Vue.set(send_vue.sendobj,"address",data.address);
 				ProviderOrder.init("../index.php/Mq/Order/findOrdersByMemberid/memberid/"+data.pkid, 0);
 				$("#modelparam").data("pkid",data.pkid);
+				
+				util.postUrl(
+					"/Mq/Member/findMemberPriceinfo/memberid/"+data.pkid,
+					function(rdata, rstatus) {
+						$("#priceinfo").val(rdata);
+					}
+				);
 			}
 		}
 	);

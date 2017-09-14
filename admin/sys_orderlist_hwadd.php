@@ -157,6 +157,15 @@
 														</div>
 														<div id="vipdiscountgroup" class="form-group">
 															<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+															<label class="control-label col-md-2">价格信息 <span class="required"> </span> </label>
+															<div class="col-md-8">
+																<textarea id="priceinfo" rows="10" class="form-control input-large" readonly="readonly">
+																</textarea>
+																<span class="help-block"></span>
+															</div>
+														</div>
+														<div id="vipdiscountgroup" class="form-group">
+															<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
 															<label class="control-label col-md-2">备注 <span class="required"> </span> </label>
 															<div class="col-md-8">
 																<textarea id="remark" v-model="sendobj.remark" rows="10" class="form-control input-large">

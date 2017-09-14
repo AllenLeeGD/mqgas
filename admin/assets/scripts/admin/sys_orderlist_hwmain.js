@@ -1,4 +1,14 @@
-
+$(window).unload(function(){ 
+	TV_Disable(); 
+}); 	
+//离开页面
+$(window).bind('beforeunload',function(){
+	TV_Disable();
+});
+function AppendStatus(szStatus)
+{
+	
+}
 
 function openSet(pid,pname,mobile) {
 	document.location.href = "sys_orderlist_hwadd.php?tag=productadmin&item=4&memberid="+pid+"&membername="+base64_encode(pname)+"&mobile="+mobile;
@@ -143,8 +153,21 @@ var ProviderOrder = function() {
 
 }();
 var readed = false;
-
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	//var vValueArray=qnviccub.QNV_Event(0,2,0,"","",1024);
+	if(uEventType == -1)
+		return;
+	var vValue=" type="+uEventType+" Handle="+uHandle+" Result="+uResult+" szdata="+szdata;
+	if(uEventType==BriEvent_GetCallID){
+		if(!util.isNullStr(szdata) && szdata.length>=4){
+			document.location.href = "sys_orderlist_hwadd.php?tag=productadmin&item=4&mobile="+szdata;
+		}
+	}
+}
 $(document).ready(function() {
+	TV_Initialize();
+	getEvent(T_GetEvent);
 	$('#datatable_orders').on('draw.dt', function() {
 	
 	});

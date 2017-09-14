@@ -431,7 +431,12 @@ function loadData() {
 					sendobj: send_obj
 				}
 			});
-			
+			util.postUrl(
+				"/Mq/Member/findMemberPriceinfo/memberid/"+data.buyer,
+				function(rdata, rstatus) {
+					$("#priceinfo").val(rdata);
+				}
+			);
 			ProviderOrder.init("../index.php/Mq/Order/findOrdersByMemberid/memberid/"+data.buyer, 0);
 			$("#modelparam").data("pkid",data.buyer);
 			for(var i = 0;i<data.details.length;i++){

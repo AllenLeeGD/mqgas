@@ -314,4 +314,20 @@ class MemberController extends Controller {
         }
         echo "done";
 	}
+
+	public function findMemberPriceinfo($memberid){
+		$dao = M("Price");
+		$result = $dao->where("memberid='$memberid'")->select();
+		$varstring="";
+		for($i=0;$i<count($result);$i++){
+			$item = $result[$i];
+			if($item['type']==0){
+				$typestr="每瓶";
+			}else{
+				$typestr="每吨";
+			}
+			$varstring=$varstring.$item['name']." ".$typestr." ".$item['price']."\n";
+		}
+		echo $varstring;
+	}
 }

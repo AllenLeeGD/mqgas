@@ -1,5 +1,5 @@
-//var edu_host = "http://localhost:8030";
-var edu_host = "http://newoceangas.cn";
+var edu_host = "http://192.168.0.104:8030";
+//var edu_host = "http://newoceangas.cn";
 Date.prototype.Format = function(fmt) { //author: meizz 
 		var o = {
 			"M+": this.getMonth() + 1, //月份 
