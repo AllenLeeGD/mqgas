@@ -66,7 +66,12 @@ class DgsorderController extends Controller {
 				$showBtn = $btnIn;
 			}
 			$date_format = date("Y-m-d H:i:s", $result[$i]['buytime']);
-			$recardate_format = date("Y-m-d H:i:s", $result[$i]['recardate']);
+			if(!empty($result[$i]['recardate'])){
+				$recardate_format = date("Y-m-d H:i:s", $result[$i]['recardate']);	
+			}else{
+				$recardate_format="";
+			}
+			
 			$records["aaData"][] = array("单号: " . $result[$i]['pkid'] . "<br/>时间: " . $date_format,  "<span class='font-highlight-custom'>" . $result[$i]['buyername'] . "</span>", $result[$i]['recarnumber'], $recardate_format, $result[$i]['recaroptname'], "<div><a class='btn btn-xs default btn-editable' data-toggle='modal' onclick=\"openOrderDetail('" . $result[$i]['pkid'] . "')\">
 			<i class='fa fa-search-plus'></i> 详情</a></div>" .$showBtn);
 		}

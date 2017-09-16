@@ -209,7 +209,7 @@ function openOrderDetail(pkid) {
 					$('#l_heoptname').html("<strong>核款操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.heoptname)?"":objdata.heoptname));
 					$('#l_hemsg').html("<strong>核款信息:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.hemsg)?"":objdata.hemsg));
 					
-					
+					$('#l_arrivetime').html("<strong>送达时间:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.arrivetime)?"":objdata.arrivetime));
 					
 					var itemlist = objdata.itemlist;
 					if(util.isNullStr(itemlist) || itemlist.length==0){//微信订单,没有orderdetail
@@ -483,6 +483,16 @@ $(document).ready(function() {
 	$("#pei_tab").bind('click', function() {
 		document.title="居民小工商订单";
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/3", 0);
+	});
+	
+	$("#sending_tab").bind('click', function() {
+		document.title="居民小工商订单";
+		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/7", 0);
+	});
+	
+	$("#arrive_tab").bind('click', function() {
+		document.title="居民小工商订单";
+		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/8", 0);
 	});
 	//待备货的订单
 	$("#complete_tab").bind('click', function() {

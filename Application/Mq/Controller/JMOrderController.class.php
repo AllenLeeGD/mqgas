@@ -67,6 +67,12 @@ class JMOrderController extends Controller {
 		}if ($status == 6) {//待核款
 			$count_sql = "select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=5 $countquery_sql";
 			$condition_sql = "select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=5  $query_sql order by buytime desc,pkid limit $iDisplayStart,$iDisplayLength";
+		}if ($status == 7) {//配送中，给话务看
+			$count_sql = "select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=3 $countquery_sql";
+			$condition_sql = "select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=3 $query_sql order by buytime desc,pkid limit $iDisplayStart,$iDisplayLength";
+		}if ($status == 8) {//已送达，给话务看
+			$count_sql = "select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=8 $countquery_sql";
+			$condition_sql = "select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=8  $query_sql order by buytime desc,pkid limit $iDisplayStart,$iDisplayLength";
 		}
 		$resultcount = $query -> query($count_sql);
 		$result = $query -> query($condition_sql);
@@ -102,6 +108,10 @@ class JMOrderController extends Controller {
 				$showBtn = $btnCun;
 			}else if($status==6){
 				$showBtn = $btnHe;
+			}else if($status==7){
+				$showBtn = "$btnCancle";
+			}else if($status==8){
+				$showBtn = "$btnCancle";
 			}
 			$statusStr = getNewStatus($result[$i]['status'], $result[$i]['jmstatus'], $result[$i]['dgsstatus'], $result[$i]['hspstatus']);
 			$date_format = date("Y-m-d H:i:s", $result[$i]['buytime']);
@@ -296,7 +306,7 @@ class JMOrderController extends Controller {
 	
 	public function findProductOrderByPkid($pkid){
         $querymain = M('Ordermain');
-        $datamain = $querymain->join("orderjm as d on d.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid='$pkid'")->find();
+        $datamain = $querymain->join("orderjm as d on d.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid='$pkid'")->field("ordermain.*,d.*")->find();
         if(empty($datamain)!=1){
             if(isset($datamain['refundtime']) && $datamain['refundtime']>0){
                 $datamain['refundtime'] = date("Y-m-d H:i", $datamain['refundtime']);
@@ -309,6 +319,9 @@ class JMOrderController extends Controller {
             }
             if(isset($datamain['prerefundtime'])&& $datamain['prerefundtime']>0){
                 $datamain['prerefundtime'] = date("Y-m-d H:i", $datamain['prerefundtime']);
+            }
+            if(isset($datamain['arrivetime'])&& $datamain['arrivetime']>0){
+                $datamain['arrivetime'] = date("Y-m-d H:i", $datamain['arrivetime']);
             }
             $datamain['status'] = getNewStatus($datamain['status'],$datamain['jmstatus'],$datamain['dgsstatus'],$datamain['hspstatus']);
             $datamain['buytime'] = date("Y-m-d H:i", $datamain['buytime']);

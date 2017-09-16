@@ -89,6 +89,16 @@
 												待分配配送
 											</a>
 										</li>
+										<li id="sending_tab">
+											<a href="#sending_tab" data-toggle="tab">
+												配送中
+											</a>
+										</li>
+										<li id="arrive_tab">
+											<a href="#arrive_tab" data-toggle="tab">
+												已送达
+											</a>
+										</li>
 										<li id="complete_tab">
 											<a href="#complete_tab" data-toggle="tab">
 												其他状态

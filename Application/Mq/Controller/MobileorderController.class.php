@@ -284,7 +284,7 @@ class MobileorderController extends Controller {
 	
 	function findjmorderdetail($pkid){
 		$dao_main = M("Ordermain");
-		$datalist = $dao_main->join("orderjm as j on j.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid = '$pkid'")->field("ordermain.*,j.mname,j.pname,j.fenpaitime,j.songqiname,j.carnumber,j.setpeopleopttime")->find();
+		$datalist = $dao_main->join("orderjm as j on j.orderid = ordermain.pkid","LEFT")->join("userinfo as u on u.pid = j.songqiid","LEFT")->where("ordermain.pkid = '$pkid'")->field("ordermain.*,j.mname,j.pname,j.fenpaitime,j.songqiname,j.carnumber,j.setpeopleopttime,u.worknumber")->find();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
@@ -319,6 +319,15 @@ class MobileorderController extends Controller {
 			echo "no";
 		}
 		
+	}
+	
+	public function arrive($orderid){
+		$dao_main = M("Ordermain");
+		$dao_jm = M("Orderjm");
+		$data_main['jmstatus'] = 8;
+		$data_jm['arrivetime'] = time();
+		$dao_main->where("pkid='$orderid'")->save($data_main);
+		$dao_jm->where("orderid='$orderid'")->save($data_jm);
 	}
 
 }

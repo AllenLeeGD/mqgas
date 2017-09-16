@@ -239,6 +239,10 @@ function getNewStatus($status,$jmstatus,$dgsstatus,$hspstatus) {
 			return "门店已存款";
 		} else if ($jmstatus == 6) {
 			return "财务已核款";
+		} else if ($jmstatus == 7) {
+			return "月结客户已完成";
+		} else if ($jmstatus == 8) {
+			return "已送达客户";
 		}
 	} else if($status == -8){
 		if ($hspstatus == -1) {
