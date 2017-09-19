@@ -1,0 +1,714 @@
+[ 2017-09-18T11:31:09+08:00 ] ::1 /index.php/Mq/Order/findUsersCount
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000157s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000403s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000460s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `memberinfo` [ RunTime:0.0154s ]
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0125s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `memberinfo` LIMIT 1   [ RunTime:0.0144s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ordermain` LIMIT 1   [ RunTime:0.0111s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000431s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000481s ]
+
+[ 2017-09-18T11:31:16+08:00 ] ::1 /index.php/Mq/Member/findMember
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000162s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000195s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000217s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo where 1=1  [ RunTime:0.0089s ]
+SQL: select m.*,l.levelname from memberinfo as m left join level as l on m.level=l.pkid where 1=1  order by regtime desc limit 0,20 [ RunTime:0.0126s ]
+NOTIC: [8] Undefined variable: idno /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/MemberController.class.php 第 204 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000974s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001076s ]
+
+[ 2017-09-18T11:31:18+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000154s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000213s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0101s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0104s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000533s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000572s ]
+
+[ 2017-09-18T11:31:18+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000255s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000268s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000303s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0109s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000953s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001009s ]
+
+[ 2017-09-18T11:31:18+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000225s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000255s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000285s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0099s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000875s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000964s ]
+
+[ 2017-09-18T11:31:18+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000206s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000305s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000340s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0103s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0103s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000424s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000467s ]
+
+[ 2017-09-18T11:31:18+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000228s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000308s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000359s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0106s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0114s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000571s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000622s ]
+
+[ 2017-09-18T11:47:15+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000179s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000222s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000247s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0152s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0192s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000511s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000564s ]
+
+[ 2017-09-18T11:47:15+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000279s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000256s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000285s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0099s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000654s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000710s ]
+
+[ 2017-09-18T11:47:15+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000252s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000303s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000338s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0135s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0157s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000544s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000606s ]
+
+[ 2017-09-18T13:00:30+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000176s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000223s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000248s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.2017s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000524s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000563s ]
+
+[ 2017-09-18T13:00:31+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000201s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000249s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000279s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0500s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.3560s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000479s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000529s ]
+
+[ 2017-09-18T13:00:33+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000204s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000251s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000281s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.1014s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0660s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000603s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000663s ]
+
+[ 2017-09-18T14:20:22+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000257s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000298s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000337s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0113s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0095s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000644s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000671s ]
+
+[ 2017-09-18T14:20:22+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000255s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000367s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000407s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=3 or status=4 or status=5)  [ RunTime:0.0100s ]
+SQL: select * from ordermain where (status=3 or status=4 or status=5)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0109s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000755s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000790s ]
+
+[ 2017-09-18T14:20:24+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000224s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000297s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000330s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=3 or status=4 or status=5)  [ RunTime:0.0147s ]
+SQL: select * from ordermain where (status=3 or status=4 or status=5)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0117s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000471s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000514s ]
+
+[ 2017-09-18T14:20:24+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000214s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000393s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0121s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0101s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000403s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000431s ]
+
+[ 2017-09-18T14:20:35+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000273s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000363s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000401s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0108s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000778s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000827s ]
+
+[ 2017-09-18T14:20:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000249s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000320s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000355s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0111s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0114s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000630s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000720s ]
+
+[ 2017-09-18T14:20:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000246s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000655s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000713s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0085s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0101s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000609s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000659s ]
+
+[ 2017-09-18T14:21:35+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000279s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000371s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000415s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0112s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001133s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001180s ]
+
+[ 2017-09-18T14:21:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000215s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000270s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000300s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0109s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0123s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000674s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000726s ]
+
+[ 2017-09-18T14:21:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000326s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000456s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000516s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0119s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0299s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000651s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000735s ]
+
+[ 2017-09-18T14:22:35+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000198s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000399s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0136s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000432s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000467s ]
+
+[ 2017-09-18T14:22:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000229s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000308s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000338s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0116s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0180s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000435s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000469s ]
+
+[ 2017-09-18T14:22:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000292s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000426s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0098s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0106s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000562s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000607s ]
+
+[ 2017-09-18T14:23:35+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000298s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000429s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000481s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0100s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000398s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000431s ]
+
+[ 2017-09-18T14:23:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000217s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000311s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000343s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0129s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0118s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000548s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000594s ]
+
+[ 2017-09-18T14:23:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000324s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000448s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000507s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0121s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0123s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000600s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000651s ]
+
+[ 2017-09-18T14:24:35+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000206s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000403s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000441s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0144s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000353s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000383s ]
+
+[ 2017-09-18T14:24:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000186s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000281s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000312s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0214s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0116s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000621s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000670s ]
+
+[ 2017-09-18T14:24:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000305s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000577s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000664s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0175s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0109s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000347s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000372s ]
+
+[ 2017-09-18T14:25:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000391s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000324s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000362s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0088s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0103s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000533s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000572s ]
+
+[ 2017-09-18T14:25:35+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000178s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000397s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0098s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000645s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000696s ]
+
+[ 2017-09-18T14:25:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000168s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000365s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000421s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0132s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0215s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000405s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000492s ]
+
+[ 2017-09-18T14:26:35+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000178s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000228s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000252s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0102s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000310s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000334s ]
+
+[ 2017-09-18T14:26:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000150s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000272s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000302s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0119s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0148s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000415s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000440s ]
+
+[ 2017-09-18T14:26:35+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000260s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001253s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001324s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0129s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0126s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000291s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000316s ]
+
+[ 2017-09-18T14:27:36+08:00 ] ::1 /index.php/Mq/Order/countProductOrder/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000249s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000305s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000337s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) from ordermain where status=1 or status=2 or status=0 [ RunTime:0.0150s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000456s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000495s ]
+
+[ 2017-09-18T14:27:36+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000153s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000209s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000233s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0240s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0117s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000561s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000613s ]
+
+[ 2017-09-18T14:27:36+08:00 ] ::1 /index.php/Mq/Order/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000217s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000218s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where (status=0 or status=1 or status=2 or status=7)  [ RunTime:0.0298s ]
+SQL: select * from ordermain  where (status=0 or status=1 or status=2 or status=7)  order by buytime desc,pkid limit 0,20 [ RunTime:0.0173s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000545s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000597s ]
+
+[ 2017-09-18T14:28:09+08:00 ] ::1 /index.php/Mq/Order/findhwmain
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000148s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000224s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000253s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  order by m.regtime desc [ RunTime:0.0137s ]
+SQL: select m.pkid,m.realname,m.mobile,m.membertype from memberinfo as m where 1=1  order by regtime desc limit 0,20  [ RunTime:0.0130s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 327 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 327 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000428s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000456s ]
+
+[ 2017-09-18T14:28:11+08:00 ] ::1 /index.php/Mq/Order/findMemberByMobile/mobile//memberid/59be750af066d
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000216s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000324s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000358s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+ERR: 参数错误或者未定义:memberid
+
+[ 2017-09-18T14:28:16+08:00 ] ::1 /index.php/Mq/Order/findhwmain
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000314s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000338s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000372s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  order by m.regtime desc [ RunTime:0.0115s ]
+SQL: select m.pkid,m.realname,m.mobile,m.membertype from memberinfo as m where 1=1  order by regtime desc limit 0,20  [ RunTime:0.0105s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 327 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 327 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000330s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000362s ]
+
+[ 2017-09-18T14:28:19+08:00 ] ::1 /index.php/Mq/Order/findMemberByMobile/mobile//memberid/59be750af066d
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000228s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000337s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000373s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+ERR: 参数错误或者未定义:memberid
+
+[ 2017-09-18T14:28:27+08:00 ] ::1 /index.php/Mq/Order/findMemberByMobile/mobile//memberid/59be750af066d
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000272s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000301s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000333s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+ERR: 参数错误或者未定义:memberid
+
+[ 2017-09-18T14:30:07+08:00 ] ::1 /index.php/Mq/Order/findhwmain
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000212s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000278s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000308s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  order by m.regtime desc [ RunTime:0.0118s ]
+SQL: select m.pkid,m.realname,m.mobile,m.membertype from memberinfo as m where 1=1  order by regtime desc limit 0,20  [ RunTime:0.0165s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 327 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 327 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000286s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000318s ]
+
+[ 2017-09-18T14:30:09+08:00 ] ::1 /index.php/Mq/Order/findMemberByMobile/mobile/15916206344/memberid/59bbc3411867b
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000164s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000216s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000240s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `memberinfo` [ RunTime:0.0537s ]
+SQL: SELECT * FROM `memberinfo` WHERE ( pkid = '59bbc3411867b' ) LIMIT 1   [ RunTime:0.0112s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000575s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000633s ]
+
+[ 2017-09-18T14:30:09+08:00 ] ::1 /index.php/Mq/Order/findOrdersByMemberid/memberid/59bbc3411867b
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000147s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000184s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000206s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where type=0 and buyer='59bbc3411867b'  [ RunTime:0.0187s ]
+SQL: select * from ordermain where type=0 and buyer='59bbc3411867b'  order by buytime desc,pkid limit 0,10 [ RunTime:0.0203s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 406 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 406 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000886s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000950s ]
+
+[ 2017-09-18T14:30:09+08:00 ] ::1 /index.php/Mq/Member/findMemberPriceinfo/memberid/59bbc3411867b
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000204s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000214s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000242s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `price` [ RunTime:0.0182s ]
+SQL: SELECT * FROM `price` WHERE ( memberid='59bbc3411867b' )  [ RunTime:0.0142s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000677s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000726s ]
+

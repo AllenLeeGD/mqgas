@@ -210,12 +210,15 @@ class MobileorderController extends Controller {
 		echo "yes";
 	}
 	
-	function findyewuorder($userid,$status){
+	function findyewuorder($userid,$status,$searchdate){
 		$dao_main = M("Ordermain");
 		if($status=="my"){
 			$query = " and (dgsstatus=3 or hspstatus=2)";
 		}else{
 			$query = " and (dgsstatus=0 or dgsstatus=1 or dgsstatus=2 or dgsstatus=4 or hspstatus=0 or hspstatus=1 or hspstatus=3)";
+		}
+		if($searchdate != "empty"){
+			$query = $query . " and from_unixtime(buytime,'%Y-%m-%d') = '$searchdate'"; 
 		}
 		$datalist = $dao_main->where("(status=-9 or status=-8)".$query." and userid='".$userid."'")->order("buytime desc")->select();
 		header('Content-type: text/json');
@@ -265,12 +268,15 @@ class MobileorderController extends Controller {
 	}
 	
 	
-	function findpeisong($userid,$status){
+	function findpeisong($userid,$status,$searchdate){
 		$dao_main = M("Ordermain");
 		if($status=="my"){
 			$query = " and jmstatus=3";
 		}else{
 			$query = " and (jmstatus=4 or jmstatus=5 or jmstatus=6)"; 
+		}
+		if($searchdate != "empty"){
+			$query = $query . " and from_unixtime(o.buytime,'%Y-%m-%d') = '$searchdate'"; 
 		}
 		$datalist = $dao_main->alias("o")->join("orderjm as j on j.orderid = o.pkid","LEFT")
 		->join("carsdaily as c on j.carid = c.carid",'LEFT')
@@ -328,6 +334,74 @@ class MobileorderController extends Controller {
 		$data_jm['arrivetime'] = time();
 		$dao_main->where("pkid='$orderid'")->save($data_main);
 		$dao_jm->where("orderid='$orderid'")->save($data_jm);
+	}
+	
+	
+	public function sendJm(){
+		$obj = getObjFromPost(["clientid","clientname","userid","username","address","mobile","remark","startpoint","ordercontent"]);
+		$dao_main = M("Ordermain");
+		$dao_jm = M("Orderjm");
+		$dao_detail = M("Orderdetail");
+		
+		$data_main['pkid'] = uniqid();
+		$data_main['buyer'] = $obj['clientid'];
+		$data_main['buytime'] = time();
+		$data_main['ivtime'] = time();
+		$data_main['userid'] = $obj['userid'];
+		$data_main['username'] = $obj['username'];
+		$data_main['type'] = 0;
+		$data_main['status'] = -7;
+		
+		$data_main['jmstatus'] = 1;
+		$data_main['buyername'] = $obj['clientname'];
+		$data_main['buyermobile'] = $obj['mobile'];
+		$data_main['buyeraddress'] = $obj['address'];
+		$data_main['remark'] = $obj['remark'];
+				
+		
+		
+		$data_jm['pkid'] = uniqid();
+		$data_jm['orderid'] = $data_main['pkid'];
+		$data_jm['optorderid'] = $obj['userid'];
+		$data_jm['optordername'] =  $obj['username'];
+		$dao_jm->add($data_jm);
+		
+		$ordercontent = json_decode(base64_decode($obj['ordercontent']));
+		$totalcount=0;
+		$totalmoney=0;
+		for($i=0;$i<count($ordercontent);$i++){
+			$item=$ordercontent[$i];
+			$data_detail["pkid"]=uniqid();
+			$data_detail["orderid"]=$data_main['pkid'];
+			$data_detail["pid"]=$item->pid;
+			$data_detail["pname"]=$item->pname;
+			$data_detail["jid"]=$item->jid;
+			$data_detail["jname"]=$item->jname;
+			$data_detail["rid"]=$item->rid;
+			$data_detail["rname"]=$item->rname;
+			$data_detail["fid"]=$item->fid;
+			$data_detail["fname"]=$item->fname;
+			$data_detail["qid"]=$item->qid;
+			$data_detail["qname"]=$item->qname;
+			$data_detail["productcount"]=$item->numbers;			
+			$data_detail["productname"]=$item->bottle;
+			$data_detail["productweight"]=$item->weight;
+			if(!empty($item->numbers)){
+				$data_detail["bottleprice"]=$item->price;
+				$data_detail["weightprice"]=0;	
+			}
+			if(!empty($item->weight)){
+				$data_detail["weightprice"]=$item->price;	
+				$data_detail["bottleprice"]=0;
+			}
+			$totalcount = $totalcount+intval($data_detail["productcount"]);
+			$totalmoney= $totalmoney + (intval($data_detail["productcount"])*strval($data_detail["bottleprice"]));
+			$dao_detail->add($data_detail);
+		}
+		$data_main['price']=$totalmoney;
+		$data_main['buycount']=$totalcount;
+		$dao_main->add($data_main);
+		echo "yes";
 	}
 
 }

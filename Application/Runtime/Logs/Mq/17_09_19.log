@@ -1,0 +1,1049 @@
+[ 2017-09-19T10:07:15+08:00 ] ::1 /index.php/Mq/Role/loaddepartment
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000471s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000514s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `department` [ RunTime:0.0114s ]
+SQL: SELECT * FROM `department` WHERE ( flag = 1 )  [ RunTime:0.0099s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000410s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000457s ]
+
+[ 2017-09-19T10:07:16+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000144s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000179s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000200s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0127s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0170s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0177s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000447s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000490s ]
+
+[ 2017-09-19T10:07:17+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000149s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000243s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000281s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0109s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0108s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0121s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0119s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000331s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000366s ]
+
+[ 2017-09-19T10:07:17+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000309s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001129s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0141s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0143s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0183s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0189s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000585s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000631s ]
+
+[ 2017-09-19T10:33:22+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000494s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000739s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001423s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0125s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0103s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0154s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0164s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000947s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000992s ]
+
+[ 2017-09-19T10:33:22+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000825s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001025s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001092s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0161s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0159s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0149s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0161s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000682s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000738s ]
+
+[ 2017-09-19T10:33:23+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000189s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000222s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000249s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0100s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0100s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0103s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000980s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001038s ]
+
+[ 2017-09-19T10:33:23+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000146s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000179s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000199s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0123s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0110s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0130s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0109s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000427s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000469s ]
+
+[ 2017-09-19T10:49:41+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000311s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000372s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000415s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0136s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0153s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0185s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0192s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000593s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000640s ]
+
+[ 2017-09-19T10:49:41+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000470s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000404s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0100s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0102s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0102s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000532s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000576s ]
+
+[ 2017-09-19T10:49:42+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000185s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000243s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000273s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0128s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0130s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0124s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0132s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000476s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000514s ]
+
+[ 2017-09-19T10:49:42+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000289s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000314s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000348s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0109s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0096s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0095s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0103s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000456s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000505s ]
+
+[ 2017-09-19T10:49:43+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000242s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000377s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000422s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0134s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0138s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0123s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0135s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000424s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000459s ]
+
+[ 2017-09-19T10:49:43+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000173s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000466s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000505s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0135s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0136s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0121s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0138s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000505s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000558s ]
+
+[ 2017-09-19T10:56:17+08:00 ] ::1 /index.php/Mq/Role/loaddepartment
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000167s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000210s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000233s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `department` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `department` WHERE ( flag = 1 )  [ RunTime:0.0106s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000418s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000551s ]
+
+[ 2017-09-19T10:56:18+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000070s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001140s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001754s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001986s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0149s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0154s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0195s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0215s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000498s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000551s ]
+
+[ 2017-09-19T10:56:19+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000170s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000211s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000236s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0146s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0144s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0137s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0146s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000416s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000451s ]
+
+[ 2017-09-19T10:56:20+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000224s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000278s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000308s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0140s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0131s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0130s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0145s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000588s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000642s ]
+
+[ 2017-09-19T10:56:49+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000182s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000227s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000257s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0100s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0144s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0159s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000474s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000523s ]
+
+[ 2017-09-19T10:56:49+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001894s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000405s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0135s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0120s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0128s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0133s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000879s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000930s ]
+
+[ 2017-09-19T10:56:53+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByPkid/pkid/59c0876dc016f
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000303s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000274s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000306s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0132s ]
+SQL: SELECT ordermain.*,d.* FROM `ordermain` LEFT JOIN orderjm as d on d.orderid = ordermain.pkid  WHERE ( ordermain.pkid='59c0876dc016f' ) LIMIT 1   [ RunTime:0.0194s ]
+SQL: select * from orderdetail where orderid='59c0876dc016f' [ RunTime:0.0124s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000476s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000524s ]
+
+[ 2017-09-19T10:57:10+08:00 ] ::1 /index.php/Mq/Daily/loadpianqu/did/dp15
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000484s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000545s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `departmentdetail` [ RunTime:0.0107s ]
+SQL: SELECT * FROM `departmentdetail` WHERE ( did = 'dp15' )  [ RunTime:0.0102s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000533s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000570s ]
+
+[ 2017-09-19T10:57:14+08:00 ] ::1 /index.php/Mq/Daily/loadpianqu/did/dp19
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000468s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000527s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `departmentdetail` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `departmentdetail` WHERE ( did = 'dp19' )  [ RunTime:0.0110s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000305s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000331s ]
+
+[ 2017-09-19T10:57:16+08:00 ] ::1 /index.php/Mq/JMOrder/dofen/bid/59c0876dc016f
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000268s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000348s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000384s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0149s ]
+SQL: SHOW COLUMNS FROM `orderjm` [ RunTime:0.0140s ]
+SQL: UPDATE `ordermain` SET `jmstatus`='2' WHERE ( pkid='59c0876dc016f' ) [ RunTime:0.0147s ]
+SQL: UPDATE `orderjm` SET `mid`='dp19',`mname`='湾仔沙店',`pid`='59670c02c5800',`pname`='人民医院片区',`fenpaiid`='uuid01',`fenpainame`='superadmin',`fenpaitime`='1505789836' WHERE ( orderid='59c0876dc016f' ) [ RunTime:0.0142s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000650s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000705s ]
+
+[ 2017-09-19T10:57:16+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000200s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000390s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0145s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0141s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0182s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0192s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000465s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000508s ]
+
+[ 2017-09-19T10:57:17+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000171s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000217s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0133s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0132s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0129s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0130s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000365s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000392s ]
+
+[ 2017-09-19T10:59:05+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000294s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000333s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000373s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0121s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0112s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0159s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0156s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000671s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000722s ]
+
+[ 2017-09-19T10:59:05+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000165s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000223s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0162s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0141s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0155s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0143s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000509s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000544s ]
+
+[ 2017-09-19T10:59:07+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByPkid/pkid/59c087f5e12a6
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000228s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000306s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000338s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0144s ]
+SQL: SELECT ordermain.*,d.* FROM `ordermain` LEFT JOIN orderjm as d on d.orderid = ordermain.pkid  WHERE ( ordermain.pkid='59c087f5e12a6' ) LIMIT 1   [ RunTime:0.0144s ]
+SQL: select * from orderdetail where orderid='59c087f5e12a6' [ RunTime:0.0142s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000396s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000435s ]
+
+[ 2017-09-19T10:59:31+08:00 ] ::1 /index.php/Mq/Order/findMemberByMobile/mobile/15916206344/memberid/59bbc3411867b
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000162s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000559s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `memberinfo` [ RunTime:0.0158s ]
+SQL: SELECT * FROM `memberinfo` WHERE ( pkid = '59bbc3411867b' ) LIMIT 1   [ RunTime:0.0126s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000843s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000883s ]
+
+[ 2017-09-19T10:59:31+08:00 ] ::1 /index.php/Mq/Order/findOrdersByMemberid/memberid/59bbc3411867b
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000234s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000217s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000245s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from ordermain where type=0 and buyer='59bbc3411867b'  [ RunTime:0.0185s ]
+SQL: select * from ordermain where type=0 and buyer='59bbc3411867b'  order by buytime desc,pkid limit 0,10 [ RunTime:0.0199s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 406 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 406 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000435s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000474s ]
+
+[ 2017-09-19T10:59:31+08:00 ] ::1 /index.php/Mq/Member/findMemberPriceinfo/memberid/59bbc3411867b
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000266s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000227s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000252s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `price` [ RunTime:0.0109s ]
+SQL: SELECT * FROM `price` WHERE ( memberid='59bbc3411867b' )  [ RunTime:0.0099s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000792s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000868s ]
+
+[ 2017-09-19T10:59:33+08:00 ] ::1 /index.php/Mq/Order/findhwmain
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000211s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000238s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  order by m.regtime desc [ RunTime:0.0154s ]
+SQL: select m.pkid,m.realname,m.mobile,m.membertype from memberinfo as m where 1=1  order by regtime desc limit 0,20  [ RunTime:0.0148s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 327 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/OrderController.class.php 第 327 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000301s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000325s ]
+
+[ 2017-09-19T10:59:35+08:00 ] ::1 /index.php/Mq/Role/loaddepartment
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000164s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000238s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000261s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `department` [ RunTime:0.0109s ]
+SQL: SELECT * FROM `department` WHERE ( flag = 1 )  [ RunTime:0.0100s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000570s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000617s ]
+
+[ 2017-09-19T10:59:35+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000237s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000347s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000389s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0138s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0135s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0198s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0191s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000466s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000502s ]
+
+[ 2017-09-19T10:59:36+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000274s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000295s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000324s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0110s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0101s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0114s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000450s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000497s ]
+
+[ 2017-09-19T10:59:36+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001972s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001601s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001689s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0178s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0163s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0166s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0169s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000515s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000568s ]
+
+[ 2017-09-19T10:59:39+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByPkid/pkid/59c087f5e12a6
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000627s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000438s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000476s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0135s ]
+SQL: SELECT ordermain.*,d.* FROM `ordermain` LEFT JOIN orderjm as d on d.orderid = ordermain.pkid  WHERE ( ordermain.pkid='59c087f5e12a6' ) LIMIT 1   [ RunTime:0.0134s ]
+SQL: select * from orderdetail where orderid='59c087f5e12a6' [ RunTime:0.0126s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000600s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000654s ]
+
+[ 2017-09-19T10:59:45+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000275s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000391s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0141s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0131s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0121s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0140s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000353s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000384s ]
+
+[ 2017-09-19T10:59:45+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000179s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000270s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000311s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0163s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2   [ RunTime:0.0213s ]
+SQL: select o.*,d.mid from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2  order by buytime desc,pkid limit 0,20 [ RunTime:0.0222s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001402s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001485s ]
+
+[ 2017-09-19T10:59:46+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByPkid/pkid/59c0876dc016f
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000163s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000225s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000260s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0161s ]
+SQL: SELECT ordermain.*,d.* FROM `ordermain` LEFT JOIN orderjm as d on d.orderid = ordermain.pkid  WHERE ( ordermain.pkid='59c0876dc016f' ) LIMIT 1   [ RunTime:0.0172s ]
+SQL: select * from orderdetail where orderid='59c0876dc016f' [ RunTime:0.0151s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000642s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000715s ]
+
+[ 2017-09-19T11:41:25+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001325s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000493s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000526s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0104s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0085s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2   [ RunTime:0.0078s ]
+SQL: select o.*,d.mid from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2  order by buytime desc,pkid limit 0,20 [ RunTime:0.0080s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004177s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004222s ]
+
+[ 2017-09-19T11:41:25+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000158s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000305s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000341s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0131s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0125s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0120s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0112s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000413s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000501s ]
+
+[ 2017-09-19T11:41:27+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000158s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000222s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0116s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0093s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0090s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0105s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000280s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000303s ]
+
+[ 2017-09-19T11:41:27+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000239s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000273s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0142s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0142s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2   [ RunTime:0.0138s ]
+SQL: select o.*,d.mid from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2  order by buytime desc,pkid limit 0,20 [ RunTime:0.0139s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000292s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000316s ]
+
+[ 2017-09-19T11:41:27+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000394s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0099s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2   [ RunTime:0.0106s ]
+SQL: select o.*,d.mid from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2  order by buytime desc,pkid limit 0,20 [ RunTime:0.0100s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000498s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000552s ]
+
+[ 2017-09-19T11:41:27+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000056s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000511s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001030s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001097s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0169s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0164s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0165s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0174s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000306s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000346s ]
+
+[ 2017-09-19T11:41:31+08:00 ] ::1 /index.php/Mq/JMOrder/cancle/bid/59c087f5e12a6
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000142s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000178s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000196s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0177s ]
+SQL: SHOW COLUMNS FROM `orderjm` [ RunTime:0.0175s ]
+SQL: UPDATE `ordermain` SET `jmstatus`='-1' WHERE ( pkid='59c087f5e12a6' ) [ RunTime:0.0157s ]
+SQL: UPDATE `orderjm` SET `cancletime`='1505792491',`cancleoptid`='uuid01',`cancleoptname`='superadmin' WHERE ( orderid='59c087f5e12a6' ) [ RunTime:0.0159s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000421s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000465s ]
+
+[ 2017-09-19T11:41:31+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000304s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000262s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000286s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0122s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0128s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0172s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0171s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000260s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000314s ]
+
+[ 2017-09-19T11:41:31+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000160s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000210s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000235s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0113s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0110s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0163s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0152s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000551s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000623s ]
+
+[ 2017-09-19T11:41:32+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000203s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000249s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000277s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0141s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0122s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0137s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0143s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000462s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000503s ]
+
+[ 2017-09-19T11:41:32+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000226s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000321s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000358s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0162s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0156s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2   [ RunTime:0.0220s ]
+SQL: select o.*,d.mid from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2  order by buytime desc,pkid limit 0,20 [ RunTime:0.0215s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000349s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000375s ]
+
+[ 2017-09-19T11:41:34+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000334s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000431s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000623s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0136s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0119s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2   [ RunTime:0.0120s ]
+SQL: select o.*,d.mid from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2  order by buytime desc,pkid limit 0,20 [ RunTime:0.0121s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000378s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000417s ]
+
+[ 2017-09-19T11:41:34+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000248s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000325s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000370s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0133s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0124s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0135s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0137s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000528s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000570s ]
+
+[ 2017-09-19T11:41:35+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000247s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000216s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000240s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0158s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0151s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0144s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0157s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000592s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000644s ]
+
+[ 2017-09-19T11:41:35+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000243s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000350s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000389s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0160s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0160s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0151s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0170s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000635s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000707s ]
+
+[ 2017-09-19T11:41:36+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000182s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000224s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000252s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0134s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0   [ RunTime:0.0130s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=0  order by buytime desc,pkid limit 0,20 [ RunTime:0.0143s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+NOTIC: [8] Undefined index: mid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 91 行.
+NOTIC: [8] Undefined index: recardate /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 118 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000439s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000469s ]
+
+[ 2017-09-19T11:41:36+08:00 ] ::1 /index.php/Mq/JMOrder/findProductOrderByStatus/status/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000157s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000217s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000267s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0137s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0129s ]
+SQL: select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  [ RunTime:0.0142s ]
+SQL: select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=1  order by buytime desc,pkid limit 0,20 [ RunTime:0.0140s ]
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/JMOrderController.class.php 第 84 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001043s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001299s ]
+
