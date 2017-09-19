@@ -220,7 +220,7 @@ class MobileorderController extends Controller {
 		if($searchdate != "empty"){
 			$query = $query . " and from_unixtime(buytime,'%Y-%m-%d') = '$searchdate'"; 
 		}
-		$datalist = $dao_main->where("(status=-9 or status=-8)".$query." and userid='".$userid."'")->order("buytime desc")->select();
+		$datalist = $dao_main->where("(status=-9 or status=-8)".$query." and userid='".$userid."'")->order("buytime desc")->limit(30)->select();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
@@ -282,7 +282,7 @@ class MobileorderController extends Controller {
 		->join("carsdaily as c on j.carid = c.carid",'LEFT')
 		->field("o.*,j.setpeopleopttime")->where("(o.status=-7)".$query." and (j.songqiid='".$userid."' or ((c.sid='".$userid.
 		"' or c.yid='".$userid."') and from_unixtime(c.dailydate,'%Y-%m-%d') = date_format(now(), '%Y-%m-%d')) )")
-		->order("o.buytime desc")->select();
+		->order("o.buytime desc")->limit(30)->select();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
