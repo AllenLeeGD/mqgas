@@ -56,7 +56,7 @@ class BottleController extends Controller {
 			}else if($result[$i]['membertype'] == 3){
 				$membertype = "大工商";
 			}
-			$records["aaData"][] = array($result[$i]['realname'],$result[$i]['mobile'],$membertype,$btnbottle);
+			$records["aaData"][] = array($result[$i]['realname'],$result[$i]['address'],$result[$i]['mobile'],$membertype,$btnbottle);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";

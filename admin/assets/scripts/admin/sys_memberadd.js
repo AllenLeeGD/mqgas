@@ -89,7 +89,7 @@ function loadData(pkid) {
 	util.getUrl("/Mq/Daily/loadyewu", function(s_data, s_status) {
 		var result = "<option value=\"\">无</option>";
 		for(var j = 0; j < s_data.length; j++) {
-			result += "<option value=\"" + s_data[j].pid + "\">" + s_data[j].name + "</option>";			
+			result += "<option value=\"" + s_data[j].pid + "\">" + s_data[j].realname + "</option>";			
 		}
 		document.getElementById("yewuid").innerHTML = result;
 	});

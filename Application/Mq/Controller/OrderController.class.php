@@ -145,7 +145,7 @@ class OrderController extends Controller {
 		$query = new \Think\Model();
 		$count_sql = "";
 		if ($status == 0) {
-			$count_sql = "select count(*) from ordermain where status=1 or status=2 or status=0";
+			$count_sql = "select count(*) from ordermain where status=1 or status=2 or status=0 or status=7";
 		}
 		if ($status == 1) {
 			$count_sql = "select count(*) from ordermain where status=3 or status=4 or status=5 ";

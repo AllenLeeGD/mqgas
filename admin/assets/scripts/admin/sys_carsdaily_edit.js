@@ -123,6 +123,7 @@ function loadData() {
 	send_obj.oilprice="";
 	send_obj.cost="";
 	send_obj.dailydate="";
+	send_obj.dailyrun="";	
 	send_obj.remark="";
 	var pkid = util.getParam("pkid");
 	util.postUrl(

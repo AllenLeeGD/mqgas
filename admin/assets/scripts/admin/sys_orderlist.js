@@ -405,6 +405,20 @@ var ProviderOrder = function() {
 }();
 var readed = false;
 var oldcount=0;
+function refreshNewMessage(){
+	var util = new Util();
+	util.getUrl('/Mq/Order/countProductOrder/status/0', function(data, status) {
+		$("#waitnum").html(data);
+		if(data>0){
+			document.title="您有新的订单需要处理";
+			util.successMsg("您有新的订单需要处理");
+		}
+		oldcount = data;
+	});
+	setTimeout(function() {
+		refreshNewMessage();
+	}, 6000);
+}
 function loadNewMessage() {
 	var util = new Util();
 	var start = util.getParam('start');
@@ -412,13 +426,7 @@ function loadNewMessage() {
 	if(util.isNullStr(start)) {
 		start = 0;
 	}
-	util.getUrl('/Mq/Order/countProductOrder/status/0', function(data, status) {
-		$("#waitnum").html(data);
-		if(data>oldcount){
-			document.title="您有新的订单需要处理";
-		}
-		oldcount = data;
-	});
+	
 	
 	if($("#success_tab").hasClass("active")){
 		ProviderOrder.init("../index.php/Mq/Order/findProductOrderByStatus/status/1", start);
@@ -428,9 +436,7 @@ function loadNewMessage() {
 		ProviderOrder.init("../index.php/Mq/Order/findProductOrderByStatus/status/2", start);	
 	}
 	
-	setTimeout(function() {
-		loadNewMessage();
-	}, 60000);
+	refreshNewMessage();
 }
 $(document).ready(function() {
 	$('#datatable_orders').on('draw.dt', function() {

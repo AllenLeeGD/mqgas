@@ -163,6 +163,13 @@
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">每天行驶里程 <span class="required"></span> </label>
+														<div class="col-md-8">
+															<input id="dailyrun" v-model="sendobj.dailyrun" type="text" class="form-control input-large"/>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
 														<label class="control-label col-md-2">车辆公里数 <span class="required"></span> </label>
 														<div class="col-md-8">
 															<input id="carcourse" v-model="sendobj.carcourse" type="text" class="form-control input-large"/>
@@ -170,7 +177,7 @@
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">加油时油价 <span class="required"></span> </label>
+														<label class="control-label col-md-2">加油量(升) <span class="required"></span> </label>
 														<div class="col-md-8">
 															<input id="oilprice" v-model="sendobj.oilprice" type="text" class="form-control input-large"/>
 															<span class="help-block">  </span>

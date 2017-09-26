@@ -89,7 +89,8 @@
 											<table class="table table-bordered" id="datatable_orders">
 												<thead>
 													<tr role="row" class="heading">
-														<th > 客户名称 </th>
+														<th style="width:150px"> 客户名称 </th>
+														<th > 地址 </th>
 														<th style="width:150px"> 联系电话 </th>
 														<th style="width:150px"> 客户类型 </th>
 														<th style="width:150px"> 操作 </th>
@@ -98,6 +99,7 @@
 														<td>
 															<input id="name_search" type="text" class="form-control form-filter" name="name_search" placeholder="请输入">
 														</td>
+														<td></td>
 														<td><input id="mobile_search" type="text" class="form-control form-filter" name="mobile_search" placeholder="请输入"></td>
 														<td>
 															<select class="form-control form-filter font-size-12" id="membertype_search" name="membertype_search">

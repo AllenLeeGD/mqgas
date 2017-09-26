@@ -119,9 +119,9 @@ function loadData(pkid) {
 				var result = "<option value=\"\">无</option>";
 				for(var j = 0;j<s_data.length;j++){
 					if(s_data[j].pid==yewuid){
-						result += "<option selected value=\""+s_data[j].pid+"\">"+s_data[j].name+"</option>";	
+						result += "<option selected value=\""+s_data[j].pid+"\">"+s_data[j].realname+"</option>";	
 					}else{
-						result += "<option value=\""+s_data[j].pid+"\">"+s_data[j].name+"</option>";	
+						result += "<option value=\""+s_data[j].pid+"\">"+s_data[j].realname+"</option>";	
 					}					
 				}
 				document.getElementById("yewuid").innerHTML=result;
