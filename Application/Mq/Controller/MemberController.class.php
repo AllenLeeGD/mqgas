@@ -237,11 +237,64 @@ class MemberController extends Controller {
 		$records["iTotalDisplayRecords"] = $iTotalRecords;
 		echo json_encode($records, JSON_UNESCAPED_UNICODE);
 	}
+	
+	protected function getBottleType($type){
+		if($type==1){
+			return "退户瓶";
+		}else if($type==2){
+			return "还瓶";
+		}else if($type==3){
+			return "回收杂瓶";
+		}else if($type==4){
+			return "回流瓶";
+		}else if($type==5){
+			return "入重瓶";
+		}else if($type==6){
+			return "借出瓶";
+		}else if($type==7){
+			return "押金瓶";
+		}else if($type==8){
+			return "回收杂瓶";
+		}else if($type==9){
+			return "回流瓶";
+		}else if($type==10){
+			return "售重瓶";
+		}
+	}
+	
+	protected function getBottleProduct($item){
+		return $item['pname'].$item['jname'].$item['rname'].$item['fname'].$item['gpname'];
+	}
 
 	public function findMemberByPkid($pkid) {
         $query = new \Think\Model();
         $sql = "select m.*,l.levelname from memberinfo as m left join level as l on m.level=l.pkid where m.pkid='$pkid'";
 		$data = $query->query($sql);
+		$gp_dao = M("Bottle");
+		$aj_dao = M("Safecheck");
+		$jg_dao = M("Price");
+		$gp_data = $gp_dao->where("memberid='$pkid'")->select();
+		$aj_data = $aj_dao->where("memberid='$pkid'")->select();
+		$jg_data = $jg_dao->where("memberid='$pkid'")->select();
+		$gp_result="";$aj_result="";$jp_result="";
+		for($i=0;$i<count($gp_data);$i++){
+			$_item = $gp_data[$i];
+			$gp_result = $gp_result.date('Y-m-d', $_item['optdate'])." ".$this ->getBottleType($_item['type'])." (".$this ->getBottleProduct($_item).") ".$_item['optnumber']."瓶<br/>";
+		}
+		
+		for($i=0;$i<count($aj_data);$i++){
+			$_item = $aj_data[$i];
+			$aj_result = $aj_result.date('Y-m-d', $_item['checkdate'])." 进行了安检,备注信息:".$_item['remark']."<br/>";
+		}
+		
+		for($i=0;$i<count($jg_data);$i++){
+			$_item = $jg_data[$i];
+			$jp_result = $jp_result.$_item['name'].($_item['type']==0?" 每瓶":" 每吨")." 价格:".$_item['price']."<br/>";
+		}
+		
+		$data[0]['gangping']=$gp_result;
+		$data[0]['anjian']=$aj_result;
+		$data[0]['jiage']=$jp_result;
 		echo json_encode($data, JSON_UNESCAPED_UNICODE);
 	}
 	

@@ -175,6 +175,9 @@ function openMemberDetail(pkid) {
 				$('#code_detail').html(objinfo[0].code);
 				$('#storename_detail').html(objinfo[0].storename);
 				$('#yewuname_detail').html(objinfo[0].yewuname);
+				$('#gangping').html(objinfo[0].gangping);
+				$('#anjian').html(objinfo[0].anjian);
+				$('#jiage').html(objinfo[0].jiage);
 				if(!util.isNullStr(membertype)){
 					if(membertype==1){
 						$('#membertype_detail').html("居民用户");
