@@ -134,7 +134,10 @@ var ProviderOrder = function() {
 	};
 
 }();
-
+function showMember(mes){
+	$("#logdetail").html(mes);
+	$("#do_jie").modal('show');
+}
 $(document).ready(function() {
 //	$('#datatable_orders').on('draw.dt', function() {
 //		$('#datatable_orders').mergeCell({

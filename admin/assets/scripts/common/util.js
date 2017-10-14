@@ -1,4 +1,4 @@
-var edu_host = "http://192.168.1.106:9000";
+var edu_host = "http://localhost:9000";
 //var edu_host = "http://newoceangas.cn";
 Date.prototype.Format = function(fmt) { //author: meizz 
 		var o = {

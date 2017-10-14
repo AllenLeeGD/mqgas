@@ -56,7 +56,11 @@ class CheckController extends Controller {
 			}else{
 				$optdate = date('Y-m-d',$result[$i]['optdate']);
 			}
-			$records["aaData"][] = array($result[$i]['realname'],$result[$i]['mobile'],$checkdate,$optdate,$btnChecksafe.$btnRecall);
+			$mobile = $result[$i]['mobile'];
+			if(strlen($mobile) > 50){
+				$mobile = "<a title='".$mobile."'>".substr($mobile, 0,50)."......</a>";
+			}
+			$records["aaData"][] = array($result[$i]['realname'],$mobile,$checkdate,$optdate,$btnChecksafe.$btnRecall);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";
@@ -319,7 +323,7 @@ class CheckController extends Controller {
 			}
 			$s_remark = $result[$i]['remark'];
 //			if(strlen($s_remark)>=20){
-//				$s_remark = substr($s_remark,0,23)."...";
+//				$s_remark = "<a title='".$s_remark."'>".substr($s_remark,0,23)."...</a>";
 //			}
 			$records["aaData"][] = array($optdate,$result[$i]['dname'],$s_remark,$s_status,$btnOpt.$btnView);
 		}

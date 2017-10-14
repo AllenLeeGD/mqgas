@@ -122,44 +122,136 @@ class MemberController extends Controller {
 		$level_dao = M("Level");
 		$data_1['levelname'] = $obj['l1name'];
 		$data_1['price'] = $obj['l1price'];
+		$changemsg="";
+		
+		$old1 = $level_dao->where("pkid='l1'")->find();
+		if($old1['levelname'] != $obj['l1name']){
+			$changemsg = $changemsg.$old1['levelname']." -> ".$obj['l1name']."<br/>";
+		}
+		if($old1['price'] != $obj['l1price']){
+			$changemsg = $changemsg.$obj['l1name'].":".$old1['price']." -> ".$obj['l1name'].":".$obj['l1price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l1'")->save($data_1);
 		
 		$data_2['levelname'] = $obj['l2name'];
 		$data_2['price'] = $obj['l2price'];
+		
+		$old2 = $level_dao->where("pkid='l2'")->find();
+		if($old2['levelname'] != $obj['l2name']){
+			$changemsg = $changemsg.$old2['levelname']." -> ".$obj['l2name']."<br/>";
+		}
+		if($old2['price'] != $obj['l2price']){
+			$changemsg = $changemsg.$obj['l2name'].":".$old2['price']." -> ".$obj['l2name'].":".$obj['l2price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l2'")->save($data_2);
 		
 		$data_3['levelname'] = $obj['l3name'];
 		$data_3['price'] = $obj['l3price'];
+		
+		$old3 = $level_dao->where("pkid='l3'")->find();
+		if($old3['levelname'] != $obj['l3name']){
+			$changemsg = $changemsg.$old3['levelname']." -> ".$obj['l3name']."<br/>";
+		}
+		if($old3['price'] != $obj['l3price']){
+			$changemsg = $changemsg.$obj['l3name'].":".$old3['price']." -> ".$obj['l3name'].":".$obj['l3price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l3'")->save($data_3);
 		
 		$data_4['levelname'] = $obj['l4name'];
 		$data_4['price'] = $obj['l4price'];
+		
+		$old4 = $level_dao->where("pkid='l4'")->find();
+		if($old4['levelname'] != $obj['l4name']){
+			$changemsg = $changemsg.$old4['levelname']." -> ".$obj['l4name']."<br/>";
+		}
+		if($old4['price'] != $obj['l4price']){
+			$changemsg = $changemsg.$obj['l4name'].":".$old4['price']." -> ".$obj['l4name'].":".$obj['l4price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l4'")->save($data_4);
 		
 		$data_5['levelname'] = $obj['l5name'];
 		$data_5['price'] = $obj['l5price'];
+		
+		$old5 = $level_dao->where("pkid='l5'")->find();
+		if($old5['levelname'] != $obj['l5name']){
+			$changemsg = $changemsg.$old5['levelname']." -> ".$obj['l5name']."<br/>";
+		}
+		if($old5['price'] != $obj['l5price']){
+			$changemsg = $changemsg.$obj['l5name'].":".$old5['price']." -> ".$obj['l5name'].":".$obj['l5price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l5'")->save($data_5);
 		
 		$data_6['levelname'] = $obj['l6name'];
 		$data_6['price'] = $obj['l6price'];
+		
+		$old6 = $level_dao->where("pkid='l6'")->find();
+		if($old6['levelname'] != $obj['l6name']){
+			$changemsg = $changemsg.$old6['levelname']." -> ".$obj['l6name']."<br/>";
+		}
+		if($old6['price'] != $obj['l6price']){
+			$changemsg = $changemsg.$obj['l6name'].":".$old6['price']." -> ".$obj['l6name'].":".$obj['l6price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l6'")->save($data_6);
 		
 		$data_7['levelname'] = $obj['l7name'];
 		$data_7['price'] = $obj['l7price'];
+		
+		$old7 = $level_dao->where("pkid='l7'")->find();
+		if($old7['levelname'] != $obj['l7name']){
+			$changemsg = $changemsg.$old7['levelname']." -> ".$obj['l7name']."<br/>";
+		}
+		if($old7['price'] != $obj['l7price']){
+			$changemsg = $changemsg.$obj['l7name'].":".$old7['price']." -> ".$obj['l7name'].":".$obj['l7price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l7'")->save($data_7);
 		
 		$data_8['levelname'] = $obj['l8name'];
 		$data_8['price'] = $obj['l8price'];
+		
+		$old8 = $level_dao->where("pkid='l8'")->find();
+		if($old8['levelname'] != $obj['l8name']){
+			$changemsg = $changemsg.$old8['levelname']." -> ".$obj['l8name']."<br/>";
+		}
+		if($old8['price'] != $obj['l8price']){
+			$changemsg = $changemsg.$obj['l8name'].":".$old8['price']." -> ".$obj['l8name'].":".$obj['l8price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l8'")->save($data_8);
 		
 		$data_9['levelname'] = $obj['l9name'];
 		$data_9['price'] = $obj['l9price'];
+		
+		$old9 = $level_dao->where("pkid='l9'")->find();
+		if($old9['levelname'] != $obj['l9name']){
+			$changemsg = $changemsg.$old9['levelname']." -> ".$obj['l9name']."<br/>";
+		}
+		if($old9['price'] != $obj['l9price']){
+			$changemsg = $changemsg.$obj['l9name'].":".$old9['price']." -> ".$obj['l9name'].":".$obj['l9price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l9'")->save($data_9);
 		
 		$data_10['levelname'] = $obj['l10name'];
 		$data_10['price'] = $obj['l10price'];
+		
+		$old10 = $level_dao->where("pkid='l10'")->find();
+		if($old10['levelname'] != $obj['l10name']){
+			$changemsg = $changemsg.$old10['levelname']." -> ".$obj['l10name']."<br/>";
+		}
+		if($old10['price'] != $obj['l10price']){
+			$changemsg = $changemsg.$obj['l10name'].":".$old10['price']." -> ".$obj['l10name'].":".$obj['l10price']."<br/>";
+		}
+		
 		$level_dao->where("pkid='l10'")->save($data_10);
-		addLog(3,session("userid"),"更改了参数设置");
+		
+		addLog(3,session("userid"),"<a href='javascript:showMember(\"".$changemsg."\")'>更改了参数设置</a>");
 		echo "yes";
 	}
 	
@@ -224,7 +316,11 @@ class MemberController extends Controller {
 			}else{
 				$btns = $btnEdit.$btnOut;
 			}
-			$records["aaData"][] = array("<div class=\"product-label\"><span><a style=\"cursor:pointer;\" data-toggle='modal' onclick=\"openMemberDetail('" . $result[$i]['pkid'] . "')\">".$realname."</a></span></div>","<div class=\"product-label\" style=\"text-align:center;\"><span>".$result[$i]['mobile']."</span></div>","<div class=\"product-label\" style=\"text-align:center;\">".$result[$i]['levelname']."</div>","<div class=\"product-label\" style=\"text-align:center;\">".$result[$i]['yewuname']."</div>",$membertype,$btns);
+			$mobile = $result[$i]['mobile'];
+			if(strlen($mobile)>30){
+				$mobile = "<a title='$mobile'>".substr($mobile, 0,30)."......</a>";
+			}
+			$records["aaData"][] = array("<div class=\"product-label\"><span><a style=\"cursor:pointer;\" data-toggle='modal' onclick=\"openMemberDetail('" . $result[$i]['pkid'] . "')\">".$realname."</a></span></div>","<div class=\"product-label\" style=\"text-align:center;\"><span>".$mobile."</span></div>","<div class=\"product-label\" style=\"text-align:center;\">".$result[$i]['levelname']."</div>","<div class=\"product-label\" style=\"text-align:center;\">".$result[$i]['yewuname']."</div>",$membertype,$btns);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";
@@ -310,12 +406,74 @@ class MemberController extends Controller {
 		echo "yes";
 	}
 	
+	protected function getMemberType($membertype){
+		if($membertype==1){
+			return "居民用户";
+		}else if($membertype==2){
+			return "小工商";
+		}else if($membertype==3){
+			return "大工商";
+		}
+	}
+	
+	protected function getDetailtype($detailtype){
+		if($detailtype==1){
+			return "代理商";
+		}else if($detailtype==2){
+			return "来料加工";
+		}else if($detailtype==3){
+			return "门店";
+		}else if($detailtype==4){
+			return "门店气";
+		}else if($detailtype==5){
+			return "民用气";
+		}else if($detailtype==6){
+			return "直营代理";
+		}
+	}
+	
+	protected function yue($yue){
+		if($yue==0){
+			return "非月结";
+		}else if($yue==1){
+			return "月结";
+		}
+	}
+	
 	public function saveMember(){
 		$obj = getObjFromPost(array("pkid","realname","code","storename","membertype","detailtype","yewuid","yewuname","mobile","address","level","yue","zhangqi"));
 		$dao = M("Memberinfo");
 		$pkid = $obj["pkid"];
+		$old = $dao->where("pkid='$pkid'")->find();
+		
+		if($old['realname'] != $obj['realname']){
+			$changedata = "客户姓名:".$old['realname']."->".$obj['realname']."<br>";	
+		}
+		if($old['code'] != $obj['code']){
+			$changedata = $changedata."客户编码:".$old['code']."->".$obj['code']."<br>";	
+		}
+		if($old['storename'] != $obj['storename']){
+			$changedata = $changedata."店铺名称:".$old['storename']."->".$obj['storename']."<br>";	
+		}if($old['membertype'] != $obj['membertype']){
+			$changedata = $changedata."客户分类:".$this->getMemberType($old['membertype'])."->".$this->getMemberType($obj['membertype'])."<br>";	
+		}if($old['detailtype'] != $obj['detailtype']){
+			$changedata = $changedata."详细分类:".$this->getDetailtype($old['detailtype'])."->".$this->getDetailtype($obj['detailtype'])."<br>";	
+		}if($old['yewuname'] != $obj['yewuname']){
+			$changedata = $changedata."业务员:".$old['yewuname']."->".$obj['yewuname']."<br>";	
+		}if($old['mobile'] != $obj['mobile']){
+			$changedata = $changedata."联系电话:".$old['mobile']."->".$obj['mobile']."<br>";	
+		}if($old['address'] != $obj['address']){
+			$changedata = $changedata."送货地址:".$old['address']."->".$obj['address']."<br>";	
+		}if($old['level'] != $obj['level']){
+			$changedata = $changedata."会员等级:".$old['level']."->".$obj['level']."<br>";	
+		}if($old['yue'] != $obj['yue']){
+			$changedata = $changedata."月结客户:".$this->yue($old['yue'])."->".$this->yue($obj['yue'])."<br>";	
+		}if($old['zhangqi'] != $obj['zhangqi']){
+			$changedata = $changedata."核定账期:".$old['zhangqi']."->".$obj['zhangqi']."<br>";	
+		}
+		
 		$dao->where("pkid='$pkid'")->save($obj);
-		addLog(2, session("userid"), "更改了客户 ".$obj['realname']."(".$obj['mobile'].")的信息");
+		addLog(2, session("userid"), "<a href='javascript:showMember(\"".$changedata."\")'>更改了客户 ".$obj['realname']."(".$obj['mobile'].")的信息</a>");
 		echo "yes";
 	}
 	
@@ -326,6 +484,8 @@ class MemberController extends Controller {
 		$data['outreason'] = $obj['content'];
 		$data['outdate'] = time();
 		$dao->where("pkid = '$bid'")->save($data);
+		$result = $dao->where("pkid = '$bid'")->find();
+		addLog(2, session("userid"), "给客户 ".$result['realname']."(".$result['mobile'].")办理了退户");
 		echo "yes";
 	}
 	

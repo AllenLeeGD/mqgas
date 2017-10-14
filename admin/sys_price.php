@@ -110,12 +110,15 @@
 												<thead>
 													<tr role="row" class="heading">
 														<th style="width:150px"> 价格名称 </th>
+														<th style="width:150px"> 价格 </th>
 														<th> 备注 </th>
 														<th style="width:200px"> 操作 </th>
 													</tr>
 													<tr role="row">
 														<td>
 															<input id="name_search" type="text" class="form-control form-filter" name="name_search" placeholder="请输入">
+														</td>
+														<td>
 														</td>
 														<td>
 														</td>

@@ -335,8 +335,11 @@ class OrderController extends Controller {
 			}else if($result[$i]['membertype'] == 3){
 				$membertype = "大工商";
 			}
-			
-			$records["aaData"][] = array("<div class=\"product-label\"><span><a style=\"cursor:pointer;\" data-toggle='modal' onclick=\"openMemberDetail('" . $result[$i]['pkid'] . "')\">".$result[$i]['realname']."</a></span></div>",$result[$i]['mobile'],$membertype,$btnPriceset);
+			$mobile = $result[$i]['mobile'];
+			if(strlen($mobile)>50){
+				$mobile = "<a title='$mobile'>".substr($mobile, 0,50)."......</a>";
+			}
+			$records["aaData"][] = array("<div class=\"product-label\"><span><a style=\"cursor:pointer;\" data-toggle='modal' onclick=\"openMemberDetail('" . $result[$i]['pkid'] . "')\">".$result[$i]['realname']."</a></span></div>",$mobile,$membertype,$btnPriceset);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";

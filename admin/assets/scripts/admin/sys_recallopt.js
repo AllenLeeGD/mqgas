@@ -61,7 +61,7 @@ var ProviderOrder = function() {
 					"aTargets": [2],
 					"mRender": function(data, type, full) {
 						if(data.length>20){
-							return  data.substring(0,20)+"......";
+							return  "<a title='"+data+"'>"+data.substring(0,20)+"......</a>";
 						}else{
 							return data;
 						}

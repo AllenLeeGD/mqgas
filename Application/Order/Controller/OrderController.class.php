@@ -261,4 +261,10 @@ class OrderController extends Controller {
 
 	}
 
+	public function testA(){
+		$member = A("Member/Reg");
+		$result = $member->hh();
+		echo $result;
+	}
+
 }

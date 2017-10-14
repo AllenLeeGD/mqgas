@@ -3,7 +3,83 @@ function openDelConfirm(pkid, index) {
 	$("#view_data").data("index", index);
 	$("#do_delWorker").modal('show');
 }
-
+function showDetail(pkid) {
+	var util = new Util();
+	var openmodal = $("#ajax-view");
+	util.showLoading();
+	openmodal.load('sys_bottlerdetail.html', '', function() {
+		util.getUrl("/Mq/Bottle/loadbottle/pkid/" + pkid, function(data, status) {
+			try {
+				$('#membername_detail').html(data.membername);
+				$('#mobile_detail').html(data.mobile);
+				$('#departmentname_detail').html(data.deparmentname);
+				$('#receipt_detail').html(data.receipt);
+				$('#pname_detail').html(data.pname);
+				$('#jname_detail').html(data.jname);
+				$('#fname_detail').html(data.fname);
+				$('#rname_detail').html(data.rname);
+				$('#gpname_detail').html(data.gpname);
+				$('#optnumber_detail').html(data.optnumber);
+				$('#price_detail').html(data.price);
+				$('#remark_detail').html(data.remark);
+				
+				if(data.changetype==1){
+					$('#changetype_detail').html("出-瓶换瓶");
+				}else if(data.changetype==2){
+					$('#changetype_detail').html("出-门店退瓶到气库");
+				}else if(data.changetype==3){
+					$('#changetype_detail').html("出-借瓶阀");
+				}else if(data.changetype==4){
+					$('#changetype_detail').html("入-气库发瓶到门店");
+				}else if(data.changetype==5){
+					$('#changetype_detail').html("入-收押金");
+				}else if(data.changetype==6){
+					$('#changetype_detail').html("入-客户退瓶");
+				}else if(data.changetype==7){
+					$('#changetype_detail').html("入-瓶换瓶");
+				}else if(data.changetype==8){
+					$('#changetype_detail').html("出-退押金");
+				}else if(data.changetype==0){
+					$('#changetype_detail').html("其它");
+				}
+				
+				
+				if(data.type==1){
+					$('#type_detail').html("退户瓶");
+				}else if(data.type==2){
+					$('#type_detail').html("还瓶");
+				}else if(data.type==3){
+					$('#type_detail').html("回收杂瓶");
+				}else if(data.type==4){
+					$('#type_detail').html("回流瓶");
+				}else if(data.type==5){
+					$('#type_detail').html("入重瓶");
+				}else if(data.type==6){
+					$('#type_detail').html("借出瓶");
+				}else if(data.type==7){
+					$('#type_detail').html("押金瓶");
+				}else if(data.type==8){
+					$('#type_detail').html("回收杂瓶");
+				}else if(data.type==9){
+					$('#type_detail').html("回流瓶");
+				}else if(data.type==10){
+					$('#type_detail').html("售重瓶");
+				}else if(data.type==0){
+					$('#type_detail').html("其它");
+				}
+			} catch (err) {
+				util.errorMsg('找不到该记录');
+			} finally {
+				util.hideLoading();
+				openmodal.modal('show');
+			}
+		}, function() {
+			util.hideLoading();
+			util.errorMsg('内部服务器错误');
+			openmodal.modal('hide');
+		});
+	});
+}
 function doDelWorker() {
 	var pkid = $("#view_data").data("pkid");
 	var index = $("#view_data").data("index");

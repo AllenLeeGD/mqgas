@@ -56,7 +56,11 @@ class BottleController extends Controller {
 			}else if($result[$i]['membertype'] == 3){
 				$membertype = "大工商";
 			}
-			$records["aaData"][] = array($result[$i]['realname'],$result[$i]['address'],$result[$i]['mobile'],$membertype,$btnbottle);
+			$mobile = $result[$i]['mobile'];
+			if(strlen($mobile) > 50){
+				$mobile = "<a title='".$mobile."'>".substr($mobile, 0,50)."......</a>";
+			}
+			$records["aaData"][] = array($result[$i]['realname'],$result[$i]['address'],$mobile,$membertype,$btnbottle);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";
@@ -125,7 +129,7 @@ class BottleController extends Controller {
 			}else{
 				$optdate = date('Y-m-d',$result[$i]['optdate']);
 			}			
-			$records["aaData"][] = array($optdate,$result[$i]['pname'].$result[$i]['jname'].$result[$i]['rname'],$result[$i]['fname'],getTypeStr($result[$i]['type']),$result[$i]['optnumber'],$btnEdit.$btnDel);
+			$records["aaData"][] = array("<a href='javascript:showDetail(\"".$result[$i]['pkid']."\")'>".$optdate."</a>",$result[$i]['pname'].$result[$i]['jname'].$result[$i]['rname'],$result[$i]['fname'],getTypeStr($result[$i]['type']),$result[$i]['optnumber'],$btnEdit.$btnDel);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";

@@ -54,7 +54,17 @@ var ProviderOrder = function() {
 						"name": "membertype_search",
 						"value": $("#membertype_search").val()
 					});
-				}
+				},
+				"aoColumnDefs": [{
+					"aTargets": [1],
+					"mRender": function(data, type, full) {
+						if(data && data.length>20){
+							return  "<a title='"+data+"'>"+data.substring(0,20)+"......</a>";
+						}else{
+							return data;
+						}
+					}
+				}]
 			}
 		});
 

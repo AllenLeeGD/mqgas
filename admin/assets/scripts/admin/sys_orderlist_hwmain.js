@@ -247,6 +247,12 @@ $(document).ready(function() {
 	var util = new Util();
 	var start = util.getParam('start');
 	var params = util.getParam('params');
+	var mobile = util.getParam("mobile");
+	if(!util.isNullStr(mobile)){
+		util.errorMsg('此电话有多个用户账号,请选择');
+		$("#mobile_search").val(mobile);
+		$("#btnSearch").click();
+	}
 	if(util.isNullStr(start)) {
 		start = 0;
 	}

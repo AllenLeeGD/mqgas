@@ -66,8 +66,11 @@ class PriceController extends Controller {
 			}else if($result[$i]['membertype'] == 3){
 				$membertype = "大工商";
 			}
-			
-			$records["aaData"][] = array($result[$i]['realname'],$result[$i]['mobile'],$membertype,$btnPriceset);
+			$mobile = $result[$i]['mobile'];
+			if(strlen($mobile) > 50){
+				$mobile = "<a title='".$mobile."'>".substr($mobile, 0,50)."......</a>";
+			}
+			$records["aaData"][] = array($result[$i]['realname'],$mobile,$membertype,$btnPriceset);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";
@@ -116,7 +119,7 @@ class PriceController extends Controller {
 			$btnEdit = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openEdit('".$result[$i]['pkid']."','".$result[$i]['memberid']."','".$result[$i]['membername']."','".$result[$i]['mobile']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;编辑&nbsp;</a>";
 			$btnDel = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openDelConfirm('".$result[$i]['pkid']."','".$iDisplayStart."')\"><i class='fa fa-times'></i> &nbsp;删除&nbsp;</a>";			
 					
-			$records["aaData"][] = array($result[$i]['name'],$result[$i]['remark'],$btnEdit.$btnDel);
+			$records["aaData"][] = array($result[$i]['name'],"￥".$result[$i]['price'],$result[$i]['remark'],$btnEdit.$btnDel);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";

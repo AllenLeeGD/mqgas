@@ -446,7 +446,8 @@ function loadData() {
 		"/Mq/Order/findMemberByMobile/mobile/"+mobile+"/memberid/"+memberid,
 		function(data, status) {
 			if(data=="multi"){//电话对应多个用户，需要选择
-				util.errorMsg('此电话有多个用户账号');
+				
+				document.location.href="sys_orderlist_hwmain.php?mobile="+mobile;
 			}else{
 				Vue.set(send_vue.sendobj,"memberid",data.pkid);
 				Vue.set(send_vue.sendobj,"membername",data.realname);

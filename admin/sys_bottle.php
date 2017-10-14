@@ -164,6 +164,7 @@
 			</div>
 			<div id="agent_order_data"></div>
 			<div id="view_data"></div>
+			<div id="ajax-view" class="modal fade" tabindex="-1"></div>
 			<div id="ajax-modal" class="modal fade" tabindex="-1"></div>
 			<div id="ajax-send" class="modal fade" tabindex="-1"></div>
 			<div id="ajax-pddetail" class="modal fade" tabindex="-1"></div>

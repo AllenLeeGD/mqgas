@@ -13,6 +13,7 @@
 		<meta content="" name="description"/>
 		<meta content="" name="author"/>
 		<link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<?php include("common/agent_style.html") ?>
 	</head>
 	<!-- END HEAD -->
@@ -129,6 +130,26 @@
 			<div id="ajax-modal" class="modal fade" tabindex="-1"></div>
 			<div id="ajax-send" class="modal fade" tabindex="-1"></div>
 			<div id="ajax-pddetail" class="modal fade" tabindex="-1"></div>
+			<div class="modal fade" id="do_jie" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="padding:10px 20px 10px 20px;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title green">详细内容</h4>
+						</div>
+						<div id="logdetail" class="modal-body">
+							
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn default" data-dismiss="modal">
+							关闭
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
 			<?php include("common/admin_dialog.html") ?>
 			<!-- END CONTAINER -->
 			<!-- BEGIN FOOTER -->
@@ -146,6 +167,7 @@
 			<script type="text/javascript" src="assets/plugins/data-tables/DT_bootstrap.js"></script>
 			<script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 			<script src="assets/scripts/core/datatable.js"></script>
+			<script type="text/javascript" src="assets/plugins/bootbox/bootbox.min.js"></script>
 			<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 			<script src="assets/scripts/admin/sys_log.js"></script>
 			<script>jQuery(document).ready(function() {

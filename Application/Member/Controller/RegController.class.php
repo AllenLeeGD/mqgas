@@ -101,4 +101,8 @@ class RegController extends Controller {
 		$walletlog_dao->add($log);
 		echo "yes";
 	}
+
+	public function hh(){
+		return "helloworld";
+	}
 }

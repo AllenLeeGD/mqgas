@@ -99,7 +99,7 @@
 											<thead>
 												<tr role="row" class="heading">
 													<th> 姓名 </th>
-													<th style="width:150px;text-align: center;"> 联系电话 </th>
+													<th style="text-align: center;"> 联系电话 </th>
 													<th style="width:150px;text-align: center;"> 用户组 </th>
 													<th style="width:150px;text-align: center;"> 业务员 </th>
 													<th style="width:100px;text-align: center;"> 分类 </th>
