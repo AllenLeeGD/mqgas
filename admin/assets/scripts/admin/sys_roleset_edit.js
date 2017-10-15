@@ -100,6 +100,9 @@ function load(init) {
 				} else if(data.role == 9) {
 					$("#b_title").html("车队负责人");
 					$("#s_title").html("车队负责人");
+				} else if(data.role == 10) {
+					$("#b_title").html("管理层");
+					$("#s_title").html("管理层");
 				}
 				loaddepartment();
 			} else {

@@ -243,6 +243,12 @@ $(document).ready(function() {
 		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/huawu", 0);
 	});
 	
+	$("#guanli_tab").bind('click', function() {
+		readed = true;
+		document.title="员工管理";
+		ProviderOrder.init("../index.php/Mq/Role/findRoleByStatus/status/guanli", 0);
+	});
+	
 	$("#biz_tab").bind('click', function() {
 		readed = true;
 		document.title="员工管理";

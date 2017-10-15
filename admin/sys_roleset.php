@@ -56,6 +56,11 @@
 									</button>
 									<ul class="dropdown-menu pull-right" role="menu">
 										<li>
+											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=guanli">
+												新增管理层
+											</a>
+										</li>
+										<li>
 											<a href="sys_roleset_add.php?tag=sysadmin&item=4&roletype=huawu">
 												新增话务
 											</a>
@@ -133,6 +138,11 @@
 										<li id="huawu_tab" class="active">
 											<a href="#tab_2" data-toggle="tab">
 												话务
+											</a>
+										</li>
+										<li id="guanli_tab" >
+											<a href="#tab_2" data-toggle="tab">
+												管理层
 											</a>
 										</li>
 										<li id="biz_tab">

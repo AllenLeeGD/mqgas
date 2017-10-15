@@ -9,7 +9,7 @@
 		$url = $_SERVER['PHP_SELF'];  
 		$filename = end(explode('/',$url));
 		$menulist = array();
-		if($admintype!='admin'){
+		if($admintype!='admin' && $admintype!='guanli'){
 			if($admintype=='huawu'){
 				$menulist = array('admin_home.php','sys_orderlist.php');
 				if(!in_array($filename,$menulist)){

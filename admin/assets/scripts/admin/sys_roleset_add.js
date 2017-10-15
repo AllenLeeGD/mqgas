@@ -100,6 +100,10 @@ function loadData() {
 		$("#b_title").html("车队负责人");
 		$("#s_title").html("车队负责人");
 		send_obj.role=9;
+	} else if(roletype == "guanli") {
+		$("#b_title").html("管理层");
+		$("#s_title").html("管理层");
+		send_obj.role=10;
 	}
 	send_obj.name="";
 	send_obj.realname="";
