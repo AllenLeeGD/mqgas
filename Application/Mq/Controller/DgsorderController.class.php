@@ -93,7 +93,11 @@ class DgsorderController extends Controller {
         if(empty($datamain)!=1){
             
             $datamain['buytime'] = date("Y-m-d H:i", $datamain['buytime']);
-			$datamain['recardate'] = date("Y-m-d H:i", $datamain['recardate']);
+			if(empty($datamain['recardate'])){
+				$datamain['recardate'] = "";
+			}else{
+				$datamain['recardate'] = date("Y-m-d H:i", $datamain['recardate']);
+			}
 //			$datamain['sendtime'] = date("Y-m-d H:i", $datamain['sendtime']);
             $query = new \Think\Model();
 			$sql = "select * from orderdetail where orderid='$pkid'";
@@ -116,6 +120,7 @@ class DgsorderController extends Controller {
 		$data_dgs["outoptdate"] = time();
 		$dao_dgs->where("orderid='".$bid."'")->save($data_dgs);
 		$dao_main->where("pkid='".$bid."'")->save($data_main);
+		addLog(1, session("userid"), "出库了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"dgs\")'>".$bid."</a>");
 		echo "yes";
 	}
 	
@@ -135,6 +140,7 @@ class DgsorderController extends Controller {
 		$data_dgs["inoptdate"] = time();
 		$dao_dgs->where("orderid='".$bid."'")->save($data_dgs);
 		$dao_main->where("pkid='".$bid."'")->save($data_main);
+		addLog(1, session("userid"), "入库了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"dgs\")'>".$bid."</a>");
 		echo "yes";
 	}
 	

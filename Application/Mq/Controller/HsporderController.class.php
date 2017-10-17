@@ -104,6 +104,7 @@ class HsporderController extends Controller {
 		$data_dgs["inoptdate"] = time();
 		$dao_dgs->where("orderid='".$bid."'")->save($data_dgs);
 		$dao_main->where("pkid='".$bid."'")->save($data_main);
+		addLog(1, session("userid"), "入库了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"hsp\")'>".$bid."</a>");
 		echo "yes";
 	}
 	

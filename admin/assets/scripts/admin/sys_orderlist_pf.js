@@ -101,9 +101,9 @@ function openOrderDetail(pkid) {
 					$('#l_address').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>地&nbsp;　&nbsp;址:</strong>&nbsp;&nbsp;" + objdata.buyeraddress + "");
 					$('#l_remark').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>备&nbsp;　&nbsp;注:</strong>&nbsp;&nbsp;" + objdata.remark + "");
 					
-					$('#l_recarnumber').html("<strong>预派车牌号码:</strong>&nbsp;&nbsp;"+objdata.recarnumber);
+					$('#l_recarnumber').html("<strong>预派车牌号码:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.recarnumber)?"":objdata.recarnumber));
 					$('#l_recardate').html("<strong>预计到达时间:</strong>&nbsp;&nbsp;"+objdata.recardate);
-					$('#l_recaroptname').html("<strong>操作人:</strong>&nbsp;&nbsp;"+objdata.recaroptname);
+					$('#l_recaroptname').html("<strong>操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.recaroptname)?"":objdata.recaroptname));
 					$('#l_carnumber').html("<strong>送货车牌号码:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.carnumber)?"":objdata.carnumber));
 					
 					$('#l_outoptname').html("<strong>出库操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.outoptname)?"":objdata.outoptname));

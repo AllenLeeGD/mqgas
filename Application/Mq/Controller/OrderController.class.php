@@ -517,6 +517,12 @@ class OrderController extends Controller {
 		$data_main['buycount']=$totalcount;
 		$dao_main->add($data_main);
 		$dao_jm->add($data_jm);
+		if($status==0){
+			$action = "暂存";
+		}else if($status==1){
+			$action = "发起";
+		}
+		addLog(1, session("userid"), $action."了订单<a href='javascript:showOrderDetail(\"".$data_main['pkid']."\",\"jm\")'>".$data_main['pkid']."</a>");
 		echo "yes";
 	}
 }

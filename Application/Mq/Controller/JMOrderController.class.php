@@ -155,6 +155,7 @@ class JMOrderController extends Controller {
 		$data_jm['cancleoptname'] = session("name");
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		addLog(1, session("userid"), "取消了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."</a>");
 		echo "yes";
 	}
 	
@@ -171,6 +172,7 @@ class JMOrderController extends Controller {
 		$data_jm['optordername'] = session("name");
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		addLog(1, session("userid"), "发送了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."</a>");
 		echo "yes";
 	}
 	
@@ -192,6 +194,7 @@ class JMOrderController extends Controller {
 		$data_jm['fenpaitime'] = time();
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		addLog(1, session("userid"), "分派了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."</a>");
 		echo "yes";
 	}
 	
@@ -229,6 +232,7 @@ class JMOrderController extends Controller {
 		$data_jm['setpeopleopttime'] = time();
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		addLog(1, session("userid"), "分配了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."</a>");
 		echo "yes";
 	}
 	
@@ -247,6 +251,7 @@ class JMOrderController extends Controller {
 		$data_jm['shounumber'] = $obj["shounumber"];
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		addLog(1, session("userid"), "订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."收款</a>");
 		echo "yes";
 	}
 	
@@ -263,6 +268,7 @@ class JMOrderController extends Controller {
 		$data_jm['shouoptname'] = session("name");
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		addLog(1, session("userid"), "订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."月结</a>");
 		echo "yes";
 	}
 	
@@ -283,6 +289,7 @@ class JMOrderController extends Controller {
 		$data_jm['cunoptname'] = session("name");
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		addLog(1, session("userid"), "订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."存款</a>");
 		echo "yes";
 	}
 	
@@ -301,6 +308,7 @@ class JMOrderController extends Controller {
 		$data_jm['heoptname'] = session("name");
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		addLog(1, session("userid"), "订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."核款</a>");
 		echo "yes";
 	}
 	
@@ -387,7 +395,12 @@ class JMOrderController extends Controller {
 		$data_main['price']=$totalmoney;
 		$data_main['buycount']=$totalcount;
 		$dao_main->where("pkid='$pkid'")->save($data_main);
-		
+		if($status==0){
+			$action = "暂存";
+		}else if($status==1){
+			$action = "发起";
+		}
+		addLog(1, session("userid"), $action."了订单<a href='javascript:showOrderDetail(\"".$pkid."\",\"jm\")'>".$pkid."</a>");
 		echo "yes";
 	}
 }
