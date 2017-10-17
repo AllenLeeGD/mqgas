@@ -500,6 +500,37 @@ $(document).ready(function() {
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/2", 0);
 	});
 	
+	var orderid = util.getParam("orderid");
+	util.getUrl('/Mq/Order/findOrderStatusByType/orderid/'+orderid+"/type/jm", function(data, status) {
+		if(data==0){
+			$("#zan_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#zan_tab").addClass("active");
+		}else if(data==1){
+			$("#fen_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#fen_tab").addClass("active");
+		}else if(data==2 || data==3 || data==4 || data==5 || data==6){
+			$("#complete_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#complete_tab").addClass("active");
+		}else if(data==2){
+			$("#pei_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#pei_tab").addClass("active");
+		}else if(data==3){
+			$("#sending_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#sending_tab").addClass("active");
+		}else if(data==8){
+			$("#arrive_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#arrive_tab").addClass("active");
+		}
+		$("#order_search").val(orderid);
+		$("#btnSearch").click();
+	});
+	
 });
 //确认订单
 function doSendConfirm() {

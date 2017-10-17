@@ -134,6 +134,17 @@ var ProviderOrder = function() {
 	};
 
 }();
+function showOrderDetail(bid,type){
+	if(type=='wx'){
+		document.location.href="sys_orderlist.php?tag=productadmin&item=1&orderid="+bid;
+	}else if(type=="jm"){
+		document.location.href="sys_orderlist_hw.php?tag=productadmin&item=5&orderid="+bid;
+	}else if(type=="dgs"){
+		document.location.href="sys_orderlist_pf.php?tag=productadmin&item=2&orderid="+bid;
+	}else if(type=="hsp"){
+		document.location.href="sys_orderlist_hsp.php?tag=productadmin&item=3&orderid="+bid;
+	}
+}
 function showMember(mes){
 	$("#logdetail").html(mes);
 	$("#do_jie").modal('show');

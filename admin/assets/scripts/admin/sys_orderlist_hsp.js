@@ -282,4 +282,18 @@ $(document).ready(function() {
 		ProviderOrder.init("../index.php/Mq/Hsporder/findProductOrderByStatus/status/1", 0);
 	});
 	
+	var orderid = util.getParam("orderid");
+	util.getUrl('/Mq/Order/findOrderStatusByType/orderid/'+orderid+"/type/hsp", function(data, status) {
+		if(data==0 || data==1){
+			$("#ru_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#ru_tab").addClass("active");
+		}else if(data==2 || data==3){
+			$("#complete_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#complete_tab").addClass("active");
+		}
+		$("#order_search").val(orderid);
+		$("#btnSearch").click();
+	});
 });

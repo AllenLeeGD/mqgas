@@ -338,6 +338,29 @@ $(document).ready(function() {
 		ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatus/status/3", 0);
 	});
 	
+	var orderid = util.getParam("orderid");
+	util.getUrl('/Mq/Order/findOrderStatusByType/orderid/'+orderid+"/type/dgs", function(data, status) {
+		if(data==1){
+			$("#chu_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#chu_tab").addClass("active");
+		}else if(data==2){
+			$("#ru_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#ru_tab").addClass("active");
+		}else if(data==0){
+			$("#bei_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#bei_tab").addClass("active");
+		}else if(data==3 || data==4){
+			$("#complete_tab").click();
+			$("li[id$='_tab']").removeClass("active");
+			$("#complete_tab").addClass("active");
+		}
+		$("#order_search").val(orderid);
+		$("#btnSearch").click();
+	});
+	
 });
 //确认订单
 function doSendConfirm() {

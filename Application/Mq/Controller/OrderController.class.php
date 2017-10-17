@@ -214,7 +214,7 @@ class OrderController extends Controller {
 		$memberdata = $memberdao->where("pkid='$userid'")->find();
 		$memberdata['point'] = $memberdata['point']+$point;
 		$memberdao->where("pkid='$userid'")->save($memberdata);
-		addLog(1, session("userid"), "派送了订单".$bid);
+		addLog(1, session("userid"), "派送了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"wx\")'>".$bid)."</a>";
 		echo "yes";
 	}
 	
@@ -233,7 +233,7 @@ class OrderController extends Controller {
 //		$memberdata = $memberdao->where("pkid='$userid'")->find();
 //		$memberdata['point'] = $memberdata['point']+$point;
 //		$memberdao->where("pkid='$userid'")->save($memberdata);
-		addLog(1, session("userid"), "完成派送订单".$bid);
+		addLog(1, session("userid"), "完成派送订单<a href='javascript:showOrderDetail(\"".$bid."\",\"wx\")'>".$bid."</a>");
 		echo "yes";
 	}
 	
@@ -244,6 +244,7 @@ class OrderController extends Controller {
 		$data['refundtime'] = time();
 		$data['refundremark'] = $obj['content'];
 		$dao->where("pkid='$pkid'")->save($data);
+		addLog(1, session("userid"), "订单<a href='javascript:showOrderDetail(\"".$pkid."\",\"wx\")'>".$pkid."</a>同意退款");
 		echo "yes";
 	}
 	
@@ -254,6 +255,7 @@ class OrderController extends Controller {
 		$data['refusetime'] = time();
 		$data['refuseremark'] = $obj['content'];
 		$dao->where("pkid='$pkid'")->save($data);
+		addLog(1, session("userid"), "订单<a href='javascript:showOrderDetail(\"".$pkid."\",\"wx\")'>".$pkid."</a>拒绝退款");
 		echo "yes";
 	}
 	
@@ -524,5 +526,19 @@ class OrderController extends Controller {
 		}
 		addLog(1, session("userid"), $action."了订单<a href='javascript:showOrderDetail(\"".$data_main['pkid']."\",\"jm\")'>".$data_main['pkid']."</a>");
 		echo "yes";
+	}
+
+	public function findOrderStatusByType($orderid,$type){
+		$dao = M("Ordermain");
+		$result = $dao->where("pkid='$orderid'")->find();
+		if($type=="wx"){
+			echo $result['status'];
+		}else if($type=="jm"){
+			echo $result['jmstatus'];
+		}else if($type=="dgs"){
+			echo $result['dgsstatus'];
+		}else if($type=="hsp"){
+			echo $result['hspstatus'];
+		}
 	}
 }

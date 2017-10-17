@@ -447,6 +447,7 @@ $(document).ready(function() {
 	var util = new Util();
 	var start = util.getParam('start');
 	var params = util.getParam('params');
+	
 	if(util.isNullStr(start)) {
 		start = 0;
 	}
@@ -485,6 +486,27 @@ $(document).ready(function() {
 		ProviderOrder.init("../index.php/Mq/Order/findProductOrderByStatus/status/2", 0);
 	});
 	loadNewMessage();
+	var orderid = util.getParam("orderid");
+	util.getUrl('/Mq/Order/findOrderStatusByType/orderid/'+orderid+"/type/wx", function(data, status) {
+		if(data==0 || data==1 || data==2 || data==7){
+			$("#wait_tab").click();
+			$("#wait_tab").addClass("active");
+			$("#complete_tab").removeClass("active");
+			$("#success_tab").removeClass("active");
+		}else if(data==3 || data==4 || data==5){
+			$("#success_tab").click();
+			$("#success_tab").addClass("active");
+			$("#complete_tab").removeClass("active");
+			$("#wait_tab").removeClass("active");
+		}else if(data==8){
+			$("#complete_tab").click();
+			$("#complete_tab").addClass("active");
+			$("#success_tab").removeClass("active");
+			$("#wait_tab").removeClass("active");
+		}
+		$("#keyword_search").val(orderid);
+		$("#btnSearch").click();
+	});
 });
 //确认订单
 function doSendConfirm() {
