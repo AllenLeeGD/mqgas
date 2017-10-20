@@ -2,7 +2,7 @@
 function bulidData() {
 	var util = new Util();
 	var opttime = $("#opttime").val();
-	if(util.isNullStr(send_obj.cname) || util.isNullStr(send_obj.totalmoney) || util.isNullStr(opttime)){
+	if(util.isNullStr(send_obj.cname) || util.isNullStr(send_obj.membercode) || util.isNullStr(send_obj.totalmoney) || util.isNullStr(opttime)){
 		return false;
 	}
 	return true;
@@ -56,6 +56,7 @@ function loadData() {
 			url,
 			function(data, status) { //如果调用php成功  
 				send_obj.cname=data.cname;
+				send_obj.membercode=data.membercode;
 				send_obj.totalmoney=data.totalmoney;
 				send_obj.bankmsg=data.bankmsg;
 				send_obj.remark=data.remark;

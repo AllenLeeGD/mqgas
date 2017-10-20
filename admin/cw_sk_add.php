@@ -125,6 +125,13 @@
 															</div>
 														</div>
 														<div id="vipdiscountgroup" class="form-group">
+															<label class="control-label col-md-2">客户编码 <span class="required"> *</span> </label>
+															<div class="col-md-8">
+																<input id="membercode" v-model="sendobj.membercode" type="text" class="form-control input-large"/>
+																<span class="help-block"> </span>
+															</div>
+														</div>
+														<div id="vipdiscountgroup" class="form-group">
 															<label class="control-label col-md-2">收款金额(元) <span class="required">* </span> </label>
 															<div class="col-md-8">
 																<input id="totalmoney" v-model="sendobj.totalmoney" type="number" class="form-control input-large"/>

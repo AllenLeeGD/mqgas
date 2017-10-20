@@ -198,6 +198,7 @@ function showInput(ptype,ptitle){
 	$("#doinput").modal('show');
 }
 function doInput(){
+	var util = new Util();
 	var ptype = $("#modelparam").data('ptype');
 	var productcount = $("#productcount").val();
 	var memberid = $("#modelparam").data("pkid");
@@ -208,6 +209,8 @@ function doInput(){
 				if(data) {
 					add15jf(productcount,data);
 					$("#doinput").modal('hide');
+				}else{
+					util.errorMsg('没有对应的价格信息，请在客户价格设置中添加');
 				}
 			},
 			function(XMLHttpRequest, textStatus, errorThrown) {
@@ -221,6 +224,8 @@ function doInput(){
 				if(data) {
 					add15zf(productcount,data);
 					$("#doinput").modal('hide');
+				}else{
+					util.errorMsg('没有对应的价格信息，请在客户价格设置中添加');
 				}
 			},
 			function(XMLHttpRequest, textStatus, errorThrown) {
@@ -234,6 +239,8 @@ function doInput(){
 				if(data) {
 					add50qx(productcount,data);
 					$("#doinput").modal('hide');
+				}else{
+					util.errorMsg('没有对应的价格信息，请在客户价格设置中添加');
 				}
 			},
 			function(XMLHttpRequest, textStatus, errorThrown) {
@@ -247,6 +254,8 @@ function doInput(){
 				if(data) {
 					add50yx(productcount,data);
 					$("#doinput").modal('hide');
+				}else{
+					util.errorMsg('没有对应的价格信息，请在客户价格设置中添加');
 				}
 			},
 			function(XMLHttpRequest, textStatus, errorThrown) {
@@ -260,6 +269,8 @@ function doInput(){
 				if(data) {
 					add5(productcount,data);
 					$("#doinput").modal('hide');
+				}else{
+					util.errorMsg('没有对应的价格信息，请在客户价格设置中添加');
 				}
 			},
 			function(XMLHttpRequest, textStatus, errorThrown) {

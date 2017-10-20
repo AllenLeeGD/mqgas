@@ -191,6 +191,13 @@
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
+														<label class="control-label col-md-2">违章信息 <span class="required"></span> </label>
+														<div class="col-md-8">
+															<input id="errorrecord" v-model="sendobj.errorrecord" type="text" class="form-control input-large"/>
+															<span class="help-block">  </span>
+														</div>
+													</div>
+													<div id="vipdiscountgroup" class="form-group">
 														<label class="control-label col-md-2">备注 <span class="required"> </span> </label>
 														<div class="col-md-8">
 															<input id="remark" v-model="sendobj.remark" type="text" class="form-control input-large"/>

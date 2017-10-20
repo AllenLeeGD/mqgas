@@ -112,7 +112,7 @@
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">型号 <span class="required"> *</span> </label>
+														<label class="control-label col-md-2">型号或发动机 <span class="required"> *</span> </label>
 														<div class="col-md-8">
 															<input id="type" v-model="sendobj.type" type="text" class="form-control input-large"/>
 															<span class="help-block"> 例如：东风重卡 </span>

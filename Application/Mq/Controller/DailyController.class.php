@@ -76,7 +76,7 @@ class DailyController extends Controller {
 	}
 	
 	public function savecarsdaily(){
-		$obj = getObjFromPost(array("dailydate","carid","carnumber","did","dname","pid","pname","sid","sname","yid","yname","carcourse","oilprice","cost","remark","dailyrun"));
+		$obj = getObjFromPost(array("dailydate","carid","carnumber","did","dname","pid","pname","sid","sname","yid","yname","carcourse","oilprice","cost","remark","dailyrun","errorrecord"));
 		$obj['dailydate'] = strtotime($obj['dailydate']);
 		$obj['pkid'] = uniqid();
 		$dao = M("Carsdaily");
@@ -85,7 +85,7 @@ class DailyController extends Controller {
 	}
 	
 	public function editcarsdaily(){
-		$obj = getObjFromPost(array("pkid","dailydate","carid","carnumber","did","dname","pid","pname","sid","sname","yid","yname","carcourse","oilprice","cost","remark","dailyrun"));
+		$obj = getObjFromPost(array("pkid","dailydate","carid","carnumber","did","dname","pid","pname","sid","sname","yid","yname","carcourse","oilprice","cost","remark","dailyrun","errorrecord"));
 		$obj['dailydate'] = strtotime($obj['dailydate']);
 		$pkid = $obj["pkid"];
 		$dao = M("Carsdaily");

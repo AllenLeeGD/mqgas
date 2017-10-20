@@ -102,6 +102,7 @@ function loadData() {
 	send_obj.cost="";
 	send_obj.dailydate="";
 	send_obj.dailyrun="";
+	send_obj.errorrecord="";
 	send_obj.remark="";
 	var url = "/Mq/Daily/loaddepartment";
 	util.postUrl(

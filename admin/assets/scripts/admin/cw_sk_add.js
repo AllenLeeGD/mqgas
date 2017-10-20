@@ -2,7 +2,7 @@
 function bulidData() {
 	var util = new Util();
 	var opttime = $("#opttime").val();
-	if(util.isNullStr(send_obj.cname) || util.isNullStr(send_obj.totalmoney) || util.isNullStr(opttime)){
+	if(util.isNullStr(send_obj.cname) || util.isNullStr(send_obj.membercode) || util.isNullStr(send_obj.totalmoney) || util.isNullStr(opttime)){
 		return false;
 	}
 	return true;
@@ -52,6 +52,7 @@ var send_vue;
 function loadData() {
 	var util = new Util();	
 	send_obj.cname="";
+	send_obj.membercode="";
 	send_obj.opttime="";
 	send_obj.bankmsg="";
 	send_obj.remark="";

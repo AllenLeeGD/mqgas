@@ -28,7 +28,7 @@ class CWController extends Controller {
 		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
 		
 		$count_sql = "select count(*) as totalrecord from cwsk where 1=1 $countquery_sql";
-		$condition_sql = "select * from cwsk where 1=1 $query_sql limit $iDisplayStart,$iDisplayLength";
+		$condition_sql = "select * from cwsk where 1=1 $query_sql order by opttime desc limit $iDisplayStart,$iDisplayLength";
 		
 		$resultcount = $query -> query($count_sql);
 		$result = $query -> query($condition_sql);
@@ -67,7 +67,7 @@ class CWController extends Controller {
 	}
 	
 	public function savecwsk(){
-		$obj = getObjFromPost(array("cname","opttime","totalmoney","bankmsg","remark"));
+		$obj = getObjFromPost(array("cname","membercode","opttime","totalmoney","bankmsg","remark"));
 		$obj['pkid'] = uniqid();
 		$obj['opttime'] = strtotime($obj['opttime']);
 		$dao = M("Cwsk");
@@ -76,7 +76,7 @@ class CWController extends Controller {
 	}
 	
 	public function editcwsk(){
-		$obj = getObjFromPost(array("pkid","cname","opttime","totalmoney","bankmsg","remark"));
+		$obj = getObjFromPost(array("pkid","cname","membercode","opttime","totalmoney","bankmsg","remark"));
 		$pkid = $obj["pkid"];
 		$obj['opttime'] = strtotime($obj['opttime']);
 		$dao = M("Cwsk");

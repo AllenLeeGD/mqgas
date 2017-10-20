@@ -104,7 +104,7 @@
 												<thead>
 													<tr role="row" class="heading">
 														<th style="width:20%"> 车牌号码 </th>
-														<th style="width:20%"> 型号 </th>
+														<th style="width:20%"> 型号或发动机 </th>
 														<th> 备注 </th>
 														<th style="width:10%"> 操作 </th>
 													</tr>
