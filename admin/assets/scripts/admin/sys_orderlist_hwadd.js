@@ -177,6 +177,20 @@ function add50yx(productcount,price){
 	orderdetails[item.pkid] = item;
 	$("#detailBody").append(content);
 }
+function add5(productcount,price){
+	var util = new Util();
+	var item = {};
+	item.pkid = util.uuidFast();
+	item.productname = "5KG";
+	item.productcount = productcount;
+	item.bottleprice = price;
+	item.pid = "uuid01";
+	item.pname = "5KG";
+	var content = "<tr id=\""+item.pkid+
+	"\"><td>5KG</td><td>"+productcount+"</td><td>"+price+"</td><td>15KG</td><td><a class='btn btn-xs default'  data-toggle='modal' onclick=\"deleteDetail('"+item.pkid+"')\"><i class='fa fa-pencil'></i> &nbsp;删除&nbsp;</a></td></tr>";
+	orderdetails[item.pkid] = item;
+	$("#detailBody").append(content);
+}
 function showInput(ptype,ptitle){
 	$("#modelparam").data('ptype',ptype);
 	$("#inputtitle").html("购买"+ptitle);
@@ -232,6 +246,19 @@ function doInput(){
 			function(data, status) { //如果调用php成功  
 				if(data) {
 					add50yx(productcount,data);
+					$("#doinput").modal('hide');
+				}
+			},
+			function(XMLHttpRequest, textStatus, errorThrown) {
+				util.errorMsg('内部服务器错误');
+			}
+		);
+	}else if(ptype=="5"){
+		util.postUrl(
+			"/Mq/Mobileorder/getPrice/memberid/"+memberid+"/pid/uuid01/rid/empty/qid/empty/jid/empty",
+			function(data, status) { //如果调用php成功  
+				if(data) {
+					add5(productcount,data);
 					$("#doinput").modal('hide');
 				}
 			},

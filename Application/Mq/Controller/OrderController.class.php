@@ -470,7 +470,7 @@ class OrderController extends Controller {
 		$dao_detail = M("Orderdetail");
 		$obj = getObjFromPost(["content"]);
 		$items = json_decode(base64_decode($obj["content"]));
-		$data_main['pkid']=uniqid();
+		$data_main['pkid']=date('YmdHis')."".rand(1000,9999);
 		$data_main['buyer']=$memberid;
 		$data_main['buytime']=time();
 		$data_main['ivtime']=time();

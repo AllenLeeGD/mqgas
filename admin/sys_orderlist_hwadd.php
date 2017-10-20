@@ -57,6 +57,11 @@
 									</button>
 									<ul class="dropdown-menu pull-right" role="menu">
 										<li>
+											<a href="javascript:showInput('5','5KG瓶')">
+												新增5KG瓶
+											</a>
+										</li>
+										<li>
 											<a href="javascript:showInput('15jf','15KG角阀瓶')">
 												新增15KG角阀瓶
 											</a>

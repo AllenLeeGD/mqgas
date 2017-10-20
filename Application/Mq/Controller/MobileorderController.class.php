@@ -14,7 +14,7 @@ class MobileorderController extends Controller {
 		$dao_dgs = M("Orderdgs");
 		$dao_detail = M("Orderdetail");
 		
-		$data_main['pkid'] = uniqid();
+		$data_main['pkid'] = date('YmdHis')."".rand(1000,9999);
 		$data_main['buyer'] = $obj['clientid'];
 		$data_main['buytime'] = time();
 		$data_main['ivtime'] = time();
@@ -73,7 +73,7 @@ class MobileorderController extends Controller {
 		$dao_dgs = M("Orderhsp");
 		$dao_detail = M("Orderdetail");
 		
-		$data_main['pkid'] = uniqid();
+		$data_main['pkid'] = date('YmdHis')."".rand(1000,9999);
 		$data_main['buyer'] = $obj['clientid'];
 		$data_main['buytime'] = time();
 		$data_main['ivtime'] = time();

@@ -36,7 +36,7 @@ function checknull() {
 	var mobile = document.getElementById("mobile").value;
 	var address = document.getElementById("address").value;
 	var paytype = document.getElementById("paytype").value;
-	var money = document.getElementById("price").value;
+	var money = document.getElementById("price").innerHTML;
 //	var sendtime = document.getElementById("sendtime").value;
 	var util = new Util();
 	if(util.isNullStr(name)) {
@@ -55,7 +55,7 @@ function checknull() {
 		mui.toast("<span class=\"mui-icon ion-ios-minus-outline\"></span><br />请选择支付方式");
 		return false;
 	}
-	if(money<10) {
+	if(parseFloat(money)<10) {
 		mui.toast("<span class=\"mui-icon ion-ios-minus-outline\"></span><br />支付金额错误");
 		return false;
 	}

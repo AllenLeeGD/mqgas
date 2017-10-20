@@ -12,9 +12,9 @@
 		if($admintype!='admin' && $admintype!='guanli'){
 			if($admintype=='huawu'){
 				$menulist = array('admin_home.php','sys_orderlist.php');
-				if(!in_array($filename,$menulist)){
-					echo "<script>window.location.href='admin_login.html';</script>";
-				}
+//				if(!in_array($filename,$menulist)){
+//					echo "<script>window.location.href='admin_login.html';</script>";
+//				}
 			}else if($admintype=='biz'){
 				$menulist = array('admin_home.php','sys_pricemain.php','cw_sk.php','sys_price.php','sys_price_add.php','sys_price_edit.php');
 				if(!in_array($filename,$menulist)){
