@@ -472,23 +472,23 @@ $("#information_tab").click(function(){
 	$("#information_div").show();
 	$("#btndiv").show();
 	$("#orders_div").hide();
-	$("#details_div").hide();
-	$("#detail_btn").hide();
+//	$("#details_div").hide();
+	$("#detail_btn").show();
 });
 $("#orders_tab").click(function(){
 	$("#information_div").hide();
 	$("#btndiv").hide();
 	$("#orders_div").show();
-	$("#details_div").hide();
+//	$("#details_div").hide();
 	$("#detail_btn").hide();
 });
-$("#detail_tab").click(function(){
-	$("#information_div").hide();
-	$("#btndiv").hide();
-	$("#orders_div").hide();
-	$("#details_div").show();
-	$("#detail_btn").show();
-});
+//$("#detail_tab").click(function(){
+//	$("#information_div").hide();
+//	$("#btndiv").hide();
+//	$("#orders_div").hide();
+//	$("#details_div").show();
+//	$("#detail_btn").show();
+//});
 
 $(document).ready(function() {
 	if(jQuery().datepicker) {

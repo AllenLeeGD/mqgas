@@ -174,7 +174,7 @@ function openOrderDetail(pkid) {
 			if(data != "no") {
 				try {
 					var objdata = JSON.parse(data);
-					$('#div_orderinfo').html("订单编号:&nbsp;&nbsp;&nbsp;" + objdata.pkid + "&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;" + objdata.buytime + "&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;" + objdata.status + "");
+					$('#div_orderinfo').html("订单编号:&nbsp;&nbsp;&nbsp;" + objdata.orderid + "&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;" + objdata.buytime + "&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;" + objdata.status + "");
 					$('#l_aname').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>收&nbsp;货&nbsp;人:</strong>&nbsp;&nbsp;" + objdata.buyername + "");
 //					$('#sendtime').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>预&nbsp;约&nbsp;时&nbsp;间:</strong>&nbsp;&nbsp;" + objdata.sendtime + "");
 					$('#l_tel').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>电&nbsp;　&nbsp;话:</strong>&nbsp;&nbsp;" + objdata.buyermobile + "");

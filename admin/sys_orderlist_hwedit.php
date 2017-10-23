@@ -48,7 +48,7 @@
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 							<h3 class="page-title"> 新增客户订单信息 <small>增加客户订单信息</small></h3>
 							<ul class="page-breadcrumb breadcrumb">
-								<li id="detail_btn" class="btn-group" style="display: none;">
+								<li id="detail_btn" class="btn-group" >
 									<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
 									<span>
 										功能菜单
@@ -109,11 +109,11 @@
 										客户订单信息
 									</a>
 								</li>
-								<li id="detail_tab">
+								<!--<li id="detail_tab">
 									<a href="#tab_1" data-toggle="tab">
 										订单详情
 									</a>
-								</li>
+								</li>-->
 								<li id="orders_tab">
 									<a href="#tab_1" data-toggle="tab">
 										客户最近的交易记录
@@ -123,8 +123,28 @@
 							<!-- BEGIN VALIDATION STATES-->
 							<div class="tab-content">
 								<div class="tab-pane active" id="tab_0">
-									<div id="information_div" class="portlet box grey">
+									<div id="information_div" class="portlet box">
 										<div style="border-top:1px solid #999;"></div>
+										<!--<div id="details_div" class="portlet-body" style="display: none;">-->
+											<div class="table-container">
+	
+												<table class="table table-bordered" id="datatable_details">
+													<thead>
+														<tr role="row" class="heading">
+															<th style="width:15%"> 商品名称 </th>
+															<th style="width:8%"> 数量 </th>
+															<th style="width:10%"> 单价 </th>
+															<th style="width:14%"> 规格 </th>
+															<th style="width:8%"> 操作 </th>
+														</tr>
+														
+													</thead>
+													<tbody id="detailBody">
+														
+													</tbody>
+												</table>
+											</div>
+										<!--</div>-->
 										<div class="portlet-body form">
 											<!-- BEGIN FORM-->
 											<form action="javascript:;" class="form-horizontal">
@@ -232,26 +252,7 @@
 										</div>
 									</div>
 									
-									<div id="details_div" class="portlet-body" style="display: none;">
-										<div class="table-container">
-
-											<table class="table table-bordered" id="datatable_details">
-												<thead>
-													<tr role="row" class="heading">
-														<th style="width:15%"> 商品名称 </th>
-														<th style="width:8%"> 数量 </th>
-														<th style="width:10%"> 单价 </th>
-														<th style="width:14%"> 规格 </th>
-														<th style="width:8%"> 操作 </th>
-													</tr>
-													
-												</thead>
-												<tbody id="detailBody">
-													
-												</tbody>
-											</table>
-										</div>
-									</div>
+									
 									
 									
 								</div>

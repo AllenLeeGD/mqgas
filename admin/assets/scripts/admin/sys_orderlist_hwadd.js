@@ -473,7 +473,9 @@ function loadData() {
 	send_vue = new Vue({
 		el: "#form_app",
 		data: {
-			sendobj: send_obj
+			sendobj: send_obj,
+			ms:[],
+			ads:[]
 		}
 	});
 	send_obj.remark = "";
@@ -489,8 +491,32 @@ function loadData() {
 			}else{
 				Vue.set(send_vue.sendobj,"memberid",data.pkid);
 				Vue.set(send_vue.sendobj,"membername",data.realname);
-				Vue.set(send_vue.sendobj,"mobile",data.mobile);
-				Vue.set(send_vue.sendobj,"address",data.address);
+//				Vue.set(send_vue.sendobj,"mobile",data.mobile);
+				var mobiles = data.mobile;
+				var ms = mobiles.split(",");
+				var msLst = new Array();
+				for(var i = 0;i<ms.length;i++){
+					var obj = {};
+					obj.m = ms[i];
+					msLst.push(obj);
+					if(i==0){
+						Vue.set(send_vue.sendobj,"mobile",ms[0]);
+					}
+				}
+				send_vue.ms=msLst;
+//				Vue.set(send_vue.sendobj,"address",data.address);
+				var addresses = data.address;
+				var ads = addresses.split(",");
+				var adsLst = new Array();
+				for(var i = 0;i<ads.length;i++){
+					var obj = {};
+					obj.ad = ads[i];
+					adsLst.push(obj);
+					if(i==0){
+						Vue.set(send_vue.sendobj,"address",ads[0]);
+					}
+				}
+				send_vue.ads=adsLst;
 				ProviderOrder.init("../index.php/Mq/Order/findOrdersByMemberid/memberid/"+data.pkid, 0);
 				$("#modelparam").data("pkid",data.pkid);
 				
@@ -508,23 +534,23 @@ $("#information_tab").click(function(){
 	$("#information_div").show();
 	$("#btndiv").show();
 	$("#orders_div").hide();
-	$("#details_div").hide();
-	$("#detail_btn").hide();
+//	$("#details_div").hide();
+	$("#detail_btn").show();
 });
 $("#orders_tab").click(function(){
 	$("#information_div").hide();
 	$("#btndiv").hide();
 	$("#orders_div").show();
-	$("#details_div").hide();
+//	$("#details_div").hide();
 	$("#detail_btn").hide();
 });
-$("#detail_tab").click(function(){
-	$("#information_div").hide();
-	$("#btndiv").hide();
-	$("#orders_div").hide();
-	$("#details_div").show();
-	$("#detail_btn").show();
-});
+//$("#detail_tab").click(function(){
+//	$("#information_div").hide();
+//	$("#btndiv").hide();
+//	$("#orders_div").hide();
+//	$("#details_div").show();
+//	$("#detail_btn").show();
+//});
 
 $(document).ready(function() {
 	if(jQuery().datepicker) {
