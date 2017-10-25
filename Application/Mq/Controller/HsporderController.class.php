@@ -29,6 +29,15 @@ class HsporderController extends Controller {
 			$query_sql = $query_sql . " and d.recaroptname LIKE '%$optname_search%'";
 			$countquery_sql = $countquery_sql . " and d.recaroptname LIKE '%$optname_search%'";
 		}
+		
+		//根据业务员进行过滤
+		$username = session("name");
+		$userid = session("userid");
+		if($username != "superadmin"){
+			$query_sql = $query_sql . " and o.userid = '$userid'";
+			$countquery_sql = $countquery_sql . " and o.userid = '$userid'";
+		}
+		
 		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
 		$iDisplayStart = intval($_REQUEST['iDisplayStart']);	
 		if ($status == 0) {//待入库
@@ -50,10 +59,17 @@ class HsporderController extends Controller {
 		//操作按钮
 		for ($i = 0; $i < count($result); $i++) {			
 			$btnIn = "<div class=\"margin-top-10\"><a class='btn btn-xs blue default'  data-toggle='modal' onclick=\"openIn('".$result[$i]['pkid']."')\"><i class='fa fa-bookmark-o'></i> &nbsp;入库</a></div>";
+			$btnCancle = "<div class=\"margin-top-10\"><a class='btn btn-xs red default'  data-toggle='modal' onclick=\"openCancle('".$result[$i]['pkid']."')\"><i class='fa fa-bookmark-o'></i> &nbsp;取消</a></div>";
 			$showBtn = "";
 			if($result[$i]['hspstatus']==0 || $result[$i]['hspstatus']==1){
 				$showBtn = $btnIn;
 			}
+			
+			$admintype = session("admin_type");
+			if($admintype=="admin" || $admintype=="huawu" || $admintype=="biz"){
+				$showBtn = $showBtn . $btnCancle;
+			}
+			
 			$date_format = date("Y-m-d H:i:s", $result[$i]['buytime']);
 			$recardate_format = date("Y-m-d H:i:s", $result[$i]['recardate']);
 			$records["aaData"][] = array("单号: " . $result[$i]['pkid'] . "<br/>时间: " . $date_format,  "<span class='font-highlight-custom'>" . $result[$i]['buyername'] . "</span>", $result[$i]['recarnumber'], $recardate_format, $result[$i]['recaroptname'], "<div><a class='btn btn-xs default btn-editable' data-toggle='modal' onclick=\"openOrderDetail('" . $result[$i]['pkid'] . "')\">
@@ -108,5 +124,15 @@ class HsporderController extends Controller {
 		echo "yes";
 	}
 	
-	
+	public function cancle($bid){
+		$dao = M("Ordermain");
+		$data['hspstatus'] = -1;
+		$dao->where("pkid='$bid'")->save($data);
+		$hsp_dao = M("Orderhsp");
+		$data_hsp['cancletime'] = time();
+		$data_hsp['cancleopt'] = session('userid');
+		$data_hsp['cancleoptname'] = session("name");
+		$hsp_dao->where("orderid='$bid'")->save($data_hsp);
+		echo "yes";
+	}
 }

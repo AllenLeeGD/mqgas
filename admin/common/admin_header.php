@@ -16,7 +16,7 @@
 //					echo "<script>window.location.href='admin_login.html';</script>";
 //				}
 			}else if($admintype=='biz'){
-				$menulist = array('admin_home.php','sys_pricemain.php','cw_sk.php','sys_price.php','sys_price_add.php','sys_price_edit.php');
+				$menulist = array('admin_home.php','sys_pricemain.php','cw_sk.php','sys_price.php','sys_price_add.php','sys_price_edit.php','sys_orderlist_yw.php','sys_orderlist_hsp.php');
 				if(!in_array($filename,$menulist)){
 					echo "<script>window.location.href='admin_login.html';</script>";
 				}

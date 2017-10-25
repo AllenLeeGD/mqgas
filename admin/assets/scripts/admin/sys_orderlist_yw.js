@@ -1,3 +1,16 @@
+function openOut(pkid) {
+	$("#view_data").data("pkid", pkid);
+	$("#carnumber").val("");
+	$("#outjing").val("");
+	$("#outmao").val("");
+	$("#outpi").val("");
+	$("#outtype").val("1");
+	$("#do_out").modal('show');
+}
+function openCancle(pkid) {
+	$("#view_data").data("pkid", pkid);
+	$("#do_cancle").modal('show');
+}
 
 function openIn(pkid) {
 	$("#view_data").data("pkid", pkid);
@@ -10,32 +23,6 @@ function openIn(pkid) {
 	$("#do_in").modal('show');
 }
 
-function openCancle(pkid) {
-	$("#view_data").data("pkid", pkid);
-	$("#do_cancle").modal('show');
-}
-
-function doCancle() {
-	var pkid = $("#view_data").data("pkid");
-	var util = new Util();
-	util.showLoading();
-	util.postUrl('/Mq/Hsporder/cancle/bid/' + pkid, function(data, status) {
-			if(data == "yes") {
-				util.successMsg('取消订单成功');
-				$("#do_cancle").modal('hide');
-			} else {
-				util.errorMsg('取消订单失败');
-			}
-			ProviderOrder.init("../index.php/Mq/Hsporder/findProductOrderByStatus/status/0", 0);
-			util.hideLoading();
-		},
-		function(XMLHttpRequest, textStatus, errorThrown) {
-			util.errorMsg('内部服务器错误');
-			util.hideLoading();
-		});
-
-}
-
 function getouttypestr(type){
 	if(type=="1"){
 		return "代理商";
@@ -46,6 +33,55 @@ function getouttypestr(type){
 	}
 }
 
+function doOut() {
+	var pkid = $("#view_data").data("pkid");
+	var objdata = {};
+	objdata.carnumber = base64_encode($("#carnumber").val());
+	objdata.outjing = $("#outjing").val();
+	objdata.outmao = $("#outmao").val();
+	objdata.outpi = $("#outpi").val();
+	objdata.outtype = $("#outtype").val();
+	var util = new Util();
+	util.showLoading();
+	util.postUrl('/Mq/Dgsorder/send/bid/' + pkid, function(data, status) {
+			if(data == "yes") {
+				util.successMsg('出库成功');
+				$("#do_out").modal('hide');
+			} else {
+				util.errorMsg('出库失败');
+			}
+			ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatus/status/0", 0);
+			util.hideLoading();
+		},
+		objdata,
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			util.errorMsg('内部服务器错误');
+			util.hideLoading();
+		});
+
+}
+
+function doCancle() {
+	var pkid = $("#view_data").data("pkid");
+	var util = new Util();
+	util.showLoading();
+	util.postUrl('/Mq/Dgsorder/cancle/bid/' + pkid, function(data, status) {
+			if(data == "yes") {
+				util.successMsg('取消订单成功');
+				$("#do_cancle").modal('hide');
+			} else {
+				util.errorMsg('取消订单失败');
+			}
+			ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatus/status/0", 0);
+			util.hideLoading();
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			util.errorMsg('内部服务器错误');
+			util.hideLoading();
+		});
+
+}
+
 function doIn() {
 	var pkid = $("#view_data").data("pkid");
 	var objdata = {};
@@ -54,16 +90,17 @@ function doIn() {
 	objdata.huiempty = base64_encode($("#huiempty").val());
 	objdata.huifull = base64_encode($("#huifull").val());
 	objdata.huishou = base64_encode($("#huishou").val());
+	objdata.weight = base64_encode($("#weight").val());
 	var util = new Util();
 	util.showLoading();
-	util.postUrl('/Mq/Hsporder/doin/bid/' + pkid, function(data, status) {
+	util.postUrl('/Mq/Dgsorder/doin/bid/' + pkid, function(data, status) {
 			if(data == "yes") {
 				util.successMsg('入库成功');
 				$("#do_in").modal('hide');
 			} else {
 				util.errorMsg('入库失败');
 			}
-			ProviderOrder.init("../index.php/Mq/Hsporder/findProductOrderByStatus/status/0", 0);
+			ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatus/status/1", 0);
 			util.hideLoading();
 		},
 		objdata,
@@ -77,8 +114,8 @@ function openOrderDetail(pkid) {
 	var util = new Util();
 	var openmodal = $("#ajax-modal");
 	util.showLoading();
-	openmodal.load('sys_orderdetail_hsp.html', '', function() {
-		util.postUrl('/Mq/Hsporder/findProductOrderByPkid/pkid/' + pkid, function(data, status) {
+	openmodal.load('sys_orderdetail_dgs.html', '', function() {
+		util.postUrl('/Mq/Dgsorder/findProductOrderByPkid/pkid/' + pkid, function(data, status) {
 			if(data != "no") {
 				try {
 					var objdata = JSON.parse(data);
@@ -89,11 +126,18 @@ function openOrderDetail(pkid) {
 					$('#l_address').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>地&nbsp;　&nbsp;址:</strong>&nbsp;&nbsp;" + objdata.buyeraddress + "");
 					$('#l_remark').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>备&nbsp;　&nbsp;注:</strong>&nbsp;&nbsp;" + objdata.remark + "");
 					
-					$('#l_recarnumber').html("<strong>预派车牌号码:</strong>&nbsp;&nbsp;"+objdata.recarnumber);
+					$('#l_recarnumber').html("<strong>预派车牌号码:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.recarnumber)?"":objdata.recarnumber));
 					$('#l_recardate').html("<strong>预计到达时间:</strong>&nbsp;&nbsp;"+objdata.recardate);
-					$('#l_recaroptname').html("<strong>操作人:</strong>&nbsp;&nbsp;"+objdata.recaroptname);
+					$('#l_recaroptname').html("<strong>操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.recaroptname)?"":objdata.recaroptname));
 					$('#l_carnumber').html("<strong>送货车牌号码:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.carnumber)?"":objdata.carnumber));
-										
+					
+					$('#l_outoptname').html("<strong>出库操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.outoptname)?"":objdata.outoptname));
+					$('#l_outoptdate').html("<strong>出库时间:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.outoptdate)?"":(new Date(objdata.outoptdate*1000).Format("yyyy-MM-dd hh:mm:ss"))));
+					$('#l_outjing').html("<strong>出库净重(吨):</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.outjing)?"":objdata.outjing));
+					$('#l_outmao').html("<strong>出库毛重(吨):</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.outmao)?"":objdata.outmao));
+					$('#l_outpi').html("<strong>出库皮重(吨):</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.outpi)?"":objdata.outpi));
+					$('#l_outtype').html("<strong>结算类型:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.outtype)?"":getouttypestr(objdata.outtype)));
+					
 					$('#l_incarnumber').html("<strong>入库车牌号码:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.incarnumber)?"":objdata.incarnumber));
 					$('#l_inoptname').html("<strong>入库操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.inoptname)?"":objdata.inoptname));
 					$('#l_inoptdate').html("<strong>入库时间:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.inoptdate)?"":(new Date(objdata.inoptdate*1000).Format("yyyy-MM-dd hh:mm:ss"))));
@@ -101,7 +145,7 @@ function openOrderDetail(pkid) {
 					$('#l_huiempty').html("<strong>回流瓶空瓶:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.huiempty)?"":objdata.huiempty));
 					$('#l_huifull').html("<strong>回流瓶重瓶:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.huifull)?"":objdata.huifull));
 					$('#l_huishou').html("<strong>回收瓶:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.huishou)?"":objdata.huishou));
-					
+					$('#l_weight').html("<strong>客户称重(吨):</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.weight)?"":objdata.weight));
 					
 					var itemlist = objdata.itemlist;
 					var result = "";
@@ -109,7 +153,7 @@ function openOrderDetail(pkid) {
 						var objdata = itemlist[i];
 						var template = "<tr><td><div class=\"product-img-label\" >" +
 							"<span>${pdname}</span>" +
-							"</div></td><td>${pname}</td>\<td>${productcount}</td></tr>";
+							"</div></td><td>${pname}</td>\<td>${productcount}</td><td>${productweight}</td></tr>";
 						//var index = parseInt(a,10)+1;
 						var productname = objdata.productname;
 						var pname = objdata.pname;
@@ -119,6 +163,7 @@ function openOrderDetail(pkid) {
 						template = template.replace('\$\{pdname\}', productname);
 						template = template.replace('\$\{pname\}', pname);
 						template = template.replace('\$\{productcount\}', productcount);
+						template = template.replace('\$\{productweight\}', productweight);
 						result+=template
 					}
 					$("#tpl_itemlist").html(result);
@@ -285,7 +330,7 @@ $(document).ready(function() {
 		start = 0;
 	}
 	if(util.isNullStr(params)) {
-		ProviderOrder.init("../index.php/Mq/Hsporder/findProductOrderByStatus/status/0", start);
+		ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatusAndUserid/status/0", start);
 	} else {
 		params = base64_decode(params);
 		var arrparam = params.split(',');
@@ -295,31 +340,61 @@ $(document).ready(function() {
 		$('#order_search').val(arrval0[1]);
 		$('#buyername_search').val(arrval1[1]);
 		$('#optname_search').val(arrval2[1]);
-		ProviderOrder.init("../index.php/Mq/Hsporder/findProductOrderByStatus/status/0", start);
+		ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatusAndUserid/status/0", start);
 	}
+	//待出库订单
+	$("#chu_tab").bind('click', function() {
+		document.title="票房订单管理";
+		ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatusAndUserid/status/0", 0);
+	});
 	//待入库的订单
 	$("#ru_tab").bind('click', function() {
 		document.title="票房订单管理";
-		ProviderOrder.init("../index.php/Mq/Hsporder/findProductOrderByStatus/status/0", 0);
+		ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatusAndUserid/status/1", 0);
+	});
+	//待备货的订单
+	$("#bei_tab").bind('click', function() {
+		document.title="票房订单管理";
+		ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatusAndUserid/status/2", 0);
 	});
 	//已完成的订单
 	$("#complete_tab").bind('click', function() {
 		document.title="票房订单管理";
-		ProviderOrder.init("../index.php/Mq/Hsporder/findProductOrderByStatus/status/1", 0);
+		ProviderOrder.init("../index.php/Mq/Dgsorder/findProductOrderByStatusAndUserid/status/3", 0);
 	});
 	
-	var orderid = util.getParam("orderid");
-	util.getUrl('/Mq/Order/findOrderStatusByType/orderid/'+orderid+"/type/hsp", function(data, status) {
-		if(data==0 || data==1){
-			$("#ru_tab").click();
-			$("li[id$='_tab']").removeClass("active");
-			$("#ru_tab").addClass("active");
-		}else if(data==2 || data==3){
-			$("#complete_tab").click();
-			$("li[id$='_tab']").removeClass("active");
-			$("#complete_tab").addClass("active");
-		}
-		$("#order_search").val(orderid);
-		$("#btnSearch").click();
-	});
+	
+	
 });
+//确认订单
+function doSendConfirm() {
+	var bid = $("#agent_order_data").data("send_bid");
+	$("#confirm_send_btn").button("loading");
+	var util = new Util();
+	util.getUrl("/Mq/Order/send/bid/" + bid, function(data, status) {
+		if(data == "yes") {
+			util.successMsg('订单确认成功');
+			$("#ajax-send").modal('hide');
+			ProviderOrder.init("../index.php/Mq/Order/findProductOrderByStatus/status/0");
+			//			util.getUrl('/Provider/ProductOnSale/getProviderOrderCount/status/1', function(data, status) {
+			//				$("#send").html(data);
+			//			});
+			//			util.getUrl('/Provider/ProductOnSale/getProviderOrderCount/status/2', function(data, status) {
+			//				$("#receive").html(data);
+			//			});
+			$("#confirm_send_btn").button("reset");
+		}
+	}, function() {
+		$("#confirm_send_btn").button("reset");
+	});
+}
+
+function receive_order_btn(bid) {
+	$("#agent_order_data").data("receive_bid", bid);
+	$("#receive_confirm").modal('show');
+}
+
+function comment_order_btn(bid) {
+	$("#agent_order_data").data("comment_bid", bid);
+	$("#comment_confirm").modal('show');
+}
