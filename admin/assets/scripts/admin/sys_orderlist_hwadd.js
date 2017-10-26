@@ -492,6 +492,13 @@ function loadData() {
 				Vue.set(send_vue.sendobj,"memberid",data.pkid);
 				Vue.set(send_vue.sendobj,"membername",data.realname);
 //				Vue.set(send_vue.sendobj,"mobile",data.mobile);
+				
+				if(data.status==-1){
+					util.errorMsg("此用户已退户")
+					$("#btnSave").attr("disabled",true);
+					$("#btnStart").attr("disabled",true);
+				}
+				
 				var mobiles = data.mobile;
 				var ms = mobiles.split(",");
 				var msLst = new Array();

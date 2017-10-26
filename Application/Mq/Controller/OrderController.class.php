@@ -317,7 +317,7 @@ class OrderController extends Controller {
 		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
 		
 		$count_sql = "select count(*) as totalrecord from memberinfo as m where 1=1 $countquery_sql order by m.regtime desc";
-		$condition_sql = "select m.pkid,m.realname,m.mobile,m.membertype from memberinfo as m where 1=1 $query_sql order by regtime desc limit $iDisplayStart,$iDisplayLength ";
+		$condition_sql = "select m.pkid,m.realname,m.mobile,m.membertype,m.status from memberinfo as m where 1=1 $query_sql order by regtime desc limit $iDisplayStart,$iDisplayLength ";
 		
 		$resultcount = $query -> query($count_sql);
 		$result = $query -> query($condition_sql);
@@ -341,7 +341,12 @@ class OrderController extends Controller {
 			if(strlen($mobile)>50){
 				$mobile = "<a title='$mobile'>".substr($mobile, 0,50)."......</a>";
 			}
-			$records["aaData"][] = array("<div class=\"product-label\"><span><a style=\"cursor:pointer;\" data-toggle='modal' onclick=\"openMemberDetail('" . $result[$i]['pkid'] . "')\">".$result[$i]['realname']."</a></span></div>",$mobile,$membertype,$btnPriceset);
+			if($result[$i]['status'] == -1){//退户
+				$btns = "已退户";
+			}else{
+				$btns = $btnPriceset;
+			}
+			$records["aaData"][] = array("<div class=\"product-label\"><span><a style=\"cursor:pointer;\" data-toggle='modal' onclick=\"openMemberDetail('" . $result[$i]['pkid'] . "')\">".$result[$i]['realname']."</a></span></div>",$mobile,$membertype,$btns);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";
@@ -541,4 +546,5 @@ class OrderController extends Controller {
 			echo $result['hspstatus'];
 		}
 	}
+	
 }
