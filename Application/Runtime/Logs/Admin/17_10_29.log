@@ -1,0 +1,50 @@
+[ 2017-10-29T20:50:35+08:00 ] ::1 /index.php/Admin/Admin/login/username/superadmin/password/superadmin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002380s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001702s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001798s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0135s ]
+SQL: SELECT * FROM `userinfo` WHERE ( name='superadmin' ) LIMIT 1   [ RunTime:0.0129s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002929s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003001s ]
+
+[ 2017-10-29T20:50:35+08:00 ] ::1 /index.php/Admin/Admin/checksession
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000371s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000357s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000403s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000390s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000967s ]
+
+[ 2017-10-29T20:51:55+08:00 ] ::1 /index.php/Admin/Admin/checksession
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000360s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000344s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000385s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000358s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000406s ]
+
+[ 2017-10-29T20:51:58+08:00 ] ::1 /index.php/Admin/Admin/checksession
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000162s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000214s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000209s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000233s ]
+

@@ -1,0 +1,50 @@
+[ 2017-10-29T20:50:35+08:00 ] ::1 /index.php/Mq/Order/findUsersCount
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000352s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000382s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000434s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `memberinfo` [ RunTime:0.0132s ]
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0121s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `memberinfo` LIMIT 1   [ RunTime:0.0134s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ordermain` LIMIT 1   [ RunTime:0.0125s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000735s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000801s ]
+
+[ 2017-10-29T20:51:55+08:00 ] ::1 /index.php/Mq/Price/findpricemain
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000145s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000214s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `userinfo` [ RunTime:0.0149s ]
+SQL: SELECT * FROM `userinfo` WHERE ( pid='uuid01' ) LIMIT 1   [ RunTime:0.0128s ]
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  order by m.regtime desc [ RunTime:0.0159s ]
+SQL: select m.pkid,m.realname,m.mobile,m.membertype from memberinfo as m where 1=1  order by regtime desc limit 0,20  [ RunTime:0.0161s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/PriceController.class.php 第 58 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/PriceController.class.php 第 58 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000570s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000626s ]
+
+[ 2017-10-29T20:51:58+08:00 ] ::1 /index.php/Mq/Price/findPrice/memberid/59f58928969a2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000163s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000222s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from price as m where memberid='59f58928969a2'  [ RunTime:0.0144s ]
+SQL: select * from price where memberid='59f58928969a2'  limit 0,20  [ RunTime:0.0140s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/PriceController.class.php 第 116 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/PriceController.class.php 第 116 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000445s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000490s ]
+

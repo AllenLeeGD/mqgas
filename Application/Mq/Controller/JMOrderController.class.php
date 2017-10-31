@@ -208,7 +208,7 @@ class JMOrderController extends Controller {
 	
 	public function loadCars($did){
 		$dao  = M("Carsdaily");
-		$result = $dao->where("did = '$did' and from_unixtime(dailydate,'%Y-%m-%d') = date_format(now(), '%Y-%m-%d')")->select();
+		$result = $dao->where("did = '$did' and status=0 and from_unixtime(dailydate,'%Y-%m-%d') = date_format(now(), '%Y-%m-%d')")->select();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($result, JSON_UNESCAPED_UNICODE);

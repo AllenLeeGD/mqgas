@@ -1,0 +1,15 @@
+[ 2017-10-30T16:10:09+08:00 ] ::1 /index.php/Mq/Member/findMember
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000148s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000215s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000245s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo where 1=1  [ RunTime:0.0131s ]
+SQL: select m.*,l.levelname from memberinfo as m left join level as l on m.level=l.pkid where 1=1  order by regtime desc limit 0,20 [ RunTime:0.0132s ]
+NOTIC: [8] Undefined variable: idno /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/MemberController.class.php 第 296 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000521s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000573s ]
+
