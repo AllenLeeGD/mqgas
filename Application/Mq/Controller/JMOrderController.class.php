@@ -94,6 +94,7 @@ class JMOrderController extends Controller {
 			$btnHe = "<div class=\"margin-top-10\"><a class='btn btn-xs green default'  data-toggle='modal' onclick=\"openHe('".$result[$i]['pkid']."')\"><i class='fa fa-suitcase'></i> &nbsp;核款</a></div>";
 			$btnJie = "<div class=\"margin-top-10\"><a class='btn btn-xs blue default'  data-toggle='modal' onclick=\"openJie('".$result[$i]['pkid']."')\"><i class='fa fa-suitcase'></i> &nbsp;月结</a></div>";
 			$showBtn = "";
+			$pre = "";
 			if($status==0){
 				$showBtn = $btnEdit.$btnSend.$btnCancle;
 			}else if($status==1){
@@ -104,8 +105,10 @@ class JMOrderController extends Controller {
 				$showBtn = $btnPei;
 			}else if($status==4){
 				$showBtn = $btnShou.$btnJie;
+				$pre = "<input name='Fruit' type='checkbox' value='".$result[$i]['pkid']."' />";
 			}else if($status==5){
 				$showBtn = $btnCun;
+				$pre = "<input name='Fruit' type='checkbox' value='".$result[$i]['pkid']."' />";
 			}else if($status==6){
 				$showBtn = $btnHe;
 			}else if($status==7){
@@ -116,7 +119,7 @@ class JMOrderController extends Controller {
 			$statusStr = getNewStatus($result[$i]['status'], $result[$i]['jmstatus'], $result[$i]['dgsstatus'], $result[$i]['hspstatus']);
 			$date_format = date("Y-m-d H:i:s", $result[$i]['buytime']);
 			$recardate_format = date("Y-m-d H:i:s", $result[$i]['recardate']);
-			$records["aaData"][] = array("单号: " . $result[$i]['pkid'] . "<br/>时间: " . $date_format. "<br/>状态: " .$statusStr,  "<span class='font-highlight-custom'>" . $result[$i]['buyername'] . "</span>", $result[$i]['buyeraddress'], $result[$i]['buyermobile'], $result[$i]['price'], "<div><a class='btn btn-xs default btn-editable' data-toggle='modal' onclick=\"openOrderDetail('" . $result[$i]['pkid'] . "')\">
+			$records["aaData"][] = array($pre."单号: " . $result[$i]['pkid'] . "<br/>时间: " . $date_format. "<br/>状态: " .$statusStr,  "<span class='font-highlight-custom'>" . $result[$i]['buyername'] . "</span>", $result[$i]['buyeraddress'], $result[$i]['buyermobile'], $result[$i]['price'], "<div><a class='btn btn-xs default btn-editable' data-toggle='modal' onclick=\"openOrderDetail('" . $result[$i]['pkid'] . "')\">
 			<i class='fa fa-search-plus'></i> 详情</a></div>" .$showBtn);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
@@ -256,6 +259,30 @@ class JMOrderController extends Controller {
 	}
 	
 	/**
+	 * 批量订单收款.
+	 * @bid 订单ID
+	 */
+	public function plshou(){
+		$obj = getObjFromPost(array("shounumber","shous"));
+		$dao = M("Ordermain");
+		$dao_jm = M("Orderjm");
+		$data['jmstatus'] = 4;
+		$data_jm['shoutime'] = time();
+		$data_jm['shouoptid'] = session("userid");
+		$data_jm['shouoptname'] = session("name");
+		$data_jm['shounumber'] = $obj["shounumber"];
+		$bids = split(",", $obj['shous']);
+		for($i=0;$i<count($bids);$i++){
+			$bid = $bids[$i];
+			$dao->where("pkid='$bid'")->save($data);
+			$dao_jm->where("orderid='$bid'")->save($data_jm);
+			addLog(1, session("userid"), "订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."</a>收款");
+		}
+		
+		echo "yes";
+	}
+	
+	/**
 	 * 订单月结.
 	 * @bid 订单ID
 	 */
@@ -290,6 +317,32 @@ class JMOrderController extends Controller {
 		$dao->where("pkid='$bid'")->save($data);
 		$dao_jm->where("orderid='$bid'")->save($data_jm);
 		addLog(1, session("userid"), "订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."</a>存款");
+		echo "yes";
+	}
+	
+	/**
+	 * 批量订单收款.
+	 * @bid 订单ID
+	 */
+	public function plcun(){
+		$obj = getObjFromPost(array("cunmsg","shoutype","shoutypestr","cuns"));
+		$dao = M("Ordermain");
+		$dao_jm = M("Orderjm");
+		$data['jmstatus'] = 5;
+		$data_jm['cunmsg'] = $obj['cunmsg'];
+		$data_jm['shoutype'] = $obj['shoutype'];
+		$data_jm['shoutypestr'] = $obj['shoutypestr'];
+		$data_jm['cuntime'] = time();
+		$data_jm['cunoptid'] = session("userid");
+		$data_jm['cunoptname'] = session("name");
+		
+		$bids = split(",", $obj['cuns']);
+		for($i=0;$i<count($bids);$i++){
+			$bid = $bids[$i];
+			$dao->where("pkid='$bid'")->save($data);
+			$dao_jm->where("orderid='$bid'")->save($data_jm);
+			addLog(1, session("userid"), "订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."</a>存款");
+		}
 		echo "yes";
 	}
 	

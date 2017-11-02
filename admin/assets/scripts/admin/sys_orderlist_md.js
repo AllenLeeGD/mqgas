@@ -7,6 +7,39 @@ function openShou(pkid) {
 	$("#view_data").data("pkid", pkid);
 	$("#do_shou").modal('show');
 }
+var plcLst ;
+function pck() {
+	plcLst = new Array();
+	$("[name='Fruit']").each(function(){
+		if($(this).is(':checked')){
+			plcLst.push($(this).attr("value"));
+		}
+	});
+	if(plcLst.length==0){
+		var util = new Util();
+		util.errorMsg("请先选择订单");
+		return;
+	}
+	$("#plcunmsg").val('');
+	$("#do_plcun").modal('show');
+}
+var plsLst;
+function psk() {
+	plsLst = new Array();
+	$("[name='Fruit']").each(function(){
+		if($(this).is(':checked')){
+			plsLst.push($(this).attr("value"));
+		}
+	});
+	if(plsLst.length==0){
+		var util = new Util();
+		util.errorMsg("请先选择订单");
+		return;
+	}
+	$("#do_plshou").modal('show');
+}
+
+
 function openJie(pkid) {
 	$("#view_data").data("pkid", pkid);
 	$("#do_jie").modal('show');
@@ -74,6 +107,38 @@ function doShou() {
 
 }
 
+function doPLShou() {
+	var objdata = {};
+	objdata.shous = "";
+	objdata.shounumber = $("#shounumber").val();
+	for(var i = 0;i<plsLst.length;i++){
+		if(i==0){
+			objdata.shous = plsLst[i];
+		}else{
+			objdata.shous = objdata.shous + "," + plsLst[i];
+		}
+	}
+	
+	var util = new Util();
+	util.showLoading();
+	util.postUrl('/Mq/JMOrder/plshou/', function(data, status) {
+			if(data == "yes") {
+				util.successMsg('批量确认收款成功');
+				$("#do_plshou").modal('hide');
+			} else {
+				util.errorMsg('批量确认收款失败');
+			}
+			ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/4", 0);
+			util.hideLoading();
+		},
+		objdata,
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			util.errorMsg('内部服务器错误');
+			util.hideLoading();
+		});
+
+}
+
 function doJie() {
 	var pkid = $("#view_data").data("pkid");
 	var util = new Util();
@@ -113,6 +178,43 @@ function doCun() {
 				$("#do_cun").modal('hide');
 			} else {
 				util.errorMsg('存款失败');
+			}
+			ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/5", 0);
+			util.hideLoading();
+		},
+		objdata,
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			util.errorMsg('内部服务器错误');
+			util.hideLoading();
+		});
+
+}
+
+
+function doPLCun() {
+	var objdata = {};
+	objdata.cunmsg = $("#plcunmsg").val();
+	objdata.shoutype = $("#plshoutype").val();
+	objdata.shoutypestr = $("#plshoutype").find("option:selected").html();
+	var util = new Util();
+	if(util.isNullStr(objdata.cunmsg) || util.isNullStr(objdata.shoutype)){
+		util.errorMsg('请填写存款信息');
+		return;
+	}
+	for(var i = 0;i<plcLst.length;i++){
+		if(i==0){
+			objdata.cuns = plcLst[i];
+		}else{
+			objdata.cuns = objdata.cuns + "," + plcLst[i];
+		}
+	}
+	util.showLoading();
+	util.postUrl('/Mq/JMOrder/plcun/', function(data, status) {
+			if(data == "yes") {
+				util.successMsg('批量存款成功');
+				$("#do_plcun").modal('hide');
+			} else {
+				util.errorMsg('批量存款失败');
 			}
 			ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/5", 0);
 			util.hideLoading();
@@ -429,16 +531,23 @@ $(document).ready(function() {
 	$("#fen_tab").bind('click', function() {
 		document.title="居民小工商订单";
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/3", 0);
+		$("#btn_group").hide();
 	});
 	
 	$("#shou_tab").bind('click', function() {
 		document.title="居民小工商订单";
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/4", 0);
+		$("#btn_group").show();
+		$("#psk_container").show();
+		$("#pck_container").hide();
 	});
 	
 	$("#cun_tab").bind('click', function() {
 		document.title="居民小工商订单";
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/5", 0);
+		$("#btn_group").show();
+		$("#psk_container").hide();
+		$("#pck_container").show();
 	});
 	
 });

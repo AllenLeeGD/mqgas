@@ -45,7 +45,26 @@
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 							<h3 class="page-title"> 居民小工商订单(门店) <small></small></h3>
 							<ul class="page-breadcrumb breadcrumb">
-
+								<li id="btn_group" class="btn-group" style="display: none;">
+									<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+									<span>
+										功能菜单
+									</span>
+									<i class="fa fa-angle-down"></i>
+									</button>
+									<ul class="dropdown-menu pull-right" role="menu">
+										<li id="psk_container" style="display: none;">
+											<a href="javascript:psk()">
+												批量收款
+											</a>
+										</li>
+										<li id="pck_container" style="display: none;">
+											<a href="javascript:pck()">
+												批量存款
+											</a>
+										</li>
+									</ul>
+								</li>
 								<li>
 									<a href="admin_home.php?item=0">
 										管理首页
@@ -229,6 +248,43 @@
 				<!-- /.modal-dialog -->
 			</div>
 			
+			
+			<div class="modal fade" id="do_plshou" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="padding:10px 20px 10px 20px;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title green">批量收款</h4>
+						</div>
+						<div class="modal-body">
+							确认送气工或司机已经将款项交付到门店了吗?
+						</div>
+						<form id="plform_app" action="javascript:;" class="form-horizontal">
+							<div class="form-body" style="padding:16px 26px 16px 26px;">
+								<div class="form-group">
+									<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+									<label class="control-label col-md-4">收据号码 <span class="required"> </span> </label>
+									<div class="col-md-8">
+										<input id="plshounumber" style="width: 300px;" maxlength="120" class="form-control" ></textarea>										
+										<span class="help-block"> 如果有收据，请填写收据号码 </span>
+									</div>
+								</div>
+							</div>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="btn default" data-dismiss="modal">
+							取消
+							</button>
+							<button type="button" class="btn blue" onclick="doPLShou()">
+							确定
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			
 			<div class="modal fade" id="do_jie" tabindex="-1" role="dialog" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content" style="padding:10px 20px 10px 20px;">
@@ -316,6 +372,79 @@
 							取消
 							</button>
 							<button  type="button" class="btn blue" onclick="doCun()">
+							确定
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			
+			
+			<div class="modal fade" id="do_plcun" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="padding:10px 20px 10px 20px;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title green">批量存款</h4>
+						</div>
+						<div class="modal-body">
+							确认已经将这些订单款项存入银行了吗?
+						</div>
+						<form id="plform_app" action="javascript:;" class="form-horizontal">
+							<div class="form-body" style="padding:16px 26px 16px 26px;">
+								<div class="form-group">
+									<label class="control-label col-md-4">收款方式 <span class="required">*</span> </label>
+									<div class="col-md-8">
+										<select id="plshoutype" name="plshoutype" class="form-control input-middle" style="width: ;">
+											<option value="1">中晟公司转账</option>
+											<option value="2">转账(码头中行银海支行)</option>
+											<option value="3">转账(码头中行分行)</option>
+											<option value="4">市区现金(中晟工行丽景支行)</option>
+											<option value="5">转账(码头工行分行)</option>
+											<option value="6">微付(中晟建行丽景支行)</option>
+											<option value="7">现金(码头中行银海支行)</option>
+											<option value="8">转账(码头银行扣款)</option>
+											<option value="9">优惠券</option>
+											<option value="a">科技余气</option>
+											<option value="b">码头余气</option>
+											<option value="f">中晟公司现金</option>
+											<option value="i">转账(中晟工行丽景支行)</option>
+											<option value="h">码头公司现金</option>
+											<option value="j">中行银海支行梁绮凌</option>
+											<option value="l">转账(中晟中行银海支行)</option>
+											<option value="m">转账(中晟邮政储蓄支行)</option>
+											<option value="n">现金(中晟邮政储蓄支行)</option>
+											<option value="o">现金(中晟中行银海支行)</option>
+											<option value="p">现金(中晟工行丽景支行)</option>
+											<option value="q">市区现金(中晟中行银海支行)</option>
+											<option value="r">市区现金(中晟邮政储蓄支行)</option>
+											<option value="s">西区现金(中晟中行银海支行)</option>
+											<option value="t">西区现金(中晟邮政储蓄支行)</option>
+											<option value="u">官塘现金(中晟中行银海支行)</option>
+											<option value="v">官塘现金(中晟邮政储蓄支行)</option>
+											<option value="w">中转仓现金(中晟中行银海支行)</option>
+											<option value="x">中转仓现金(中晟邮政储蓄支行)</option>
+											<option value="k">代收代付(码头款)</option>
+											<option value="y">刷卡(中晟中行银海支行)</option>
+										</select>										
+										<span class="help-block"> 请选择 </span>
+									</div>
+									<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+									<label class="control-label col-md-4">银行存款信息及备注 <span class="required"> </span> </label>
+									<div class="col-md-8">
+										<textarea id="plcunmsg" rows="10" style="width: 300px;" maxlength="120" class="form-control" ></textarea>										
+										<span class="help-block"> 例如:银行名称,存单号码 </span>
+									</div>
+								</div>
+							</div>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="btn default" data-dismiss="modal">
+							取消
+							</button>
+							<button  type="button" class="btn blue" onclick="doPLCun()">
 							确定
 							</button>
 						</div>
