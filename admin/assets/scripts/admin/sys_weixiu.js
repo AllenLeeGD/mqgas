@@ -1,9 +1,39 @@
-function openOpt(pid) {
-	document.location.href = "sys_recall_addopt.php?tag=sysadmin&item=14&pkid=" + pid;
+function openDelConfirm(pkid, index) {
+	$("#view_data").data("pkid", pkid);
+	$("#view_data").data("index", index);
+	$("#do_delWorker").modal('show');
 }
 
-function openView(pid) {
-	document.location.href = "sys_recall_viewopt.php?tag=sysadmin&item=14&pkid=" + pid;
+function doDelWorker() {
+	var pkid = $("#view_data").data("pkid");
+	var index = $("#view_data").data("index");
+	var obj = {};
+	obj.pkid = pkid;
+	var content = JSON.stringify(obj);
+	var objdata = {};
+	objdata.content = base64_encode(encodeURI(content));
+	var util = new Util();
+	util.showLoading();
+	util.postUrl('/Mq/Check/delweixiu/pkid/' + pkid, function(data, status) {
+			if(data == "yes") {
+				util.successMsg('删除成功');
+				$("#do_delWorker").modal('hide');
+			} else {
+				util.errorMsg('删除失败');
+			}
+			document.location.reload();
+			util.hideLoading();
+		},
+		objdata,
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			util.errorMsg('内部服务器错误');
+			util.hideLoading();
+		});
+
+}
+
+function openEdit(pid) {
+	document.location.href = "sys_weixiu_edit.php?tag=sysadmin&item=13&pkid="+pid;
 }
 
 var ProviderOrder = function() {
@@ -49,28 +79,8 @@ var ProviderOrder = function() {
 					aoData.push({
 						"name": "optdate_search",
 						"value": $("#optdate_search").val()
-					}, {
-						"name": "dname_search",
-						"value": $("#dname_search").val()
-					}, {
-						"name": "status_search",
-						"value": $("#status_search").val()
-					}, {
-						"name": "remark_search",
-						"value": $("#remark_search").val()
 					});
-				},
-				"aoColumnDefs": [{
-					"aTargets": [2],
-					"mRender": function(data, type, full) {
-						if(data.length>20){
-							return  "<a title='"+data+"'>"+data.substring(0,20)+"......</a>";
-						}else{
-							return data;
-						}
-					}
-				}]
-
+				}
 			}
 		});
 
@@ -162,17 +172,20 @@ var readed = false;
 
 $(document).ready(function() {
 	$('#datatable_orders').on('draw.dt', function() {
-
+		
 	});
 	var util = new Util();
 	var start = util.getParam('start');
 	var params = util.getParam('params');
-
+	var memberid = util.getParam("memberid");
+	var membername = util.getParam("membername");
+	$("#membername").html(base64_decode(membername));
+	$("#addBtn").attr("href","sys_weixiu_add.php?tag=sysadmin&item=13&memberid="+memberid);
 	if(util.isNullStr(start)) {
 		start = 0;
 	}
 	if(util.isNullStr(params)) {
-		ProviderOrder.init("../index.php/Mq/Check/findRecallopt", start);
+		ProviderOrder.init("../index.php/Mq/Check/findWeixiu/memberid/"+memberid, start);
 	} else {
 		params = base64_decode(params);
 		var arrparam = params.split(',');
@@ -182,11 +195,11 @@ $(document).ready(function() {
 		$('#dailydate_search').val(arrval0[1]);
 		$('#dname_search').val(arrval1[1]);
 		$('#carnumber_search').val(arrval2[1]);
-		ProviderOrder.init("../index.php/Mq/Check/findRecallopt", start);
+		ProviderOrder.init("../index.php/Mq/Check/findWeixiu/memberid/"+memberid, start);
 	}
-
+	
 	$("#songqi_tab").bind('click', function() {
 		readed = true;
-		ProviderOrder.init("../index.php/Mq/Check/findRecallopt", start);
+		ProviderOrder.init("../index.php/Mq/Check/findWeixiu/memberid/"+memberid, start);
 	});
 });

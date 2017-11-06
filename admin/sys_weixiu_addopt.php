@@ -7,7 +7,7 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8"/>
-		<title>查看回访处理</title>
+		<title>维修处理</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 		<meta content="" name="description"/>
@@ -46,7 +46,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-							<h3 class="page-title"> 查看回访信息 <small>查看回访信息</small></h3>
+							<h3 class="page-title"> 处理维修信息 <small>处理维修信息</small></h3>
 							<ul class="page-breadcrumb breadcrumb">
 								<!--<li class="btn-group">
 								<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -70,8 +70,8 @@
 									<i class="fa fa-angle-right"></i>
 								</li>
 								<li>
-									<a href="sys_recallopt.php?tag=sysadmin&item=14">
-										客户回访处理
+									<a href="sys_weixiuopt.php?tag=sysadmin&item=52">
+										客户维修处理
 									</a>
 								</li>
 							</ul>
@@ -85,7 +85,7 @@
 							<ul class="nav nav-tabs">
 								<li class="active">
 									<a href="#tab_0" data-toggle="tab">
-										查看回访
+										处理维修
 									</a>
 								</li>
 								<!--<li>
@@ -115,25 +115,6 @@
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
 														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
-														<label class="control-label col-md-2">登记人 <span class="required"> </span> </label>
-														<div class="col-md-8">
-															<label class="control-label">
-																<span id="addmembername" name="addmembername" v-text="sendobj.addmembername" ></span>
-															</label>
-														</div>
-													</div>
-													<div id="vipdiscountgroup" class="form-group">
-														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
-														<label class="control-label col-md-2">客户名称 <span class="required"> </span> </label>
-														<div class="col-md-8">
-															<label class="control-label">
-																<span id="realname" name="realname" v-text="sendobj.realname" ></span>
-															</label>
-														</div>
-													</div>
-													
-													<div id="vipdiscountgroup" class="form-group">
-														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
 														<label class="control-label col-md-2">门店名称 <span class="required"> </span> </label>
 														<div class="col-md-8">
 															<label class="control-label">
@@ -142,7 +123,7 @@
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">回访情况 <span class="required"> </span> </label>
+														<label class="control-label col-md-2">维修情况 <span class="required"> </span> </label>
 														<div class="col-md-8">	
 															<label class="control-label" style="text-align: left;">
 																<span id="remark" v-text="sendobj.remark" ></span>	
@@ -150,20 +131,10 @@
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
-														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
-														<label class="control-label col-md-2">处理人 <span class="required"> </span> </label>
-														<div class="col-md-8">
-															<label class="control-label">
-																<span id="optmembername" name="optmembername" v-text="sendobj.optmembername" ></span>
-															</label>
-														</div>
-													</div>
-													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">处理结果 <span class="required"> </span> </label>
-														<div class="col-md-8">	
-															<label class="control-label" style="text-align: left;">
-																<span id="optremark" v-text="sendobj.optremark" ></span>	
-															</label>																												
+														<label class="control-label col-md-2">处理结果 <span class="required"> *</span> </label>
+														<div class="col-md-8">															
+															<textarea id="optremark" v-model="sendobj.optremark" rows="10" cols="50"></textarea>
+															<span class="help-block">  </span>
 														</div>
 													</div>
 													</div>
@@ -175,8 +146,8 @@
 								</div>
 								<div class="col-md-offset-2 col-md-9">
 									&nbsp;&nbsp;
-									<button id="btnSave" type="button" data-loading-text="..." class="btn yellow">
-									&nbsp;&nbsp;返回&nbsp;&nbsp;
+									<button id="btnSave" type="submit" data-loading-text="保存中..." class="btn yellow">
+									&nbsp;&nbsp;处理维修&nbsp;&nbsp;
 									</button>
 								</div>
 							</div>
@@ -210,7 +181,7 @@
 		<script src="assets/scripts/custom/ajaxfileupload.js"></script>
 		<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 		<script type="text/javascript" src="assets/scripts/custom/vue.min.js"></script>
-		<script src="assets/scripts/admin/sys_recall_viewopt.js"></script>
+		<script src="assets/scripts/admin/sys_weixiu_addopt.js"></script>
 		<!-- END PAGE LEVEL SCRIPTS -->
 		<script>jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {

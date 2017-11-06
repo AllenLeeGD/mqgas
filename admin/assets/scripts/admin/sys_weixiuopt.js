@@ -1,9 +1,9 @@
 function openOpt(pid) {
-	document.location.href = "sys_recall_addopt.php?tag=sysadmin&item=14&pkid=" + pid;
+	document.location.href = "sys_weixiu_addopt.php?tag=sysadmin&item=52&pkid=" + pid;
 }
 
 function openView(pid) {
-	document.location.href = "sys_recall_viewopt.php?tag=sysadmin&item=14&pkid=" + pid;
+	document.location.href = "sys_weixiu_viewopt.php?tag=sysadmin&item=52&pkid=" + pid;
 }
 
 var ProviderOrder = function() {
@@ -172,7 +172,7 @@ $(document).ready(function() {
 		start = 0;
 	}
 	if(util.isNullStr(params)) {
-		ProviderOrder.init("../index.php/Mq/Check/findRecallopt", start);
+		ProviderOrder.init("../index.php/Mq/Check/findWeixiuopt", start);
 	} else {
 		params = base64_decode(params);
 		var arrparam = params.split(',');
@@ -182,11 +182,11 @@ $(document).ready(function() {
 		$('#dailydate_search').val(arrval0[1]);
 		$('#dname_search').val(arrval1[1]);
 		$('#carnumber_search').val(arrval2[1]);
-		ProviderOrder.init("../index.php/Mq/Check/findRecallopt", start);
+		ProviderOrder.init("../index.php/Mq/Check/findWeixiuopt", start);
 	}
 
 	$("#songqi_tab").bind('click', function() {
 		readed = true;
-		ProviderOrder.init("../index.php/Mq/Check/findRecallopt", start);
+		ProviderOrder.init("../index.php/Mq/Check/findWeixiuopt", start);
 	});
 });

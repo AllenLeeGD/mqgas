@@ -103,6 +103,19 @@
 											<!-- BEGIN FORM-->
 											<form action="javascript:;" class="form-horizontal">
 												<div class="form-body" style="padding:16px 26px 16px 26px;">
+													<div id="vipdiscountgroup" class="form-group">
+														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
+														<label class="control-label col-md-2">日期 <span class="required"> *</span> </label>
+														<div class="col-md-8">
+															<div class="input-group input-large date date-picker" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+																<input id="optdate" name="optdate" type="text" class="form-control" readonly>
+																<span class="input-group-btn">
+																<button class="btn default" type="button">
+																<i class="fa fa-calendar"></i>
+																</button> </span>
+															</div>
+														</div>
+													</div>
 													<div id="form_app" >
 													<div id="vipdiscountgroup" class="form-group">
 														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->

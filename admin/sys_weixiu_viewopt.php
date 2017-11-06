@@ -7,7 +7,7 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8"/>
-		<title>查看回访处理</title>
+		<title>查看维修处理</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 		<meta content="" name="description"/>
@@ -46,7 +46,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-							<h3 class="page-title"> 查看回访信息 <small>查看回访信息</small></h3>
+							<h3 class="page-title"> 查看维修信息 <small>查看维修信息</small></h3>
 							<ul class="page-breadcrumb breadcrumb">
 								<!--<li class="btn-group">
 								<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -70,8 +70,8 @@
 									<i class="fa fa-angle-right"></i>
 								</li>
 								<li>
-									<a href="sys_recallopt.php?tag=sysadmin&item=14">
-										客户回访处理
+									<a href="sys_weixiuopt.php?tag=sysadmin&item=52">
+										客户维修处理
 									</a>
 								</li>
 							</ul>
@@ -85,7 +85,7 @@
 							<ul class="nav nav-tabs">
 								<li class="active">
 									<a href="#tab_0" data-toggle="tab">
-										查看回访
+										查看维修
 									</a>
 								</li>
 								<!--<li>
@@ -122,6 +122,7 @@
 															</label>
 														</div>
 													</div>
+													
 													<div id="vipdiscountgroup" class="form-group">
 														<!--如果录入不正确加入has-success,has-error,has-warning样式，fa-warning-->
 														<label class="control-label col-md-2">客户名称 <span class="required"> </span> </label>
@@ -142,7 +143,7 @@
 														</div>
 													</div>
 													<div id="vipdiscountgroup" class="form-group">
-														<label class="control-label col-md-2">回访情况 <span class="required"> </span> </label>
+														<label class="control-label col-md-2">问题情况 <span class="required"> </span> </label>
 														<div class="col-md-8">	
 															<label class="control-label" style="text-align: left;">
 																<span id="remark" v-text="sendobj.remark" ></span>	
@@ -210,7 +211,7 @@
 		<script src="assets/scripts/custom/ajaxfileupload.js"></script>
 		<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
 		<script type="text/javascript" src="assets/scripts/custom/vue.min.js"></script>
-		<script src="assets/scripts/admin/sys_recall_viewopt.js"></script>
+		<script src="assets/scripts/admin/sys_weixiu_viewopt.js"></script>
 		<!-- END PAGE LEVEL SCRIPTS -->
 		<script>jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {

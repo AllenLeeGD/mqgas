@@ -44,7 +44,8 @@ class CheckController extends Controller {
 		
 		for ($i = 0; $i < count($result); $i++) {
 			$btnChecksafe = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openCheck('".$result[$i]['pkid']."','".$result[$i]['realname']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;安检&nbsp;</a>";
-			$btnRecall = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openRecall('".$result[$i]['pkid']."','".$result[$i]['realname']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;回访&nbsp;</a>";			
+			$btnRecall = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openRecall('".$result[$i]['pkid']."','".$result[$i]['realname']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;回访&nbsp;</a>";
+			$btnWeixiu = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openWeixiu('".$result[$i]['pkid']."','".$result[$i]['realname']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;维修&nbsp;</a>";			
 			if(empty($result[$i]['checkdate'])){
 				$checkdate = "";
 			}else{
@@ -60,7 +61,7 @@ class CheckController extends Controller {
 			if(strlen($mobile) > 50){
 				$mobile = "<a title='".$mobile."'>".substr($mobile, 0,50)."......</a>";
 			}
-			$records["aaData"][] = array($result[$i]['realname'],$mobile,$checkdate,$optdate,$btnChecksafe.$btnRecall);
+			$records["aaData"][] = array($result[$i]['realname'],$mobile,$checkdate,$optdate,$btnChecksafe.$btnRecall.$btnWeixiu);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";
@@ -221,7 +222,7 @@ class CheckController extends Controller {
 	}
 	
 	/**
-	 * 删除门店片区信息.
+	 * 删除信息.
 	 */
 	public function delrecall($pkid) {
 		$dao = M("Recall");
@@ -251,7 +252,7 @@ class CheckController extends Controller {
 	
 	public function loadrecall($pkid){
 		$dao = M("Recall");
-		$result = $dao->where("pkid = '$pkid'")->find();
+		$result = $dao->join("memberinfo as m on m.pkid=recall.memberid","LEFT")->where("recall.pkid = '$pkid'")->field("recall.*,m.realname")->find();
 		$result['optdate'] = date('Y-m-d',$result['optdate']);
 		header('Content-type: text/json');
 		header('Content-type: application/json');
@@ -287,11 +288,19 @@ class CheckController extends Controller {
 			$query_sql = $query_sql . " and optdate = $optdate";
 			$countquery_sql = $countquery_sql . " and optdate = $optdate";
 		}
+		
+		$remark = $_REQUEST['remark_search'];
+		if (!empty($remark)) {
+			$query_sql = $query_sql . " and remark like '%$remark%'";
+			$countquery_sql = $countquery_sql . " and remark like '%$remark%'";
+		}
+		
+		
 		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
 		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
 		
 		$count_sql = "select count(*) as totalrecord from recall as m where 1=1 $countquery_sql order by status desc";
-		$condition_sql = "select * from recall where 1=1 $query_sql order by status desc limit $iDisplayStart,$iDisplayLength ";
+		$condition_sql = "select recall.*,memberinfo.realname from recall left join memberinfo on recall.memberid = memberinfo.pkid where 1=1 $query_sql order by status desc limit $iDisplayStart,$iDisplayLength ";
 		
 		$resultcount = $query -> query($count_sql);
 		$result = $query -> query($condition_sql);
@@ -325,7 +334,7 @@ class CheckController extends Controller {
 //			if(strlen($s_remark)>=20){
 //				$s_remark = "<a title='".$s_remark."'>".substr($s_remark,0,23)."...</a>";
 //			}
-			$records["aaData"][] = array($optdate,$result[$i]['dname'],$s_remark,$s_status,$btnOpt.$btnView);
+			$records["aaData"][] = array($optdate,$result[$i]['dname'],$result[$i]['realname'],$s_remark,$s_status,$btnOpt.$btnView);
 		}
 		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
 			$records["sStatus"] = "OK";
@@ -347,6 +356,199 @@ class CheckController extends Controller {
 		$obj["opttime"] = time();
 		$obj["status"] = 1;
 		$dao = M("Recall");
+		$dao->where("pkid='$pkid'")->save($obj);		
+		echo "yes";
+	}
+	
+	
+	
+	
+	public function findWeixiuopt() {
+		$query = new \Think\Model();
+		$condition_sql = "";
+		$count_sql = "";
+		$query_sql = "";
+		$countquery_sql = "";
+		$dname = $_REQUEST['dname_search'];
+		if (!empty($dname)) {
+			$query_sql = $query_sql . " and dname like '%$dname%'";
+			$countquery_sql = $countquery_sql . " and dname like '%$dname%'";
+		}
+		$status_search = $_REQUEST['status_search'];
+		if ($status_search=="未处理") {
+			$query_sql = $query_sql . " and status = 0";
+			$countquery_sql = $countquery_sql . " and status = 0";
+		}else if ($status_search=="已处理"){
+			$query_sql = $query_sql . " and status = 1";
+			$countquery_sql = $countquery_sql . " and status = 1";
+		}
+		$optdate = $_REQUEST['optdate_search'];
+		if (!empty($optdate) && ($optdate == date('Y-m-d',strtotime($optdate))) ) {
+			$optdate = strtotime($optdate);
+			$query_sql = $query_sql . " and optdate = $optdate";
+			$countquery_sql = $countquery_sql . " and optdate = $optdate";
+		}
+		
+		$remark = $_REQUEST['remark_search'];
+		if (!empty($remark)) {
+			$query_sql = $query_sql . " and remark like '%$remark%'";
+			$countquery_sql = $countquery_sql . " and remark like '%$remark%'";
+		}
+		
+		
+		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
+		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
+		
+		$count_sql = "select count(*) as totalrecord from weixiu as m where 1=1 $countquery_sql order by status desc";
+		$condition_sql = "select weixiu.*,memberinfo.realname from weixiu left join memberinfo on weixiu.memberid=memberinfo.pkid where 1=1 $query_sql order by status desc limit $iDisplayStart,$iDisplayLength ";
+		
+		$resultcount = $query -> query($count_sql);
+		$result = $query -> query($condition_sql);
+		$iTotalRecords = $resultcount[0]['totalrecord'];
+		$iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+		$sEcho = intval($_REQUEST['sEcho']);
+		$records = array();
+		$records["aaData"] = array();
+		$jsparams = "keyword:$orderid,buyername:$updowntag";
+		
+		for ($i = 0; $i < count($result); $i++) {
+			$btnOpt = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openOpt('".$result[$i]['pkid']."','".$result[$i]['realname']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;处理维修&nbsp;</a>";
+			$btnView = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openView('".$result[$i]['pkid']."','".$result[$i]['realname']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-eye'></i> &nbsp;查看维修情况&nbsp;</a>";			
+			if(empty($result[$i]['checkdate'])){
+				$checkdate = "";
+			}else{
+				$checkdate = date('Y-m-d',$result[$i]['checkdate']);
+			}
+			
+			if(empty($result[$i]['optdate'])){
+				$optdate = "";
+			}else{
+				$optdate = date('Y-m-d',$result[$i]['optdate']);
+			}
+			if($result[$i]['status'] ==0){
+				$s_status = "未处理";
+			}else{
+				$s_status = "已处理";
+			}
+			$s_remark = $result[$i]['remark'];
+//			if(strlen($s_remark)>=20){
+//				$s_remark = "<a title='".$s_remark."'>".substr($s_remark,0,23)."...</a>";
+//			}
+			$records["aaData"][] = array($optdate,$result[$i]['dname'],$result[$i]['realname'],$s_remark,$s_status,$btnOpt.$btnView);
+		}
+		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
+			$records["sStatus"] = "OK";
+			// pass custom message(useful for getting status of group actions)
+			$records["sMessage"] = "Group action successfully has been completed. Well done!";
+			// pass custom message(useful for getting status of group actions)
+		}
+		$records["sEcho"] = $sEcho;
+		$records["iTotalRecords"] = $iTotalRecords;
+		$records["iTotalDisplayRecords"] = $iTotalRecords;
+		echo json_encode($records);
+	}
+
+	public function loadweixiu($pkid){
+		$dao = M("Weixiu");
+		$result = $dao->join("memberinfo on weixiu.memberid=memberinfo.pkid","LEFT")->where("weixiu.pkid = '$pkid'")->field("weixiu.*,memberinfo.realname")->find();
+		$result['optdate'] = date('Y-m-d',$result['optdate']);
+		header('Content-type: text/json');
+		header('Content-type: application/json');
+		echo json_encode($result, JSON_UNESCAPED_UNICODE);
+	}
+	
+	public function optweixiu(){
+		$obj = getObjFromPost(array("pkid","optremark"));
+		$pkid = $obj["pkid"];
+		$obj["optmemberid"] = session("userid");
+		$obj["optmembername"] = session("name");
+		$obj["opttime"] = time();
+		$obj["status"] = 1;
+		$dao = M("Weixiu");
+		$dao->where("pkid='$pkid'")->save($obj);		
+		echo "yes";
+	}
+	
+	/**
+	 * 删除门店片区信息.
+	 */
+	public function delweixiu($pkid) {
+		$dao = M("Weixiu");
+		$dao->where("pkid='$pkid'")->delete();
+		echo "yes";
+	}
+	
+	/**
+	 * 查询客户维修列表.
+	 */
+	public function findWeixiu($memberid) {
+		$query = new \Think\Model();
+		$condition_sql = "";
+		$count_sql = "";
+		$query_sql = "";
+		$countquery_sql = "";
+		$optdate = $_REQUEST['optdate_search'];
+		if (!empty($optdate) && ($optdate == date('Y-m-d',strtotime($optdate))) ) {
+			$optdate = strtotime($optdate);
+			$query_sql = $query_sql . " and optdate = $optdate";
+			$countquery_sql = $countquery_sql . " and optdate = $optdate";
+		}
+		
+		$iDisplayLength = intval($_REQUEST['iDisplayLength']);
+		$iDisplayStart = intval($_REQUEST['iDisplayStart']);
+		
+		
+		$count_sql = "select count(*) as totalrecord from weixiu as m where memberid='$memberid' $countquery_sql";
+		$condition_sql = "select * from weixiu where memberid='$memberid' $query_sql order by optdate desc limit $iDisplayStart,$iDisplayLength ";
+		
+		$resultcount = $query -> query($count_sql);
+		$result = $query -> query($condition_sql);
+		$iTotalRecords = $resultcount[0]['totalrecord'];
+		$iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+		$sEcho = intval($_REQUEST['sEcho']);
+		$records = array();
+		$records["aaData"] = array();
+		$jsparams = "keyword:$orderid,buyername:$updowntag";
+		
+		for ($i = 0; $i < count($result); $i++) {
+			$btnEdit = "<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openEdit('".$result[$i]['pkid']."','".$iDisplayStart."','".$jsparams."')\"><i class='fa fa-pencil'></i> &nbsp;编辑&nbsp;</a>";
+			$btnDel = "&nbsp;&nbsp;<a class='btn btn-xs default'  data-toggle='modal' onclick=\"openDelConfirm('".$result[$i]['pkid']."','".$iDisplayStart."')\"><i class='fa fa-times'></i> &nbsp;删除&nbsp;</a>";			
+			if(empty($result[$i]['optdate'])){
+				$optdate = "";
+			}else{
+				$optdate = date('Y-m-d',$result[$i]['optdate']);
+			}			
+			$records["aaData"][] = array($optdate,$result[$i]['remark'],$btnEdit.$btnDel);
+		}
+		if (isset($_REQUEST["sAction"]) && $_REQUEST["sAction"] == "group_action") {
+			$records["sStatus"] = "OK";
+			// pass custom message(useful for getting status of group actions)
+			$records["sMessage"] = "Group action successfully has been completed. Well done!";
+			// pass custom message(useful for getting status of group actions)
+		}
+		$records["sEcho"] = $sEcho;
+		$records["iTotalRecords"] = $iTotalRecords;
+		$records["iTotalDisplayRecords"] = $iTotalRecords;
+		echo json_encode($records);
+	}
+
+
+	public function saveweixiu(){
+		$obj = getObjFromPost(array("optdate","memberid","remark","departmentid","dname"));
+		$obj['optdate'] = strtotime($obj['optdate']);
+		$obj['pkid'] = uniqid();
+		$obj['addmemberid'] = session("userid");
+		$obj['addmembername'] = session("name");
+		$dao = M("Weixiu");
+		$dao->add($obj);		
+		echo "yes";
+	}
+	
+	public function editweixiu(){
+		$obj = getObjFromPost(array("pkid","optdate","remark","departmentid","dname"));
+		$obj['optdate'] = strtotime($obj['optdate']);
+		$pkid = $obj["pkid"];
+		$dao = M("Weixiu");
 		$dao->where("pkid='$pkid'")->save($obj);		
 		echo "yes";
 	}

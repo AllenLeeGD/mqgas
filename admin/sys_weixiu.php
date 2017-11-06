@@ -7,7 +7,7 @@
 	<!-- BEGIN HEAD -->
 	<head>
 		<meta charset="utf-8"/>
-		<title>客户安检回访维修管理</title>
+		<title>客户维修管理</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 		<meta content="" name="description"/>
@@ -45,9 +45,23 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-							<h3 class="page-title"> 客户安检回访维修管理 <small>增加、编辑、删除客户安检及回访维修信息</small></h3>
+							<h3 class="page-title"> 客户维修管理 <small>增加、编辑、删除客户维修信息</small></h3>
 							<ul class="page-breadcrumb breadcrumb">
-								
+								<li class="btn-group">
+									<button type="button" class="btn blue dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+									<span>
+										功能菜单
+									</span>
+									<i class="fa fa-angle-down"></i>
+									</button>
+									<ul class="dropdown-menu pull-right" role="menu">
+										<li>
+											<a id="addBtn" href="sys_weixiu_add.php?tag=sysadmin&item=13">
+												新增维修信息
+											</a>
+										</li>
+									</ul>
+								</li>
 								<li>
 									<a href="admin_home.php?item=0">
 										管理首页
@@ -60,7 +74,13 @@
 								</li>
 								<li>
 									<a href="sys_checkrecall.php?tag=sysadmin&item=13">
-										客户安检回访维修管理
+										客户安检及维修管理
+									</a>
+									<i class="fa fa-angle-right"></i>
+								</li>
+								<li>
+									<a href="#">
+										客户维修管理
 									</a>
 								</li>
 							</ul>
@@ -78,7 +98,7 @@
 									<ul class="nav nav-tabs nav-tabs-lg">
 										<li id="mendian_tab" class="active">
 											<a href="#tab_2" data-toggle="tab">
-												安检回访维修信息
+												<span id="membername"></span> 的维修信息
 											</a>
 										</li>
 									</ul>
@@ -89,18 +109,14 @@
 											<table class="table table-bordered" id="datatable_orders">
 												<thead>
 													<tr role="row" class="heading">
-														<th style="width:150px"> 客户名称 </th>
-														<th style="width:150px"> 联系电话 </th>
-														<th style="width:150px"> 最近安检 </th>
-														<th style="width:150px"> 最近回访 </th>
-														<th> 操作 </th>
+														<th style="width:150px"> 维修日期 </th>
+														<th> 备注 </th>
+														<th style="width:200px"> 操作 </th>
 													</tr>
 													<tr role="row">
 														<td>
-															<input id="name_search" type="text" class="form-control form-filter" name="name_search" placeholder="请输入">
+															<input id="optdate_search" type="text" class="form-control form-filter" name="optdate_search" placeholder="请输入日期">
 														</td>
-														<td><input id="mobile_search" type="text" class="form-control form-filter" name="mobile_search" placeholder="请输入"></td>
-														<td></td>
 														<td>
 														</td>
 														<td>
@@ -170,7 +186,7 @@
 			<script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 			<script src="assets/scripts/core/datatable.js"></script> 
 			<script type="text/javascript" src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
-			<script src="assets/scripts/admin/sys_checkrecall.js"></script>
+			<script src="assets/scripts/admin/sys_weixiu.js"></script>
 			<script>jQuery(document).ready(function() {
 	$(".fancybox-button").live("click", function(event) {
 		var href = $(this).attr('href');

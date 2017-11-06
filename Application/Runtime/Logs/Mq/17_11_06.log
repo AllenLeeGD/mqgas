@@ -1,0 +1,710 @@
+[ 2017-11-06T09:59:32+08:00 ] ::1 /index.php/Mq/Check/findRecall/memberid/59fbcf062ed9c
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000174s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000373s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000423s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from recall as m where memberid='59fbcf062ed9c'  [ RunTime:0.0153s ]
+SQL: select * from recall where memberid='59fbcf062ed9c'  order by optdate desc limit 0,20  [ RunTime:0.0128s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 200 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 200 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000313s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000336s ]
+
+[ 2017-11-06T09:59:37+08:00 ] ::1 /index.php/Mq/Order/findUsersCount
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000148s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000224s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000297s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `memberinfo` [ RunTime:0.0124s ]
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0119s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `memberinfo` LIMIT 1   [ RunTime:0.0159s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ordermain` LIMIT 1   [ RunTime:0.0130s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000804s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000860s ]
+
+[ 2017-11-06T09:59:40+08:00 ] ::1 /index.php/Mq/Check/findCheckrecall
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000150s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000187s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000208s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  order by m.regtime desc [ RunTime:0.0168s ]
+SQL: select m.pkid,m.realname,m.mobile,(select max(checkdate) from safecheck as s where s.memberid = m.pkid) as checkdate,(select max(optdate) from recall as r where r.memberid = m.pkid) as optdate from memberinfo as m where 1=1  order by regtime desc limit 0,20  [ RunTime:0.0216s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000552s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000667s ]
+
+[ 2017-11-06T11:01:33+08:00 ] ::1 /index.php/Mq/Check/findCheckrecall
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000173s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000239s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  order by m.regtime desc [ RunTime:0.0146s ]
+SQL: select m.pkid,m.realname,m.mobile,(select max(checkdate) from safecheck as s where s.memberid = m.pkid) as checkdate,(select max(optdate) from recall as r where r.memberid = m.pkid) as optdate from memberinfo as m where 1=1  order by regtime desc limit 0,20  [ RunTime:0.0180s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000406s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000434s ]
+
+[ 2017-11-06T11:01:37+08:00 ] ::1 /index.php/Mq/Check/findCheckrecall
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000217s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000210s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000235s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  and m.mobile LIKE '%13798965198%' order by m.regtime desc [ RunTime:0.0273s ]
+SQL: select m.pkid,m.realname,m.mobile,(select max(checkdate) from safecheck as s where s.memberid = m.pkid) as checkdate,(select max(optdate) from recall as r where r.memberid = m.pkid) as optdate from memberinfo as m where 1=1  and m.mobile LIKE '%13798965198%' order by regtime desc limit 0,20  [ RunTime:0.0158s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000380s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000411s ]
+
+[ 2017-11-06T11:01:58+08:00 ] ::1 /index.php/Mq/Check/findCheckrecall
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000145s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000181s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000201s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  order by m.regtime desc [ RunTime:0.0156s ]
+SQL: select m.pkid,m.realname,m.mobile,(select max(checkdate) from safecheck as s where s.memberid = m.pkid) as checkdate,(select max(optdate) from recall as r where r.memberid = m.pkid) as optdate from memberinfo as m where 1=1  order by regtime desc limit 0,20  [ RunTime:0.0181s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000834s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000906s ]
+
+[ 2017-11-06T11:02:03+08:00 ] ::1 /index.php/Mq/Check/findCheckrecall
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000115s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000557s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000333s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000387s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  and m.mobile LIKE '%13798965198%' order by m.regtime desc [ RunTime:0.0166s ]
+SQL: select m.pkid,m.realname,m.mobile,(select max(checkdate) from safecheck as s where s.memberid = m.pkid) as checkdate,(select max(optdate) from recall as r where r.memberid = m.pkid) as optdate from memberinfo as m where 1=1  and m.mobile LIKE '%13798965198%' order by regtime desc limit 0,20  [ RunTime:0.0154s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000453s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000507s ]
+
+[ 2017-11-06T11:02:05+08:00 ] ::1 /index.php/Mq/Check/findWeixiu/memberid/5932992a0f9c5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000148s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000185s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000208s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where memberid='5932992a0f9c5'  [ RunTime:0.0143s ]
+SQL: select * from weixiu where memberid='5932992a0f9c5'  order by optdate desc limit 0,20  [ RunTime:0.0137s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000322s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000344s ]
+
+[ 2017-11-06T11:02:28+08:00 ] ::1 /index.php/Mq/Check/findWeixiu/memberid/5932992a0f9c5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000168s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000217s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000241s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where memberid='5932992a0f9c5'  [ RunTime:0.0121s ]
+SQL: select * from weixiu where memberid='5932992a0f9c5'  order by optdate desc limit 0,20  [ RunTime:0.0122s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000730s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000892s ]
+
+[ 2017-11-06T11:02:33+08:00 ] ::1 /index.php/Mq/Check/loadweixiu/pkid/59e6b62985382
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000180s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000186s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000206s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0134s ]
+SQL: SELECT * FROM `weixiu` WHERE ( pkid = '59e6b62985382' ) LIMIT 1   [ RunTime:0.0124s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000344s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000370s ]
+
+[ 2017-11-06T11:02:33+08:00 ] ::1 /index.php/Mq/Role/loaddepartment
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000246s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000275s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `department` [ RunTime:0.0154s ]
+SQL: SELECT * FROM `department` WHERE ( flag = 1 )  [ RunTime:0.0129s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000471s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000523s ]
+
+[ 2017-11-06T11:02:36+08:00 ] ::1 /index.php/Mq/Check/findWeixiu/memberid/5932992a0f9c5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000166s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000419s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where memberid='5932992a0f9c5'  [ RunTime:0.0131s ]
+SQL: select * from weixiu where memberid='5932992a0f9c5'  order by optdate desc limit 0,20  [ RunTime:0.0141s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000444s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000487s ]
+
+[ 2017-11-06T11:02:45+08:00 ] ::1 /index.php/Mq/Check/loadweixiu/pkid/59e6b62985382
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000205s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000261s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000287s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0166s ]
+SQL: SELECT * FROM `weixiu` WHERE ( pkid = '59e6b62985382' ) LIMIT 1   [ RunTime:0.0138s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000759s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000820s ]
+
+[ 2017-11-06T11:02:45+08:00 ] ::1 /index.php/Mq/Role/loaddepartment
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000245s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001031s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `department` [ RunTime:0.0122s ]
+SQL: SELECT * FROM `department` WHERE ( flag = 1 )  [ RunTime:0.0132s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000411s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000459s ]
+
+[ 2017-11-06T11:02:58+08:00 ] ::1 /index.php/Mq/Check/editweixiu
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000766s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000749s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000851s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0114s ]
+SQL: UPDATE `weixiu` SET `pkid`='59e6b62985382',`optdate`='1510156800',`remark`='这是维修的情况',`departmentid`='dp19',`dname`='湾仔沙店' WHERE ( pkid='59e6b62985382' ) [ RunTime:0.0191s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000591s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000640s ]
+
+[ 2017-11-06T11:03:01+08:00 ] ::1 /index.php/Mq/Check/findWeixiu/memberid/5932992a0f9c5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000006s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000143s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000309s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000341s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where memberid='5932992a0f9c5'  [ RunTime:0.0142s ]
+SQL: select * from weixiu where memberid='5932992a0f9c5'  order by optdate desc limit 0,20  [ RunTime:0.0170s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000321s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000343s ]
+
+[ 2017-11-06T11:03:07+08:00 ] ::1 /index.php/Mq/Role/loaddepartment
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000165s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000211s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000236s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `department` [ RunTime:0.0134s ]
+SQL: SELECT * FROM `department` WHERE ( flag = 1 )  [ RunTime:0.0244s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000488s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000547s ]
+
+[ 2017-11-06T11:03:19+08:00 ] ::1 /index.php/Mq/Check/saveweixiu
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000163s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000291s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000333s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0136s ]
+SQL: INSERT INTO `weixiu` (`optdate`,`memberid`,`remark`,`departmentid`,`dname`,`pkid`,`addmemberid`,`addmembername`) VALUES ('1509897600','5932992a0f9c5','今天的维修情况','dp15','吉大店','59ffd0f794dd7','59fbcafb18c9e','huawutest') [ RunTime:0.0136s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000560s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000619s ]
+
+[ 2017-11-06T11:03:21+08:00 ] ::1 /index.php/Mq/Role/loaddepartment
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000177s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000221s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000244s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `department` [ RunTime:0.0144s ]
+SQL: SELECT * FROM `department` WHERE ( flag = 1 )  [ RunTime:0.0135s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000474s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000538s ]
+
+[ 2017-11-06T11:03:22+08:00 ] ::1 /index.php/Mq/Check/findWeixiu/memberid/5932992a0f9c5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000147s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000312s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000349s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where memberid='5932992a0f9c5'  [ RunTime:0.0119s ]
+SQL: select * from weixiu where memberid='5932992a0f9c5'  order by optdate desc limit 0,20  [ RunTime:0.0119s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 511 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000372s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000402s ]
+
+[ 2017-11-06T11:03:28+08:00 ] ::1 /index.php/Mq/Check/findWeixiuopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000147s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000285s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000334s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where 1=1  order by status desc [ RunTime:0.0126s ]
+SQL: select * from weixiu where 1=1  order by status desc limit 0,20  [ RunTime:0.0137s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 415 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 416 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 415 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 416 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000292s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000318s ]
+
+[ 2017-11-06T11:03:40+08:00 ] ::1 /index.php/Mq/Check/loadweixiu/pkid/59e6b62985382
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000145s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000192s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000215s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0210s ]
+SQL: SELECT * FROM `weixiu` WHERE ( pkid = '59e6b62985382' ) LIMIT 1   [ RunTime:0.0130s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000489s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000573s ]
+
+[ 2017-11-06T11:03:50+08:00 ] ::1 /index.php/Mq/Check/findWeixiuopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000215s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000240s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where 1=1  order by status desc [ RunTime:0.0132s ]
+SQL: select * from weixiu where 1=1  order by status desc limit 0,20  [ RunTime:0.0145s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 415 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 416 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 415 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 416 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000306s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000326s ]
+
+[ 2017-11-06T11:03:55+08:00 ] ::1 /index.php/Mq/Check/findCheckrecall
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000231s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000287s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000319s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from memberinfo as m where 1=1  order by m.regtime desc [ RunTime:0.0165s ]
+SQL: select m.pkid,m.realname,m.mobile,(select max(checkdate) from safecheck as s where s.memberid = m.pkid) as checkdate,(select max(optdate) from recall as r where r.memberid = m.pkid) as optdate from memberinfo as m where 1=1  order by regtime desc limit 0,20  [ RunTime:0.0204s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 43 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001289s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001374s ]
+
+[ 2017-11-06T11:21:38+08:00 ] ::1 /index.php/Mq/Order/findUsersCount
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000140s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000186s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000207s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `memberinfo` [ RunTime:0.0182s ]
+SQL: SHOW COLUMNS FROM `ordermain` [ RunTime:0.0156s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `memberinfo` LIMIT 1   [ RunTime:0.0131s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ordermain` LIMIT 1   [ RunTime:0.0139s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000341s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000374s ]
+
+[ 2017-11-06T11:21:41+08:00 ] ::1 /index.php/Mq/Check/findWeixiuopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000277s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000274s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000310s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where 1=1  order by status desc [ RunTime:0.0143s ]
+SQL: select weixiu.*,memberinfo.realname from weixiu left join memberinfo on weixiu.memberid=memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0194s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000435s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000481s ]
+
+[ 2017-11-06T11:22:00+08:00 ] ::1 /index.php/Mq/Check/loadweixiu/pkid/59ffd0f794dd7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000150s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000189s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000209s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0150s ]
+SQL: SELECT * FROM `weixiu` WHERE ( pkid = '59ffd0f794dd7' ) LIMIT 1   [ RunTime:0.0148s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000312s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000337s ]
+
+[ 2017-11-06T11:22:04+08:00 ] ::1 /index.php/Mq/Check/findWeixiuopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000146s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000182s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000203s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where 1=1  order by status desc [ RunTime:0.0143s ]
+SQL: select weixiu.*,memberinfo.realname from weixiu left join memberinfo on weixiu.memberid=memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0142s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000439s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000490s ]
+
+[ 2017-11-06T11:22:17+08:00 ] ::1 /index.php/Mq/Check/loadweixiu/pkid/59ffd0f794dd7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000365s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000284s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000315s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0139s ]
+SQL: SELECT * FROM `weixiu` WHERE ( pkid = '59ffd0f794dd7' ) LIMIT 1   [ RunTime:0.0204s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000327s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000349s ]
+
+[ 2017-11-06T11:26:35+08:00 ] ::1 /index.php/Mq/Check/loadweixiu/pkid/59ffd0f794dd7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000145s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000218s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000238s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0141s ]
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'memberinfo.reakname' in 'field list'
+
+[ 2017-11-06T11:26:53+08:00 ] ::1 /index.php/Mq/Check/loadweixiu/pkid/59ffd0f794dd7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000173s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000303s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000329s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0137s ]
+SQL: SELECT weixiu.*,memberinfo.realname FROM `weixiu` LEFT JOIN memberinfo on weixiu.memberid=memberinfo.pkid  WHERE ( weixiu.pkid = '59ffd0f794dd7' ) LIMIT 1   [ RunTime:0.0144s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000818s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000902s ]
+
+[ 2017-11-06T11:27:05+08:00 ] ::1 /index.php/Mq/Check/findWeixiuopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000321s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where 1=1  order by status desc [ RunTime:0.0108s ]
+SQL: select weixiu.*,memberinfo.realname from weixiu left join memberinfo on weixiu.memberid=memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0121s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000942s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000985s ]
+
+[ 2017-11-06T11:27:08+08:00 ] ::1 /index.php/Mq/Check/loadweixiu/pkid/59ffd0f794dd7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000145s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000222s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000248s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0163s ]
+SQL: SELECT weixiu.*,memberinfo.realname FROM `weixiu` LEFT JOIN memberinfo on weixiu.memberid=memberinfo.pkid  WHERE ( weixiu.pkid = '59ffd0f794dd7' ) LIMIT 1   [ RunTime:0.0133s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000407s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000441s ]
+
+[ 2017-11-06T11:27:10+08:00 ] ::1 /index.php/Mq/Check/findWeixiuopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000166s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000201s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000226s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where 1=1  order by status desc [ RunTime:0.0123s ]
+SQL: select weixiu.*,memberinfo.realname from weixiu left join memberinfo on weixiu.memberid=memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0131s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000677s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000717s ]
+
+[ 2017-11-06T11:27:13+08:00 ] ::1 /index.php/Mq/Check/loadweixiu/pkid/59ffd0f794dd7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000278s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000237s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `weixiu` [ RunTime:0.0142s ]
+SQL: SELECT weixiu.*,memberinfo.realname FROM `weixiu` LEFT JOIN memberinfo on weixiu.memberid=memberinfo.pkid  WHERE ( weixiu.pkid = '59ffd0f794dd7' ) LIMIT 1   [ RunTime:0.0130s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000386s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000419s ]
+
+[ 2017-11-06T11:27:15+08:00 ] ::1 /index.php/Mq/Check/findWeixiuopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000153s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000218s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000240s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where 1=1  order by status desc [ RunTime:0.0136s ]
+SQL: select weixiu.*,memberinfo.realname from weixiu left join memberinfo on weixiu.memberid=memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0143s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000443s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000482s ]
+
+[ 2017-11-06T11:27:31+08:00 ] ::1 /index.php/Mq/Check/findRecallopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000153s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000193s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000216s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from recall as m where 1=1  order by status desc [ RunTime:0.0142s ]
+SQL: select * from recall where 1=1  order by status desc limit 0,20  [ RunTime:0.0142s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 315 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 316 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 315 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 316 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000496s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000528s ]
+
+[ 2017-11-06T11:27:34+08:00 ] ::1 /index.php/Mq/Check/findWeixiuopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000183s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000213s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where 1=1  order by status desc [ RunTime:0.0139s ]
+SQL: select weixiu.*,memberinfo.realname from weixiu left join memberinfo on weixiu.memberid=memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0137s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000514s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000559s ]
+
+[ 2017-11-06T11:30:52+08:00 ] ::1 /index.php/Mq/Check/findRecallopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000167s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000214s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000240s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from recall as m where 1=1  order by status desc [ RunTime:0.0166s ]
+SQL: select * from recall where 1=1  order by status desc limit 0,20  [ RunTime:0.0143s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 315 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 316 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 315 行.
+NOTIC: [8] Undefined index: realname /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 316 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000374s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000403s ]
+
+[ 2017-11-06T11:32:32+08:00 ] ::1 /index.php/Mq/Check/findRecallopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000151s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000189s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000211s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from recall as m where 1=1  order by status desc [ RunTime:0.0132s ]
+SQL: select recall.*,memberinfo.realname from recall left join memberinfo on recall.memberid = memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0206s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000455s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000498s ]
+
+[ 2017-11-06T11:32:47+08:00 ] ::1 /index.php/Mq/Check/findWeixiuopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000158s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000273s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000307s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from weixiu as m where 1=1  order by status desc [ RunTime:0.0144s ]
+SQL: select weixiu.*,memberinfo.realname from weixiu left join memberinfo on weixiu.memberid=memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0150s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 412 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000470s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000504s ]
+
+[ 2017-11-06T11:32:49+08:00 ] ::1 /index.php/Mq/Check/findRecallopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000259s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000322s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000365s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from recall as m where 1=1  order by status desc [ RunTime:0.0137s ]
+SQL: select recall.*,memberinfo.realname from recall left join memberinfo on recall.memberid = memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0142s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000294s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000323s ]
+
+[ 2017-11-06T11:32:55+08:00 ] ::1 /index.php/Mq/Check/loadrecall/pkid/596e03cb998a8
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000149s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000249s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000273s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `recall` [ RunTime:0.0154s ]
+SQL: SELECT * FROM `recall` WHERE ( pkid = '596e03cb998a8' ) LIMIT 1   [ RunTime:0.0111s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000474s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000507s ]
+
+[ 2017-11-06T11:36:21+08:00 ] ::1 /index.php/Mq/Check/loadrecall/pkid/596e03cb998a8
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000146s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000258s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000280s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `recall` [ RunTime:0.0145s ]
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'memberinfo.realname' in 'field list'
+
+[ 2017-11-06T11:36:53+08:00 ] ::1 /index.php/Mq/Check/loadrecall/pkid/596e03cb998a8
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000147s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000221s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000251s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `recall` [ RunTime:0.0141s ]
+SQL: SELECT recall.*,m.realname FROM `recall` LEFT JOIN memberinfo as m on m.pkid=recall.memberid  WHERE ( recall.pkid = '596e03cb998a8' ) LIMIT 1   [ RunTime:0.0160s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000356s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000390s ]
+
+[ 2017-11-06T11:36:59+08:00 ] ::1 /index.php/Mq/Check/findRecallopt
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000158s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000198s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000222s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /Users/mianhuatang/company/mq/mqgas/ThinkPHP/Common/functions.php 第 1263 行.
+SQL: select count(*) as totalrecord from recall as m where 1=1  order by status desc [ RunTime:0.0126s ]
+SQL: select recall.*,memberinfo.realname from recall left join memberinfo on recall.memberid = memberinfo.pkid where 1=1  order by status desc limit 0,20  [ RunTime:0.0148s ]
+NOTIC: [8] Undefined variable: orderid /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+NOTIC: [8] Undefined variable: updowntag /Users/mianhuatang/company/mq/mqgas/Application/Mq/Controller/CheckController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000420s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000490s ]
+

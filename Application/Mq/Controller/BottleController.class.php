@@ -157,7 +157,7 @@ class BottleController extends Controller {
 		$obj['pkid'] = uniqid();
 		$obj['userid'] = session("userid");
 		$obj['username'] = session("name");
-		$obj['optdate'] = time();
+		$obj['optdate'] = strtotime($obj['optdate']);
 		$dao = M("Bottle");
 		$dao->add($obj);		
 		echo "yes";
@@ -168,7 +168,7 @@ class BottleController extends Controller {
 		$pkid = $obj['pkid'];
 		$obj['userid'] = session("userid");
 		$obj['username'] = session("name");
-		$obj['optdate'] = time();
+		$obj['optdate'] = strtotime($obj['optdate']);
 		$dao = M("Bottle");
 		$dao->where("pkid='$pkid'")->save($obj);		
 		echo "yes";

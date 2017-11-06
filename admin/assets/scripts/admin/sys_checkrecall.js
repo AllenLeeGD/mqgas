@@ -8,6 +8,10 @@ function openRecall(pid,pname) {
 	document.location.href = "sys_recall.php?tag=sysadmin&item=13&memberid="+pid+"&membername="+base64_encode(pname);
 }
 
+function openWeixiu(pid,pname) {
+	document.location.href = "sys_weixiu.php?tag=sysadmin&item=13&memberid="+pid+"&membername="+base64_encode(pname);
+}
+
 var ProviderOrder = function() {
 
 	var initPickers = function() {

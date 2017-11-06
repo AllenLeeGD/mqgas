@@ -106,6 +106,7 @@
 													<tr role="row" class="heading">
 														<th style="width:150px"> 回访日期 </th>
 														<th style="width:150px"> 所属门店 </th>
+														<th> 客户名称 </th>
 														<th> 内容 </th>
 														<th style="width:100px"> 状态 </th>
 														<th style="width:200px"> 操作 </th>
@@ -117,7 +118,9 @@
 														<td>
 															<input id="dname_search" type="text" class="form-control form-filter" name="dname_search" placeholder="请输入门店">
 														</td>
+														<td></td>
 														<td>
+															<input id="remark_search" type="text" class="form-control form-filter" name="dname_search" placeholder="请输入内容">
 														</td>
 														<td>
 															<input id="status_search" type="text" class="form-control form-filter" name="status_search" placeholder="请输入">

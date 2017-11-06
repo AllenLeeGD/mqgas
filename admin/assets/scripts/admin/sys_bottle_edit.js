@@ -1,6 +1,6 @@
 function bulidData() {
 	var util = new Util();
-	if(util.isNullStr($("#departmentid").val()) || util.isNullStr($("#changetype").val()) || util.isNullStr($("#type").val())) {
+	if(util.isNullStr($("#departmentid").val()) || util.isNullStr($("#optdate").val()) || util.isNullStr($("#changetype").val()) || util.isNullStr($("#type").val())) {
 		return false;
 	}
 	return true;
@@ -20,6 +20,7 @@ function saveData() {
 		util.showLoading();
 		var url = "/Mq/Bottle/editbottle";
 		send_obj.pkid = util.getParam("pkid");
+		send_obj.optdate = $("#optdate").val();
 		send_obj.pname = $("#pid").find("option:selected").text();
 		send_obj.jname = $("#jid").find("option:selected").text();
 		send_obj.fname = $("#fid").find("option:selected").text();
@@ -155,6 +156,7 @@ function loadData() {
 		url,
 		function(data, status) { //如果调用php成功  
 			send_obj = data;
+			$("#optdate").val(new Date(data.optdate*1000).Format("yyyy-MM-dd"));
 			send_vue = new Vue({
 				el: "#form_app",
 				data: {

@@ -1,6 +1,6 @@
 function bulidData() {
 	var util = new Util();
-	if(util.isNullStr($("#departmentid").val()) || util.isNullStr($("#changetype").val()) || util.isNullStr($("#type").val())) {
+	if(util.isNullStr($("#departmentid").val()) || util.isNullStr($("#optdate").val()) || util.isNullStr($("#changetype").val()) || util.isNullStr($("#type").val())) {
 		return false;
 	}
 	return true;
@@ -19,6 +19,7 @@ function saveData() {
 	if(obj != false) {
 		util.showLoading();
 		var url = "/Mq/Bottle/savebottle";
+		send_obj.optdate = $("#optdate").val();
 		send_obj.pname = $("#pid").find("option:selected").text();
 		send_obj.jname = $("#jid").find("option:selected").text();
 		send_obj.fname = $("#fid").find("option:selected").text();
