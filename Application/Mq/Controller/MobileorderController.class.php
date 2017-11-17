@@ -188,6 +188,12 @@ class MobileorderController extends Controller {
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
 	}
 	
+	function findcheduiorderdetailitem_inner($pkid){
+		$dao_main = M("Orderdetail");
+		$datalist = $dao_main->where("orderid = '$pkid'")->select();
+		return $datalist;
+	}
+	
 	function sendcar($pkid){
 		$dao_main = M("Ordermain");
 		$check = $dao_main->where("pkid='".$pkid."'")->find();
@@ -232,6 +238,12 @@ class MobileorderController extends Controller {
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);
+	}
+	
+	function findyewuorderdetail_inner($pkid){
+		$dao_main = M("Ordermain");
+		$datalist = $dao_main->join("orderdgs as d on d.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid = '$pkid'")->find();
+		return $datalist;
 	}
 	
 	function findyewuorderdetailhsp($pkid){

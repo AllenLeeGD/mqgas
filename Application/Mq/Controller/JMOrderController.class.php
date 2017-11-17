@@ -456,4 +456,67 @@ class JMOrderController extends Controller {
 		addLog(1, session("userid"), $action."了订单<a href='javascript:showOrderDetail(\"".$pkid."\",\"jm\")'>".$pkid."</a>");
 		echo "yes";
 	}
+
+	public function printJMOrder($pkid){
+		Vendor('PHPWord.PHPWord');
+		$PHPWord = new \PHPWord(); 
+		$orderControler = A("Mobileorder");
+		$order_data = $orderControler->findyewuorderdetail_inner($pkid);
+		$orderdetail_data = $orderControler->findcheduiorderdetailitem_inner($pkid);
+		
+		$section = $PHPWord->createSection(array('pageSizeW'=>3232,'pageSizeH'=>12000,'marginLeft'=>397, 'marginRight'=>397, 'marginTop'=>1088, 'marginBottom'=>1440));
+		
+		// Add text elements
+		$section->addText(iconv('utf-8','GB2312//IGNORE','             新海燃气'));
+		$section->addTextBreak(1);
+		
+		$section->addText(iconv('utf-8','GB2312//IGNORE', '订单号码:  ').$pkid);
+		$section->addTextBreak(1);
+		$section->addText(iconv('utf-8','GB2312//IGNORE','总金额:  ￥').$order_data['price']);
+		$section->addTextBreak(1);
+		if($order_data['jmstatus']==5){//已付款
+			$section->addText(iconv('utf-8','GB2312//IGNORE','支付方式:  微信支付'));
+			$section->addTextBreak(1);
+		}else{
+			$section->addText(iconv('utf-8','GB2312//IGNORE','支付方式:  现金支付'));
+			$section->addTextBreak(1);
+		}
+		
+		$section->addText(iconv('utf-8','GB2312//IGNORE','客户名称:  ').iconv('utf-8','GB2312//IGNORE',$order_data['buyername']));
+		$section->addTextBreak(1);
+		$section->addText(iconv('utf-8','GB2312//IGNORE','客户地址:  ').iconv('utf-8','GB2312//IGNORE',$order_data['buyeraddress']));
+		$section->addTextBreak(1);
+		$section->addText(iconv('utf-8','GB2312//IGNORE','联系电话:  ').iconv('utf-8','GB2312//IGNORE',$order_data['buyermobile']));
+		$section->addTextBreak(1);
+		$section->addText(iconv('utf-8','GB2312//IGNORE','备    注:  ').iconv('utf-8','GB2312//IGNORE',$order_data['remark']));
+		$section->addTextBreak(1);
+		$section->addText(iconv('utf-8','GB2312//IGNORE','派送门店:  ').iconv('utf-8','GB2312//IGNORE',$order_data['mname']));
+		$section->addTextBreak(1);
+		$section->addText(iconv('utf-8','GB2312//IGNORE','派送片区:  ').iconv('utf-8','GB2312//IGNORE',$order_data['pname']));
+		$section->addTextBreak(1);
+		$section->addText('****************************');
+		$section->addTextBreak(1);
+		
+		for($i=0;$i<count($orderdetail_data);$i++){
+			$_item = $orderdetail_data[$i];
+			$section->addText(iconv('utf-8','GB2312//IGNORE',$_item['productname']).iconv('utf-8','GB2312//IGNORE','       ￥').$_item['bottleprice'].iconv('utf-8','GB2312//IGNORE',' ×').$_item['productcount']);
+			$section->addTextBreak(1);
+		}
+		
+		$section->addText('****************************');
+		$section->addTextBreak(1);
+		$section->addText('    '.date('Y-m-d H:i:s'));
+		$section->addTextBreak(1);
+		$section->addText(iconv('utf-8','GB2312//IGNORE','     订气热线:962299'));
+		$section->addTextBreak(1);
+		
+//		$PHPWord->addFontStyle('rStyle', array('bold'=>true, 'italic'=>true, 'size'=>16));
+//		$PHPWord->addParagraphStyle('pStyle', array('align'=>'center', 'spaceAfter'=>100));
+		
+		header("Content-type: application/vnd.ms-word"); 
+        header("Content-Disposition:attachment;filename=123.docx"); 
+        header('Cache-Control: max-age=0'); 
+        $objWriter = \PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
+        $objWriter->save('php://output'); 
+	}
 }
