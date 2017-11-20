@@ -3,19 +3,21 @@ function openCun(pkid) {
 	$("#cunmsg").val('');
 	$("#do_cun").modal('show');
 }
+
 function openShou(pkid) {
 	$("#view_data").data("pkid", pkid);
 	$("#do_shou").modal('show');
 }
-var plcLst ;
+var plcLst;
+
 function pck() {
 	plcLst = new Array();
-	$("[name='Fruit']").each(function(){
-		if($(this).is(':checked')){
+	$("[name='Fruit']").each(function() {
+		if($(this).is(':checked')) {
 			plcLst.push($(this).attr("value"));
 		}
 	});
-	if(plcLst.length==0){
+	if(plcLst.length == 0) {
 		var util = new Util();
 		util.errorMsg("请先选择订单");
 		return;
@@ -24,14 +26,15 @@ function pck() {
 	$("#do_plcun").modal('show');
 }
 var plsLst;
+
 function psk() {
 	plsLst = new Array();
-	$("[name='Fruit']").each(function(){
-		if($(this).is(':checked')){
+	$("[name='Fruit']").each(function() {
+		if($(this).is(':checked')) {
 			plsLst.push($(this).attr("value"));
 		}
 	});
-	if(plsLst.length==0){
+	if(plsLst.length == 0) {
 		var util = new Util();
 		util.errorMsg("请先选择订单");
 		return;
@@ -39,49 +42,95 @@ function psk() {
 	$("#do_plshou").modal('show');
 }
 
-
 function openJie(pkid) {
 	$("#view_data").data("pkid", pkid);
 	$("#do_jie").modal('show');
 }
-function loadCars(did){
-	var util = new Util();	
-	var url = "/Mq/JMOrder/loadCars/did/"+did;
+
+function loadCars(did) {
+	var util = new Util();
+	var url = "/Mq/JMOrder/loadCars/did/" + did;
 	util.postUrl(
 		url,
 		function(data, status) { //如果调用php成功  
-			send_vue .$data.carids = data;
+			send_vue.$data.carids = data;
 			$("#carid").val("");
 		},
 		function(XMLHttpRequest, textStatus, errorThrown) {
-			
+
 		}
 	);
 }
-var send_vue ;
-function openPei(pkid,did) {
+
+function loadCarsPrint(did) {
+	var util = new Util();
+	var url = "/Mq/JMOrder/loadCars/did/" + did;
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue.$data.carids_p = data;
+			$("#carid_p").val("");
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+
+		}
+	);
+}
+var send_vue;
+
+function openPei(pkid, did) {
 	$("#view_data").data("pkid", pkid);
 	$("#view_data").data("did", did);
-	var util = new Util();	
-	var url = "/Mq/JMOrder/loadSongqis/did/"+did;
+	var util = new Util();
+	var url = "/Mq/JMOrder/loadSongqis/did/" + did;
 	util.postUrl(
 		url,
 		function(data, status) { //如果调用php成功  
 			send_vue = new Vue({
-				el:"#form_app",
-				data:{sendobj:{},songqiids:data,carids:[]}
+				el: "#form_app",
+				data: {
+					sendobj: {},
+					songqiids: data,
+					carids: []
+				}
 			});
 			$("#songqiid").val("");
 			loadCars(did);
 			$("#do_fen").modal('show');
 		},
 		function(XMLHttpRequest, textStatus, errorThrown) {
-			
+
 		}
 	);
-	
+
 }
 
+function openPeiPrint(pkid, did) {
+	$("#view_data").data("pkid", pkid);
+	$("#view_data").data("did", did);
+	var util = new Util();
+	var url = "/Mq/JMOrder/loadSongqis/did/" + did;
+	util.postUrl(
+		url,
+		function(data, status) { //如果调用php成功  
+			send_vue = new Vue({
+				el: "#form_app_print",
+				data: {
+					sendobj: {},
+					songqiids_p: data,
+					carids_p: []
+				}
+			});
+			$("#songqiid_p").val("");
+			loadCarsPrint(did);
+			$("#do_fen_print").modal('show');
+		},
+		function(XMLHttpRequest, textStatus, errorThrown) {
+
+		}
+	);
+
+}
 
 function doShou() {
 	var pkid = $("#view_data").data("pkid");
@@ -111,14 +160,14 @@ function doPLShou() {
 	var objdata = {};
 	objdata.shous = "";
 	objdata.shounumber = $("#shounumber").val();
-	for(var i = 0;i<plsLst.length;i++){
-		if(i==0){
+	for(var i = 0; i < plsLst.length; i++) {
+		if(i == 0) {
 			objdata.shous = plsLst[i];
-		}else{
+		} else {
 			objdata.shous = objdata.shous + "," + plsLst[i];
 		}
 	}
-	
+
 	var util = new Util();
 	util.showLoading();
 	util.postUrl('/Mq/JMOrder/plshou/', function(data, status) {
@@ -167,7 +216,7 @@ function doCun() {
 	objdata.shoutype = $("#shoutype").val();
 	objdata.shoutypestr = $("#shoutype").find("option:selected").html();
 	var util = new Util();
-	if(util.isNullStr(objdata.cunmsg) || util.isNullStr(objdata.shoutype)){
+	if(util.isNullStr(objdata.cunmsg) || util.isNullStr(objdata.shoutype)) {
 		util.errorMsg('请填写存款信息');
 		return;
 	}
@@ -190,21 +239,20 @@ function doCun() {
 
 }
 
-
 function doPLCun() {
 	var objdata = {};
 	objdata.cunmsg = $("#plcunmsg").val();
 	objdata.shoutype = $("#plshoutype").val();
 	objdata.shoutypestr = $("#plshoutype").find("option:selected").html();
 	var util = new Util();
-	if(util.isNullStr(objdata.cunmsg) || util.isNullStr(objdata.shoutype)){
+	if(util.isNullStr(objdata.cunmsg) || util.isNullStr(objdata.shoutype)) {
 		util.errorMsg('请填写存款信息');
 		return;
 	}
-	for(var i = 0;i<plcLst.length;i++){
-		if(i==0){
+	for(var i = 0; i < plcLst.length; i++) {
+		if(i == 0) {
 			objdata.cuns = plcLst[i];
-		}else{
+		} else {
 			objdata.cuns = objdata.cuns + "," + plcLst[i];
 		}
 	}
@@ -235,7 +283,7 @@ function doPei() {
 	objdata.carid = $("#carid").val();
 	objdata.songqiname = $("#songqiid").find("option:selected").text();
 	objdata.carnumber = $("#carid").find("option:selected").text();
-	if(util.isNullStr(objdata.songqiid) && util.isNullStr(objdata.carid)){
+	if(util.isNullStr(objdata.songqiid) && util.isNullStr(objdata.carid)) {
 		util.errorMsg('请选择送气工或车辆');
 		return;
 	}
@@ -257,6 +305,67 @@ function doPei() {
 		});
 }
 
+function doPeiPrint() {
+	var util = new Util();
+	var pkid = $("#view_data").data("pkid");
+	var objdata = {};
+	objdata.songqiid = $("#songqiid_p").val();
+	objdata.carid = $("#carid_p").val();
+	objdata.songqiname = $("#songqiid_p").find("option:selected").text();
+	objdata.carnumber = $("#carid_p").find("option:selected").text();
+	if(util.isNullStr(objdata.songqiid) && util.isNullStr(objdata.carid)) {
+		util.errorMsg('请选择送气工或车辆');
+		return;
+	}
+	util.showLoading();
+
+	var form = $("<form>"); //定义一个form表单
+	form.attr("style", "display:none");
+	form.attr("target", "");
+	form.attr("method", "post");
+	form.attr("action", "/index.php/Mq/JMOrder/printJMOrder/pkid/" + pkid);
+	var input1 = $("<input>");
+	input1.attr("type", "hidden");
+	input1.attr("name", "exportData");
+	input1.attr("value", (new Date()).getMilliseconds());
+
+	var input2 = $("<input>");
+	input2.attr("type", "hidden");
+	input2.attr("name", "songqiid");
+	input2.attr("value", $("#songqiid_p").val());
+
+	var input3 = $("<input>");
+	input3.attr("type", "hidden");
+	input3.attr("name", "carid");
+	input3.attr("value", $("#carid_p").val());
+
+	var input4 = $("<input>");
+	input4.attr("type", "hidden");
+	input4.attr("name", "songqiname");
+	input4.attr("value", $("#songqiid_p").find("option:selected").text());
+
+	var input5 = $("<input>");
+	input5.attr("type", "hidden");
+	input5.attr("name", "carnumber");
+	input5.attr("value", $("#carid_p").find("option:selected").text());
+
+	$("body").append(form); //将表单放置在web中
+	form.append(input1);
+	form.append(input2);
+	form.append(input3);
+	form.append(input4);
+	form.append(input5);
+	util.hideLoading();
+	form.submit(); //表单提交 
+	util.hideLoading();
+	util.successMsg('分配成功');
+	$("#do_fen_print").modal('hide');
+	setTimeout(function(){
+		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/3", 0);
+	},2000);
+	
+}
+
 function openOrderDetail(pkid) {
 	var util = new Util();
 	var openmodal = $("#ajax-modal");
@@ -268,7 +377,7 @@ function openOrderDetail(pkid) {
 					var objdata = JSON.parse(data);
 					$('#div_orderinfo').html("订单编号:&nbsp;&nbsp;&nbsp;" + objdata.pkid + "&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;" + objdata.buytime + "&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;" + objdata.status + "");
 					$('#l_aname').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>收&nbsp;货&nbsp;人:</strong>&nbsp;&nbsp;" + objdata.buyername + "");
-//					$('#sendtime').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>预&nbsp;约&nbsp;时&nbsp;间:</strong>&nbsp;&nbsp;" + objdata.sendtime + "");
+					//					$('#sendtime').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>预&nbsp;约&nbsp;时&nbsp;间:</strong>&nbsp;&nbsp;" + objdata.sendtime + "");
 					$('#l_tel').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>电&nbsp;　&nbsp;话:</strong>&nbsp;&nbsp;" + objdata.buyermobile + "");
 					$('#l_address').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>地&nbsp;　&nbsp;址:</strong>&nbsp;&nbsp;" + objdata.buyeraddress + "");
 					$('#l_remark').html("<strong style='width:80px;text-align:right; display:inline-block;height:35px'>留&nbsp;　&nbsp;言:</strong>&nbsp;&nbsp;" + objdata.remark + "");
@@ -277,7 +386,7 @@ function openOrderDetail(pkid) {
 					var line2 = "";
 					var line3 = "";
 					var line4 = "";
-					
+
 					if(objdata.status == "拒绝退款") {
 						$('#l_remark').html("<strong>拒绝理由:</strong>&nbsp;&nbsp;" + objdata.refuseremark);
 						$('#l_paytime').html("<strong>拒绝时间:</strong>&nbsp;&nbsp;" + (new Date(objdata.refusetime * 1000)).Format("yyyy-MM-dd hh:mm:ss"));
@@ -288,23 +397,21 @@ function openOrderDetail(pkid) {
 						$('#l_remark').html("<strong>留言:</strong>&nbsp;&nbsp;" + objdata.remark);
 						$('#l_paytime').html("<strong>申请时间:</strong>&nbsp;&nbsp;" + objdata.prerefundtime);
 					}
-					$('#l_mname').html("<strong>门店:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.mname)?"":objdata.mname));
-					$('#l_pname').html("<strong>片区:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.pname)?"":objdata.pname));
-					$('#l_songqiname').html("<strong>送气工:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.songqiname)?"":objdata.songqiname));
-					$('#l_carnumber').html("<strong>送气车辆:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.carnumber)?"":objdata.carnumber));
-					$('#l_shouoptname').html("<strong>收款操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.shouoptname)?"":objdata.shouoptname));
-					$('#l_cuntime').html("<strong>存款时间:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.cuntime)?"":(new Date(objdata.cuntime*1000).Format("yyyy-MM-dd hh:mm:ss"))));
-					$('#l_shoutime').html("<strong>收款时间:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.shoutime)?"":(new Date(objdata.shoutime*1000).Format("yyyy-MM-dd hh:mm:ss"))));
-					$('#l_cunoptname').html("<strong>存款操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.cunoptname)?"":objdata.cunoptname));
-					$('#l_cunmsg').html("<strong>存款信息:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.cunmsg)?"":objdata.cunmsg));
-					$('#l_hetime').html("<strong>核款时间:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.hetime)?"":(new Date(objdata.hetime*1000).Format("yyyy-MM-dd hh:mm:ss"))));
-					$('#l_heoptname').html("<strong>核款操作人:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.heoptname)?"":objdata.heoptname));
-					$('#l_hemsg').html("<strong>核款信息:</strong>&nbsp;&nbsp;"+(util.isNullStr(objdata.hemsg)?"":objdata.hemsg));
-					
-					
-					
+					$('#l_mname').html("<strong>门店:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.mname) ? "" : objdata.mname));
+					$('#l_pname').html("<strong>片区:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.pname) ? "" : objdata.pname));
+					$('#l_songqiname').html("<strong>送气工:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.songqiname) ? "" : objdata.songqiname));
+					$('#l_carnumber').html("<strong>送气车辆:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.carnumber) ? "" : objdata.carnumber));
+					$('#l_shouoptname').html("<strong>收款操作人:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.shouoptname) ? "" : objdata.shouoptname));
+					$('#l_cuntime').html("<strong>存款时间:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.cuntime) ? "" : (new Date(objdata.cuntime * 1000).Format("yyyy-MM-dd hh:mm:ss"))));
+					$('#l_shoutime').html("<strong>收款时间:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.shoutime) ? "" : (new Date(objdata.shoutime * 1000).Format("yyyy-MM-dd hh:mm:ss"))));
+					$('#l_cunoptname').html("<strong>存款操作人:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.cunoptname) ? "" : objdata.cunoptname));
+					$('#l_cunmsg').html("<strong>存款信息:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.cunmsg) ? "" : objdata.cunmsg));
+					$('#l_hetime').html("<strong>核款时间:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.hetime) ? "" : (new Date(objdata.hetime * 1000).Format("yyyy-MM-dd hh:mm:ss"))));
+					$('#l_heoptname').html("<strong>核款操作人:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.heoptname) ? "" : objdata.heoptname));
+					$('#l_hemsg').html("<strong>核款信息:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.hemsg) ? "" : objdata.hemsg));
+
 					var itemlist = objdata.itemlist;
-					if(util.isNullStr(itemlist) || itemlist.length==0){//微信订单,没有orderdetail
+					if(util.isNullStr(itemlist) || itemlist.length == 0) { //微信订单,没有orderdetail
 						if(paytype == 0) {
 							$('#l_paytype').html("<strong>支付方式:</strong>&nbsp;&nbsp;微信支付");
 						} else {
@@ -320,7 +427,7 @@ function openOrderDetail(pkid) {
 						var qty = objdata.buycount;
 						var price = objdata.price;
 						var subtotal = (parseInt(objdata.buycount, 10) * parseFloat(objdata.price)).toFixed(2);
-						totalmoney = (parseFloat(totalmoney) + parseFloat(subtotal)-parseFloat(objdata.coupon)).toFixed(2);
+						totalmoney = (parseFloat(totalmoney) + parseFloat(subtotal) - parseFloat(objdata.coupon)).toFixed(2);
 						template = template.replace('\$\{pdname\}', pdname);
 						template = template.replace('\$\{qty\}', qty);
 						template = template.replace('\$\{price\}', price);
@@ -329,11 +436,11 @@ function openOrderDetail(pkid) {
 						$("#tpl_itemlist").html(old + template);
 						$('#coupon').html("¥ " + objdata.coupon);
 						$('#totalmoney').html("¥ " + totalmoney);
-					}else{
+					} else {
 						$('#l_paytype').html("<strong>支付方式:</strong>&nbsp;&nbsp;无");
 						var totalmoney = 0;
 						var result = "";
-						for(var j = 0;j<itemlist.length;j++){
+						for(var j = 0; j < itemlist.length; j++) {
 							var item = itemlist[j];
 							var template = "<tr><td><div class=\"product-img-label\" >" +
 								"<span>${pdname}</span>" +
@@ -344,14 +451,14 @@ function openOrderDetail(pkid) {
 							var subtotal = (parseInt(item.productcount, 10) * parseFloat(item.bottleprice)).toFixed(2);
 							template = template.replace('\$\{subtotal\}', subtotal);
 							result += template;
-							totalmoney+=parseFloat(subtotal);
+							totalmoney += parseFloat(subtotal);
 						}
-						
+
 						$("#tpl_itemlist").html(result);
 						$('#coupon').html("¥ 0");
 						$('#totalmoney').html("¥ " + totalmoney);
 					}
-					
+
 				} catch(err) {
 					util.errorMsg(err.message);
 				} finally {
@@ -506,7 +613,7 @@ var ProviderOrder = function() {
 
 }();
 
-var oldcount=0;
+var oldcount = 0;
 $(document).ready(function() {
 	var util = new Util();
 	var start = util.getParam('start');
@@ -527,29 +634,29 @@ $(document).ready(function() {
 		$('#mobile_search').val(arrval2[1]);
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/3", start);
 	}
-	
+
 	$("#fen_tab").bind('click', function() {
-		document.title="居民小工商订单";
+		document.title = "居民小工商订单";
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/3", 0);
 		$("#btn_group").hide();
 	});
-	
+
 	$("#shou_tab").bind('click', function() {
-		document.title="居民小工商订单";
+		document.title = "居民小工商订单";
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/4", 0);
 		$("#btn_group").show();
 		$("#psk_container").show();
 		$("#pck_container").hide();
 	});
-	
+
 	$("#cun_tab").bind('click', function() {
-		document.title="居民小工商订单";
+		document.title = "居民小工商订单";
 		ProviderOrder.init("../index.php/Mq/JMOrder/findProductOrderByStatus/status/5", 0);
 		$("#btn_group").show();
 		$("#psk_container").hide();
 		$("#pck_container").show();
 	});
-	
+
 });
 //确认订单
 function doSendConfirm() {

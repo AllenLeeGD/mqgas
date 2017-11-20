@@ -242,7 +242,7 @@ class MobileorderController extends Controller {
 	
 	function findyewuorderdetail_inner($pkid){
 		$dao_main = M("Ordermain");
-		$datalist = $dao_main->join("orderdgs as d on d.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid = '$pkid'")->find();
+		$datalist = $dao_main->join("orderjm as d on d.orderid = ordermain.pkid","LEFT")->where("ordermain.pkid = '$pkid'")->find();
 		return $datalist;
 	}
 	
@@ -302,7 +302,7 @@ class MobileorderController extends Controller {
 	
 	function findjmorderdetail($pkid){
 		$dao_main = M("Ordermain");
-		$datalist = $dao_main->join("orderjm as j on j.orderid = ordermain.pkid","LEFT")->join("userinfo as u on u.pid = j.songqiid","LEFT")->where("ordermain.pkid = '$pkid'")->field("ordermain.*,j.mname,j.pname,j.fenpaitime,j.songqiname,j.carnumber,j.setpeopleopttime,u.worknumber")->find();
+		$datalist = $dao_main->join("orderjm as j on j.orderid = ordermain.pkid","LEFT")->join("userinfo as u on u.pid = j.songqiid","LEFT")->where("ordermain.pkid = '$pkid'")->field("ordermain.*,j.mname,j.pname,j.fenpaitime,j.songqiname,j.carnumber,j.setpeopleopttime,u.worknumber,j.printflag,j.arrivetime")->find();
 		header('Content-type: text/json');
 		header('Content-type: application/json');
 		echo json_encode($datalist, JSON_UNESCAPED_UNICODE);

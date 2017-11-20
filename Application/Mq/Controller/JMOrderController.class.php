@@ -89,6 +89,7 @@ class JMOrderController extends Controller {
 			$btnCancle = "<div class=\"margin-top-10\"><a class='btn btn-xs red default'  data-toggle='modal' onclick=\"openCancle('".$result[$i]['pkid']."')\"><i class='fa fa-ban'></i> &nbsp;取消</a></div>";			
 			$btnFen = "<div class=\"margin-top-10\"><a class='btn btn-xs blue default'  data-toggle='modal' onclick=\"openFen('".$result[$i]['pkid']."','".$result[$i]['buyeraddress']."')\"><i class='fa fa-puzzle-piece'></i> &nbsp;分派</a></div>";
 			$btnPei = "<div class=\"margin-top-10\"><a class='btn btn-xs blue default'  data-toggle='modal' onclick=\"openPei('".$result[$i]['pkid']."','".$result[$i]['mid']."')\"><i class='fa fa-puzzle-piece'></i> &nbsp;分配</a></div>";
+			$btnPrint = "<div class=\"margin-top-10\"><a class='btn btn-xs green default'  data-toggle='modal' onclick=\"openPeiPrint('".$result[$i]['pkid']."','".$result[$i]['mid']."')\"><i class='fa fa-puzzle-piece'></i> &nbsp;分配并打单</a></div>";
 			$btnShou = "<div class=\"margin-top-10\"><a class='btn btn-xs yellow default'  data-toggle='modal' onclick=\"openShou('".$result[$i]['pkid']."')\"><i class='fa fa-ticket'></i> &nbsp;收款</a></div>";
 			$btnCun = "<div class=\"margin-top-10\"><a class='btn btn-xs green default'  data-toggle='modal' onclick=\"openCun('".$result[$i]['pkid']."')\"><i class='fa fa-suitcase'></i> &nbsp;存款</a></div>";
 			$btnHe = "<div class=\"margin-top-10\"><a class='btn btn-xs green default'  data-toggle='modal' onclick=\"openHe('".$result[$i]['pkid']."')\"><i class='fa fa-suitcase'></i> &nbsp;核款</a></div>";
@@ -102,7 +103,7 @@ class JMOrderController extends Controller {
 			}else if($status==2){
 				$showBtn = $btnCancle;
 			}else if($status==3){
-				$showBtn = $btnPei;
+				$showBtn = $btnPei.$btnPrint;
 			}else if($status==4){
 				$showBtn = $btnShou.$btnJie;
 				$pre = "<input name='Fruit' type='checkbox' value='".$result[$i]['pkid']."' />";
@@ -238,6 +239,7 @@ class JMOrderController extends Controller {
 		addLog(1, session("userid"), "分配了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."</a>");
 		echo "yes";
 	}
+	
 	
 	/**
 	 * 订单收款.
@@ -459,62 +461,84 @@ class JMOrderController extends Controller {
 
 	public function printJMOrder($pkid){
 		Vendor('PHPWord.PHPWord');
+		$bid= $pkid;
+		$obj = getObjFromPost(array("songqiid","carid",'songqiname','carnumber'));
+		$dao = M("Ordermain");
+		$dao_jm = M("Orderjm");
+		$data['jmstatus'] = 3;
+		$data_jm['songqiid'] = $obj['songqiid'];
+		$data_jm['songqiname'] = $obj['songqiname'];
+		$data_jm['carid'] = $obj['carid'];
+		$data_jm['carnumber'] = $obj['carnumber'];
+		$data_jm['setpeopleoptid'] = session("userid");
+		$data_jm['setpeopleoptname'] = session("name");
+		$data_jm['setpeopleopttime'] = time();
+		$data_jm['printflag'] = 1;
+		$dao->where("pkid='$bid'")->save($data);
+		$dao_jm->where("orderid='$bid'")->save($data_jm);
+		addLog(1, session("userid"), "分配了订单<a href='javascript:showOrderDetail(\"".$bid."\",\"jm\")'>".$bid."</a>");
+		
 		$PHPWord = new \PHPWord(); 
 		$orderControler = A("Mobileorder");
 		$order_data = $orderControler->findyewuorderdetail_inner($pkid);
 		$orderdetail_data = $orderControler->findcheduiorderdetailitem_inner($pkid);
 		
-		$section = $PHPWord->createSection(array('pageSizeW'=>3232,'pageSizeH'=>12000,'marginLeft'=>397, 'marginRight'=>397, 'marginTop'=>1088, 'marginBottom'=>1440));
+		$section = $PHPWord->createSection(array('pageSizeW'=>3232,'pageSizeH'=>29000,'marginLeft'=>397, 'marginRight'=>397, 'marginTop'=>1088, 'marginBottom'=>1440));
 		
 		// Add text elements
-		$section->addText(iconv('utf-8','GB2312//IGNORE','             新海燃气'));
-		$section->addTextBreak(1);
-		
-		$section->addText(iconv('utf-8','GB2312//IGNORE', '订单号码:  ').$pkid);
-		$section->addTextBreak(1);
-		$section->addText(iconv('utf-8','GB2312//IGNORE','总金额:  ￥').$order_data['price']);
-		$section->addTextBreak(1);
-		if($order_data['jmstatus']==5){//已付款
-			$section->addText(iconv('utf-8','GB2312//IGNORE','支付方式:  微信支付'));
+		for($k=0;$k<=2;$k++){
+			$section->addText(iconv('utf-8','GB2312//IGNORE','             新海燃气'));
 			$section->addTextBreak(1);
-		}else{
-			$section->addText(iconv('utf-8','GB2312//IGNORE','支付方式:  现金支付'));
+			
+			$section->addText(iconv('utf-8','GB2312//IGNORE', '订单号码:  '));
 			$section->addTextBreak(1);
+			$section->addText($pkid);
+			$section->addTextBreak(1);
+			$section->addText(iconv('utf-8','GB2312//IGNORE','总金额:  ￥').$order_data['price']);
+			$section->addTextBreak(1);
+			if($order_data['jmstatus']==5){//已付款
+				$section->addText(iconv('utf-8','GB2312//IGNORE','支付方式:  微信支付'));
+				$section->addTextBreak(1);
+			}else{
+				$section->addText(iconv('utf-8','GB2312//IGNORE','支付方式:  现金支付'));
+				$section->addTextBreak(1);
+			}
+			
+			$section->addText(iconv('utf-8','GB2312//IGNORE','客户名称:  ').iconv('utf-8','GB2312//IGNORE',$order_data['buyername']));
+			$section->addTextBreak(1);
+			$section->addText(iconv('utf-8','GB2312//IGNORE','客户地址:  ').iconv('utf-8','GB2312//IGNORE',$order_data['buyeraddress']));
+			$section->addTextBreak(1);
+			$section->addText(iconv('utf-8','GB2312//IGNORE','联系电话:  ').iconv('utf-8','GB2312//IGNORE',$order_data['buyermobile']));
+			$section->addTextBreak(1);
+			$section->addText(iconv('utf-8','GB2312//IGNORE','备    注:  ').iconv('utf-8','GB2312//IGNORE',$order_data['remark']));
+			$section->addTextBreak(1);
+			$section->addText(iconv('utf-8','GB2312//IGNORE','派送门店:  ').iconv('utf-8','GB2312//IGNORE',$order_data['mname']));
+			$section->addTextBreak(1);
+			$section->addText(iconv('utf-8','GB2312//IGNORE','派送片区:  ').iconv('utf-8','GB2312//IGNORE',$order_data['pname']));
+			$section->addTextBreak(1);
+			$section->addText('****************************');
+			$section->addTextBreak(1);
+			
+			for($i=0;$i<count($orderdetail_data);$i++){
+				$_item = $orderdetail_data[$i];
+				$section->addText(iconv('utf-8','GB2312//IGNORE',$_item['productname']).iconv('utf-8','GB2312//IGNORE','       ￥').$_item['bottleprice'].iconv('utf-8','GB2312//IGNORE',' ×').$_item['productcount']);
+				$section->addTextBreak(1);
+			}
+			
+			$section->addText('****************************');
+			$section->addTextBreak(1);
+			$section->addText('    '.date('Y-m-d H:i:s'));
+			$section->addTextBreak(1);
+			$section->addText(iconv('utf-8','GB2312//IGNORE','     订气热线:962299'));
+			$section->addTextBreak(4);
 		}
 		
-		$section->addText(iconv('utf-8','GB2312//IGNORE','客户名称:  ').iconv('utf-8','GB2312//IGNORE',$order_data['buyername']));
-		$section->addTextBreak(1);
-		$section->addText(iconv('utf-8','GB2312//IGNORE','客户地址:  ').iconv('utf-8','GB2312//IGNORE',$order_data['buyeraddress']));
-		$section->addTextBreak(1);
-		$section->addText(iconv('utf-8','GB2312//IGNORE','联系电话:  ').iconv('utf-8','GB2312//IGNORE',$order_data['buyermobile']));
-		$section->addTextBreak(1);
-		$section->addText(iconv('utf-8','GB2312//IGNORE','备    注:  ').iconv('utf-8','GB2312//IGNORE',$order_data['remark']));
-		$section->addTextBreak(1);
-		$section->addText(iconv('utf-8','GB2312//IGNORE','派送门店:  ').iconv('utf-8','GB2312//IGNORE',$order_data['mname']));
-		$section->addTextBreak(1);
-		$section->addText(iconv('utf-8','GB2312//IGNORE','派送片区:  ').iconv('utf-8','GB2312//IGNORE',$order_data['pname']));
-		$section->addTextBreak(1);
-		$section->addText('****************************');
-		$section->addTextBreak(1);
-		
-		for($i=0;$i<count($orderdetail_data);$i++){
-			$_item = $orderdetail_data[$i];
-			$section->addText(iconv('utf-8','GB2312//IGNORE',$_item['productname']).iconv('utf-8','GB2312//IGNORE','       ￥').$_item['bottleprice'].iconv('utf-8','GB2312//IGNORE',' ×').$_item['productcount']);
-			$section->addTextBreak(1);
-		}
-		
-		$section->addText('****************************');
-		$section->addTextBreak(1);
-		$section->addText('    '.date('Y-m-d H:i:s'));
-		$section->addTextBreak(1);
-		$section->addText(iconv('utf-8','GB2312//IGNORE','     订气热线:962299'));
-		$section->addTextBreak(1);
 		
 //		$PHPWord->addFontStyle('rStyle', array('bold'=>true, 'italic'=>true, 'size'=>16));
 //		$PHPWord->addParagraphStyle('pStyle', array('align'=>'center', 'spaceAfter'=>100));
 		
 		header("Content-type: application/vnd.ms-word"); 
-        header("Content-Disposition:attachment;filename=123.docx"); 
+        header("Content-Disposition:attachment;filename=orderprinter.docx"); 
         header('Cache-Control: max-age=0'); 
         $objWriter = \PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
         $objWriter->save('php://output'); 
