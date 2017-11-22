@@ -58,8 +58,8 @@ class JMOrderController extends Controller {
 			$condition_sql = "select o.*,d.mid from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=2 $query_sql order by buytime desc,pkid limit $iDisplayStart,$iDisplayLength";
 		}
 		if ($status == 4) {//待收款
-			$count_sql = "select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=3 $countquery_sql";
-			$condition_sql = "select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=3 $query_sql order by buytime desc,pkid limit $iDisplayStart,$iDisplayLength";
+			$count_sql = "select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and (jmstatus=3 or jmstatus=8) $countquery_sql";
+			$condition_sql = "select o.* from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and (jmstatus=3 or jmstatus=8) $query_sql order by buytime desc,pkid limit $iDisplayStart,$iDisplayLength";
 		}
 		if ($status == 5) {//待存款
 			$count_sql = "select count(*) as totalrecord from ordermain as o left join orderjm as d on d.orderid = o.pkid  where status=-7 and jmstatus=4 $countquery_sql";
@@ -393,6 +393,17 @@ class JMOrderController extends Controller {
             $query = new \Think\Model();
 			$sql = "select * from orderdetail where orderid='$pkid'";
 			$datamain['itemlist'] = $query -> query($sql);
+			$daily_date = $datamain['setpeopleopttime'];
+			$daily_carid = $datamain['carid'];
+			if(!empty($daily_carid)){
+				$query_c = new \Think\Model();
+				$sql_c = "select * from carsdaily where carid='$daily_carid' and  DATE_FORMAT(from_unixtime(dailydate),'%Y-%m-%d')=DATE_FORMAT(from_unixtime($daily_date),'%Y-%m-%d')";
+				$data_dailycar = $query_c -> query($sql_c);
+				if(count($data_dailycar)>0){
+					$datamain['sname'] = $data_dailycar[0]['sname'];
+					$datamain['yname'] = $data_dailycar[0]['yname'];
+				}
+			}
             echo json_encode($datamain,JSON_UNESCAPED_UNICODE);
         }else {
             echo "no";
@@ -483,10 +494,10 @@ class JMOrderController extends Controller {
 		$order_data = $orderControler->findyewuorderdetail_inner($pkid);
 		$orderdetail_data = $orderControler->findcheduiorderdetailitem_inner($pkid);
 		
-		$section = $PHPWord->createSection(array('pageSizeW'=>3232,'pageSizeH'=>29000,'marginLeft'=>397, 'marginRight'=>397, 'marginTop'=>1088, 'marginBottom'=>1440));
+		$section = $PHPWord->createSection(array('pageSizeW'=>3232,'pageSizeH'=>12000,'marginLeft'=>397, 'marginRight'=>397, 'marginTop'=>1088, 'marginBottom'=>1440));
 		
 		// Add text elements
-		for($k=0;$k<=2;$k++){
+//		for($k=0;$k<=2;$k++){
 			$section->addText(iconv('utf-8','GB2312//IGNORE','             新海燃气'));
 			$section->addTextBreak(1);
 			
@@ -531,7 +542,7 @@ class JMOrderController extends Controller {
 			$section->addTextBreak(1);
 			$section->addText(iconv('utf-8','GB2312//IGNORE','     订气热线:962299'));
 			$section->addTextBreak(4);
-		}
+//		}
 		
 		
 //		$PHPWord->addFontStyle('rStyle', array('bold'=>true, 'italic'=>true, 'size'=>16));

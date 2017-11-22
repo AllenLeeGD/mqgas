@@ -400,7 +400,11 @@ function openOrderDetail(pkid) {
 					$('#l_mname').html("<strong>门店:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.mname) ? "" : objdata.mname));
 					$('#l_pname').html("<strong>片区:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.pname) ? "" : objdata.pname));
 					$('#l_songqiname').html("<strong>送气工:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.songqiname) ? "" : objdata.songqiname));
-					$('#l_carnumber').html("<strong>送气车辆:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.carnumber) ? "" : objdata.carnumber));
+					var sname = "";
+					if(!util.isNullStr(objdata.sname)){
+						sname = "("+objdata.sname+","+objdata.yname+")";
+					}
+					$('#l_carnumber').html("<strong>送气车辆:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.carnumber) ? "" : (objdata.carnumber+sname)));
 					$('#l_shouoptname').html("<strong>收款操作人:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.shouoptname) ? "" : objdata.shouoptname));
 					$('#l_cuntime').html("<strong>存款时间:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.cuntime) ? "" : (new Date(objdata.cuntime * 1000).Format("yyyy-MM-dd hh:mm:ss"))));
 					$('#l_shoutime').html("<strong>收款时间:</strong>&nbsp;&nbsp;" + (util.isNullStr(objdata.shoutime) ? "" : (new Date(objdata.shoutime * 1000).Format("yyyy-MM-dd hh:mm:ss"))));
