@@ -121,12 +121,12 @@
 													</tr>
 													<tr role="row">
 														<td>
-															<input id="order_search" type="text" class="form-control form-filter" name="order_search" placeholder="请输入">
+															<input id="order_search" type="text" class="form-control form-filter" name="order_search" placeholder="订单号或配送信息">
 														</td>
 														<td><input id="buyername_search" type="text" class="form-control form-filter" name="buyername_search" placeholder="请输入"></td>
 														<td></td>
 														<td>
-															<input id="mobile_search" type="text" class="form-control form-filter" name="mobile_search" placeholder="请输入">
+															<input id="mobile_search" type="text" class="form-control form-filter" name="mobile_search" placeholder="电话或日期">
 														</td>
 														<td>
 															

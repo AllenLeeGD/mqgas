@@ -63,6 +63,11 @@
 												批量存款
 											</a>
 										</li>
+										<li>
+											<a href="javascript:countTotal()">
+												合计金额
+											</a>
+										</li>
 									</ul>
 								</li>
 								<li>
@@ -125,12 +130,12 @@
 													</tr>
 													<tr role="row">
 														<td>
-															<input id="order_search" type="text" class="form-control form-filter" name="order_search" placeholder="请输入">
+															<input id="order_search" type="text" class="form-control form-filter" name="order_search" placeholder="订单号或配送信息">
 														</td>
 														<td><input id="buyername_search" type="text" class="form-control form-filter" name="buyername_search" placeholder="请输入"></td>
 														<td></td>
 														<td>
-															<input id="mobile_search" type="text" class="form-control form-filter" name="mobile_search" placeholder="请输入">
+															<input id="mobile_search" type="text" class="form-control form-filter" name="mobile_search" placeholder="电话或日期">
 														</td>
 														<td>
 															
@@ -496,6 +501,30 @@
 							</button>
 							<button  type="button" class="btn blue" onclick="doPLCun()">
 							确定
+							</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			
+			
+			<div class="modal fade" id="showTotal" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="padding:10px 20px 10px 20px;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title green">合计金额</h4>
+						</div>
+						<div class="modal-body">
+							您所选择的订单合计总金额是:
+							<br />
+							<span id="totalvalues" class="font-size-16" style="color: red;"></span>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn default" data-dismiss="modal">
+							关闭
 							</button>
 						</div>
 					</div>

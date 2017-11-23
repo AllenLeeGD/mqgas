@@ -18,16 +18,17 @@ class JMOrderController extends Controller {
 		$buyername = $_REQUEST['buyername_search'];
 		$mobile_search = $_REQUEST['mobile_search'];
 		if (!empty($orderid)) {
-			$query_sql = $query_sql . " and o.pkid like '%$orderid%'";
-			$countquery_sql = $countquery_sql . " and o.pkid like '%$orderid%'";
+			$query_sql = $query_sql . " and (o.pkid like '%$orderid%' or d.songqiname like '%$orderid%' or d.carnumber like '%$orderid%')";
+			$countquery_sql = $countquery_sql . " and (o.pkid like '%$orderid%' or d.songqiname like '%$orderid%' or d.carnumber like '%$orderid%')";
 		}
 		if ($buyername!="") {
 			$query_sql = $query_sql . " and o.buyername LIKE '%$buyername%'";
 			$countquery_sql = $countquery_sql . " and o.buyername LIKE '%$buyername%'";
 		}
 		if ($mobile_search!="") {
-			$query_sql = $query_sql . " and o.buyermobile LIKE '%$mobile_search%'";
-			$countquery_sql = $countquery_sql . " and o.buyermobile LIKE '%$mobile_search%'";
+			$date_search = strtotime($mobile_search);
+			$query_sql = $query_sql . " and (o.buyermobile LIKE '%$mobile_search%' or from_unixtime(o.buytime,'%Y-%m-%d') = from_unixtime($date_search,'%Y-%m-%d'))";
+			$countquery_sql = $countquery_sql . " and (o.buyermobile LIKE '%$mobile_search%' or from_unixtime(o.buytime,'%Y-%m-%d') = from_unixtime($date_search,'%Y-%m-%d'))";
 		}
 		//如果登录用户角色是门店营业员，则只显示本门店的订单
 		$loginuserid = session("userid");
@@ -553,5 +554,26 @@ class JMOrderController extends Controller {
         header('Cache-Control: max-age=0'); 
         $objWriter = \PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
         $objWriter->save('php://output'); 
+	}
+
+	/**
+	 * 批量订单合计金额.
+	 * @bid 订单ID
+	 */
+	public function countTotal(){
+		$obj = getObjFromPost(array("totals"));
+		$dao = M("Ordermain");
+		$bids = split(",", $obj['totals']);
+		$pkids = "";
+		for($i=0;$i<count($bids);$i++){
+			$bid = $bids[$i];
+			if($i==0){
+				$pkids = "'".$bid."'";
+			}else{
+				$pkids = $pkids . "," . "'".$bid."'";
+			}
+		}
+		$result = $dao->where("pkid in ($pkids)")->sum('price');
+		echo $result;
 	}
 }

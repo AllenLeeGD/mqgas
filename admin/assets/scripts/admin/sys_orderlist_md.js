@@ -274,7 +274,40 @@ function doPLCun() {
 		});
 
 }
-
+function countTotal() {
+	var util = new Util();
+	var totalLst = new Array();
+	$("[name='Fruit']").each(function() {
+		if($(this).is(':checked')) {
+			totalLst.push($(this).attr("value"));
+		}
+	});
+	if(totalLst.length == 0) {
+		util.errorMsg("请先选择订单");
+		return;
+	}
+	objdata = {};
+	for(var i = 0; i < totalLst.length; i++) {
+		if(i == 0) {
+			objdata.totals = totalLst[i];
+		} else {
+			objdata.totals = objdata.totals + "," + totalLst[i];
+		}
+	}
+	util.postUrl('/Mq/JMOrder/countTotal', function(data, status) {
+			if(data) {
+				$("#showTotal").modal('show');
+				$("#totalvalues").html("￥"+data);
+			} else {
+				util.errorMsg('统计失败');
+			}
+		},
+		objdata,
+		function(XMLHttpRequest, textStatus, errorThrown) {
+			util.errorMsg('内部服务器错误');
+			util.hideLoading();
+		});
+}
 function doPei() {
 	var util = new Util();
 	var pkid = $("#view_data").data("pkid");
